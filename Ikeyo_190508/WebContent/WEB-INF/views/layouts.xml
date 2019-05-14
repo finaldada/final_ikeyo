@@ -5,28 +5,13 @@
 
 <tiles-definitions>
 
-<!-- login 화면 -->
-<definition name="test.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
-	<put-attribute name="common" value="/WEB-INF/views/common/common.jsp"/>
-	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
-	<put-attribute name="top_menu" value="/WEB-INF/views/common/top_menu.jsp"/>
-	<put-attribute name="content" value="/WEB-INF/views/common/test.jsp"/>	
-	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+<!-- main 화면  -->    
+<definition name="main.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+   <put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu.jsp"/>
+   <put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+   <put-attribute name="content" value="/WEB-INF/views/common/content.jsp"/>   
+   <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 </definition>
-
-<definition name="noticelist.tiles" extends="test.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/notice/noticelist.jsp"/>
-</definition>
-
-<definition name="noticewrite.tiles" extends="test.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/notice/noticewrite.jsp"/>
-</definition>
-
-<definition name="noticeUpdate.tiles" extends="test.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/notice/noticeupdate.jsp"/>
-</definition>
-
-
 
 
 </tiles-definitions>
