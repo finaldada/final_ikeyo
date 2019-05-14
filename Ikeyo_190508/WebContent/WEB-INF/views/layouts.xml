@@ -13,5 +13,4 @@
    <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 </definition>
 
-
 </tiles-definitions>
