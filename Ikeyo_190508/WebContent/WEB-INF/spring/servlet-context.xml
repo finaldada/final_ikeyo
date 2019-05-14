@@ -46,7 +46,7 @@
 	
 	<!-- file upload 셋팅 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="104857600"/>	<!-- 업로드 기본사이즈 1MB -->
+		<property name="maxUploadSize" value="1048576000"/>	<!-- 업로드 기본사이즈 1MB -->
 		<property name="maxInMemorySize" value="102400"/>	<!--  -->
 		<property name="defaultEncoding" value="utf-8"/>	<!-- 인코딩 방식 utf-8 -->
 		<property name="uploadTempDir" value="upload"/>		<!-- WebContent에 upload폴더가 있어야 한다. -->
