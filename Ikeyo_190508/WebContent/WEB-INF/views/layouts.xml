@@ -26,6 +26,28 @@
 	<put-attribute name="content" value="/WEB-INF/views/notice/noticeupdate.jsp"/>
 </definition>
 
+<!--  inventory  테스트용 -->
+<definition name="inventorylist.tiles" template="/WEB-INF/views/inventory/inventorylist.jsp"/>  
+
+<definition name="inventorywrite.tiles" template="/WEB-INF/views/inventory/inventorywrite.jsp"/> 	
+
+<definition name="inventorydetail.tiles" template="/WEB-INF/views/inventory/inventorydetail.jsp"/>
+
+<definition name="inventoryupdate.tiles" template="/WEB-INF/views/inventory/inventoryupdate.jsp"/>
+
+<!-- admin 테스트  -->
+<definition name="memberlist.tiles" template="/WEB-INF/views/admin/memberlist.jsp"/>
+<definition name="adminmain.tiles" template="/WEB-INF/views/admin/adminmain.jsp"/>
+
+	<!-- login 화면 -->
+		<definition name="login.tiles" template="/WEB-INF/views/login/login.jsp"/>
+		
+		<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"/>
+		
+		<definition name="error.tiles" template="/WEB-INF/views/login/error.jsp"/>
+		
+		<definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
+
 
 
 
