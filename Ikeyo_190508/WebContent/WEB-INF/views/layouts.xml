@@ -13,4 +13,24 @@
    <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 </definition>
 
+
+<!-- login 화면 -->
+<definition name="login.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/login/login.jsp"/>
+</definition>
+
+<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"/>
+
+<definition name="findId.tiles" template="/WEB-INF/views/login/findId.jsp"/>
+
+<definition name="findPwd.tiles" template="/WEB-INF/views/login/findPwd.jsp"/>
+
+<definition name="error.tiles" template="/WEB-INF/views/login/error.jsp"/>
+
+<definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
+
+<!-- <definition name="main.tiles" template="/WEB-INF/views/main.jsp"/> -->
+
+
+
 </tiles-definitions>

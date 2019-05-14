@@ -37,19 +37,19 @@
           <a class="nav-link js-scroll-trigger active" href="#about">▤ 모든 제품</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#experience">책상/테이블</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=책상">책상/테이블</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#education">침대/매트릭스</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=침대">침대/매트릭스</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#skills">의자/소파</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=의자">의자/소파</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#interests">옷장/수납장</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=수납장">옷장/수납장</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#awards">커튼/블라인드/조명</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=커튼">커튼/블라인드/조명</a>
         </li>
       </ul>
     </div>

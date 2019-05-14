@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Member">
+  	<insert id="memberInsert" parameterType="kh.com.a.model.MemberDto">
+  		INSERT INTO MEMBER(ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
+  							AUTH, PHONE, PAYPWD, DEL, GRADE, POINT, AUTHKEY, AUTHSTATUS)
+  		VALUES(#{id}, #{pwd}, #{name}, #{email}, #{address1}, #{address2},
+  				3, #{phone}, #{paypwd}, 0, '일반', 1000, NULL, 0)
+  	</insert>
+  	
+  	<select id="idcheck" parameterType="java.lang.String" resultType="java.lang.String">
+  		SELECT ID
+  		FROM MEMBER
+  		WHERE ID=#{id}
+  	</select>
+  	
+  	<select id="emailcheck" parameterType="java.lang.String" resultType="java.lang.String">
+  		SELECT EMAIL
+  		FROM MEMBER
+  		WHERE EMAIL=#{email}
+  	</select>
+  	
+  	<select id="phonecheck" parameterType="java.lang.String" resultType="java.lang.String">
+  		SELECT PHONE
+  		FROM MEMBER
+  		WHERE PHONE=#{phone}
+  	</select>
+  	
+  	<select id="login" parameterType="kh.com.a.model.MemberDto" resultType="kh.com.a.model.MemberDto">
+  		SELECT *
+  		FROM MEMBER
+  		WHERE ID=#{id} AND PWD=#{pwd}
+  	</select>
+  	
+  	<update id="updateAuthKey" parameterType="kh.com.a.model.MemberDto">
+  		UPDATE MEMBER SET
+  		AUTHKEY=#{authkey}
+  		WHERE ID=#{id}
+  	</update>
+  	
+  	<update id="userAuth" parameterType="java.lang.String">
+  		UPDATE MEMBER SET
+  		AUTHSTATUS=1
+  		WHERE EMAIL=#{email}
+  	</update>
+  	
+  	<select id="findId" parameterType="kh.com.a.model.MemberDto" resultType="kh.com.a.model.MemberDto">
+  		SELECT ID
+  		FROM MEMBER
+  		WHERE name=#{name} AND EMAIL=#{email}
+  	</select>
+  </mapper>

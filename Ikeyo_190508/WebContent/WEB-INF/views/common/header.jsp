@@ -20,7 +20,7 @@
 
 <div id="header_nav">
      <ul>
-        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href=".do" style="color: #535353; text-decoration: none;">로그인  ｜</a></b></li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="login.do" style="color: #535353; text-decoration: none;">로그인  ｜</a></b></li>
         <li><b><a href=".do" style="color:#535353; text-decoration: none;">&nbsp;위시리스트 ｜</a></b></li>
         <li><b><a href=".do" style="color:#535353; text-decoration: none;">&nbsp;장바구니 </a></b></li>
      </ul>   
