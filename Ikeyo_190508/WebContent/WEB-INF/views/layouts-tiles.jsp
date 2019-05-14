@@ -1,31 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>  
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <fmt:requestEncoding value="utf-8"/>
 
-<!-- <!DOCTYPE html> -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hello! Ikeyo</title>
-	<tiles:insertAttribute name="header"/>
+
+<title>IKEYO - 1조</title>
+<!-- // 타이틀 로고  -->
+<link rel="icon" type="image/ico" href="image/ikeyo.png" />
+
 </head>
 <body>
 
-<div style=" width: 98%; height: 15%; margin-bottom: 5px;">
-	<tiles:insertAttribute name="top_menu"/>
-</div>
-
-<div style="border: 1px solid; width: 98%; height: auto;
-	padding-top: 5%;">
-	<tiles:insertAttribute name="content"/>
-</div>
-
-<div style="border: 1px solid; width: 98%; height: 15%;">
-	<tiles:insertAttribute name="footer"/>
-</div>
+<table style="width: 100%; height: 100%">
+	<tr> 
+		<td rowspan="3">
+			<tiles:insertAttribute name="left_menu" />
+		</td> 
+		<td style="background-color: white; position: fixed; height: 20%;">
+			<tiles:insertAttribute name="header" />
+		</td> 
+	</tr>
+	
+	<tr> 
+		<td colspan="3">
+			<tiles:insertAttribute name="content" />
+		</td>       
+	</tr>
+	
+	<tr> 
+		<td colspan="3">
+			<tiles:insertAttribute name="footer" />
+		</td>       
+	</tr>
+	
+</table>
 
 
 
