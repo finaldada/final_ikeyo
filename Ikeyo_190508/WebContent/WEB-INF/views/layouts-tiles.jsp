@@ -18,8 +18,8 @@
 	<tiles:insertAttribute name="top_menu"/>
 </div>
 
-<div style="border: 1px solid; width: 98%; height: auto;
-	padding-top: 5%;">
+<div style="border: 1px solid; width: 98%; height: 500;
+	padding-top: 15%;">
 	<tiles:insertAttribute name="content"/>
 </div>
 
