@@ -3,7 +3,6 @@ package kh.com.a.model;
 import java.io.Serializable;
 import java.util.Date;
 
-
 /*
  -----------------------------------------
 -- 상품테이블
@@ -56,14 +55,14 @@ public class ProductDto implements Serializable {
 	private int readcount;		// 조회수
 	private int price;			// 가격
 	private Date rdate;			// 등록일
+	private int likecount;			// 좋아요수
 	
 	public ProductDto() {
 	}
 	
-	
 	public ProductDto(int prod_seq, String model_id, String p_name, String content, String photo_bf1, String photo_bf2,
 			String photo_bf3, String photo_af1, String photo_af2, String photo_af3, String pdf_bf, String pdf_af,
-			int readcount, int price, Date rdate) {
+			int readcount, int price, Date rdate, int likecount) {
 		super();
 		this.prod_seq = prod_seq;
 		this.model_id = model_id;
@@ -80,8 +79,8 @@ public class ProductDto implements Serializable {
 		this.readcount = readcount;
 		this.price = price;
 		this.rdate = rdate;
+		this.likecount = likecount;
 	}
-
 
 	public int getProd_seq() {
 		return prod_seq;
@@ -174,17 +173,12 @@ public class ProductDto implements Serializable {
 		this.rdate = rdate;
 	}
 
-
-	@Override
-	public String toString() {
-		return "ProductDto [prod_seq=" + prod_seq + ", model_id=" + model_id + ", p_name=" + p_name + ", content="
-				+ content + ", photo_bf1=" + photo_bf1 + ", photo_bf2=" + photo_bf2 + ", photo_bf3=" + photo_bf3
-				+ ", photo_af1=" + photo_af1 + ", photo_af2=" + photo_af2 + ", photo_af3=" + photo_af3 + ", pdf_bf="
-				+ pdf_bf + ", pdf_af=" + pdf_af + ", readcount=" + readcount + ", price=" + price + ", rdate=" + rdate
-				+ "]";
+	public int getLikecount() {
+		return likecount;
 	}
-	
-	
-	
+
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
+	}
 	
 }

@@ -10,23 +10,12 @@
 <body>
 <h1>index.jsp</h1>
 
-<%--
-response.sendRedirect("test.do");
---%>
-
-<%
-Map<String, String> login = new HashMap<String, String>();
-login.put("id", "aaa");
-login.put("auth", "1");
-
-session.setAttribute("login", login);
-%>
-
 
 
 <%
-response.sendRedirect("noticelist.do");
+response.sendRedirect("main.do");
 %>
+
 
 
 </body>
