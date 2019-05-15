@@ -7,6 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:requestEncoding value="utf-8"/>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,7 +62,7 @@ $(document).ready(function () {
 <!--  품명(모델번호) / 카테고리 / 수량 / 등록일 / 가격
     모델번호 카테고리    |       |  검색 -->
 
-<div align="center">
+<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%">
 <form action="" id="inven_frm" name="inven_frm" method="post">
 <table border="2" width="100%" height="100%" id="list_table" class="tablesorter">
 
@@ -74,7 +75,7 @@ $(document).ready(function () {
 </colgroup>
 
 <thead>
-<tr>
+<tr align="center"  style="border: 3px solid deepskyblue;">
 	<th>모델번호</th>
 	<th>카테고리</th>
 	<th>가격(원)</th>
@@ -180,9 +181,8 @@ $(document).ready(function(){
 	$("#list_table").tablesorter();
 }); 
 
+</script>
 
-
-</script>   
     
 
 

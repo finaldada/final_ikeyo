@@ -15,5 +15,7 @@ public interface InventoryService {
 	public InventoryDto inventoryDetail(InventoryDto inven);
 	public String inventoryCheck(String model_id);
 	public boolean inventoryUpdate(InventoryDto inven);
-	public boolean inventoryDelete(InventoryDto inven);
+	public boolean inventoryDelete(InventoryDto inven);	
+	public InventoryDto getInventory(int inven_seq);
+
 }

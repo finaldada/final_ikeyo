@@ -9,6 +9,7 @@
 <h1>index.jsp</h1>
 
 
+
 <input type="button" value="go to inven" onclick="goInven()"> 
 <br>
 <input type="button" value="go to login" onclick="goLogin()">
@@ -19,7 +20,6 @@
 <br>
 <input type="button" value="go to poll" onclick="goPoll()">
 <br>
-
 
 
 <br>
@@ -58,8 +58,7 @@ function goPoll() {
 }
 
 
-
-
 </script>
+
 </body>
 </html>

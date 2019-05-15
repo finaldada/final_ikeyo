@@ -17,4 +17,6 @@ public interface ProductDao {
 	public void updateCount(String model_id) throws Exception;
 	public void deleteCount(String model_id) throws Exception;
 	public int selectCount(String model_id);
+	public boolean productAdd(ProductDto productDto);
+
 }

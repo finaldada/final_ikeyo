@@ -45,14 +45,21 @@
   		AUTHSTATUS=1
   		WHERE EMAIL=#{email}
   	</update>
+		
+  	<select id="findId" parameterType="kh.com.a.model.MemberDto" resultType="kh.com.a.model.MemberDto">
+  		SELECT ID
+  		FROM MEMBER
+  		WHERE name=#{name} AND EMAIL=#{email}
+  	</select>
   	
-  	<select id="memberList"  resultType="kh.com.a.model.MemberDto">
+  	
+	<select id="memberList"  resultType="kh.com.a.model.MemberDto">
   		SELECT ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
   		AUTH, PHONE, PAYPWD, DEL, GRADE, POINT, AUTHKEY, AUTHSTATUS
   		FROM MEMBER
   	</select>
   	
-  	 <select id="getInventoryPagingList" parameterType="kh.com.a.model.BbsParam"
+  	 <select id="getMemberPagingList" parameterType="kh.com.a.model.BbsParam"
 	resultType="kh.com.a.model.MemberDto">
 	SELECT ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
   		   AUTH, PHONE, PAYPWD, DEL, GRADE, POINT, AUTHKEY, AUTHSTATUS
@@ -76,7 +83,7 @@
 	WHERE RNUM BETWEEN ${start} AND ${end}	
 </select>
 
-<select id="getInventoryCount" parameterType="kh.com.a.model.BbsParam" resultType="java.lang.Integer">
+<select id="getMemberCount" parameterType="kh.com.a.model.BbsParam" resultType="java.lang.Integer">
 	
 	SELECT NVL(COUNT(*), 0) AS CNT
 	FROM MEMBER
@@ -98,6 +105,5 @@
   		DEL=1
   		WHERE ID=#{id}
   	</update>
-  	
-  	
+
   </mapper>

@@ -1,6 +1,8 @@
 package kh.com.a.dao.impl;
 
+
 import java.util.List;
+
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +61,12 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
+	public MemberDto findId(MemberDto mem) {
+		
+		return sqlSession.selectOne(ns + "findId", mem);
+	}
+
+	@Override
 	public List<MemberDto> memberList() {
 		
 		return sqlSession.selectList(ns + "memberList");
@@ -69,13 +77,13 @@ public class MemberDaoImpl implements MemberDao {
 	@Override 
 	public List<MemberDto> getMemberList(BbsParam param) {
 		
-		return sqlSession.selectList(ns + "getInventoryPagingList", param);
+		return sqlSession.selectList(ns + "getMemberPagingList", param);
 	}
 
 	@Override
 	public int getMemberCount(BbsParam param) {
 		
-		return sqlSession.selectOne(ns + "getInventoryCount", param);
+		return sqlSession.selectOne(ns + "getMemberCount", param);
 	}
 
 	@Override
@@ -86,8 +94,6 @@ public class MemberDaoImpl implements MemberDao {
 	
 		return n>0?true:false; 
 	}
-	
-	
 	
 	
 }

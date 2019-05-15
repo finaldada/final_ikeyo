@@ -13,6 +13,7 @@ import kh.com.a.model.InventoryDto;
 @Repository
 public class InventoryDaoImpl implements InventoryDao {
 
+
 	@Autowired
 	SqlSession sqlSession;
 	
@@ -66,19 +67,12 @@ public class InventoryDaoImpl implements InventoryDao {
 	public int getInventoryCount(BbsParam param) {
 		
 		return sqlSession.selectOne(ns + "getInventoryCount", param);
-	}	
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public InventoryDto getInventory(int inven_seq) {
+		return sqlSession.selectOne(ns + "getinventory", inven_seq);
+	}
 	
 	
 	

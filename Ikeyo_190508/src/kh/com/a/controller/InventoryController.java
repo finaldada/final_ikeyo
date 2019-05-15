@@ -24,7 +24,7 @@ public class InventoryController {
 		
 	//List<InventoryDto> invenlist = inventoryService.getInventoryList();
 		
-		
+
 		// paging 처리
 		int sn = param.getPageNumber();
 		int start = (sn) * param.getRecordCountPerPage() + 1;
@@ -48,6 +48,7 @@ public class InventoryController {
 		
 		return "inventorylist.tiles";
 	}
+		
 	
 	
 	@RequestMapping(value = "inventorywrite.do", method = {RequestMethod.GET, RequestMethod.POST })
@@ -76,7 +77,6 @@ public class InventoryController {
 	
 	@RequestMapping(value="inventorydetail.do", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String inventorydetail(InventoryDto dto, Model model) {
-		
 		InventoryDto inven = inventoryService.inventoryDetail(dto);
 		model.addAttribute("inven", inven);
 		
@@ -93,13 +93,10 @@ public class InventoryController {
 		String str = inventoryService.inventoryCheck(model_id);
 		System.out.println("str:" + str);
 		if(str == null) {
-
-			
 			String msg = "OK";  // 한글 깨짐  String으로 받을때는 value와 method 사이에 produces를 추가해주어야 한다 
 			return msg;  
 			
-		}else {
-			
+		}else {			
 			
 			String msg = "이미 등록된 모델명입니다";
 			return msg;  
@@ -130,9 +127,9 @@ public class InventoryController {
 			System.out.println("인벤토리 업데이트실패");
 			return "redirect:/inventoryupdate.do";
 		}
-		
-	}
 	
+	}
+
 	@RequestMapping(value="inventorydelete.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String inventorydelete(InventoryDto dto) {
 		
@@ -146,7 +143,5 @@ public class InventoryController {
 			return "redirect:/inventorydetail.do";
 		}
 	}
-	
-	
-	
+
 }

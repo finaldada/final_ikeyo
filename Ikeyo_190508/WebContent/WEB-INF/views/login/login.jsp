@@ -7,11 +7,11 @@
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<div>
+<div class="container" align="center">
 	<h1>ikeyo</h1>
 </div>   
 
-<div>
+<div class="container" align="center">
 	<form action="loginAf.do" name="frmForm" id="_frmForm" method="post">
 		<table>
 			<colgroup>
@@ -35,6 +35,14 @@
 				<tr>
 					<td colspan="2">
 						<span>
+							<a href="#none" id="_findId" title="ID찾기">ID 찾기</a>
+							<a href="#none" id="_findPwd" title="비밀번호찾기">비밀번호 찾기</a>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<span>
 							<a href="#none" id="_btnLogin" title="로그인">로그인</a>
 							<a href="#none" id="_btnRegi" title="회원가입">회원가입</a>
 						</span>
@@ -52,7 +60,6 @@ $(document).ready(function() {
 	var uid = getCookie("uid");
 	
 	$('#_uid').val(uid);
-
 	if($('#_uid').val() != "") { // 그전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
 		$('#idSaveCheck').attr("checked", true);
 	}
@@ -72,20 +79,17 @@ $(document).ready(function() {
 		}	
 	});
 });
-
 function setCookie(cookieName, value, exdays) {
 	var exdate = new Date();
 	exdate.setDate(exdate.getDate() + exdays);
 	var cookieValue = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
 	document.cookie = cookieName + "= " + cookieValue;
 }
-
 function deleteCookie(cookieName) {
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() - 1);
 	document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
 }
-
 function getCookie(cookieName) {
 	cookieName = cookieName + "=";
 	var cookieData = document.cookie;
@@ -100,7 +104,6 @@ function getCookie(cookieName) {
 	}
 	return unescape(cookieValue);
 }
-
 $('#_btnLogin').click(function() {
 	if($('#_uid').val() == "") {
 		alert($('#_uid').attr("data-msg") + " 입력해 주세요");
@@ -124,8 +127,13 @@ $('#_pwd').keypress(function(event){
 		$('#_btnLogin').click();
 	}
 });
-
 $('#_btnRegi').click(function() {
 	location.href = "regi.do";
+});
+$('#_findId').click(function() {
+	location.href = "findId.do";
+});
+$('#_findPwd').click(function() {
+	location.href = "findPwd.do";
 });
 </script>

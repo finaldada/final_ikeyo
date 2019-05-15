@@ -54,15 +54,15 @@
 		<property name="uploadTempDir" value="upload"/>		<!-- WebContent에 upload폴더가 있어야 한다. -->
 	</bean>
 	
-<!-- 	
- file download 셋팅 
+	
+ <!-- file download 셋팅  -->
 	<bean id="downloadView" class="kh.com.a.util.DownloadView"/>
 	<bean id="downloadViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order">
 			<value>0</value>
 		</property>
 	</bean> 
-	-->
+
 	<!-- 메일 설정 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com"/>
@@ -100,10 +100,6 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-	
-
-
-
 	
 
 </beans>

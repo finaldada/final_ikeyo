@@ -54,7 +54,9 @@ request.setAttribute("jsonLike", jsonLike);
 <tr>
 	<th>투표기한</th>
 	<td style="text-align: left;">
-		<b>${poll.sdate}</b> ~ <b>${poll.edate}</b> 
+		<b><fmt:formatDate value="${poll.sdate}" pattern="yyyy/MM/dd/"/></b>
+		 ~ 
+		 <b><fmt:formatDate value="${poll.edate}" pattern="yyyy/MM/dd"/></b>
 	</td>
 </tr>
 

@@ -52,8 +52,8 @@
 	 </if>  
 </select>
 
- 
- 
+
+
  <insert id="inventoryWrite" parameterType="kh.com.a.model.InventoryDto">
 	INSERT INTO INVENTORY 
 	   (INVEN_SEQ, MODEL_ID, CATEGORY, COUNT, PRICE, 
@@ -61,6 +61,14 @@
 	VALUES(SEQ_INVEN.NEXTVAL, #{model_id}, #{category},
 		#{count}, #{price}, SYSDATE,  0)
  </insert>
+ 
+ <!-- 상품등록용 리스트 -->
+ <select id="getinventory" parameterType="java.lang.Integer" resultType="kh.com.a.model.InventoryDto">
+ 	SELECT INVEN_SEQ, MODEL_ID, CATEGORY, 
+	COUNT, PRICE, RDATE, DEL  
+    FROM INVENTORY 
+    WHERE INVEN_SEQ=#{inven_seq}
+ </select>
  
  <select id="inventoryDetail" parameterType="kh.com.a.model.InventoryDto" resultType="kh.com.a.model.InventoryDto">
 	SELECT INVEN_SEQ, MODEL_ID, CATEGORY, 
@@ -75,19 +83,18 @@
     FROM INVENTORY 
     WHERE MODEL_ID=#{model_id} 
  </select>
- 
+
  <update id="inventoryUpdate" parameterType="kh.com.a.model.InventoryDto">
 	UPDATE INVENTORY SET 
 	MODEL_ID=#{model_id}, CATEGORY=#{category}, 
 	COUNT=#{count}, PRICE=#{price}
 	WHERE INVEN_SEQ=#{inven_seq}	
  </update>
- 
+
  <update id="inventoryDelete" parameterType="kh.com.a.model.InventoryDto">
 	UPDATE INVENTORY
 	SET DEL=1
 	WHERE INVEN_SEQ=#{inven_seq}
  </update>
- 
- 
+
  </mapper>

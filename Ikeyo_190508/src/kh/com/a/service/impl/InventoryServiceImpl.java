@@ -45,13 +45,13 @@ public class InventoryServiceImpl implements InventoryService {
 		
 		return inventoryDao.inventoryUpdate(inven);
 	}
-
+	
 	@Override
 	public boolean inventoryDelete(InventoryDto inven) {
 		
 		return inventoryDao.inventoryDelete(inven);
 	}
-
+	
 	@Override
 	public List<InventoryDto> getInventoryPagingList(BbsParam param) {
 		
@@ -62,14 +62,12 @@ public class InventoryServiceImpl implements InventoryService {
 	public int getInventoryCount(BbsParam param) {
 		
 		return inventoryDao.getInventoryCount(param);
+	}
+
+	@Override
+	public InventoryDto getInventory(int inven_seq) {
+		return inventoryDao.getInventory(inven_seq);
 	} 
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

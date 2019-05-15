@@ -1,5 +1,6 @@
 package kh.com.a.service.impl;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,19 @@ import kh.com.a.service.MemberService;
 import kh.com.a.util.MailHandler;
 import kh.com.a.util.TempKey;
 
+
+import javax.inject.Inject;
+
+
 @Service
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberDao;
-	@Autowired
+	
+	@Inject
 	JavaMailSender mailSender;
 	
+	@Transactional
 	@Override
 	public void memberInsert(MemberDto mem) throws Exception {
 		memberDao.memberInsert(mem);
@@ -30,6 +37,8 @@ public class MemberServiceImpl implements MemberService {
 		
 		mem.setAuthkey(authKey);
 		
+		System.out.println("authKey: " + authKey);
+		
 		memberDao.updateAuthKey(mem);
 		
 		// mail 작성 관련
@@ -38,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 		sendMail.setSubject("[ikeyo] 회원가입 이메일 인증");
 		sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
 				.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-				.append("<a href='http://localhost:8090/Ikeyo_190508/emailConfirm.do")
+				.append("<a href='http://192.168.110.129:8090/Ikeyo_190508/emailConfirm.do")
 				.append("?email=")
 				.append(mem.getEmail())
 				.append("&authkey=")
@@ -87,6 +96,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public MemberDto findId(MemberDto mem) {
+		
+		return memberDao.findId(mem);
+	}
+	@Override
 	public List<MemberDto> memberList() {
 		
 		return memberDao.memberList();
@@ -111,7 +125,4 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.memberDel(id);
 	}
-	
-	
-
 }

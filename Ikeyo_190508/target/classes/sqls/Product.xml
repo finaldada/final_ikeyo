@@ -9,8 +9,9 @@
   		FROM (SELECT ROW_NUMBER() OVER(ORDER BY PROD_SEQ ASC) AS RNUM,
   				P.PROD_SEQ, P.MODEL_ID, P.P_NAME, P.PHOTO_AF1, P.PRICE, P.RDATE, P.LIKECOUNT
   				FROM PRODUCT P, INVENTORY I
-  				WHERE P.MODEL_ID = I.MODEL_ID AND I.CATEGORY=#{category})
-  		WHERE RNUM BETWEEN #{start} AND #{end}		
+  				WHERE P.MODEL_ID=I.MODEL_ID AND I.CATEGORY=#{category})
+  		WHERE RNUM BETWEEN ${start} AND ${end}
+  		ORDER BY MODEL_ID ASC		
   	</select>
   	
   	<select id="getProductCount" resultType="java.lang.Integer">
@@ -28,7 +29,7 @@
   		SELECT C.MODEL_ID, C.ID
   		FROM INVENTORY I, CART C
   		WHERE I.MODEL_ID = C.MODEL_ID AND I.CATEGORY=#{category}
-  		ORDER BY CART_SEQ ASC 
+  		ORDER BY MODEL_ID ASC 
   	</select>
   	
   	<select id="checkWish" parameterType="kh.com.a.model.CartDto" resultType="java.lang.Integer">
@@ -64,4 +65,27 @@
   		FROM PRODUCT
   		WHERE MODEL_ID=#{model_id}
   	</select>
+  	
+  	<!-- insert -->
+  	<insert id="productAdd" parameterType="kh.com.a.model.ProductDto">
+		INSERT INTO PRODUCT(PROD_SEQ, MODEL_ID, P_NAME, CONTENT, PHOTO_BF1, PHOTO_BF2, PHOTO_BF3, 
+			PHOTO_AF1, PHOTO_AF2, PHOTO_AF3, PDF_BF, PDF_AF, READCOUNT, PRICE, RDATE, LIKECOUNT)
+		VALUES(SEQ_PROD.NEXTVAL, #{model_id}, #{p_name}, #{content}, #{photo_bf1}, #{photo_bf2}, #{photo_bf3},
+			#{photo_af1}, #{photo_af2}, #{photo_af3}, #{pdf_bf}, #{pdf_af}, 0, #{price}, SYSDATE, 0)	
+	</insert>
+  	<!--
+	<insert id="productAdd" parameterType="kh.com.a.model.ProductDto">
+		INSERT INTO PRODUCT(PROD_SEQ, MODEL_ID, P_NAME, CONTENT, PHOTO_BF1, PHOTO_BF2, PHOTO_BF3, 
+			PHOTO_AF1, PHOTO_AF2, PHOTO_AF3, PDF_BF, PDF_AF, READCOUNT, PRICE, RDATE, LIKECOUNT)
+		VALUES(SEQ_PROD.NEXTVAL, #{model_id}, #{p_name}, #{content}, #{photo_bf1}, #{photo_bf2}, #{photo_bf3},
+			#{photo_af1}, #{photo_af2}, #{photo_af3}, #{pdf_bf}, #{pdf_af}, 0, #{price}, SYSDATE, #{likecount})	
+	</insert>
+	-->
+	<!-- getproduct -->
+	<select id="getproduct" parameterType="java.lang.String" resultType="kh.com.a.model.ProductDto">
+		SELECT COUNT(*)
+		FORM PRODUCT
+		WHERE MODEL_ID=#{model_id}		
+	</select>
+	
   </mapper>

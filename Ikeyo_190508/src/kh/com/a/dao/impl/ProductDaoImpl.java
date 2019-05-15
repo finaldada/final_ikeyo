@@ -96,4 +96,12 @@ public class ProductDaoImpl implements ProductDao {
 		} 
 	}
 	
+	@Override
+	public boolean productAdd(ProductDto productDto) {
+		
+		int n = sqlSession.insert(ns + "productAdd", productDto);
+		
+		return n>0?true:false;
+	}
+
 }

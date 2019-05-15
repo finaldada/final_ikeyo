@@ -5,58 +5,97 @@
 
 <tiles-definitions>
 
+<!-- main 화면  -->    
+<definition name="main.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+   <put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu.jsp"/>
+   <put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+   <put-attribute name="content" value="/WEB-INF/views/common/content.jsp"/>   
+   <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+</definition>
+
+
 <!-- login 화면 -->
-<definition name="test.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
-	<put-attribute name="common" value="/WEB-INF/views/common/common.jsp"/>
-	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
-	<put-attribute name="top_menu" value="/WEB-INF/views/common/top_menu.jsp"/>
-	<put-attribute name="content" value="/WEB-INF/views/common/test.jsp"/>	
-	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+<definition name="login.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/login/login.jsp"/>
 </definition>
 
-<definition name="noticelist.tiles" extends="test.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/notice/noticelist.jsp"/>
+<definition name="regi.tiles"  extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp"/>
 </definition>
 
-<definition name="noticewrite.tiles" extends="test.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/notice/noticewrite.jsp"/>
+<definition name="findId.tiles" template="/WEB-INF/views/login/findId.jsp"/>
+
+<definition name="findPwd.tiles" template="/WEB-INF/views/login/findPwd.jsp"/>
+
+<definition name="error.tiles" template="/WEB-INF/views/login/error.jsp"/>
+
+<definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
+
+<!-- <definition name="main.tiles" template="/WEB-INF/views/main.jsp"/> -->
+
+
+<!-- 상품리스트 화면 -->
+<definition name="productList.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/product/productList.jsp"/>
 </definition>
 
-<definition name="noticeUpdate.tiles" extends="test.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/notice/noticeupdate.jsp"/>
+<!-- 상품리스트 화면 -->
+<definition name="productAdd.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/product/productAdd.jsp"/>
 </definition>
 
-<!--  inventory  테스트용 -->
-<definition name="inventorylist.tiles" template="/WEB-INF/views/inventory/inventorylist.jsp"/>  
 
-<definition name="inventorywrite.tiles" template="/WEB-INF/views/inventory/inventorywrite.jsp"/> 	
+<!--  inventory -->
+<definition name="inventorylist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorylist.jsp"/>
+</definition>
 
-<definition name="inventorydetail.tiles" template="/WEB-INF/views/inventory/inventorydetail.jsp"/>
+<definition name="inventorywrite.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorywrite.jsp"/>
+</definition>
 
-<definition name="inventoryupdate.tiles" template="/WEB-INF/views/inventory/inventoryupdate.jsp"/>
+<definition name="inventorydetail.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorydetail.jsp"/>
+</definition>
+
+<definition name="inventoryupdate.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/inventory/inventoryupdate.jsp"/>
+</definition>
+
 
 <!-- admin 테스트  -->
-<definition name="memberlist.tiles" template="/WEB-INF/views/admin/memberlist.jsp"/>
-<definition name="adminmain.tiles" template="/WEB-INF/views/admin/adminmain.jsp"/>
 
-<!-- login 화면 -->
-		<definition name="login.tiles" template="/WEB-INF/views/login/login.jsp"/>
-		
-		<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"/>
-		
-		<definition name="error.tiles" template="/WEB-INF/views/login/error.jsp"/>
-		
-		<definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
-		<definition name="main.tiles" template="/WEB-INF/views/login/main.jsp"/>
+<definition name="memberlist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/admin/memberlist.jsp"/>
+</definition>
+
+<definition name="adminmain.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/admin/adminmain.jsp"/>
+</definition>
+
+
 		
 <!--  poll -->
 
-<definition name="polllist.tiles" template="/WEB-INF/views/poll/polllist.jsp"/>
-<definition name="pollmake.tiles" template="/WEB-INF/views/poll/pollmake.jsp"/>
-<definition name="polldetail.tiles" template="/WEB-INF/views/poll/polldetail.jsp"/>
-<definition name="pollresult.tiles" template="/WEB-INF/views/poll/pollresult.jsp"/>
+<definition name="polllist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/poll/polllist.jsp"/>
+</definition>
 
+<definition name="pollmake.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/poll/pollmake.jsp"/>
+</definition>
 
-	
+<definition name="polldetail.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/poll/polldetail.jsp"/>
+</definition>
+
+<definition name="pollresult.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/poll/pollresult.jsp"/>
+</definition>
+
+<!-- 공지사항 -->
+<definition name="noticelist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/notice/noticelist.jsp"/>
+</definition>	
 
 </tiles-definitions>

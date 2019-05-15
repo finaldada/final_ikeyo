@@ -14,6 +14,7 @@
 </head>
 <body>
 
+
 <h3>디테일!!</h3>
 
 <div align="center">
@@ -76,6 +77,7 @@ function goDelete() {
 }
 
 </script>
+
 
 
 </body>

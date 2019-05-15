@@ -73,4 +73,11 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productDao.selectCount(model_id);
 	}
+
+	
+	@Override
+	public boolean productAdd(ProductDto productDto) {		
+		return productDao.productAdd(productDto);
+	}
+
 }
