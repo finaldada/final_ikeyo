@@ -113,6 +113,10 @@
 
 </tbody>
 </table>
+<input type="hidden" name="pdf_af">
+<input type="hidden" name="photo_af1">
+<input type="hidden" name="photo_af2">
+<input type="hidden" name="photo_af3">
 </form>
 
 <!-- The Modal -->
