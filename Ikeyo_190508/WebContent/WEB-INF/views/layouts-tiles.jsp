@@ -29,7 +29,7 @@
 		</td> 
 	</tr>
 	
-	<tr> 
+	<tr>
 		<td colspan="3">
 			<tiles:insertAttribute name="content" />
 		</td>       

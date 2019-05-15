@@ -117,7 +117,7 @@ $('#_btnLogin').click(function() {
 		alert($('#_pwd').attr("data-msg") + " 입력해 주세요");
 		$('#_pwd').focus();
 	} else {
-		$('#_frmForm').submit();
+		$('#_frmForm').attr("target", "_self").submit();
 	}
 });
 

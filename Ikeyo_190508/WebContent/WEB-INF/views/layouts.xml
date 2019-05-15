@@ -19,7 +19,9 @@
 	<put-attribute name="content" value="/WEB-INF/views/login/login.jsp"/>
 </definition>
 
-<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"/>
+<definition name="regi.tiles"  extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp"/>
+</definition>
 
 <definition name="findId.tiles" template="/WEB-INF/views/login/findId.jsp"/>
 
@@ -30,6 +32,26 @@
 <definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
 
 <!-- <definition name="main.tiles" template="/WEB-INF/views/main.jsp"/> -->
+
+
+<!-- 상품리스트 화면 -->
+<definition name="productList.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/product/productList.jsp"/>
+</definition>
+
+<!-- 상품리스트 화면 -->
+<definition name="productAdd.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/product/productAdd.jsp"/>
+</definition>
+
+<!-- 재고관리 리스트 -->
+<definition name="inventorylist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorylist.jsp"/>
+</definition>
+ 
+
+<!-- 재고등록 화면 -->
+<definition name="inventorywrite.tiles" template="/WEB-INF/views/inventory/inventorywrite.jsp"/>
 
 
 
