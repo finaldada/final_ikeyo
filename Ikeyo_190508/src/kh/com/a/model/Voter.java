@@ -3,9 +3,10 @@ package kh.com.a.model;
 import java.io.Serializable;
 import java.util.Date;
 
+
 /*
 DROP TABLE VOTER
-CASCADE CONSTRAINTS;
+CASCADE CONSTRAINT;
 
 DROP SEQUENCE VOTER_SEQ;
 
@@ -22,29 +23,33 @@ CREATE SEQUENCE VOTER_SEQ
 START WITH 1
 INCREMENT BY 1;
 
-ALTER TABLE VOTER
-ADD CONSTRAINT VOTER_FK FOREIGN KEY(POLLID)
+ALTER TABLE VOTER ADD CONSTRAINT VOTER_FK
+FOREIGN KEY(POLLID)
 REFERENCES POLL(POLLID);
 
-ALTER TABLE VOTER
-ADD CONSTRAINT VOTER_FK2 FOREIGN KEY(POLLSUBID)
+ALTER TABLE VOTER ADD CONSTRAINT VOTER_FK2
+FOREIGN KEY(POLLSUBID)
 REFERENCES POLLSUB(POLLSUBID);
 
-ALTER TABLE VOTER
-ADD CONSTRAINT VOTER_FK3 FOREIGN KEY(ID)
+ALTER TABLE VOTER ADD CONSTRAINT VOTER_FK3
+FOREIGN KEY(ID)
 REFERENCES MEMBER(ID);
- */
 
-// 투표자
+SELECT
+    *
+FROM VOTER;
+*/
+
 public class Voter implements Serializable {
-	
-	private int voterid;	// 투표자 카운터 seq
-	private int pollid;		// 질문
-	private int pollsubid;	// 선택한 보기
-	private	String id;		// 누구?
-	private Date regdate;	// 언제?
+
+	private int voterid;  		// 투표자 카운터  SEQ와 같다 
+	private int pollid;   		// 질문
+	private int pollsubid; 		// 선택한 보기 
+	private String id;          //  누구?  투표한 사람  
+	private Date regdate;       // 언제? 날짜와 시간
 	
 	public Voter() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Voter(int voterid, int pollid, int pollsubid, String id, Date regdate) {
@@ -101,12 +106,6 @@ public class Voter implements Serializable {
 
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
-	}
-
-	@Override
-	public String toString() {
-		return "Voter [voterid=" + voterid + ", pollid=" + pollid + ", pollsubid=" + pollsubid + ", id=" + id
-				+ ", regdate=" + regdate + "]";
 	}
 	
 	

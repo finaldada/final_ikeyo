@@ -1,10 +1,10 @@
 <%@page import="kh.com.a.util.DateUtil"%>
 <%@page import="kh.com.a.model.PollDto"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
 <%
@@ -13,6 +13,7 @@ List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 
 <!-- 관리자 -->
 <c:if test="${login.auth eq '1' }">
+
 <table class="list_table" style="width: 95%">
 <col width="50"><col width="50"><col width="300">
 <col width="100"><col width="100"><col width="50">
@@ -25,7 +26,7 @@ List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 </tr>
 
 <%
-	for(int i = 0; i < plists.size(); i++){
+	for(int i = 0;i < plists.size(); i++){
 		PollDto poll = plists.get(i);
 		%>
 		<tr bgcolor="#aabbcc">
@@ -37,15 +38,16 @@ List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 			<td><%=poll.getItemcount() %></td>
 			<td><%=poll.getPolltotal() %></td>
 			<td><%=poll.getRegdate() %></td>
-		</tr>
+		</tr>		
 		<%
 	}
 %>
 </table>
 </c:if>
 
-<!-- 유저 -->
+<!-- 사용자 -->
 <c:if test="${login.auth eq '3' }">
+
 <table class="list_table" style="width: 95%">
 <col width="50"><col width="50"><col width="300"><col width="50">
 <col width="100"><col width="100"><col width="50">
@@ -58,7 +60,7 @@ List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 </tr>
 
 <%
-	for(int i = 0; i < plists.size(); i++){
+	for(int i = 0;i < plists.size(); i++){
 		PollDto poll = plists.get(i);
 		%>
 		<tr bgcolor="#aabbcc">
@@ -67,41 +69,43 @@ List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 			<%
 			boolean isS = poll.isVote();
 			if(isS || DateUtil.isEnd(poll.getEdate())){
-				// 투표를 했거나 투표기한이 끝났을 때!
-				%>
+			// 투표했음	투표기한이 끝났음 	
+				%>				
 				<td>[마감]<%=poll.getQuestion() %></td>				
 				<%
-			}else{ // 투표를 안했을 때
+			}else{
 				%>
 				<td>
 					<a href="polldetail.do?pollid=<%=poll.getPollid() %>">
 						<%=poll.getQuestion() %>
 					</a>
-				</td>
-				<%				
-			}
+				</td>				
+				<%
+			}			
 			%>
+			
 			<td>
 			<%
-			if(isS || DateUtil.isEnd(poll.getEdate())){	// 결과를 볼 수 있음
+			if(isS || DateUtil.isEnd(poll.getEdate())){	// 결과 볼수 있음
 				%>
 				<a href="pollresult.do?pollid=<%=poll.getPollid() %>">결과</a>
 				<%
-			}else{ // 결과를 볼 수 없음
+			}else{	// 결과를 볼수 없음
 				%>
 				<img alt="" src="image/pen.gif">
 				<%
 			}
-			%>			
+			%>
 			</td>
-			<td><%=poll.getSdate() %></td>
-			<td><%=poll.getEdate() %></td>
+			
+			<td><fmt:formatDate value="<%=poll.getSdate() %>" pattern="yyyy/MM/dd/"/></td>
+			<td><fmt:formatDate value="<%=poll.getEdate() %>" pattern="yyyy/MM/dd/"/></td>
 			<td><%=poll.getItemcount() %></td>
 			<td><%=poll.getPolltotal() %></td>
-			<td><%=poll.getRegdate() %></td>		
-		</tr>		
-		<%		
-	}	// for문 끝
+			<td><fmt:formatDate value="<%=poll.getRegdate() %>" pattern="yyyy/MM/dd/"/></td>		
+		</tr>
+		<%
+	}
 %>
 </table>
 </c:if>
@@ -109,5 +113,13 @@ List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 <c:if test="${login.auth eq '1' }">
 	<a href="pollmake.do">투표 만들기</a>
 </c:if>
+
+
+
+
+
+
+
+
 
 

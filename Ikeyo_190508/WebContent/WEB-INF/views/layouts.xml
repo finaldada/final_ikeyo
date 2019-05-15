@@ -39,7 +39,7 @@
 <definition name="memberlist.tiles" template="/WEB-INF/views/admin/memberlist.jsp"/>
 <definition name="adminmain.tiles" template="/WEB-INF/views/admin/adminmain.jsp"/>
 
-	<!-- login 화면 -->
+<!-- login 화면 -->
 		<definition name="login.tiles" template="/WEB-INF/views/login/login.jsp"/>
 		
 		<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"/>
@@ -47,8 +47,16 @@
 		<definition name="error.tiles" template="/WEB-INF/views/login/error.jsp"/>
 		
 		<definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
+		<definition name="main.tiles" template="/WEB-INF/views/login/main.jsp"/>
+		
+<!--  poll -->
+
+<definition name="polllist.tiles" template="/WEB-INF/views/poll/polllist.jsp"/>
+<definition name="pollmake.tiles" template="/WEB-INF/views/poll/pollmake.jsp"/>
+<definition name="polldetail.tiles" template="/WEB-INF/views/poll/polldetail.jsp"/>
+<definition name="pollresult.tiles" template="/WEB-INF/views/poll/pollresult.jsp"/>
 
 
-
+	
 
 </tiles-definitions>

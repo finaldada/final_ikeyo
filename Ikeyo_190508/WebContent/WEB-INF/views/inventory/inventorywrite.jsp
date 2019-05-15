@@ -52,7 +52,7 @@
 </tr>
 
 <tr>
-	<td align="center"><input type="button" value="재고 등록" onclick="goWrite()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<td align="center"><input type="button" id="btn_regi" value="재고 등록" onclick="goWrite()" disabled="disabled">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" value="재고 등록 취소" onclick="goBack()"></td>
 </tr>
 
@@ -79,6 +79,9 @@ function inventoryCheck() {
 				$("#_model_id").css("color", "#0000ff")
 				$("#_model_id").html("사용할 수 있는 모델명입니다");
 				$("#model_id").val(model_id); 
+				
+				 $("#btn_regi").removeAttr("disabled"); // 활성화 
+					//$("#_btnRegi").attr("disabled", "disabled"); // 비활성화 
 				
 			}else{
 				
