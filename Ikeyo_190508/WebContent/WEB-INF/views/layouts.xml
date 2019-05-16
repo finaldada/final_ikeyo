@@ -6,6 +6,15 @@
 <tiles-definitions>
 
 <!-- login 화면 -->
+<definition name="login.tiles" template="/WEB-INF/views/login/login.jsp"/>
+		
+<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"/>
+		
+<definition name="error.tiles" template="/WEB-INF/views/login/error.jsp"/>
+		
+<definition name="main.tiles" template="/WEB-INF/views/main.jsp"/>
+
+<!-- test 화면 -->
 <definition name="test.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
 	<put-attribute name="common" value="/WEB-INF/views/common/common.jsp"/>
 	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
@@ -14,17 +23,36 @@
 	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 </definition>
 
-<definition name="noticelist.tiles" extends="test.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/notice/noticelist.jsp"/>
+<!-- 상품리스트 화면 -->
+<definition name="productlist.tiles" extends="test.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/product/productlist.jsp"/>
 </definition>
 
-<definition name="noticewrite.tiles" extends="test.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/notice/noticewrite.jsp"/>
+<!-- 상품리스트 화면 -->
+<definition name="productAdd.tiles" extends="test.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/product/productAdd.jsp"/>
 </definition>
 
-<definition name="noticeUpdate.tiles" extends="test.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/notice/noticeupdate.jsp"/>
+<!-- 재고관리 리스트 -->
+<definition name="inventorylist.tiles" extends="test.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorylist.jsp"/>
 </definition>
+ 
+
+<!-- 재고등록 화면 -->
+<definition name="inventorywrite.tiles" template="/WEB-INF/views/inventory/inventorywrite.jsp"/> 	
+
+
+<!-- regi 화면 -->
+<!-- 
+<definition name="regi.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
+	<put-attribute name="menu" value="/WEB-INF/views/menu.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp"/>	
+	<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
+</definition>
+-->
+
 
 
 

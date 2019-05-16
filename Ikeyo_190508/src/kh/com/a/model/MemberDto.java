@@ -21,24 +21,23 @@ DEL NUMBER(1) NOT NULL
  */
 
 public class MemberDto implements Serializable {
-	private String id;			// 아이디
-	private String pwd;			// 비밀번호
-	private String name;		// 이름
-	private String email;		// 이메일
-	private String address1;	// 주소1
-	private String address2;	// 주소2
-	private int auth;			// 회원등급
-	private String phone;		// 전화번호
-	private int paypwd;			// 결제비밀번호
-	private int del;			// 회원탈퇴
-	private String grade;
-	private int point;
-	
-	public MemberDto() {
-	}
-	
+	 private String id;         // 아이디
+	   private String pwd;         // 비밀번호
+	   private String name;      // 이름
+	   private String email;      // 이메일
+	   private String address1;   // 주소1
+	   private String address2;   // 주소2
+	   private int auth;         // 회원등급
+	   private String phone;      // 전화번호
+	   private int paypwd;         // 결제비밀번호
+	   private int del;         // 회원탈퇴
+	   private String grade;	// 등급
+	   private int point;		// 포인트
+	   
+	   public MemberDto() {
+	   }
 
-	public MemberDto(String id, String pwd, String name, String email, String address1, String address2, int auth,
+	   public MemberDto(String id, String pwd, String name, String email, String address1, String address2, int auth,
 			String phone, int paypwd, int del, String grade, int point) {
 		super();
 		this.id = id;
@@ -55,114 +54,107 @@ public class MemberDto implements Serializable {
 		this.point = point;
 	}
 
-
 	public String getId() {
-		return id;
-	}
+	      return id;
+	   }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+	   public void setId(String id) {
+	      this.id = id;
+	   }
 
-	public String getPwd() {
-		return pwd;
-	}
+	   public String getPwd() {
+	      return pwd;
+	   }
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
+	   public void setPwd(String pwd) {
+	      this.pwd = pwd;
+	   }
 
-	public String getName() {
-		return name;
-	}
+	   public String getName() {
+	      return name;
+	   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	   public void setName(String name) {
+	      this.name = name;
+	   }
 
-	public String getemail() {
-		return email;
-	}
+	   public String getEmail() {
+	      return email;
+	   }
 
-	public void setemail(String email) {
-		this.email = email;
-	}
+	   public void setEmail(String email) {
+	      this.email = email;
+	   }
 
-	public String getAddress1() {
-		return address1;
-	}
+	   public String getAddress1() {
+	      return address1;
+	   }
 
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
+	   public void setAddress1(String address1) {
+	      this.address1 = address1;
+	   }
 
-	public String getAddress2() {
-		return address2;
-	}
+	   public String getAddress2() {
+	      return address2;
+	   }
 
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
+	   public void setAddress2(String address2) {
+	      this.address2 = address2;
+	   }
 
-	public int getAuth() {
-		return auth;
-	}
+	   public int getAuth() {
+	      return auth;
+	   }
 
-	public void setAuth(int auth) {
-		this.auth = auth;
-	}
+	   public void setAuth(int auth) {
+	      this.auth = auth;
+	   }
 
-	public String getPhone() {
-		return phone;
-	}
+	   public String getPhone() {
+	      return phone;
+	   }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+	   public void setPhone(String phone) {
+	      this.phone = phone;
+	   }
 
-	public int getPaypwd() {
-		return paypwd;
-	}
+	   public int getPaypwd() {
+	      return paypwd;
+	   }
 
-	public void setPaypwd(int paypwd) {
-		this.paypwd = paypwd;
-	}
+	   public void setPaypwd(int paypwd) {
+	      this.paypwd = paypwd;
+	   }
 
-	public int getDel() {
-		return del;
-	}
+	   public int getDel() {
+	      return del;
+	   }
 
-	public void setDel(int del) {
-		this.del = del;
-	}
+	   public void setDel(int del) {
+	      this.del = del;
+	   }
 
+	   public String getGrade() {
+		   return grade;
+	   }
 
-	public String getGrade() {
-		return grade;
-	}
-
-
-	public void setGrade(String grade) {
+	 public void setGrade(String grade) {
 		this.grade = grade;
-	}
-
+	 }
 
 	public int getPoint() {
 		return point;
 	}
 
-
 	public void setPoint(int point) {
 		this.point = point;
 	}
 
-
 	@Override
-	public String toString() {
-		return "MemberDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", address1=" + address1
-				+ ", address2=" + address2 + ", auth=" + auth + ", phone=" + phone + ", paypwd=" + paypwd + ", del="
-				+ del + ", grade=" + grade + ", point=" + point + "]";
-	}
-	
+	   public String toString() {
+	      return "MemberDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", address1=" + address1
+	            + ", address2=" + address2 + ", auth=" + auth + ", phone=" + phone + ", paypwd=" + paypwd + ", del="
+	            + del + "]";
+	   }
 
 }
