@@ -187,12 +187,11 @@ public class MemberController {
 		
 		
 	}
-	
+
 	@RequestMapping(value = "mypage.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public String mypage() {
 		
-		
-		
-		return "adminmain.tiles";
+		return "mypage.tiles";
 	}
+
 }

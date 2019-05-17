@@ -44,35 +44,36 @@
 	<put-attribute name="content" value="/WEB-INF/views/product/productAdd.jsp"/>
 </definition>
 
+<!-- 마이페이지 -->
+<definition name="mypage.tiles" extends="main.tiles">
+   <put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
+   <put-attribute name="content" value="/WEB-INF/views/mypage/mypage.jsp"/>
+</definition>
+
 
 <!--  inventory -->
-<definition name="inventorylist.tiles" extends="main.tiles">
+<definition name="inventorylist.tiles" extends="mypage.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorylist.jsp"/>
 </definition>
 
-<definition name="inventorywrite.tiles" extends="main.tiles">
+<definition name="inventorywrite.tiles" extends="mypage.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorywrite.jsp"/>
 </definition>
 
-<definition name="inventorydetail.tiles" extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorydetail.jsp"/>
-</definition>
+<definition name="inventorydetail.tiles" template="/WEB-INF/views/inventory/inventorydetail.jsp"/>
+<!-- 	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorydetail.jsp"/>
+</definition> -->
 
-<definition name="inventoryupdate.tiles" extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/inventory/inventoryupdate.jsp"/>
-</definition>
+<definition name="inventoryupdate.tiles" template="/WEB-INF/views/inventory/inventoryupdate.jsp"/>
+<!-- 	<put-attribute name="content" value="/WEB-INF/views/inventory/inventoryupdate.jsp"/>
+</definition> -->
 
 
 <!-- admin 테스트  -->
 
-<definition name="memberlist.tiles" extends="main.tiles">
+<definition name="memberlist.tiles" extends="mypage.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/admin/memberlist.jsp"/>
 </definition>
-
-<definition name="adminmain.tiles" extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/admin/adminmain.jsp"/>
-</definition>
-
 
 		
 <!--  poll -->
@@ -97,5 +98,9 @@
 <definition name="noticelist.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/notice/noticelist.jsp"/>
 </definition>	
+
+
+
+
 
 </tiles-definitions>

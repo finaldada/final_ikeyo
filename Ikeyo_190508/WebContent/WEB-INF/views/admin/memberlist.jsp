@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:requestEncoding value="utf-8"/>
-    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -57,13 +57,15 @@ $(document).ready(function () {
 <%-- 아이디/ 이름/ 이메일 /주소/ 회원권한 /  전화번호/ 등급 /포인트 / 회원 삭제 
 	id,이름 으로 검색    core el tag 사용으로 뿌리기    del 0,1로 나눠서 조건을 세부적으로 준다   --%>
 <form id="mem_frm" method="post">
-<div align="center">
+<div align="center" style="margin-left: 10%; margin-right: 10%; margin-top: 10%;">
+<h3>회원 관리 페이지</h3>
+<br>
 
 <table border="1" id="list_table" class="tablesorter">
 
 <thead>
 
-<tr>
+<tr style="border: 3px solid deepskyblue;">
 <th>아이디</th> <th>이름</th> <th>이메일</th> <th>주소</th> <th>회원권한</th>
 <th>전화번호</th> <th>등급</th> <th>포인트(p)</th> <th>회원삭제</th> 
 </tr>
@@ -90,7 +92,7 @@ $(document).ready(function () {
 	
 	<c:if test="${member.del == 0 }">
 	
-		<td align="center">${member.id } 
+		<td align="center"><a href="#">${member.id }</a> 
 		<input type="hidden" id="id" name="id" value="${member.id }"></td>
 		<td align="center">${member.name }</td>
 		<td align="center">${member.email }</td>
@@ -108,7 +110,7 @@ $(document).ready(function () {
 		<td align="center">${member.phone }</td> 
 		<td align="center">${member.grade }</td> 
 		<td align="center">${member.point }</td> 
-		<td align="center"><a href="#"><input type="button" onclick="goDelete()" value="del"></a></td> 
+		<td align="center"><a href="#" ><input type="button" onclick="goDelete()" value="del" style="width: 80%;"></a></td> 
 
 		</c:if>
 	</tr>

@@ -13,6 +13,7 @@
 <body>
 
 <div align="center">
+<h3>재고 등록</h3>
 <form id="inven_frm" method="post">
 <table border="1"> 
 <tr>
@@ -36,7 +37,9 @@
 		<option value="테이블">테이블</option>
 		<option value="액세서리">액세서리</option>
 		</select> 
+		&nbsp;&nbsp;&nbsp;
 	</td>
+	
 </tr>
 
 <tr>    <%-- + - 버튼 ??  --%>
@@ -65,7 +68,12 @@
 function inventoryCheck() {
 	//alert("inventoryCheck()");
 	
+	
+	
+	
 	var model_id = $("#model_id").val();
+	
+	
 	$.ajax({
 		url:"inventoryCheck.do",
 		type:"post",
@@ -173,7 +181,8 @@ function goBack() {
 	location.href="inventorylist.do";
 }
 	
-	
+
+
 	
 	
 

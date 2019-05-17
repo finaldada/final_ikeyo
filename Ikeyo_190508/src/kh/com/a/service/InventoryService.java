@@ -4,6 +4,7 @@ import java.util.List;
 
 import kh.com.a.model.BbsParam;
 import kh.com.a.model.InventoryDto;
+import kh.com.a.model.MemoDto;
 
 public interface InventoryService {
 
@@ -18,4 +19,8 @@ public interface InventoryService {
 	public boolean inventoryDelete(InventoryDto inven);	
 	public InventoryDto getInventory(int inven_seq);
 
+	public List<MemoDto> getMemoList(InventoryDto inven);
+	public boolean memoWrite(MemoDto memo);
+	public boolean memoDelete(int memo_seq);
+	public boolean memoUpdate(MemoDto memo);
 }

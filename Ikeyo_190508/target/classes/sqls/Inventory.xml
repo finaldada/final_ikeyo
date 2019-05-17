@@ -96,5 +96,32 @@
 	SET DEL=1
 	WHERE INVEN_SEQ=#{inven_seq}
  </update>
+ 
+ 
+ <select id="getMemoList"  parameterType="kh.com.a.model.InventoryDto" resultType="kh.com.a.model.MemoDto">
+  SELECT MEMO_SEQ, ID, CONTENT, DEL, RDATE, MODEL_ID
+  FROM MEMO
+  WHERE MODEL_ID = #{model_id}
+
+ </select>
+ 
+ <insert id="memoWrite" parameterType="kh.com.a.model.MemoDto">
+  	INSERT INTO MEMO 
+	   (MEMO_SEQ, ID, CONTENT, DEL, RDATE, MODEL_ID)
+	VALUES(SEQ_MEMO.NEXTVAL, #{id}, #{content}, 0, SYSDATE, #{model_id}) 
+ </insert>
+ 
+ <update id="memoUpdate" parameterType="kh.com.a.model.MemoDto">
+ 	UPDATE MEMO SET 
+	CONTENT=#{content}
+	WHERE MEMO_SEQ=#{memo_seq}	
+ </update>
+ 
+ <update id="memoDelete" parameterType="java.lang.Integer">
+ 	UPDATE MEMO
+	SET DEL=1
+	WHERE MEMO_SEQ=#{memo_seq}
+ </update>
+ 
 
  </mapper>

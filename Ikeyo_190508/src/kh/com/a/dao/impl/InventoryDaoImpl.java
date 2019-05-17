@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kh.com.a.dao.InventoryDao;
 import kh.com.a.model.BbsParam;
 import kh.com.a.model.InventoryDto;
+import kh.com.a.model.MemoDto;
 
 @Repository
 public class InventoryDaoImpl implements InventoryDao {
@@ -73,6 +74,38 @@ public class InventoryDaoImpl implements InventoryDao {
 	public InventoryDto getInventory(int inven_seq) {
 		return sqlSession.selectOne(ns + "getinventory", inven_seq);
 	}
+
+	@Override
+	public List<MemoDto> getMemoList(InventoryDto inven) {
+		
+		return sqlSession.selectList(ns + "getMemoList", inven);
+	}
+
+	@Override
+	public boolean memoWrite(MemoDto memo) {
+		
+		int n = sqlSession.insert(ns + "memoWrite", memo);
+		
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean memoDelete(int memo_seq) {
+		
+		int n = sqlSession.update(ns + "memoDelete", memo_seq);
+		
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean memoUpdate(MemoDto memo) {
+		
+		int n = sqlSession.update(ns + "memoUpdate", memo);
+		
+		return n>0?true:false;
+	}
+	
+	
 	
 	
 	

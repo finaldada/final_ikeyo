@@ -7,7 +7,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
@@ -31,7 +34,8 @@ System.out.println(jsonLike);  // 확인용
 request.setAttribute("jsonLike", jsonLike);
 
 %>
-
+<div align="center" style="margin-left: 10%; margin-right: 10%; margin-top: 20%">
+<h3>투표 결과</h3>
 <table class="list_table" style="width: 95%">
 <colgroup>
 	<col width="200px"><col width="500px">
@@ -63,7 +67,7 @@ request.setAttribute("jsonLike", jsonLike);
 <tr>
 	<th>투표 내용</th>
 	<td style="text-align: left;">
-		<textarea rows="10" cols="50" name="question" readonly="readonly">${poll.question }</textarea>
+		<textarea rows="10" cols="50" name="question" style="resize: none;" readonly="readonly">${poll.question }</textarea>
 	</td>
 </tr>
 
@@ -81,47 +85,39 @@ request.setAttribute("jsonLike", jsonLike);
 
 
 </table>
-
+</div>
 
 <script>
 $(function () {
 	
 	//alert("!!!!");
-	
-	Highcharts.chart('container', {
-		  chart: {
-		    plotBackgroundColor: null,
-		    plotBorderWidth: null,
-		    plotShadow: false,
-		    type: 'pie'
-		  },
-		  title: {
-		    text: '투표통계결과'
-		  },
-		  tooltip: {
-		    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-		  },
-		  plotOptions: {
-		    pie: {
-		      allowPointSelect: true,
-		      cursor: 'pointer',
-		      dataLabels: {
-		        enabled: true,
-		        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-		        style: {
-		          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-		        }
-		      }
-		    }
-		  },
-		  series: [{
-		    name: 'Brands',
-		    colorByPoint: true,
-		    data: <%=request.getAttribute("jsonLike") %>
-		    	
-		  }]
-		});
-	
+
+
+Highcharts.chart('container', {
+	  chart: {
+	    type: 'pie',
+	    options3d: {
+	      enabled: true,
+	      alpha: 45
+	    }
+	  },
+	  title: {
+	    text: 'IKEYO 투표'
+	  },
+	  subtitle: {
+	    text: '-결과'
+	  },
+	  plotOptions: {
+	    pie: {
+	      innerSize: 100,
+	      depth: 45
+	    }
+	  },
+	  series: [{
+	    name: '제목 이름 입력 ',
+	    data: <%=request.getAttribute("jsonLike") %>
+	  }]
+	});
 });
 </script>
 

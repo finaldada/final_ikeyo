@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kh.com.a.dao.InventoryDao;
 import kh.com.a.model.BbsParam;
 import kh.com.a.model.InventoryDto;
+import kh.com.a.model.MemoDto;
 import kh.com.a.service.InventoryService;
 
 @Service
@@ -67,7 +68,32 @@ public class InventoryServiceImpl implements InventoryService {
 	@Override
 	public InventoryDto getInventory(int inven_seq) {
 		return inventoryDao.getInventory(inven_seq);
+	}
+
+	@Override
+	public List<MemoDto> getMemoList(InventoryDto inven) {
+		
+		return inventoryDao.getMemoList(inven);
+	}
+
+	@Override
+	public boolean memoWrite(MemoDto memo) {
+		
+		return inventoryDao.memoWrite(memo);
+	}
+
+	@Override
+	public boolean memoDelete(int memo_seq) {
+		
+		return inventoryDao.memoDelete(memo_seq);
+	}
+
+	@Override
+	public boolean memoUpdate(MemoDto memo) {
+		
+		return inventoryDao.memoUpdate(memo);
 	} 
+	
 	
 	
 	

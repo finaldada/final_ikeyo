@@ -13,10 +13,11 @@
 <body>
 
 
-<h3>업데이트 !!  수량 버튼 방식과  스크립트 추가 해 줘야 함 </h3>
+
 
 <div align="center">
-<form action="inventoryupdateAf.do" method="post">
+<h3>재고 수정</h3>
+<form action="inventoryupdateAf.do">
 <table border="1"> 
 
 <input type="hidden" id="inven_seq" name="inven_seq" value="${inven.inven_seq }">
@@ -58,7 +59,7 @@
 </tr>
 
 <tr>
-	<td align="center"><input type="submit" value="재고 수정">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value=" 취소" onclick="goBack()"></td>
+	<td align="center"><input type="button" value="재고 수정 요청" onclick="goUpdateAf()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="취소" onclick="goBack()"></td>
 </tr>
 
 </table>
@@ -101,10 +102,49 @@ function inventoryCheck() {
 }
 
 
-function goBack() {
+ function goBack() {
 	var inven_seq = $("#inven_seq").val();
 	location.href = "inventorydetail.do?inven_seq=" + inven_seq;
+} 
+
+function goUpdateAf() {
+	
+
+	var model_id = $("#model_id").val();
+	var category = $("#category").val();
+	var count = $("#count").val();
+	var price = $("#price").val();
+	var inven_seq = $("#inven_seq").val();
+	
+	$.ajax({
+		url:"inventoryupdateAf.do",
+		type:"post",
+		//data:"model_id=" + model_id,
+		data:{ model_id:model_id, category:category, count:count,
+			price:price, inven_seq:inven_seq },
+		success:function(data){
+			//alert("success");
+			//alert(data);
+			if(data.trim() == "업데이트 성공"){
+				
+				alert(data);
+				opener.parent.location.reload();
+				window.close();
+				
+				
+			}else{
+				alert(data);
+
+			}
+		},
+		error:function(r, s, err){
+			alert("error");
+		}
+	});
+		
 }
+
+
 </script>
 
 </body>

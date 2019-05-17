@@ -59,10 +59,12 @@ $(document).ready(function () {
 
 
 
+
 <!--  품명(모델번호) / 카테고리 / 수량 / 등록일 / 가격
     모델번호 카테고리    |       |  검색 -->
 
 <div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%">
+<h3>Inventory List</h3>
 <form action="" id="inven_frm" name="inven_frm" method="post">
 <table border="2" width="100%" height="100%" id="list_table" class="tablesorter">
 
@@ -103,8 +105,9 @@ $(document).ready(function () {
 	
 	<c:if test="${inven.del == 0 }">
 		<td align="center">
-		<a href="inventorydetail.do?inven_seq=${inven.inven_seq }">${inven.model_id }</a>
-		
+		<%-- <a href="inventorydetail.do?inven_seq=${inven.inven_seq }">${inven.model_id }</a> --%>
+	
+		<a href="#" onClick="goDetail('${inven.inven_seq }','${inven.model_id }')">${inven.model_id }</a>
 		</td>
 		<td align="center">${inven.category }</td>
 		<td align="center">${inven.price }</td>
@@ -148,7 +151,8 @@ $(document).ready(function () {
 		<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
 	</jsp:include>
 </div>
-   
+
+
 
 <script type="text/javascript">
 function goPage(pageNumber) {
@@ -180,6 +184,13 @@ $("#_btnSearch").click(function () {
 $(document).ready(function(){ 
 	$("#list_table").tablesorter();
 }); 
+
+
+function goDetail(seq, model_id) {
+	var inven_seq = seq;
+	var model_id = model_id;
+	window.open('inventorydetail.do?inven_seq=' + inven_seq + '&model_id=' + model_id, '재고 상세 내역','width=800,height=600', 'scrollbars=yes');
+}
 
 </script>
 
