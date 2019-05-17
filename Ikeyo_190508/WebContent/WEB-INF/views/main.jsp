@@ -9,8 +9,9 @@
 <body>
 <h1>main yeah~</h1>
 <br>
-<a href="productList.do?category=침대">침대 리스트</a>
+<a href="productList.do?category=침대/매트릭스">침대 리스트</a>
 <a href="productList.do?category=책상">책상 리스트</a>
+<a href="myInfoGo.do">내 정보 수정</a>
 <br>
 <a href="logout.do">로그아웃</a>
 </body>

@@ -3,56 +3,64 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
-<tiles-definitions>
+	<tiles-definitions>
+	<!-- login 화면 -->
+		<definition name="login.tiles" template="/WEB-INF/views/login/login.jsp"/>
+		
+		<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"/>
+		
+		<definition name="findId.tiles" template="/WEB-INF/views/login/findId.jsp"/>
+		
+		<definition name="findPwd.tiles" template="/WEB-INF/views/login/findPwd.jsp"/>
+		
+		<definition name="error.tiles" template="/WEB-INF/views/login/error.jsp"/>
+		
+		<definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
+		
+		<definition name="main.tiles" template="/WEB-INF/views/main.jsp"/>
+		
+		<!-- test 화면 -->
+		<definition name="test.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+			<put-attribute name="common" value="/WEB-INF/views/common/common.jsp"/>
+			<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+			<put-attribute name="top_menu" value="/WEB-INF/views/common/top_menu.jsp"/>
+			<put-attribute name="content" value="/WEB-INF/views/common/test.jsp"/>	
+			<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+		</definition>
+		
+		<!-- 상품리스트 화면 -->
+		<definition name="productList.tiles" extends="test.tiles">
+			<put-attribute name="content" value="/WEB-INF/views/product/productList.jsp"/>
+		</definition>
+		
+		<!-- 상품리스트 화면 -->
+		<definition name="productAdd.tiles" extends="test.tiles">
+			<put-attribute name="content" value="/WEB-INF/views/product/productAdd.jsp"/>
+		</definition>
+		
+		<!-- 재고관리 리스트 -->
+		<definition name="inventorylist.tiles" extends="test.tiles">
+			<put-attribute name="content" value="/WEB-INF/views/inventory/inventorylist.jsp"/>
+		</definition>
+		 
+		
+		<!-- 재고등록 화면 -->
+		<definition name="inventorywrite.tiles" template="/WEB-INF/views/inventory/inventorywrite.jsp"/>
+		
+		<!-- 마이페이지 내 정보 수정 화면 -->
+		<definition name="myInfoGo.tiles" extends="test.tiles">
+			<put-attribute name="content" value="/WEB-INF/views/mypage/myPageGo.jsp"/>
+		</definition>
+		
+		<definition name="myInfo.tiles" extends="test.tiles">
+			<put-attribute name="content" value="/WEB-INF/views/mypage/myPage.jsp"/>
+		</definition>
+		
+		<!-- 비밀번호 틀렸을때 -->
+		<definition name="errorPwd.tiles" extends="test.tiles">
+			<put-attribute name="content" value="/WEB-INF/views/mypage/errorPwd.jsp"/>
+		</definition>
+		
+	</tiles-definitions>
 
-<!-- main 화면  -->    
-<definition name="main.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
-   <put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu.jsp"/>
-   <put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
-   <put-attribute name="content" value="/WEB-INF/views/common/content.jsp"/>   
-   <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
-</definition>
 
-
-<!-- login 화면 -->
-<definition name="login.tiles" extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/login/login.jsp"/>
-</definition>
-
-<definition name="regi.tiles"  extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp"/>
-</definition>
-
-<definition name="findId.tiles" template="/WEB-INF/views/login/findId.jsp"/>
-
-<definition name="findPwd.tiles" template="/WEB-INF/views/login/findPwd.jsp"/>
-
-<definition name="error.tiles" template="/WEB-INF/views/login/error.jsp"/>
-
-<definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
-
-<!-- <definition name="main.tiles" template="/WEB-INF/views/main.jsp"/> -->
-
-
-<!-- 상품리스트 화면 -->
-<definition name="productList.tiles" extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/product/productList.jsp"/>
-</definition>
-
-<!-- 상품리스트 화면 -->
-<definition name="productAdd.tiles" extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/product/productAdd.jsp"/>
-</definition>
-
-<!-- 재고관리 리스트 -->
-<definition name="inventorylist.tiles" extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorylist.jsp"/>
-</definition>
- 
-
-<!-- 재고등록 화면 -->
-<definition name="inventorywrite.tiles" template="/WEB-INF/views/inventory/inventorywrite.jsp"/>
-
-
-
-</tiles-definitions>

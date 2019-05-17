@@ -6,8 +6,8 @@
 <fmt:requestEncoding value="utf-8"/>
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-<!-- 
-<style>
+
+<!-- <style>
 * {
 	margin: 0px;
 	padding: 0px;
@@ -102,13 +102,13 @@ img {
 .empty img {
 	margin-top: 2px !important;
 }
-</style>
--->
-<form action="" name="frmForm1" id="_frmFormSearch" method="get">
+</style> -->
+
+<%-- <form action="" name="frmForm1" id="_frmFormSearch" method="get">
 <input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
 <input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?8:recordCountPerPage }">
 <input type="hidden" name="category" value="${category }">
-</form>
+</form> --%>
 
 <jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
 
