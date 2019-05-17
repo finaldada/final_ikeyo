@@ -24,32 +24,32 @@ $(document).ready(function(){
 </script>
 
 
-<div class="box_border" style="margin-top: 5px; margin-bottom: 10px;">
+<div style="margin-top: 5px; margin-bottom: 10px;">
 
 <form action="" name="frmForm1" id="_frmFormSearch" method="post">
 
 <table style="margin-left: auto; margin-right: auto;
 		margin-top:	3px; margin-bottom: 3px;">
 
-<tr>
-	<td>검색:</td>
-	<td style="padding-left:5px;">
-		<select id="_s_category" name="s_category">
-			<option value="" selected="selected">선택</option>
-			<option value="title">제목</option>
-			<option value="contents">내용</option>
-			<!-- <option value="writer">작성자</option> -->
-		</select>
-	</td>
-	<td style="padding-left: 5px;">
-		<input type="text" id="_s_keyword" name="s_keyword">
-	</td>
-	<td style="padding-left: 5px;">
-		<span class="button blue">
-			<button type="button" id="_btnSearch">검색</button>
-		</span>
-	</td>
-</tr>
+	<tr>
+		<td>검색:</td>
+		<td style="padding-left:5px;">
+			<select id="_s_category" name="s_category">
+				<option value="" selected="selected">선택</option>
+				<option value="title">제목</option>
+				<option value="contents">내용</option>
+				<!-- <option value="writer">작성자</option> -->
+			</select>
+		</td>
+		<td style="padding-left: 5px;">
+			<input type="text" id="_s_keyword" name="s_keyword">
+		</td>
+		<td style="padding-left: 5px;">
+			<span class="button blue">
+				<button type="button" id="_btnSearch">검색</button>
+			</span>
+		</td>
+	</tr>
 
 </table>
 
@@ -63,7 +63,7 @@ $(document).ready(function(){
 <!-- arrow생성 -->
 <jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
 
-<table class="list_table" style="border: 1px solid; width: 85%;">
+<table style="border: 1px solid; width: 80%; margin-left: 10%;">
 
 <thead>
 	<tr>
@@ -123,7 +123,7 @@ $(document).ready(function(){
 </div>
 
 <div id="buttons_wrap">
-	<span class="button blue">
+	<span>
 		<button type="button" id="_btnAdd">글쓰기</button>
 	</span>
 </div>

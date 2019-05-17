@@ -53,6 +53,32 @@
 <!-- 재고등록 화면 -->
 <definition name="inventorywrite.tiles" template="/WEB-INF/views/inventory/inventorywrite.jsp"/>
 
+<!-- 공지사항 -->
+<definition name="noticelist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/notice/noticelist.jsp"/>
+</definition>
+
+<definition name="noticeUpdate.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/notice/noticeupdate.jsp"/>
+</definition>
+
+<definition name="noticewrite.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/notice/noticewrite.jsp"/>
+</definition>
+
+<!-- 고객소리함 -->
+<!-- <definition name="customlist.tiles" template="/WEB-INF/views/custom/customlist.jsp"/> -->
+<definition name="customlist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/custom/customlist.jsp"/>
+</definition>
+
+<definition name="customwrite.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/custom/customwrite.jsp"/>
+</definition>
+
+
+
+
 
 
 </tiles-definitions>

@@ -40,7 +40,7 @@ MemberDto mem = (MemberDto)ologin;
 
 <!-- <h1>글쓰기</h1> -->
 
-<div align="center">
+<div align="center" style="margin-top: 10%;">
 
 <form id="frm" action="noticewriteAf.do" method="post">
 
@@ -76,12 +76,12 @@ MemberDto mem = (MemberDto)ologin;
 		</span>
 	</td>
 </tr>
-
 </table>
-
 </form>
 
 </div>
+
+<br><br><br><br><br><br><br><br>
 <script type="text/javascript">
 $(function () {
 	$("#_writeBtn").click(function () {

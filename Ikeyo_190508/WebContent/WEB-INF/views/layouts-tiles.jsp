@@ -24,7 +24,7 @@
 		<td rowspan="3">
 			<tiles:insertAttribute name="left_menu" />
 		</td> 
-		<td style="background-color: white; position: fixed; height: 20%;">
+		<td style="background-color: white; position: fixed; height: 20%; z-index: 100;">
 			<tiles:insertAttribute name="header" />
 		</td> 
 	</tr>
