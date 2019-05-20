@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 
 
-<div style="margin-top: 5px; margin-bottom: 10px;">
+<div style="margin-top: 5%; margin-bottom: 10px;">
 
 <form action="" name="frmForm1" id="_frmFormSearch" method="post">
 
@@ -77,42 +77,87 @@ $(document).ready(function(){
 		</tr>
 	</c:if>
 	
+	<c:set var="tmp" value=""/>
 	<c:forEach items="${customlist }" var="cust" varStatus="vs">
-	<%-- <jsp:setProperty property="depth" name="ubbs" value="${bbs.depth }"/> --%>
+	<jsp:setProperty property="depth" name="ubbs" value="${cust.depth }"/>
 	
 	<tr class="_hover_tr">
 		<td>${vs.count }</td>
-		<td><img alt="" src="/img/${cust.filename }" style="width: 80px;"></td>
-		<td style="text-align: left;">	
-			<a href="#none" onclick="titleclick(${vs.index})">
-				${cust.title }
-			</a>
-		</td>
-		<td>${cust.id }</td>
-		<td>
-			<p id="read${vs.index }">${cust.readcount }</p>
-			<input type="hidden" id="seq${vs.index }" value="${cust.cust_seq }">
-		</td>
-		<td><fmt:formatDate value="${cust.wdate }" 
-      pattern="yyyy/MM/dd"/></td>
+		<c:choose>
+			<c:when test="${cust.del eq 1 }">
+				<td></td>
+				<td colspan="5" style="text-align: left;">
+					<font color="#ff0000">이 글은 삭제되었습니다.</font>
+				</td>
+			</c:when>
+			
+			<c:when test="${login.id ne cust.id && cust.lock_ eq 1}">
+				<td></td>
+				<td style="text-align:left;">
+					<img alt="" src="./image/lock_.png" width="25px">
+					<c:choose>
+						<c:when test="${login.auth eq 3 || cust.ref eq tmp}">
+							<a href="#none" onclick="titleclick(${cust.cust_seq })">
+								<jsp:getProperty property="arrow" name="ubbs"/>
+								${cust.title }
+							</a>
+						</c:when>
+						
+						<c:otherwise>
+							 비공개 글입니다.
+						</c:otherwise>
+					</c:choose>
+				</td>
+				<td>${cust.id }</td>
+				<td>
+					<p id="read${vs.index }">${cust.readcount }</p>
+					<input type="hidden" id="seq${vs.index }" value="${cust.cust_seq }">
+				</td>
+				<td>
+					<fmt:formatDate value="${cust.wdate }" pattern="yyyy/MM/dd"/>
+				</td>
+			</c:when>
+			
+			<c:otherwise>
+				<td style="width: 80px; height:80px;">
+					<c:if test="${not empty cust.filename && cust.filename ne '' }">
+						<img alt="" src="/img/${cust.filename }" style="width: 80px;">
+					</c:if>
+				</td>
+				<td style="text-align: left;">
+					<c:if test="${cust.lock_ eq 1 }">
+						<img alt="" src="./image/lock_.png" width="25px">
+						<c:set var="tmp" value="${cust.ref }"/>
+					</c:if>
+					<a href="#none" onclick="titleclick(${cust.cust_seq })">
+						<jsp:getProperty property="arrow" name="ubbs"/>
+						${cust.title }
+					</a>
+				</td>
+				<td>${cust.id }</td>
+				<td>
+					<p id="read${vs.index }">${cust.readcount }</p>
+					<input type="hidden" id="seq${vs.index }" value="${cust.cust_seq }">
+				</td>
+				<td>
+					<fmt:formatDate value="${cust.wdate }" pattern="yyyy/MM/dd"/>
+				</td>
+			</c:otherwise>
+		</c:choose>
 	</tr>
-	<%-- <tr id="content${vs.index }" style="display: none">
-		<td colspan="5">
-			<div style="padding: 10% 10% 10% 10%; text-align:left;">
-				<pre>${cust.content }</pre>
-			</div>
-			<c:if test="${login.auth == 1 }">
-				<div>
-					<button id="updateBtn" onclick="location.href='noticeUpdate.do?seq=${bbs.noti_seq }'">수정</button>
-					<button id="deleteBtn" onclick="location.href='noticeDelete.do?seq=${bbs.noti_seq }'">삭제</button>
-				</div>
-			</c:if>
-		</td>
-	</tr> --%>
 	</c:forEach>
 </tbody>
 </table>
-
+<form id="frmDetail" action="customdetail.do" method="post">
+	<input type="hidden" id="hid" name="seq">
+</form>
+<c:if test="${not empty login }">
+	<div align="center">
+		<span>
+			<button type="button" id="_btnAdd">글쓰기</button>
+		</span>
+	</div>
+</c:if>
 <!-- 페이징 처리 -->
 <div id="paging_wrap">
 	<jsp:include page="/WEB-INF/views/notice/paging.jsp" flush="false">
@@ -123,28 +168,25 @@ $(document).ready(function(){
 	</jsp:include>
 </div>
 
-<div id="buttons_wrap">
-	<span>
-		<button type="button" id="_btnAdd">글쓰기</button>
-	</span>
-</div>
-
 
 
 <script type="text/javascript">
+function titleclick(seq) {
+	$("#hid").val(seq);
+	$("#frmDetail").submit();
+}
+</script>
 
+
+<script type="text/javascript">
 function goPage(pageNumber) {
-	
 	$("#_pageNumber").val(pageNumber);
 	$("#_frmFormSearch").attr("action", "customlist.do").submit();
-	
 }
 
 
 $("#_btnAdd").click(function () {
-	
 	location.href="customwrite.do";
-	
 });
 
 
@@ -153,8 +195,6 @@ $("#_btnSearch").click(function(){
 	$("#_pageNumber").val("0");
 	$("#_frmFormSearch").attr("action","customlist.do").submit();
 });
-
-
 </script>
 
 

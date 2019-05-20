@@ -61,6 +61,50 @@
 					0, 0, #{lock_}, 0, #{filename})
 </insert>
 
+<select id="getCustom" parameterType="java.lang.Integer"
+	resultType="kh.com.a.model.CustomDto">
+	SELECT * 
+	FROM CUSTOM 
+	WHERE CUST_SEQ=#{seq} 
+</select>
+
+<update id="custReadcount" parameterType="java.lang.Integer">
+	UPDATE CUSTOM
+	SET READCOUNT=READCOUNT+1
+	WHERE CUST_SEQ=#{seq} 
+</update>
+
+<update id="custStepUp" parameterType="java.lang.Integer">
+   UPDATE CUSTOM 
+   SET STEP=STEP+1 
+   WHERE REF = (SELECT REF FROM CUSTOM WHERE CUST_SEQ=#{seq})
+      AND STEP <![CDATA[>]]> (SELECT STEP FROM CUSTOM WHERE CUST_SEQ=#{seq})
+</update>
+<insert id="writeCustAnswer" parameterType="kh.com.a.model.CustomDto">
+   INSERT INTO CUSTOM(CUST_SEQ, ID, REF, STEP, DEPTH, TITLE, 
+      CONTENT, WDATE, PARENT, DEL, LOCK_, READCOUNT, FILENAME)
+   VALUES(SEQ_CUST.NEXTVAL, #{id}, (SELECT REF FROM CUSTOM WHERE CUST_SEQ=#{cust_seq}),
+      (SELECT STEP FROM CUSTOM WHERE CUST_SEQ=#{cust_seq}) + 1,
+      (SELECT DEPTH FROM CUSTOM WHERE CUST_SEQ=#{cust_seq}) + 1,
+      #{title}, #{content}, SYSDATE, #{cust_seq}, 0, #{lock_}, 0, #{filename}) 
+</insert>
+
+<update id="customdelete" parameterType="java.lang.Integer">
+	UPDATE CUSTOM 
+	SET DEL=1 
+	WHERE CUST_SEQ=#{seq} 
+</update>
+
+<update id="customupdate" parameterType="kh.com.a.model.CustomDto">
+	UPDATE CUSTOM
+	SET TITLE=#{title}, CONTENT=#{content}, LOCK_=#{lock_} 
+		<if test="filename != null and filename != ''">
+			, FILENAME=#{filename} 
+		</if>
+	WHERE CUST_SEQ=#{cust_seq}
+</update>
+
+
 
 
 

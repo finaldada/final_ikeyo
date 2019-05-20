@@ -33,6 +33,41 @@ public class CustomDaoImpl implements CustomDao {
 		int n = sqlSession.insert(ns + "customupload", cust);
 		return n>0?true:false;
 	}
+
+	@Override
+	public CustomDto getCustom(int seq) {
+		return sqlSession.selectOne(ns + "getCustom", seq);
+	}
+
+	@Override
+	public boolean custReadCount(int seq) {
+		int n = sqlSession.update(ns + "custReadcount", seq);
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean stepUpCustom(int seq) {
+		int n = sqlSession.update(ns + "custStepUp", seq);
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean writeCustAnswer(CustomDto cust) {
+		int n = sqlSession.insert(ns + "writeCustAnswer", cust);
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean deleteCustom(int seq) {
+		int n = sqlSession.update(ns + "customdelete", seq);
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean updateCustom(CustomDto cust) {
+		int n = sqlSession.update(ns + "customupdate", cust);
+		return n>0?true:false;
+	}
 	
 	
 	

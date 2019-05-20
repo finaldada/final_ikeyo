@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
 
-<form name="frmForm" id="_frmForm" action="customwriteAf.do" method="post"
+
+<form name="frmForm" id="_frmForm" action="customAnswerAf.do" method="post"
 	enctype="multipart/form-data">
 
 <table style="width: 85%;">
@@ -42,16 +43,10 @@
 	</td>
 </tr>
 <tr>
-	<th>공개여부</th>
-	<td>
-		<input type="checkbox" name="lock_" id="lock_" value="1">
-		비공개 글쓰기
-	</td>
-</tr>
-
-<tr>
 	<td colspan="2" style="height: 50px; text-align: center;">
-		<a href="#none" id="_btnPds" title="글쓰기">
+		<input type="hidden" name="cust_seq" value="${cust.cust_seq }">
+		<input type="hidden" name="lock_" id="lock_" value="${cust.lock_ }">
+		<a href="#none" id="_btnPds" title="답글쓰기">
 			<img alt="" src="image/bwrite.png">
 		</a>
 	</td>
@@ -66,6 +61,30 @@ $("#_btnPds").click(function () {
 	$("#_frmForm").submit();
 });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

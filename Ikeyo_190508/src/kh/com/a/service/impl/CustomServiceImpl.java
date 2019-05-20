@@ -30,6 +30,32 @@ public class CustomServiceImpl implements CustomService {
 	public boolean uploadCustom(CustomDto cust) {
 		return customDao.uploadCustom(cust);
 	}
+
+	@Override
+	public CustomDto getCustom(int seq) {
+		return customDao.getCustom(seq);
+	}
+
+	@Override
+	public boolean custReadCount(int seq) {
+		return customDao.custReadCount(seq);
+	}
+
+	@Override
+	public boolean writeCustAnswer(CustomDto cust) {
+		customDao.stepUpCustom(cust.getCust_seq());
+		return customDao.writeCustAnswer(cust);
+	}
+
+	@Override
+	public boolean deleteCustom(int seq) {
+		return customDao.deleteCustom(seq);
+	}
+	
+	@Override
+	public boolean updateCustom(CustomDto cust) {
+		return customDao.updateCustom(cust);
+	}
 	
 	
 	

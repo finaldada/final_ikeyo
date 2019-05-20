@@ -76,7 +76,17 @@
 	<put-attribute name="content" value="/WEB-INF/views/custom/customwrite.jsp"/>
 </definition>
 
+<definition name="customdetail.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/custom/customdetail.jsp"/>
+</definition>
 
+<definition name="customAnswer.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/custom/customanswer.jsp"/>
+</definition>
+
+<definition name="customupdate.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/custom/customupdate.jsp"/>
+</definition>
 
 
 

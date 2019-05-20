@@ -5,9 +5,9 @@
 <fmt:requestEncoding value="utf-8"/>
 
 
-<form name="frmForm" id="_frmForm" action="customwriteAf.do" method="post"
+<form name="frmForm" id="_frmForm" action="customupdateAf.do" method="post"
 	enctype="multipart/form-data">
-
+<input type="hidden" name="cust_seq" value="${cust.cust_seq }">
 <table style="width: 85%;">
 <colgroup>
 	<col style="width: 200px">
@@ -24,7 +24,7 @@
 <tr>
 	<th>제목</th>
 	<td style="text-align: left;">
-		<input type="text" name="title" size="50">
+		<input type="text" name="title" size="50" value="${cust.title }">
 	</td>
 </tr>
 
@@ -38,13 +38,13 @@
 <tr>
 	<th>내용</th>
 	<td style="text-align: left;">
-		<textarea rows="10" cols="50" name="content"></textarea>
+		<textarea rows="10" cols="50" name="content">${cust.content }</textarea>
 	</td>
 </tr>
 <tr>
 	<th>공개여부</th>
 	<td>
-		<input type="checkbox" name="lock_" id="lock_" value="1">
+		<input type="checkbox" name="lock_" id="lock_" value="1" ${cust.lock_==1?'checked':'' }>
 		비공개 글쓰기
 	</td>
 </tr>
