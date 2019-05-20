@@ -1,5 +1,6 @@
 package kh.com.a.controller;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -219,5 +220,6 @@ public class ProductController {
 		invenmap.put("count", inven.getCount());
 
 		return invenmap;
+
 	}
 }

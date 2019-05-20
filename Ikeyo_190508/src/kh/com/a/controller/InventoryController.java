@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.com.a.model.BbsParam;
 import kh.com.a.model.InventoryDto;
+import kh.com.a.model.MemoDto;
 import kh.com.a.service.InventoryService;
 
 @Controller
@@ -24,6 +25,7 @@ public class InventoryController {
 		
 	//List<InventoryDto> invenlist = inventoryService.getInventoryList();
 		
+
 		// paging 처리
 		int sn = param.getPageNumber();
 		int start = (sn) * param.getRecordCountPerPage() + 1;
@@ -76,8 +78,15 @@ public class InventoryController {
 	
 	@RequestMapping(value="inventorydetail.do", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String inventorydetail(InventoryDto dto, Model model) {
+		
+		System.out.println(dto.toString());
+		
 		InventoryDto inven = inventoryService.inventoryDetail(dto);
 		model.addAttribute("inven", inven);
+		
+		List<MemoDto> memolist = inventoryService.getMemoList(dto);
+		model.addAttribute("memolist", memolist);
+		
 		
 		return "inventorydetail.tiles";
 		
@@ -114,32 +123,110 @@ public class InventoryController {
 		return "inventoryupdate.tiles";
 	}
 	
-	@RequestMapping(value="inventoryupdateAf.do", method={RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	@RequestMapping(value="inventoryupdateAf.do",
+				    produces = "application/String; charset=utf-8",
+					method={RequestMethod.GET, RequestMethod.POST})
 	public String inventoryupdateAf(InventoryDto dto) {
 		
 		boolean isS = inventoryService.inventoryUpdate(dto);
 		
+		
 		if(isS) {
-			System.out.println("인벤토리 업데이트성공");
-			return "redirect:/inventorylist.do";
+			String msg = "업데이트 성공";
+			return msg; 
 		}else {
-			System.out.println("인벤토리 업데이트실패");
-			return "redirect:/inventoryupdate.do";
+			String msg = "업데이트 실패";
+			return msg;  
 		}
+		
+
+		
 	
 	}
+	
 
 	@RequestMapping(value="inventorydelete.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String inventorydelete(InventoryDto dto) {
+		
 		
 		boolean isS = inventoryService.inventoryDelete(dto);
 		
 		if(isS) {
 			System.out.println("인벤토리 삭제성공");
-			return "redirect:/inventorylist.do";
+			return "forward:/inventorydetail.do";
 		}else {
 			System.out.println("인벤토리 삭제실패");
+			return "forward:/inventorydetail.do";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="memoWrite.do",
+					produces = "application/String; charset=utf-8",
+					method={RequestMethod.GET, RequestMethod.POST})
+	public String memoWrite(MemoDto dto) {
+		
+		System.out.println(dto.toString());
+		
+		boolean isS = inventoryService.memoWrite(dto);
+		
+		if(isS) {
+			String msg = "메모등록 완료";
+			return msg; 
+			
+		}else {
+			
+			String msg = "메모등록 실패";
+			return msg; 
+		}
+		
+		
+		   
+	}
+	
+	
+	@RequestMapping(value="memoUpdate.do",method={RequestMethod.GET, RequestMethod.POST})
+	public String memoUpdate(MemoDto dto) {
+		
+		boolean isS = inventoryService.memoUpdate(dto);
+		
+		if(isS) {
+			System.out.println("메모 업데이트 성공");
+			return "redirect:/inventorydetail.do";
+		}else {
+			System.out.println("메모 업데이트 실패");
 			return "redirect:/inventorydetail.do";
 		}
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="memoDelete.do",
+					produces = "application/String; charset=utf-8",
+					method={RequestMethod.GET, RequestMethod.POST})
+	public String memoDelete(MemoDto dto,InventoryDto inven) {
+		
+		
+		System.out.println(dto.toString());
+		boolean isS = inventoryService.memoDelete(dto);
+		
+		
+		
+		if(isS) {
+			
+			String str = "메모 삭제 성공";
+			return str;
+		}else {
+			String str = "메모 삭제 실패";
+			return str;
+		}
+	}
+	
+
+		
+
+		
+
+
 }

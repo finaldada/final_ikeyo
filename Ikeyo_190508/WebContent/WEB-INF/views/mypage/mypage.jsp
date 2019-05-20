@@ -4,14 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>mypage</title>
 </head>
 <body>
-<h1>main yeah~</h1>
-<br>
-<a href="productList.do?category=침대">침대 리스트</a>
-<a href="productList.do?category=책상">책상 리스트</a>
-<br>
-<a href="logout.do">로그아웃</a>
+
+
+<div align="center" style="margin-left: 10%; margin-right: 10%;">
+<h3>mypage</h3>
+<table border="2" width="100%" height="100%">
+
+<h1>정보 출력 !!!! </h1>
+
+</table>
+</div>
+
+
+
 </body>
 </html>

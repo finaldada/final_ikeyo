@@ -5,40 +5,46 @@ import java.util.Date;
 
 import kh.com.a.util.DateUtil;
 
-// 투표 작성자가 만든 항목
-public class PollBean implements Serializable{
-	private String id;			// 아이디
+
+// 투표 작성자가 만든 항목들
+public class PollBean implements Serializable {
+	private String id;
 	
-	private int syear;			// 시작년
-	private int smonth;			// 시작월
-	private int sday;			// 시작일
+	// 시작일~
+	private int syear;
+	private int smonth;
+	private int sday;
 	
-	private int eyear;			// 종료년
-	private int emonth;			// 종료월
-	private int eday;			// 종료일
+	// ~마감일
+	private int eyear;
+	private int emonth;
+	private int eday;
 	
-	private String question;	// 투표질문
-	private int itemcount;		// 투표문항수
+	private String question;  // 질문
+	private int itemcount;   // 보기 항목 갯수
 	
-	private String poll1;		// 투표문항1
-	private String poll2;		// 투표문항2
-	private String poll3;		// 투표문항3
-	private String poll4;		// 투표문항4
-	private String poll5;		// 투표문항5
-	private String poll6;		// 투표문항6
-	private String poll7;		// 투표문항7
-	private String poll8;		// 투표문항8
-	private String poll9;		// 투표문항9
-	private String poll10;		// 투표문항10
 	
-	/*=====================================================*/
+	// view에서 받기 위함  10개까지 가능하므로 
+	private String poll1;   
+	private String poll2;
+	private String poll3;
+	private String poll4;
+	private String poll5;
+	private String poll6;
+	private String poll7;
+	private String poll8;
+	private String poll9;
+	private String poll10;
 	
-	private String pollnum[] = new String[10];	// 투표문항을 넣을 배열	
+	
+	// db에 넣기위한 코드 
+	private String pollnum[] = new String[10];  // 최대 10개 이므로 
 	
 	private Date sdate;
 	private Date edate;
 	
-	public String[] getPollnum() {	// 투표문항 보기들을 한묶음으로 전송하기 위한 메소드
+	public String[] getPollnum() {   // 보기들을 한묶음으로 전송하기 위한 메소드이다
+		
 		pollnum[0] = DateUtil.str(poll1);
 		pollnum[1] = DateUtil.str(poll2);
 		pollnum[2] = DateUtil.str(poll3);
@@ -53,14 +59,22 @@ public class PollBean implements Serializable{
 		return pollnum;
 	}
 	
+
 	public Date getSdate() {
-		return DateUtil.toDate(getSyear(), getSmonth(), getSday());
+		  
+	  return DateUtil.toDate(getSyear(), getSmonth(), getSday());  
+	  
+	}
+	 
+	public Date getEdate() { 
+		  
+	  return DateUtil.toDate(getEyear(), getEmonth(), getEday());
+	  
 	}
 	
-	public Date getEdate() {
-		return DateUtil.toDate(getEyear(), getEmonth(), getEday());
-	}
-
+	
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -213,9 +227,11 @@ public class PollBean implements Serializable{
 		this.poll10 = poll10;
 	}
 
+
 	public void setSdate(Date sdate) {
 		this.sdate = sdate;
 	}
+
 
 	public void setEdate(Date edate) {
 		this.edate = edate;
@@ -225,10 +241,11 @@ public class PollBean implements Serializable{
 		this.pollnum = pollnum;
 	}
 	
+
 	
 	
 	
+	
+	
+
 }
-
-
-

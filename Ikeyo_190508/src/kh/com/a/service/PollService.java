@@ -7,17 +7,15 @@ import kh.com.a.model.PollDto;
 import kh.com.a.model.PollSubDto;
 import kh.com.a.model.Voter;
 
-public interface KhPollService {
+public interface PollService {
+
 	
-	public List<PollDto> getPollAllList(String id);
-	
+
+	public List<PollDto> getPollAllList(String id); 
+	public int isVote(Voter voter);
 	public void makePoll(PollBean pbean);
-	
-	// 투표전
 	public PollDto getPoll(PollDto poll);
 	public List<PollSubDto> getPollSubList(PollDto poll);
+	public void polling(Voter voter);  		
 	
-	// 투표후(한방에함)
-	public void polling(Voter voter);		
-
 }

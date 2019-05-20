@@ -1,10 +1,15 @@
 package kh.com.a.dao.impl;
 
+
+import java.util.List;
+
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.MemberDao;
+import kh.com.a.model.BbsParam;
 import kh.com.a.model.MemberDto;
 
 @Repository
@@ -59,6 +64,35 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberDto findId(MemberDto mem) {
 		
 		return sqlSession.selectOne(ns + "findId", mem);
+	}
+
+	@Override
+	public List<MemberDto> memberList() {
+		
+		return sqlSession.selectList(ns + "memberList");
+	}
+	
+	
+
+	@Override 
+	public List<MemberDto> getMemberList(BbsParam param) {
+		
+		return sqlSession.selectList(ns + "getMemberPagingList", param);
+	}
+
+	@Override
+	public int getMemberCount(BbsParam param) {
+		
+		return sqlSession.selectOne(ns + "getMemberCount", param);
+	}
+
+	@Override
+	public boolean memberDel(String id) {
+		
+		int n = sqlSession.update(ns + "memberDel", id);
+		
+	
+		return n>0?true:false; 
 	}
 	
 	

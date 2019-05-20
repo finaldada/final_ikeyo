@@ -13,6 +13,7 @@
 <body>
 
 <div align="center">
+<h3>재고 등록</h3>
 <form id="inven_frm" method="post">
 <table border="1"> 
 <tr>
@@ -26,13 +27,19 @@
 	<td>
 		카테고리:<select id="category" name="category"> 
 		<option value="" selected="selected">선택</option>
-		<option value="침대/매트릭스" >침대/매트릭스</option>
-		<option value="의자/소파" >의자/소파</option>
-		<option value="옷장/수납장">옷장/수납장</option>
-		<option value="책상/테이블">책상/테이블</option>
-		<option value="커튼/블라인드/조명">커튼/블라인드/조명</option>
+		<option value="침대" >침대</option>
+		<option value="매트릭스" >매트릭스</option>
+		<option value="의자" >의자</option>
+		<option value="소파" >소파</option>
+		<option value="옷장">옷장</option>
+		<option value="수납장">수납장</option>
+		<option value="책상">책상</option>
+		<option value="테이블">테이블</option>
+		<option value="액세서리">액세서리</option>
 		</select> 
+		&nbsp;&nbsp;&nbsp;
 	</td>
+	
 </tr>
 
 <tr>    <%-- + - 버튼 ??  --%>
@@ -48,7 +55,7 @@
 </tr>
 
 <tr>
-	<td align="center"><input type="button" value="재고 등록" onclick="goWrite()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<td align="center"><input type="button" id="btn_regi" value="재고 등록" onclick="goWrite()" disabled="disabled">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" value="재고 등록 취소" onclick="goBack()"></td>
 </tr>
 
@@ -61,7 +68,12 @@
 function inventoryCheck() {
 	//alert("inventoryCheck()");
 	
+	
+	
+	
 	var model_id = $("#model_id").val();
+	
+	
 	$.ajax({
 		url:"inventoryCheck.do",
 		type:"post",
@@ -75,6 +87,9 @@ function inventoryCheck() {
 				$("#_model_id").css("color", "#0000ff")
 				$("#_model_id").html("사용할 수 있는 모델명입니다");
 				$("#model_id").val(model_id); 
+				
+				 $("#btn_regi").removeAttr("disabled"); // 활성화 
+					//$("#_btnRegi").attr("disabled", "disabled"); // 비활성화 
 				
 			}else{
 				
@@ -166,7 +181,8 @@ function goBack() {
 	location.href="inventorylist.do";
 }
 	
-	
+
+
 	
 	
 
