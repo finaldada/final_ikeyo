@@ -96,7 +96,7 @@ $(document).ready(function(){
 				<td style="text-align:left;">
 					<img alt="" src="./image/lock_.png" width="25px">
 					<c:choose>
-						<c:when test="${login.auth eq 3 || cust.ref eq tmp}">
+						<c:when test="${login.auth eq 1 || cust.ref eq tmp}">
 							<a href="#none" onclick="titleclick(${cust.cust_seq })">
 								<jsp:getProperty property="arrow" name="ubbs"/>
 								${cust.title }

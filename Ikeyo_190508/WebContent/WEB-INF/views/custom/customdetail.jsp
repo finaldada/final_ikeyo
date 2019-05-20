@@ -61,7 +61,7 @@ name="content" id="content">${cust.content }</textarea>
 </table>
 <form action="customAnswer.do" method="get">
 	<input type="hidden" name="seq" value="${cust.cust_seq }">
-	<c:if test="${login.auth eq 3 }">
+	<c:if test="${login.auth eq 1 }">
 		<input type="submit" value="답글">
 	</c:if>
 </form>
