@@ -164,7 +164,7 @@ function goDelete() {
 		
 	}else{
 		
-		location.replace("memberlist.do");
+		
 		
 		}
 	

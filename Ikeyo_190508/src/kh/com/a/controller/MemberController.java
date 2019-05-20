@@ -117,18 +117,62 @@ public class MemberController {
 		
 		MemberDto login = memberService.login(mem);
 		
-		if(login.getAuthstatus() == 0) {
-			model.addAttribute("email_check", 0);
-			return "emailConfirm.tiles";
-		} else {
-			if(login != null && !login.getId().equals("")){
-				request.getSession().setAttribute("login", login);
+		
+		if(login != null && !login.getId().equals("")) {
+			if(login.getAuthstatus() == 0) {
+				model.addAttribute("email_check", 0);
 				
-				return "main.tiles";
-			} else {
-				return "error.tiles";
+				return "emailConfirm.tiles";
 			}
+			
+			request.getSession().setAttribute("login", login);
+			
+			return "main.tiles";
+		} else {
+			return "error.tiles";
 		}
+	}
+	
+	@RequestMapping(value = "findId.do", method = RequestMethod.GET)
+	public String findId() {
+		logger.info("MemberController findId " + new Date());
+		
+		return "findId.tiles";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "findIdAf.do", produces = "application/String; charset=UTF-8", method = RequestMethod.POST)
+	public String findIdAf(MemberDto mem) {
+		logger.info("MemberController findIdAf " + new Date());
+		
+		MemberDto memdto = memberService.findId(mem); 
+		String id = "";
+		
+		if(memdto != null) {
+			id = memdto.getId();
+			
+			return id;
+		} else {
+			id = "NO";
+			
+			return id;
+		}
+	}
+	
+	@RequestMapping(value = "findPwd.do", method = RequestMethod.GET)
+	public String findPwd() {
+		logger.info("MemberController findPwd " + new Date());
+		
+		return "findPwd.tiles";
+	}
+	
+	@RequestMapping(value = "findPwdAf.do", method = RequestMethod.POST)
+	public String findPwd(MemberDto mem) {
+		logger.info("MemberController findPwdAf " + new Date());
+		
+		//memberService.findPwd(mem);
+		
+		return "";
 	}
 	
 	@RequestMapping(value = "logout.do", method = RequestMethod.GET)

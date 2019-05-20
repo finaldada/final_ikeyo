@@ -21,18 +21,22 @@ INCREMENT BY 1;
 ALTER TABLE CALENDAR
 ADD CONSTRAINT FK_CAL_ID FOREIGN KEY(ID)
 REFERENCES MEMBER(ID);
+
+// RDATE Date -> String 으로 변경 
+ALTER TABLE calendar MODIFY(RDATE VARCHAR2(30));
+
  */
 import java.util.Date;
 public class CalendarDto implements Serializable {
 	
 	private int cal_seq;	// 출석체크 seq
 	private String id;		// 멤버 id
-	private Date rdate;		// 등록일
+	private String rdate;   // 등록일
 	
 	public CalendarDto() {
 	}
 
-	public CalendarDto(int cal_seq, String id, Date rdate) {
+	public CalendarDto(int cal_seq, String id, String rdate) {
 		super();
 		this.cal_seq = cal_seq;
 		this.id = id;
@@ -55,11 +59,11 @@ public class CalendarDto implements Serializable {
 		this.id = id;
 	}
 
-	public Date getRdate() {
+	public String getRdate() {
 		return rdate;
 	}
 
-	public void setRdate(Date rdate) {
+	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
 
@@ -67,8 +71,6 @@ public class CalendarDto implements Serializable {
 	public String toString() {
 		return "CalendarDto [cal_seq=" + cal_seq + ", id=" + id + ", rdate=" + rdate + "]";
 	}
-	
-	
-	
 
+	
 }
