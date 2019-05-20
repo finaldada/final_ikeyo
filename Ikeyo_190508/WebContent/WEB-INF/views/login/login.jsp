@@ -60,6 +60,7 @@ $(document).ready(function() {
 	var uid = getCookie("uid");
 	
 	$('#_uid').val(uid);
+
 	if($('#_uid').val() != "") { // 그전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
 		$('#idSaveCheck').attr("checked", true);
 	}
@@ -79,17 +80,20 @@ $(document).ready(function() {
 		}	
 	});
 });
+
 function setCookie(cookieName, value, exdays) {
 	var exdate = new Date();
 	exdate.setDate(exdate.getDate() + exdays);
 	var cookieValue = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
 	document.cookie = cookieName + "= " + cookieValue;
 }
+
 function deleteCookie(cookieName) {
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() - 1);
 	document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
 }
+
 function getCookie(cookieName) {
 	cookieName = cookieName + "=";
 	var cookieData = document.cookie;
@@ -104,6 +108,7 @@ function getCookie(cookieName) {
 	}
 	return unescape(cookieValue);
 }
+
 $('#_btnLogin').click(function() {
 	if($('#_uid').val() == "") {
 		alert($('#_uid').attr("data-msg") + " 입력해 주세요");
@@ -115,6 +120,7 @@ $('#_btnLogin').click(function() {
 		$('#_frmForm').attr("target", "_self").submit();
 	}
 });
+
 $('#_uid').keypress(function(event){
 	if(event.which == "13"){
 		event.preventDefault();
@@ -127,12 +133,15 @@ $('#_pwd').keypress(function(event){
 		$('#_btnLogin').click();
 	}
 });
+
 $('#_btnRegi').click(function() {
 	location.href = "regi.do";
 });
+
 $('#_findId').click(function() {
 	location.href = "findId.do";
 });
+
 $('#_findPwd').click(function() {
 	location.href = "findPwd.do";
 });

@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class testController {
+public class MainController {
 	
-	@RequestMapping(value="test.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String test() {
-		return "test.tiles";
+	@RequestMapping(value="main.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String main() {
+		
+		return "main.tiles";
 	}
+
 }

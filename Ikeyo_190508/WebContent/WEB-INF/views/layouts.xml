@@ -15,13 +15,9 @@
 
 
 <!-- login 화면 -->
-<definition name="login.tiles" extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/login/login.jsp"/>
-</definition>
+<definition name="login.tiles" template="/WEB-INF/views/login/login.jsp"/>
 
-<definition name="regi.tiles"  extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp"/>
-</definition>
+<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"/>
 
 <definition name="findId.tiles" template="/WEB-INF/views/login/findId.jsp"/>
 
@@ -31,7 +27,9 @@
 
 <definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
 
-<!-- <definition name="main.tiles" template="/WEB-INF/views/main.jsp"/> -->
+		
+
+
 
 
 <!-- 상품리스트 화면 -->
@@ -51,22 +49,28 @@
 </definition>
 
 
-<!--  inventory -->
+<!-- 재고관리 리스트 -->
 <definition name="inventorylist.tiles" extends="mypage.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorylist.jsp"/>
 </definition>
 
+<!-- 재고등록 -->
 <definition name="inventorywrite.tiles" extends="mypage.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorywrite.jsp"/>
 </definition>
 
+<!-- 재고  디테일-->
 <definition name="inventorydetail.tiles" template="/WEB-INF/views/inventory/inventorydetail.jsp"/>
-<!-- 	<put-attribute name="content" value="/WEB-INF/views/inventory/inventorydetail.jsp"/>
-</definition> -->
 
+<!-- 재고  수정-->
 <definition name="inventoryupdate.tiles" template="/WEB-INF/views/inventory/inventoryupdate.jsp"/>
-<!-- 	<put-attribute name="content" value="/WEB-INF/views/inventory/inventoryupdate.jsp"/>
-</definition> -->
+
+
+<!-- 출석체크(calendar) 화면 -->
+<definition name="calendar.tiles" template="/WEB-INF/views/calendar/calendar.jsp"/>
+
+<!-- calwrite로 연결  -->
+<definition name="calwrite.tiles" template="/WEB-INF/views/calendar/calwrite.jsp"/>
 
 
 <!-- admin 테스트  -->
@@ -99,7 +103,13 @@
 	<put-attribute name="content" value="/WEB-INF/views/notice/noticelist.jsp"/>
 </definition>	
 
+<definition name="noticeupdate.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/notice/noticeupdate.jsp"/>
+</definition>	
 
+<definition name="noticewrite.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/notice/noticewrite.jsp"/>
+</definition>	
 
 <!-- 공지사항 -->
 <definition name="noticelist.tiles" extends="main.tiles">

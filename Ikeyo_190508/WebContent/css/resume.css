@@ -106,7 +106,7 @@ p.lead {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    width: 13rem;
+    width: 17rem;
     height: 100vh;
   }
   #sideNav .navbar-brand {
@@ -164,7 +164,7 @@ section.resume-section .resume-item .resume-date {
     min-height: 100vh;
   }
   section.resume-section .resume-item .resume-date {
-    min-width: 13rem;
+    min-width: 18rem;
   }
 }
 

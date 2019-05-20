@@ -154,6 +154,11 @@ function memoWrite() {
 
 function memoDelete(memo_seq) {
 	
+	var result = confirm('정말 삭제 하시겠습니까?'); 
+	
+	if(result) { 
+	
+	
 	$.ajax({
 		url:"memoDelete.do",
 		type:"post",
@@ -177,7 +182,20 @@ function memoDelete(memo_seq) {
 		}
 	});
  	
-
+	}else{
+		
+		
+		
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 
