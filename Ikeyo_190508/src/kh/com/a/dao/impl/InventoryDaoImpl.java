@@ -90,10 +90,10 @@ public class InventoryDaoImpl implements InventoryDao {
 	}
 
 	@Override
-	public boolean memoDelete(int memo_seq) {
+	public boolean memoDelete(MemoDto memo) {
 		
-		int n = sqlSession.update(ns + "memoDelete", memo_seq);
-		
+		int n = sqlSession.update(ns + "memoDelete", memo);
+		System.out.println("n:" + n);
 		return n>0?true:false;
 	}
 

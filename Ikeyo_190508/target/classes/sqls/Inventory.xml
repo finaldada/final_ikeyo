@@ -101,7 +101,7 @@
  <select id="getMemoList"  parameterType="kh.com.a.model.InventoryDto" resultType="kh.com.a.model.MemoDto">
   SELECT MEMO_SEQ, ID, CONTENT, DEL, RDATE, MODEL_ID
   FROM MEMO
-  WHERE MODEL_ID = #{model_id}
+  WHERE DEL=0 AND MODEL_ID = #{model_id} 
 
  </select>
  
@@ -117,9 +117,9 @@
 	WHERE MEMO_SEQ=#{memo_seq}	
  </update>
  
- <update id="memoDelete" parameterType="java.lang.Integer">
- 	UPDATE MEMO
-	SET DEL=1
+ <update id="memoDelete" parameterType="kh.com.a.model.MemoDto">
+ 	UPDATE MEMO SET 
+ 	DEL=1
 	WHERE MEMO_SEQ=#{memo_seq}
  </update>
  

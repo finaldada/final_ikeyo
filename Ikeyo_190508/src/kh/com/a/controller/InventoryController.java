@@ -149,14 +149,15 @@ public class InventoryController {
 	@RequestMapping(value="inventorydelete.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String inventorydelete(InventoryDto dto) {
 		
+		
 		boolean isS = inventoryService.inventoryDelete(dto);
 		
 		if(isS) {
 			System.out.println("인벤토리 삭제성공");
-			return "redirect:/inventorylist.do";
+			return "forward:/inventorydetail.do";
 		}else {
 			System.out.println("인벤토리 삭제실패");
-			return "redirect:/inventorydetail.do";
+			return "forward:/inventorydetail.do";
 		}
 	}
 	
@@ -171,12 +172,12 @@ public class InventoryController {
 		boolean isS = inventoryService.memoWrite(dto);
 		
 		if(isS) {
-			String msg = "글등록 완료";
+			String msg = "메모등록 완료";
 			return msg; 
 			
 		}else {
 			
-			String msg = "글등록 실패";
+			String msg = "메모등록 실패";
 			return msg; 
 		}
 		
@@ -185,7 +186,7 @@ public class InventoryController {
 	}
 	
 	
-	@RequestMapping(value="memoUpdate.do", method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="memoUpdate.do",method={RequestMethod.GET, RequestMethod.POST})
 	public String memoUpdate(MemoDto dto) {
 		
 		boolean isS = inventoryService.memoUpdate(dto);
@@ -199,19 +200,26 @@ public class InventoryController {
 		}
 	}
 	
-	@RequestMapping(value="memoDelete.do", method={RequestMethod.GET, RequestMethod.POST})
-	public String memoDelete(int memo_seq) {
+	
+	@ResponseBody
+	@RequestMapping(value="memoDelete.do",
+					produces = "application/String; charset=utf-8",
+					method={RequestMethod.GET, RequestMethod.POST})
+	public String memoDelete(MemoDto dto,InventoryDto inven) {
 		
-		System.out.println("memo_seq:" + memo_seq);
 		
-		boolean isS = inventoryService.memoDelete(memo_seq);
+		System.out.println(dto.toString());
+		boolean isS = inventoryService.memoDelete(dto);
+		
+		
 		
 		if(isS) {
-			System.out.println("메모 삭제성공");
-			return "redirect:/inventorydetail.do";
+			
+			String str = "메모 삭제 성공";
+			return str;
 		}else {
-			System.out.println("메모 삭제실패");
-			return "redirect:/inventorydetail.do";
+			String str = "메모 삭제 실패";
+			return str;
 		}
 	}
 	

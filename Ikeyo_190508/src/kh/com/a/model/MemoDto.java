@@ -43,6 +43,18 @@ public class MemoDto implements Serializable {
 	public MemoDto() {
 		
 	}
+	
+	
+	
+
+	public MemoDto(int memo_seq, int del) {
+		super();
+		this.memo_seq = memo_seq;
+		this.del = del;
+	}
+
+
+
 
 	public MemoDto(int memo_seq, String id, String content, int del, Date rdate, String model_id) {
 		super();
@@ -53,6 +65,9 @@ public class MemoDto implements Serializable {
 		this.rdate = rdate;
 		this.model_id = model_id;
 	}
+
+
+
 
 	public int getMemo_seq() {
 		return memo_seq;
@@ -102,11 +117,18 @@ public class MemoDto implements Serializable {
 		this.model_id = model_id;
 	}
 
+
+
+
 	@Override
 	public String toString() {
 		return "MemoDto [memo_seq=" + memo_seq + ", id=" + id + ", content=" + content + ", del=" + del + ", rdate="
 				+ rdate + ", model_id=" + model_id + "]";
 	}
+
+
+
+	
 	
 	
 	

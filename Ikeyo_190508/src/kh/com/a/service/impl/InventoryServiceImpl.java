@@ -83,9 +83,9 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public boolean memoDelete(int memo_seq) {
+	public boolean memoDelete(MemoDto memo) {
 		
-		return inventoryDao.memoDelete(memo_seq);
+		return inventoryDao.memoDelete(memo);
 	}
 
 	@Override

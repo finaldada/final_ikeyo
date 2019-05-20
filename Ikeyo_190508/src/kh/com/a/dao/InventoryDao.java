@@ -21,7 +21,7 @@ public interface InventoryDao {
 	
 	public List<MemoDto> getMemoList(InventoryDto inven);
 	public boolean memoWrite(MemoDto memo);
-	public boolean memoDelete(int memo_seq);
+	public boolean memoDelete(MemoDto memo);
 	public boolean memoUpdate(MemoDto memo);
 
 }

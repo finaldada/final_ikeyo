@@ -134,11 +134,10 @@ function memoWrite() {
 		success:function(data){
 			//alert("success");
 			//alert(data);
-			if(data.trim() == "글등록 완료"){
+			if(data.trim() == "메모등록 완료"){
 				
 				alert(data);
-				location.reload();
-				
+				location.reload();	
 				
 			}else{
 				alert(data);
@@ -153,20 +152,34 @@ function memoWrite() {
    }	
 }
 
-function memoDelete() {
+function memoDelete(memo_seq) {
 	
-	var result = confirm('정말 삭제 하시겠습니까?'); 
-	
-	if(result) { 
-		
-	$("#memo_frm").attr("action","memoDelete.do").submit();	
-		
-	}else{
-		$("#inven_frm").attr("action", "inventorydetail.do").submit(); 
-		//location.replace("inventorydetail.do");
-		
+	$.ajax({
+		url:"memoDelete.do",
+		type:"post",
+		data:{ memo_seq:memo_seq},
+		success:function(data){
+			//alert("success");
+			//alert(data);
+			if(data.trim() == "메모 삭제 성공"){
+				
+				alert(data);
+				location.reload();
+				
+				
+			}else{
+				alert(data);
+				
+			}
+		},
+		error:function(r, s, err){
+			alert("error");
 		}
+	});
+ 	
+
 }
+
 
 
 </script>

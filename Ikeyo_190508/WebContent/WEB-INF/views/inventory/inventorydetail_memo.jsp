@@ -9,19 +9,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+</head>
+<body>
 
 
-<%-- modal을 클릭 하면   ajax로 메모리스트를 불러와서  가져오고     맨아래칸에   
-아이디 / 메모내용  /  작성 시간    /  페이징 처리 없음    => 작성칸 작성   
-작성 후 에는   리스트창 새로고침    --%>
+
+
 
 
 <div style="margin-left: 5%; margin-right: 5%">
-<form id="memo_frm" method="post">
+
 <table border="2" style="height: 100%; width: 100%;">
-<%-- <input type="hidden" id="memo_seq" name="memo_seq" value="${memolist.memo_seq }"> --%>
 <colgroup>
-<col width="10"><col width="70"><col width="40">
+<col width="10"><col width="70"><col width="40"><col width="10">
 </colgroup>
 
 <c:if test="${empty memolist }">
@@ -33,19 +33,21 @@
 
 <c:if test="${not empty memolist }">
 
+<form id="memo_frm"  method="get">	
 <c:forEach items="${memolist }" var="memo" varStatus="vs">
-
-<%-- <c:if test="${inven.model_id == memolist.model_id }"> --%>
 
 <tr>
 	
-	<td>${memo.id}</td> <td>${memo.content }</td>
+	<td>${memo.id}
+	<input type="hidden" id="memo_seq" name="memo_seq" value="${memo.memo_seq }">
+	</td> 
+	<td>${memo.content }</td>
 	<td><fmt:formatDate value="${memo.rdate }" pattern="yyyy/MM/dd"/></td> 
-	<td><input type="button" onclick="memoDelete()" value="X"><td>
+	<td colspan="2"><input type="button" onclick="memoDelete('${memo.memo_seq }')" value="X"><td>
 </tr>
 
-<%-- </c:if> --%>
 </c:forEach>
+	</form>
 
 
 </c:if>
@@ -68,13 +70,12 @@
 
 </table>
 
-</form>
 </div>
 
 
 
-</head>
-<body>
+
+
 
 </body>
 </html>
