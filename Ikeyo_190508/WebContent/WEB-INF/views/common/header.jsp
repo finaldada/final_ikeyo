@@ -16,7 +16,7 @@
 <br>
      <ul>
         <li style="margin-left: 90px;"><b><a href=".do" style="color: #535353; text-decoration: none;">고객지원  ｜</a></b></li>
-        <li><b><a href=".do" style="color:#535353; text-decoration: none;">&nbsp;오시는 길 ｜</a></b></li>
+        <li><b><a href="storeInfo.do" style="color:#535353; text-decoration: none;">&nbsp;매장 안내 ｜</a></b></li>
         <li><b><a href="polllist.do" style="color:#535353; text-decoration: none;">&nbsp;투표 ｜</a></b></li>
         <li><b><a href="calendar.do" style="color:blue; text-decoration: none;">&nbsp;출석체크 </a></b></li>
         <li><b><a href="login.do" style="color: #535353; text-decoration: none;">&nbsp;로그인 ｜</a></b></li>

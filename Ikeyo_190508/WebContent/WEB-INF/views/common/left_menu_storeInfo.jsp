@@ -48,28 +48,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item"><br><br> <!--  내 정보    주문내역  장바구니 위시리스트 출석체크 /회원관리 재고관리  -->
-          <a class="nav-link js-scroll-trigger active" href="#about">내 정보</a>
+          <a class="nav-link js-scroll-trigger active" href="#about">서울</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">주문내역</a>
+          <a class="nav-link js-scroll-trigger" href="#">경기도</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">장바구니</a>
+          <a class="nav-link js-scroll-trigger" href="#">인천</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">위시리스트</a>
+          <a class="nav-link js-scroll-trigger" href="#">대전</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">출석체크</a>
-        </li>
-        <c:if test="${login.auth == 1 }">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="memberlist.do">회원관리</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="inventorylist.do">재고관리</a>
-        </li>
-        </c:if>
+<!--         <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#">5</a>
+        </li> -->
       </ul>
     </div>
   </nav>

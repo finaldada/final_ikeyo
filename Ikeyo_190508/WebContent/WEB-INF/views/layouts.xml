@@ -111,6 +111,12 @@
 	<put-attribute name="content" value="/WEB-INF/views/notice/noticewrite.jsp"/>
 </definition>	
 
+<!-- 매장 안내  -->
+
+<definition name="storeInfo.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo.jsp"/>
+</definition>	
 
 
 </tiles-definitions>
