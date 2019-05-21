@@ -33,7 +33,7 @@
 <body id="page-top">
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-     	<c:if test="${login.id != null }">${login.id }님 환영합니다.</c:if>
+     <c:if test="${login.id != null }">${login.id }님 환영합니다.</c:if> 
  	<a class="navbar-brand js-scroll-trigger" href="main.do">
       <span class="d-block d-lg-none">IKEYO</span>
       <span class="d-none d-lg-block">
@@ -47,24 +47,21 @@
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#about">▤ 모든 제품!!</a>
+        <li class="nav-item"><br><br> <!--  내 정보    주문내역  장바구니 위시리스트 출석체크 /회원관리 재고관리  -->
+          <a class="nav-link js-scroll-trigger active" href="#about">서울</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=책상">책상/테이블</a>
+          <a class="nav-link js-scroll-trigger" href="#">경기도</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=침대">침대/매트릭스</a>
+          <a class="nav-link js-scroll-trigger" href="#">인천</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=의자">의자/소파</a>
+          <a class="nav-link js-scroll-trigger" href="#">대전</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=수납장">옷장/수납장</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=커튼">커튼/블라인드/조명</a>
-        </li>
+<!--         <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#">5</a>
+        </li> -->
       </ul>
     </div>
   </nav>
