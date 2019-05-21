@@ -140,7 +140,19 @@
 	<put-attribute name="content" value="/WEB-INF/views/custom/customupdate.jsp"/>
 </definition>
 
+<!-- 마이페이지 내 정보 수정 화면 -->
+<definition name="myInfoGo.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/mypage/myPageGo.jsp"/>
+</definition>
 
+<definition name="myInfo.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/mypage/myPage.jsp"/>
+</definition>
+
+<!-- 비밀번호 틀렸을때 -->
+<definition name="errorPwd.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/mypage/errorPwd.jsp"/>
+</definition>
 
 
 </tiles-definitions>
