@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <fmt:requestEncoding value="utf-8"/> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
+<!-- content.css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/content.css">
 
 <!-- header.css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/header.css">
@@ -16,8 +17,25 @@
 <br>
      <ul>
 		<li style="margin-left: 90px;">
-        	<b><a href="customlist.do" style="color: #535353; text-decoration: none;">고객지원  ｜</a>
+        	<!--
+        	<b><a href="#" style="color: #535353; text-decoration: none;">고객지원  ｜</a>
         	</b>
+        	<ul>
+        		<li><a href="noticelist.do">공지사항</a></li>
+        		<li><a href="customlist.do">고객의 소리</a></li>
+        	</ul>
+        	-->
+        	<div class="dropdown">
+				<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+					style="color: #535353; text-decoration: none;">
+					<b>고객지원 </b>
+				</a><b> ｜</b>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<a class="dropdown-item" href="noticelist.do">공지사항</a>
+					<a class="dropdown-item" href="customlist.do">고객의 소리</a>
+				</div>
+        	</div>
         </li>
         <li><b><a href=".do" style="color:#535353; text-decoration: none;">&nbsp;오시는 길 ｜</a></b></li>
         <li><b><a href="polllist.do" style="color:#535353; text-decoration: none;">&nbsp;투표 ｜</a></b></li>

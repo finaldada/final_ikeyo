@@ -30,7 +30,11 @@
 
 <tr>
 	<td colspan="2" style="width: 100%; height: 100%;">
-		<tiles:insertAttribute name="content"/>  
+		<div class="f_content">
+			<div class="f2_content">
+				<tiles:insertAttribute name="content"/>  
+			</div>
+		</div>
 	</td>
 </tr>
 

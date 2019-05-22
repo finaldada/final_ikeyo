@@ -42,6 +42,11 @@
 	<put-attribute name="content" value="/WEB-INF/views/product/productAdd.jsp"/>
 </definition>
 
+<!-- 상품 디테일 -->
+<definition name="productDetail.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/product/productDetail.jsp"/>
+</definition>
+
 <!-- 마이페이지 -->
 <definition name="mypage.tiles" extends="main.tiles">
    <put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
@@ -140,19 +145,22 @@
 	<put-attribute name="content" value="/WEB-INF/views/custom/customupdate.jsp"/>
 </definition>
 
+
 <!-- 마이페이지 내 정보 수정 화면 -->
 <definition name="myInfoGo.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
 	<put-attribute name="content" value="/WEB-INF/views/mypage/myPageGo.jsp"/>
 </definition>
 
 <definition name="myInfo.tiles" extends="main.tiles">
-	<put-attribute name="content" value="/WEB-INF/views/mypage/myPage.jsp"/>
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/mypage/mypage.jsp"/>
 </definition>
 
 <!-- 비밀번호 틀렸을때 -->
 <definition name="errorPwd.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
 	<put-attribute name="content" value="/WEB-INF/views/mypage/errorPwd.jsp"/>
 </definition>
-
 
 </tiles-definitions>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.a.dao.ProductDao;
 import kh.com.a.model.CartDto;
+import kh.com.a.model.InventoryDto;
 import kh.com.a.model.PagingParam;
 import kh.com.a.model.ProductDto;
 import kh.com.a.service.ProductService;
@@ -73,11 +74,23 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productDao.selectCount(model_id);
 	}
-
 	
 	@Override
 	public boolean productAdd(ProductDto productDto) {		
 		return productDao.productAdd(productDto);
 	}
 
+	@Override
+	public ProductDto getProduct(String model_id) {
+		return productDao.getProduct(model_id);
+	}
+
+	@Override
+	public InventoryDto getinven(String model_id) {
+		return productDao.getinven(model_id);
+	}
+	
+	
+	
+	
 }

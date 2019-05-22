@@ -133,7 +133,7 @@ img {
 								</c:if>
 								<li data-product-cd="${i.model_id }">												
 									<p class="image">
-										<img src="/img/${i.photo_af1 }"> 
+										<a href="productDetail.do?model_id=${i.model_id }"><img src="/img/${i.photo_af1 }"></a> 
 									</p>
 									<p class="text">
 										<span>${i.p_name }</span> <br>
