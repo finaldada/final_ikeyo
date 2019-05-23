@@ -42,7 +42,7 @@ int tyear = cal.get(Calendar.YEAR);
 int tmonth = cal.get(Calendar.MONTH) + 1; // month는  0부터 시작하므로 
 int tday = cal.get(Calendar.DATE);
 %>
-
+<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%">
 <form action="pollmakeAf.do" method="post">
 
 <table class="list_table" style="width: 85%">
@@ -203,5 +203,5 @@ int tday = cal.get(Calendar.DATE);
 </table>
 
 </form>
-
+</div>
 

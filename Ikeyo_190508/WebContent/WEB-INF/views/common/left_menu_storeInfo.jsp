@@ -9,6 +9,13 @@
 <html lang="en">
 
 <head>
+	<%--메뉴 css --%>
+	<style>
+    .nav-item a{cursor:pointer;}
+    .nav-item .hide{display:none;}
+	</style>
+
+
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -47,21 +54,28 @@
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <li class="nav-item"><br><br> <!--  내 정보    주문내역  장바구니 위시리스트 출석체크 /회원관리 재고관리  -->
-          <a class="nav-link js-scroll-trigger active" href="#about">서울</a>
+        <li class="nav-item"><br><br>     
+          <a class="nav-link js-scroll-trigger active" href="storeInfo.do" >매장 안내</a>
+            <ul class="hide">  
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#" onclick="changeLoca('용산점')">용산점</a>
+                </li> 
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#" onclick="changeLoca('중곡점')">중곡점</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#" onclick="changeLoca('논현점')">논현점</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#" onclick="changeLoca('강동점')">강동점</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#" onclick="changeLoca('송파점')">송파점</a>
+                </li>   
+            </ul>
+        
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">경기도</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">인천</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">대전</a>
-        </li>
-<!--         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">5</a>
-        </li> -->
+
       </ul>
     </div>
   </nav>
@@ -76,6 +90,35 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".nav-item>a").click(function(){
+        var submenu = $(this).next("ul");
+
+        // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+        if( submenu.is(":visible") ){
+            submenu.slideUp();
+        }else{
+            submenu.slideDown();
+        }
+    }).mouseover(function(){
+        $(this).next("ul").slideDown();
+    });
+});
+
+
+function changeLoca( local ) {
+	//alert(local);
+	
+	location.href = "findStore.do?local=" + local;
+}
+
+</script>
+
+
+
 
 </body>
 

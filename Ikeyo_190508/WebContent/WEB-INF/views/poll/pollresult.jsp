@@ -34,7 +34,7 @@ System.out.println(jsonLike);  // 확인용
 request.setAttribute("jsonLike", jsonLike);
 
 %>
-<div align="center" style="margin-left: 10%; margin-right: 10%; margin-top: 20%">
+<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%">
 <h3>투표 결과</h3>
 <table class="list_table" style="width: 95%">
 <colgroup>

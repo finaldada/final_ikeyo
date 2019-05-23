@@ -118,5 +118,27 @@
 	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo.jsp"/>
 </definition>	
 
+<!-- storeInfo_a.tiles -->
+<definition name="storeInfo_a.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_a.jsp"/>
+</definition>	
+<definition name="storeInfo_b.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_b.jsp"/>
+</definition>	
+<definition name="storeInfo_c.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_c.jsp"/>
+</definition>	
+<definition name="storeInfo_d.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_d.jsp"/>
+</definition>	
+<definition name="storeInfo_e.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_e.jsp"/>
+</definition>	
+
 
 </tiles-definitions>
