@@ -26,9 +26,12 @@
 <div id="map" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:500px;"></div>
 <!-- <div id="map_canvas" style="width:100%;height:800px;"></div> -->
 
-<div align="center" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:200px;">
-<br><br>
-<pre>
+<div align="center" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:250px;">
+
+
+<img alt="" src="./image/ys.jpg"  align="left" style="width:350px; height:200px; margin-left: 3%; margin-top: 3%; margin-bottom: 3%">
+
+<pre style="height:220px; margin-left: 3%; margin-top: 10%; margin-bottom: 3%">
 용산점
 서울특별시 용산구 한강대로 23길 55
 02-2012-3343
@@ -37,6 +40,7 @@
 
 </div>
 
+<div style="display: block;"></div>
 
 <script type="text/javascript">
 

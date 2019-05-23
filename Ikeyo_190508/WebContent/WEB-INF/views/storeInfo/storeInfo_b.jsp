@@ -22,10 +22,11 @@
 <div id="map" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:500px;"></div>
 <!-- <div id="map_canvas" style="width:100%;height:800px;"></div> -->
 
-<div align="center" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:200px;">
+<div align="center" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:250px;">
 
-<br><br>
-<pre>
+<img alt="" src="./image/jk.jpg" align="left" style="width:350px; height:200px; margin-left: 3%; margin-top: 3%; margin-bottom: 3%">
+
+<pre style="height:220px; margin-left: 3%; margin-top: 10%; margin-bottom: 3%">
 중곡점
 서울특별시 광진구 천호대로 512 군자빌딩
 02-2205-2202
@@ -36,7 +37,6 @@
 </div>
 
 
-<div id="map" style="margin-left:20%; margin-top:10%; margin-bottom:10%; width:750px;height:500px;"></div>
 
 
 

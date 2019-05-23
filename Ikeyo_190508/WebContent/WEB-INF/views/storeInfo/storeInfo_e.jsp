@@ -23,10 +23,12 @@
 <div id="map" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:500px;"></div>
 <!-- <div id="map_canvas" style="width:100%;height:800px;"></div> -->
 
-<div align="center" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:200px;">
+<div align="center" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:250px;">
 
-<br><br>
-<pre>
+
+<img alt="" src="./image/sp.jpg"  align="left" style="width:350px; height:200px; margin-left: 3%; margin-top: 3%; margin-bottom: 3%">
+
+<pre style="height:220px; margin-left: 3%; margin-top: 10%; margin-bottom: 3%">
 송파점
 서울특별시 송파구 송파대로 167 테라타워B동 3층
 02-400-2122
@@ -36,7 +38,7 @@
 
 </div>
 
-<div id="map" style="margin-left:20%; margin-top:10%; margin-bottom:10%; width:750px;height:500px;"></div>
+
 
 
 
