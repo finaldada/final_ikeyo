@@ -40,7 +40,7 @@
 
 </div>
 
-<div style="display: block;"></div>
+
 
 <script type="text/javascript">
 

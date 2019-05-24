@@ -31,6 +31,9 @@
 
 <%--  5개 지역 페이지를 찾아 준다  그리고 클릭하면 그에 맞게 이동   --%>
 
+<div align="center" style="margin-left:10%; margin-top:10%; margin-bottom:10%;">
+<h3 >매장  안내</h3>
+</div>	
 
 <div id="map" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:500px;"></div>
 <!-- <div id="map_canvas" style="width:100%;height:800px;"></div> -->
@@ -76,197 +79,6 @@
 
 
 <script type="text/javascript">
-
-
-
-
-
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-mapOption = {
-    center: new daum.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
-    level: 8, // 지도의 확대 레벨
-    mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
-}; 
-
-// 지도를 생성한다 
-var map = new daum.maps.Map(mapContainer, mapOption); 
-
-// 지도 타입 변경 컨트롤을 생성한다
-var mapTypeControl = new daum.maps.MapTypeControl();
-
-// 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
-map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);	
-
- // 지도에 확대 축소 컨트롤을 생성한다
-var zoomControl = new daum.maps.ZoomControl();
-
-// 지도의 우측에 확대 축소 컨트롤을 추가한다
-map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-
-
-
-map.setZoomable(true);   
-
-//마커를 표시할 위치와 title 객체 배열입니다 
-var positions = [   
-
-    {  
-        title: '용산점', 
-        latlng: new daum.maps.LatLng( 37.529042, 126.963974 ),
-        content:'<div class="wrap">' + 
-        '    <div class="info">' + 
-        '        <div class="title">' + 
-        '            용산점' + 
-        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-        '        </div>' + 
-        '        <div class="body">' + 
-        '            <div class="img">' +
-        '                <img src="./image/ys.jpg" width="73" height="70">' +
-        '           </div>' + 
-        '            <div class="desc">' + 
-        '                <div class="ellipsis">서울특별시 용산구 한강대로 23길 55</div>' + 
-        '                <div class="jibun ellipsis">02-2012-3343</div>' + 
-        '                <div><a href="findStore.do?local=용산점" target="_blank" class="link">용산점 페이지</a></div>' + 
-        '            </div>' + 
-        '        </div>' + 
-        '    </div>' +    
-        '</div>'
-    },
-    {
-    	title: '중곡점', 
-        latlng: new daum.maps.LatLng( 37.555999, 127.076147 ),
-        content:'<div class="wrap">' + 
-        '    <div class="info">' + 
-        '        <div class="title">' + 
-        '            중곡점' + 
-        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-        '        </div>' + 
-        '        <div class="body">' + 
-        '            <div class="img">' +
-        '                <img src="./image/jk.jpg" width="73" height="70">' +
-        '           </div>' + 
-        '            <div class="desc">' + 
-        '                <div class="ellipsis">서울특별시 광진구 천호대로 512 군자빌딩</div>' + 
-        '                <div class="jibun ellipsis">02-2205-2202</div>' + 
-        '                <div><a href="findStore.do?local=중곡점" target="_blank" class="link">중곡점 페이지</a></div>' + 
-        '            </div>' + 
-        '        </div>' + 
-        '    </div>' +    
-        '</div>'
-    },
-    {
-        title: '강동점', 
-        latlng: new daum.maps.LatLng( 37.5130004, 127.0247225 ),
-        content:'<div class="wrap">' + 
-        '    <div class="info">' + 
-        '        <div class="title">' + 
-        '            강동점' + 
-        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-        '        </div>' + 
-        '        <div class="body">' + 
-        '            <div class="img">' +
-        '                <img src="./image/kd.jpg" width="73" height="70">' +
-        '           </div>' + 
-        '            <div class="desc">' + 
-        '                <div class="ellipsis">서울특별시 강동구 천호대로 1136 (성내동 379-2)</div>' + 
-        '                <div class="jibun ellipsis">02-470-4100</div>' + 
-        '                <div><a href="findStore.do?local=강동점" target="_blank" class="link">강동점 페이지</a></div>' + 
-        '            </div>' + 
-        '        </div>' + 
-        '    </div>' +    
-        '</div>'
-    },
-    {
-        title: '논현점', 
-        latlng: new daum.maps.LatLng( 37.5338541, 127.1353025 ),
-        content:'<div class="wrap" >' + 
-        '    <div class="info">' + 
-        '        <div class="title">' + 
-        '            논현점' + 
-        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-        '        </div>' + 
-        '        <div class="body">' + 
-        '            <div class="img">' +
-        '                <img src="./image/nh.jpg" width="73" height="70">' +
-        '           </div>' + 
-        '            <div class="desc">' + 
-        '                <div class="ellipsis">서울특별시 강남구 학동로 147</div>' + 
-        '                <div class="jibun ellipsis">02-3443-1001</div>' + 
-        '                <div><a href="findStore.do?local=논현점" target="_blank" class="link">논현점 페이지</a></div>' + 
-        '            </div>' + 
-        '        </div>' + 
-        '    </div>' +    
-        '</div>'
-    },
-    {
-        title: '송파점', 
-        latlng: new daum.maps.LatLng( 37.4851445, 127.1200117 ),
-        content:'<div class="wrap" >' + 
-        '    <div class="info">' + 
-        '        <div class="title">' + 
-        '            송파점' + 
-        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-        '        </div>' + 
-        '        <div class="body">' + 
-        '            <div class="img">' +
-        '                <img src="./image/sp.jpg" width="73" height="70">' +
-        '           </div>' + 
-        '            <div class="desc">' + 
-        '                <div class="ellipsis">서울특별시 송파구 송파대로 167 테라타워B동 3층</div>' + 
-        '                <div class="jibun ellipsis">02-400-2122</div>' + 
-        '                <div><a href="findStore.do?local=송파점" target="_blank" class="link">논현점 페이지</a></div>' + 
-        '            </div>' + 
-        '        </div>' + 
-        '    </div>' +    
-        '</div>'
-    }
-
-   
-          
-];
-
-//마커 이미지의 이미지 주소입니다
-var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-    
-for (var i = 0; i < positions.length; i ++) {
-    
-    // 마커 이미지의 이미지 크기 입니다
-    var imageSize = new daum.maps.Size(24, 35); 
-    
-    // 마커 이미지를 생성합니다    
-    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
-    
-    // 마커를 생성합니다
-    var marker = new daum.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng, // 마커를 표시할 위치
-        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image : markerImage, // 마커 이미지 
-        clickable: true
-    });
-    
-    ///
-       // var iwRemoveable = true;
-    
-/*     // 인포윈도우를 생성합니다
-    var infowindow = new daum.maps.InfoWindow({
-        content : positions[i].content
-         removable : iwRemoveable 
-    }); */
-
-    
-     var overlay = new daum.maps.CustomOverlay({
-    content: positions[i].content,
-    map: map,
-    position: marker.getPosition()       
-}); 
-    
-/*     daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow)); */
-   // daum.maps.event.addListener(marker, 'click', openOverlay());
-
-  
-}
 
 //HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
@@ -350,46 +162,246 @@ function setLevel(mapLevel) {
     
     map.setLevel(level);
 }
+
+
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = {
+    center: new daum.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
+    level: 8, // 지도의 확대 레벨
+    mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
+}; 
+
+// 지도를 생성한다 
+var map = new daum.maps.Map(mapContainer, mapOption); 
+
+// 지도 타입 변경 컨트롤을 생성한다
+var mapTypeControl = new daum.maps.MapTypeControl();
+
+// 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
+map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);	
+
+ // 지도에 확대 축소 컨트롤을 생성한다
+var zoomControl = new daum.maps.ZoomControl();
+
+// 지도의 우측에 확대 축소 컨트롤을 추가한다
+map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+
+//마커를 표시할 위치와 title 객체 배열입니다 
+var positions = [   
+
+    {  
+        title: '용산점', 
+        latlng: new daum.maps.LatLng( 37.529042, 126.963974 ),
+        content:'<div class="wrap" id="wrap01" style="display: block;">' + 
+        '    <div class="info">' + 
+        '        <div class="title">' + 
+        '            용산점' + 
+        '            <div class="close" onclick="closeOverlay(\'용산점\')" title="닫기"></div>' +  
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="./image/ys.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">서울특별시 용산구 한강대로 23길 55</div>' + 
+        '                <div class="jibun ellipsis">02-2012-3343</div>' + 
+        '                <div><a href="findStore.do?local=용산점" target="_blank" class="link">용산점 페이지</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>'
+    },
+    {
+    	title: '중곡점', 
+        latlng: new daum.maps.LatLng( 37.555999, 127.076147 ),
+        content:'<div class="wrap" id="wrap02" style="display: block;">' + 
+        '    <div class="info">' + 
+        '        <div class="title">' + 
+        '            중곡점' + 
+        '            <div class="close" onclick="closeOverlay(\'중곡점\')" title="닫기"></div>' +
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="./image/jk.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">서울특별시 광진구 천호대로 512 군자빌딩</div>' + 
+        '                <div class="jibun ellipsis">02-2205-2202</div>' + 
+        '                <div><a href="findStore.do?local=중곡점" target="_blank" class="link">중곡점 페이지</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>'
+    },
+    {
+        title: '강동점', 
+        latlng: new daum.maps.LatLng( 37.5130004, 127.0247225 ),
+        content:'<div class="wrap" id="wrap03" style="display: block;">' + 
+        '    <div class="info">' + 
+        '        <div class="title">' + 
+        '            강동점' + 
+        '            <div class="close" onclick="closeOverlay(\'강동점\')" title="닫기"></div>' +  
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="./image/kd.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">서울특별시 강동구 천호대로 1136 (성내동 379-2)</div>' + 
+        '                <div class="jibun ellipsis">02-470-4100</div>' + 
+        '                <div><a href="findStore.do?local=강동점" target="_blank" class="link">강동점 페이지</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>'
+    },
+    {
+        title: '논현점', 
+        latlng: new daum.maps.LatLng( 37.5338541, 127.1353025 ),
+        content:'<div class="wrap" id="wrap04" style="display: block;">' + 
+        '    <div class="info">' + 
+        '        <div class="title">' + 
+        '            논현점' + 
+        '            <div class="close" onclick="closeOverlay(\'논현점\')" title="닫기"></div>' + 
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="./image/nh.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">서울특별시 강남구 학동로 147</div>' + 
+        '                <div class="jibun ellipsis">02-3443-1001</div>' + 
+        '                <div><a href="findStore.do?local=논현점" target="_blank" class="link">논현점 페이지</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>'
+    },
+    {
+        title: '송파점', 
+        latlng: new daum.maps.LatLng( 37.4851445, 127.1200117 ),
+        content:'<div class="wrap" id="wrap05" style="display: block;">' + 
+        '    <div class="info">' + 
+        '        <div class="title">' + 
+        '            송파점' + 
+        '            <div class="close" onclick="closeOverlay(\'송파점\')" title="닫기"></div>' + 
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="./image/sp.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">서울특별시 송파구 송파대로 167 테라타워B동 3층</div>' + 
+        '                <div class="jibun ellipsis">02-400-2122</div>' + 
+        '                <div><a href="findStore.do?local=송파점" target="_blank" class="link">논현점 페이지</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>'
+    }
+
+   
+          
+];
+
+//마커 이미지의 이미지 주소입니다
+var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+
+
+
+for (var i = 0; i < positions.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new daum.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage, // 마커 이미지 
+        clickable: true
+       
+    });
+    
+
+	    // 마커 위에 커스텀오버레이를 표시합니다
+	// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+	var overlay = new daum.maps.CustomOverlay({
+	    content: positions[i].content,
+	    map: map,
+	    position: positions[i].latlng       
+	});
 	
 
-//인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+
+	
+
+	daum.maps.event.addListener(marker, 'click', function() {
+	    //overlay.setMap(map);
+	    $(".wrap").css("display","block");
+	});
+    
+}
+
+
+function openOverlay( ) {
+    //overlay.setMap(map);
+    
+    $(".wrap").css("display","block");
+    
+};
+
+
+
+	
+ //인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 function makeOverListener(map, marker, infowindow) {
     return function() {
         infowindow.open(map, marker);
     };
 }
 
-// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+
+
+//인포윈도우를 닫는 클로저를 만드는 함수입니다 
 function makeOutListener(infowindow) {
     return function() {
         infowindow.close();
-       
     };
-}
+} 
 
-/* //오버레이 세팅 열기 
-function openOverlay() {
-   // overlay.setMap(map);
-	$(".wrap").css("display", "block");
-};
 
-// 오버레이 닫기     
-function closeOverlay() {
-    //overlay.setMap(null);     
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay( local ) {
+	//alert(local);
+
+    if(local == "용산점"){
+        $("#wrap01").css("display","none");
+
+    }else if(local == "중곡점"){
+        $("#wrap02").css("display","none");
+
+    }else if(local == "강동점"){  
+        $("#wrap03").css("display","none");
+
+    }else if(local == "논현점"){
+        $("#wrap04").css("display","none");
+
+    }else if(local == "송파점"){
+        $("#wrap05").css("display","none");
+    }
     
-	$(".wrap").css("display", "block");
-	//this.css("display", "none");
-} */
-
-function makeClickListener(map, marker, overlay) {
-
-    return function() {
-
-    overlay.open(map, marker);
-
-    };
 
 }
+
+
+
 
 </script>
 
