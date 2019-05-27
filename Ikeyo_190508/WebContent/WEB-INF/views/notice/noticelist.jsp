@@ -1,9 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
+
+
+<style>
+.headtitle p {
+    font-size: 35px;
+    margin-bottom: 50px;
+    padding-top: 80px;
+}
+
+table.noti {
+    width: 70%;
+    border-collapse: collapse;
+    display: table;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.noti tbody tr{
+	text-align: center;
+}
+
+.noti tbody tr td{
+	border-bottom: 1px solid #f0f0f0;
+    height: 70px;
+    font-size: 15px;
+    /* cursor: pointer; */
+}
+
+.noto th {
+    font-family: 'Noto Sans KR';
+    letter-spacing: -1px;
+    border-top: 1px #aaa solid;
+    border-bottom: 1px solid #f0f0f0;
+    height: 25px;
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+}
+</style>
+
 
 <%
 String category = (String)request.getAttribute("s_category");
@@ -22,6 +61,78 @@ $(document).ready(function(){
 	document.frmForm1.s_keyword.value = keyword;
 });
 </script>
+
+<div class="headtitle">
+	<p>공지사항</p>
+</div>
+
+
+<!-- arrow생성 -->
+<jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
+
+<table class="noti">
+
+<thead>
+	<tr class="noto">
+		<th width="10%">순서</th>
+		<th width="50%">제목</th>
+		<th width="10%">작성자</th>
+		<th width="15%">조회수</th>
+		<th width="15%">등록일</th>
+	</tr>
+</thead>
+<tbody>
+	<c:if test="${empty noticelist }">
+		<tr>
+			<td colspan="5">작성된 글이 없습니다</td>
+		</tr>
+	</c:if>
+	
+	<c:forEach items="${noticelist }" var="bbs" varStatus="vs">
+	<%-- <jsp:setProperty property="depth" name="ubbs" value="${bbs.depth }"/> --%>
+	
+	<tr class="_hover_tr">
+		<td>${vs.count }</td>
+		<td style="text-align: left; padding-left: 15px;">	
+			<a href="#none" onclick="titleclick(${vs.index})">
+				${bbs.title }
+			</a>
+		</td>
+		<td>${bbs.id }</td>
+		<td>
+			<font id="read${vs.index }">${bbs.readcount }</font>
+			<input type="hidden" id="seq${vs.index }" value="${bbs.noti_seq }">
+		</td>
+		<td><fmt:formatDate value="${bbs.rdate }" 
+     			 pattern="yyyy/MM/dd"/>
+      	</td>
+	</tr>
+	<tr id="content${vs.index }" class="content" style="display:none;">
+		<td colspan="5">
+			<div id="slide${vs.index }" class="slide" style="padding: 10% 10% 10% 10%; text-align:left;">
+				<pre><font size="3px">${bbs.content }</font></pre>
+				<c:if test="${login.auth == 1 }">
+					<div>
+						<button id="updateBtn" onclick="location.href='noticeUpdate.do?seq=${bbs.noti_seq }'">수정</button>
+						<button id="deleteBtn" onclick="location.href='noticeDelete.do?seq=${bbs.noti_seq }'">삭제</button>
+					</div>
+				</c:if>
+			</div>
+		</td>
+	</tr>
+	</c:forEach>
+</tbody>
+</table>
+
+<!-- 페이징 처리 -->
+<div id="paging_wrap">
+	<jsp:include page="/WEB-INF/views/notice/paging.jsp" flush="false">
+		<jsp:param value="${pageNumber }" name="pageNumber"/>
+		<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
+		<jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
+		<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
+	</jsp:include>
+</div>
 
 
 <div style="margin-top: 5px; margin-bottom: 10px;">
@@ -54,73 +165,11 @@ $(document).ready(function(){
 </table>
 
 <input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
-
 <input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?10:recordCountPerPage }">
 
 </form>
 </div>
 
-<!-- arrow생성 -->
-<jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
-
-<table style="border: 1px solid; width: 80%; margin-left: 10%;">
-
-<thead>
-	<tr>
-		<th>순서</th><th>제목</th><th>작성자</th><th>조회수</th><th>등록일</th>
-	</tr>
-</thead>
-<tbody>
-	<c:if test="${empty noticelist }">
-		<tr>
-			<td colspan="5">작성된 글이 없습니다</td>
-		</tr>
-	</c:if>
-	
-	<c:forEach items="${noticelist }" var="bbs" varStatus="vs">
-	<%-- <jsp:setProperty property="depth" name="ubbs" value="${bbs.depth }"/> --%>
-	
-	<tr class="_hover_tr">
-		<td>${vs.count }</td>
-		<td style="text-align: left;">	
-			<a href="#none" onclick="titleclick(${vs.index})">
-				${bbs.title }
-			</a>
-		</td>
-		<td>${bbs.id }</td>
-		<td>
-			<p id="read${vs.index }">${bbs.readcount }</p>
-			<input type="hidden" id="seq${vs.index }" value="${bbs.noti_seq }">
-		</td>
-		<td><fmt:formatDate value="${bbs.rdate }" 
-      pattern="yyyy/MM/dd"/></td>
-	</tr>
-	<tr id="content${vs.index }" style="display: none">
-		<td colspan="5">
-			<div style="padding: 10% 10% 10% 10%; text-align:left;">
-				<pre>${bbs.content }</pre>
-			</div>
-			<c:if test="${login.auth == 1 }">
-				<div>
-					<button id="updateBtn" onclick="location.href='noticeUpdate.do?seq=${bbs.noti_seq }'">수정</button>
-					<button id="deleteBtn" onclick="location.href='noticeDelete.do?seq=${bbs.noti_seq }'">삭제</button>
-				</div>
-			</c:if>
-		</td>
-	</tr>
-	</c:forEach>
-</tbody>
-</table>
-
-<!-- 페이징 처리 -->
-<div id="paging_wrap">
-	<jsp:include page="/WEB-INF/views/notice/paging.jsp" flush="false">
-		<jsp:param value="${pageNumber }" name="pageNumber"/>
-		<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
-		<jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
-		<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
-	</jsp:include>
-</div>
 
 <div id="buttons_wrap">
 	<span>
@@ -136,8 +185,9 @@ function titleclick(seq) {
 	
 	if(status == "none"){
 		
-		for(i=0; i<10; i++){
-			$("#content" + i).css("display","none");
+		for(i = 0; i < 10; i++){
+			// if(i == seq)break;
+			$("#content" + i).css("display", "none");
 		}
 		
 		$("#content" + seq).css("display", "");
@@ -150,7 +200,7 @@ function titleclick(seq) {
 			success:function(data){
 			//	alert("success");
 			//	alert(data);
-			$("#read" + seq).text(data);
+				$("#read" + seq).text(data);
 			},
 			error:function(r,s,err){
 				alert("error");

@@ -16,6 +16,8 @@ public interface MemberService {
 	public void updateAuthKey(MemberDto mem) throws Exception;
 	public void userAuth(String email) throws Exception;
 	public MemberDto findId(MemberDto mem);
+	public void findPwd(MemberDto mem) throws Exception;
+	
 	public List<MemberDto> memberList();
 	public List<MemberDto> getMemberList(BbsParam param);
 	public int getMemberCount(BbsParam param);

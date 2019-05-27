@@ -21,7 +21,7 @@
 			</select> 
 	</div>
 	<br>
-	<input type="button" id="_btnRegi" title="ID찾기" value="ID찾기">
+	<input type="button" id="_btnRegi" title="비밀번호 찾기" value="비밀번호 찾기">
 </form>
 
 <script>
@@ -48,6 +48,20 @@ $('#_btnRegi').click(function() {
 		var email = $('#_email1').val().trim() + "@" + $('#_email2').val().trim();
 		$('#_email').val(email);
 		$('#_frmForm').attr("action", "findPwdAf.do").submit();
+		alert("임시 비밀번호를 이메일로 전송했습니다.\n이메일을 확인해주세요.");
 	}
-}
+});
+
+//메일 select
+$('#_selemail').change(function() {
+	$('#_selemail option:selected').each(function() {
+		if($(this).val() == "") {	// 직접 입력인 경우
+			$('#_email2').val("");
+			$('#_email2').attr("disabled", false);
+		} else {
+			$('#_email2').val($(this).text());	// 선택값 입력
+			$('#_email2').attr("disabled", true);	// 비활성화
+		}
+	});
+});	
 </script>

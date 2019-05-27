@@ -9,7 +9,7 @@
 .noto { font-family: 'Noto Sans KR'; letter-spacing: -1px;}
 .f13 {
 	font-size:13px;	/* 10pt */
-	margin-bottom: 5px; 
+	margin-bottom: 5px;
 }
 </style>
 </head>

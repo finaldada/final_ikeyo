@@ -19,18 +19,13 @@
 
 <definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"/>
 
-<definition name="findId.tiles" template="/WEB-INF/views/login/findId.jsp"/>
+<definition name="findIdAndPwd.tiles" template="/WEB-INF/views/login/findIdAndPwd.jsp"/>
 
 <definition name="findPwd.tiles" template="/WEB-INF/views/login/findPwd.jsp"/>
 
 <definition name="error.tiles" template="/WEB-INF/views/login/error.jsp"/>
 
 <definition name="emailConfirm.tiles" template="/WEB-INF/views/login/emailConfirm.jsp"/>
-
-		
-
-
-
 
 <!-- 상품리스트 화면 -->
 <definition name="productList.tiles" extends="main.tiles">
@@ -52,7 +47,6 @@
    <put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
    <put-attribute name="content" value="/WEB-INF/views/mypage/mypage.jsp"/>
 </definition>
-
 
 <!-- 재고관리 리스트 -->
 <definition name="inventorylist.tiles" extends="mypage.tiles">
@@ -117,10 +111,31 @@
 </definition>
 
 <!-- 매장 안내  -->
-
 <definition name="storeInfo.tiles" extends="main.tiles">
 	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
 	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo.jsp"/>
+</definition>
+
+<!-- storeInfo_a.tiles -->
+<definition name="storeInfo_a.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_a.jsp"/>
+</definition>	
+<definition name="storeInfo_b.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_b.jsp"/>
+</definition>	
+<definition name="storeInfo_c.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_c.jsp"/>
+</definition>	
+<definition name="storeInfo_d.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_d.jsp"/>
+</definition>	
+<definition name="storeInfo_e.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_e.jsp"/>
 </definition>
 
 <!-- 고객소리함 -->
@@ -162,5 +177,12 @@
 	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
 	<put-attribute name="content" value="/WEB-INF/views/mypage/errorPwd.jsp"/>
 </definition>
+
+<!-- 위시리스트 -->
+<definition name="wishList.tiles" template="/WEB-INF/views/wishlist/wishList.jsp"/>
+
+<!-- 장바구니 -->
+<definition name="cartlist.tiles" template="/WEB-INF/views/cart/cart.jsp"/>
+
 
 </tiles-definitions>

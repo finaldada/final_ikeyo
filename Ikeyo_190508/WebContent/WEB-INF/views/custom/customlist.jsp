@@ -4,6 +4,46 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
+<style>
+.headtitle p {
+    font-size: 35px;
+    margin-bottom: 50px;
+    padding-top: 80px;
+}
+
+table.noti {
+    width: 70%;
+    border-collapse: collapse;
+    display: table;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.noti tbody tr{
+	text-align: center;
+}
+
+.noti tbody tr td{
+	border-bottom: 1px solid #f0f0f0;
+    height: 70px;
+    font-size: 15px;
+    /* cursor: pointer; */
+}
+
+.noto th {
+    font-family: 'Noto Sans KR';
+    letter-spacing: -1px;
+    border-top: 1px #aaa solid;
+    border-bottom: 1px solid #f0f0f0;
+    height: 25px;
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+}
+</style>
+
+
+
 <%
 String category = (String)request.getAttribute("s_category");
 if(category == null) category = "";
@@ -24,50 +64,20 @@ $(document).ready(function(){
 
 
 
-<div style="margin-top: 5%; margin-bottom: 10px;">
-
-<form action="" name="frmForm1" id="_frmFormSearch" method="post">
-
-<table style="margin-left: auto; margin-right: auto;
-		margin-top:	3px; margin-bottom: 3px;">
-
-	<tr>
-	<td>검색:</td>
-	<td style="padding-left:5px;">
-		<select id="_s_category" name="s_category">
-			<option value="" selected="selected">선택</option>
-			<option value="title">제목</option>
-			<option value="contents">내용</option>
-			<option value="writer">작성자</option>
-		</select>
-	</td>
-	<td style="padding-left: 5px;">
-		<input type="text" id="_s_keyword" name="s_keyword">
-	</td>
-	<td style="padding-left: 5px;">
-		<span class="button blue">
-			<button type="button" id="_btnSearch">검색</button>
-		</span>
-	</td>
-</tr>
-
-</table>
-
-<input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
-
-<input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?10:recordCountPerPage }">
-
-</form>
-</div>
-
 <!-- arrow생성 -->
 <jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
 
-<table style="border: 1px solid; width: 80%; margin-left: 10%;">
+<table class="noti">
+
 
 <thead>
-	<tr>
-		<th>순서</th><th>상품정보</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
+	<tr class="noto">
+		<th>순서</th>
+		<th>상품정보</th>
+		<th>제목</th>
+		<th>작성자</th>
+		<th>조회수</th>
+		<th>작성일</th>
 	</tr>
 </thead>
 <tbody>
@@ -86,14 +96,14 @@ $(document).ready(function(){
 		<c:choose>
 			<c:when test="${cust.del eq 1 }">
 				<td></td>
-				<td colspan="5" style="text-align: left;">
+				<td colspan="5" style="text-align: left; padding-left: 15px;">
 					<font color="#ff0000">이 글은 삭제되었습니다.</font>
 				</td>
 			</c:when>
 			
 			<c:when test="${login.id ne cust.id && cust.lock_ eq 1}">
 				<td></td>
-				<td style="text-align:left;">
+				<td style="text-align: left; padding-left: 15px;">
 					<img alt="" src="./image/lock_.png" width="25px">
 					<c:choose>
 						<c:when test="${login.auth eq 1 || cust.ref eq tmp}">
@@ -124,7 +134,7 @@ $(document).ready(function(){
 						<img alt="" src="/img/${cust.filename }" style="width: 80px;">
 					</c:if>
 				</td>
-				<td style="text-align: left;">
+				<td style="text-align: left; padding-left: 15px;">
 					<c:if test="${cust.lock_ eq 1 }">
 						<img alt="" src="./image/lock_.png" width="25px">
 						<c:set var="tmp" value="${cust.ref }"/>
@@ -148,6 +158,8 @@ $(document).ready(function(){
 	</c:forEach>
 </tbody>
 </table>
+
+
 <form id="frmDetail" action="customdetail.do" method="post">
 	<input type="hidden" id="hid" name="seq">
 </form>
@@ -168,6 +180,41 @@ $(document).ready(function(){
 	</jsp:include>
 </div>
 
+
+<div style="margin-top: 5%; margin-bottom: 10px;">
+
+<form action="" name="frmForm1" id="_frmFormSearch" method="post">
+
+<table style="margin-left: auto; margin-right: auto;
+		margin-top:	3px; margin-bottom: 3px;">
+
+	<tr>
+	<td>검색:</td>
+	<td style="padding-left:5px;">
+		<select id="_s_category" name="s_category">
+			<option value="" selected="selected">선택</option>
+			<option value="title">제목</option>
+			<option value="contents">내용</option>
+			<option value="writer">작성자</option>
+		</select>
+	</td>
+	<td style="padding-left: 5px;">
+		<input type="text" id="_s_keyword" name="s_keyword">
+	</td>
+	<td style="padding-left: 5px;">
+		<span class="button blue">
+			<button type="button" id="_btnSearch">검색</button>
+		</span>
+	</td>
+</tr>
+</table>
+
+<input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
+
+<input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?10:recordCountPerPage }">
+
+</form>
+</div>
 
 
 <script type="text/javascript">

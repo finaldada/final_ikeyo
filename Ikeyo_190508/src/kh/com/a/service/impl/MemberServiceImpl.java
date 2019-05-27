@@ -100,13 +100,36 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.findId(mem);
 	}
+	
+	@Transactional
+	@Override
+	public void findPwd(MemberDto mem) throws Exception {
+		// 임의의 비밀번호 생성
+		String tempPwd = new TempKey().getKey(6, false);
+		
+		mem.setPwd(tempPwd);
+		System.out.println("setPwd: " + mem.getPwd());
+		
+		memberDao.findPwd(mem);
+		
+		// mail 작성 관련
+		MailHandler sendMail = new MailHandler(mailSender);
+		
+		sendMail.setSubject("[ikeyo] 임시 비밀번호 발급");
+		sendMail.setText(new StringBuffer().append("<h1>[임시 비밀번호]</h1>")
+				.append("<p>임시 비밀번호를 사용하여 로그인후 비밀번호를 변경해주세요.</p>")
+				.append(mem.getPwd())
+				.toString());
+		sendMail.setFrom("khaclass190612@gmail.com", "ikeyo 관리자");
+		sendMail.setTo(mem.getEmail());
+		sendMail.send();
+	}
+	
 	@Override
 	public List<MemberDto> memberList() {
 		
 		return memberDao.memberList();
 	}
-
-	
 	
 	@Override
 	public List<MemberDto> getMemberList(BbsParam param) {

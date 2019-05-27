@@ -1,6 +1,7 @@
 package kh.com.a.model;
 
 import java.io.Serializable;
+
 /*
 -- 장바구니/위시리스트
 DROP TABLE CART
@@ -33,19 +34,20 @@ public class CartDto implements Serializable {
 	private int cart_seq;		// 장바구니/위시리스트 시퀀스
 	private String model_id;	// 상품id
 	private String id;			// 멤버id
-	private int cart_type;		// 장바구니/위시리스트 구분
+	private int cart_type;		// 장바구니(2) / 위시리스트(1) 구분 
 	private int count;			// 상품갯수
 	
 	public CartDto() {
 	}
 
-	public CartDto(int cart_seq, String model_id, String id, int cart_type, int count) {
+	public CartDto(int cart_seq, String model_id, String id, int cart_type, int count, int price) {
 		super();
 		this.cart_seq = cart_seq;
 		this.model_id = model_id;
 		this.id = id;
 		this.cart_type = cart_type;
 		this.count = count;
+	
 	}
 
 	public int getCart_seq() {
@@ -93,5 +95,6 @@ public class CartDto implements Serializable {
 		return "CartDto [cart_seq=" + cart_seq + ", model_id=" + model_id + ", id=" + id + ", cart_type=" + cart_type
 				+ ", count=" + count + "]";
 	}
+	
 	
 }
