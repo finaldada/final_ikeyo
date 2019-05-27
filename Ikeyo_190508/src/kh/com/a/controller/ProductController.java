@@ -1,6 +1,5 @@
 package kh.com.a.controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -25,8 +24,12 @@ import kh.com.a.model.CartDto;
 import kh.com.a.model.InventoryDto;
 import kh.com.a.model.PagingParam;
 import kh.com.a.model.ProductDto;
+import kh.com.a.model.QnADto;
+import kh.com.a.model.ReviewDto;
 import kh.com.a.service.InventoryService;
 import kh.com.a.service.ProductService;
+import kh.com.a.service.QnAService;
+import kh.com.a.service.ReviewService;
 import kh.com.a.util.FUpUtil;
 
 @Controller
@@ -39,6 +42,13 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 	
+	@Autowired
+	ReviewService reviewService;
+	
+	@Autowired
+	QnAService qnaService;
+	
+	// 상품 리스트 출력
 	@RequestMapping(value = "productList.do", method = RequestMethod.GET)
 	public String productList(Model model, String category, PagingParam param) {
 		logger.info("ProductController productList " + new Date());
@@ -46,6 +56,11 @@ public class ProductController {
 		int sn = param.getPageNumber();
 		int start = (sn) * param.getRecordCountPerPage()+1;
 		int end = (sn+1) * param.getRecordCountPerPage();
+		
+		
+		System.out.println("sn : " + sn);
+		System.out.println("start : " + start);
+		System.out.println("end : " + end);
 		
 		param.setStart(start);
 		param.setEnd(end);
@@ -67,6 +82,7 @@ public class ProductController {
 		return "productList.tiles";
 	}
 	
+	// 위시리스트 업데이트(ajax)
 	@ResponseBody
 	@RequestMapping(value = "updateWish.do", method = RequestMethod.POST)
 	public Map<String, Object> updatewish(String model_id, String id, Model model) throws Exception {
@@ -127,20 +143,8 @@ public class ProductController {
 		String filename2 = photo_bf2.getOriginalFilename();
 		String filename3 = photo_bf3.getOriginalFilename();
 
-	/*	System.out.println("filename : " + filename);
-		if(filename1 == null) {
-			System.out.println("filename1 은 \"\"");
-		}
-		if(filename2 == "") {
-			System.out.println("filename2 은 null");
-		}
-		System.out.println("filename1 : " + filename1);
-		System.out.println("filename2 : " + filename2);
-		System.out.println("filename3 : " + filename3);
-		System.out.println("pdf_bf : " + pdf_bf);
-		System.out.println("photo_bf1 : " + photo_bf1);
-		System.out.println("photo_bf2 : " + photo_bf2);
-		System.out.println("photo_bf3 : " + photo_bf3);*/
+		String category = productDto.getCategory();
+		System.out.println("ProductWrite category : " + category);
 		
 		productDto.setPdf_bf(filename);
 		productDto.setPhoto_bf1(filename1);
@@ -155,6 +159,9 @@ public class ProductController {
 		String fupload = "c:\\final_file";
 		
 		try {
+			
+			category = URLEncoder.encode(category, "UTF-8"); 
+            System.out.println("category: " + category);
 			
 			if(filename != null && filename != "") {
 				// 파일명.xxx -> 12221321.xxx
@@ -203,7 +210,7 @@ public class ProductController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/productlist.do";
+		return "redirect:/productList.do?category=" + category;
 	}
 	
 	// 재고관리가져오는 ajax
@@ -221,6 +228,51 @@ public class ProductController {
 		invenmap.put("count", inven.getCount());
 
 		return invenmap;
-
+	}
+	
+	// 상품 디테일
+	@RequestMapping(value="productDetail.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String productDetila(String model_id, Model model) {
+		System.out.println("model_id : " + model_id);
+		
+		// 상품받아오기
+		ProductDto pdto = productService.getProduct(model_id);		
+		model.addAttribute("pdto", pdto);		
+		
+		// 재고 받아오기
+		InventoryDto idto = productService.getinven(model_id);
+		model.addAttribute("idto", idto);
+		
+		// 상품평 리스트 받아오기
+		List<ReviewDto> rlist = reviewService.reviewList(model_id);
+		model.addAttribute("rlist", rlist);
+		
+		int parent = pdto.getProd_seq();
+		// QnA 리스트 받아오기
+		List<QnADto> qlist = qnaService.qnaList(parent);
+		model.addAttribute("qlist", qlist);
+		
+		
+		return "productDetail.tiles";
+	}
+	
+	// 파일 다운로드
+	@RequestMapping(value="productfileDownload.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String fileDownload(String pdf_af, String model_id, Model model) {
+		logger.info("ProductController fileDownload " + new Date());
+		
+		// download 경로
+		// tomcat
+		//String fupload = req.getServletContext().getRealPath("/upload");
+				
+		// file
+		String fupload = "C:\\final_file";
+		
+		File downloadFile = new File(fupload + "/" + pdf_af);
+		
+		model.addAttribute("downloadFile", downloadFile);
+		
+		
+		return "downloadView";	// servlet-context.xml의 bean으로 감
 	}
 }

@@ -3,15 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 
 	<!-- spring MVC annotation(주석문)을 활성화를 위한 설정 -->
 	<context:annotation-config/>
 
-<!-- 	 viewResolver 설정(사용자의 views 위치, 확장자명 설정) 
+	<!-- viewResolver 설정(사용자의 views 위치, 확장자명 설정) 
 	 tiles에선 이걸 사용하지 않는다.   xml에서 객체를 생성할 때 bean태그를 쓴다.
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<property name="prefix" value="/WEB-INF/views/"/>	경로
@@ -20,7 +22,7 @@
 	 
 	 
 	 
- <!-- tiles 설정  -->
+	<!-- tiles 설정  -->
 	 <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 	 	<property name="definitions">
 	 		<list>
@@ -55,7 +57,7 @@
 	</bean>
 	
 	
- <!-- file download 셋팅  -->
+	<!-- file download 셋팅  -->
 	<bean id="downloadView" class="kh.com.a.util.DownloadView"/>
 	<bean id="downloadViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order">
@@ -95,11 +97,18 @@
 				<property name="supportedMediaTypes">
 					<list>
 						<value>application/json; charset=UTF-8</value>
+						<value>application/String; charset=UTF-8</value>
 					</list>
 				</property>
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
+	<!-- SockJS관련 빈등록 -->
+	<!-- <bean id="echoHandler" class="kh.com.a.ws.EchoHandler" />
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandler" path="/echo"/>
+		<websocket:sockjs/>
+	</websocket:handlers> -->
 
 </beans>

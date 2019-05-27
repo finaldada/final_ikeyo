@@ -14,9 +14,8 @@
     .nav-item a{cursor:pointer;}
     .nav-item .hide{display:none;}
 	</style>
-
-
-
+	
+	
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -91,7 +90,6 @@
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
 
-
 <script type="text/javascript">
 $(document).ready(function(){
     $(".nav-item>a").click(function(){
@@ -116,7 +114,6 @@ function changeLoca( local ) {
 }
 
 </script>
-
 
 
 

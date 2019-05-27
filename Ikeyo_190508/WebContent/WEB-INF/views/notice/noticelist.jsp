@@ -1,9 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
+
+
+<style>
+.headtitle p {
+    font-size: 35px;
+    margin-bottom: 50px;
+    padding-top: 80px;
+}
+
+table.noti {
+    width: 70%;
+    border-collapse: collapse;
+    display: table;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.noti tbody tr{
+	text-align: center;
+}
+
+.noti tbody tr td{
+	border-bottom: 1px solid #f0f0f0;
+    height: 70px;
+    font-size: 15px;
+    /* cursor: pointer; */
+}
+
+.noto th {
+    font-family: 'Noto Sans KR';
+    letter-spacing: -1px;
+    border-top: 1px #aaa solid;
+    border-bottom: 1px solid #f0f0f0;
+    height: 25px;
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+}
+</style>
+
 
 <%
 String category = (String)request.getAttribute("s_category");
@@ -23,51 +62,23 @@ $(document).ready(function(){
 });
 </script>
 
-
-<div class="box_border" style="margin-top: 5px; margin-bottom: 10px;">
-
-<form action="" name="frmForm1" id="_frmFormSearch" method="post">
-
-<table style="margin-left: auto; margin-right: auto;
-		margin-top:	3px; margin-bottom: 3px;">
-
-<tr>
-	<td>검색:</td>
-	<td style="padding-left:5px;">
-		<select id="_s_category" name="s_category">
-			<option value="" selected="selected">선택</option>
-			<option value="title">제목</option>
-			<option value="contents">내용</option>
-			<!-- <option value="writer">작성자</option> -->
-		</select>
-	</td>
-	<td style="padding-left: 5px;">
-		<input type="text" id="_s_keyword" name="s_keyword">
-	</td>
-	<td style="padding-left: 5px;">
-		<span class="button blue">
-			<button type="button" id="_btnSearch">검색</button>
-		</span>
-	</td>
-</tr>
-
-</table>
-
-<input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
-
-<input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?10:recordCountPerPage }">
-
-</form>
+<div class="headtitle">
+	<p>공지사항</p>
 </div>
+
 
 <!-- arrow생성 -->
 <jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
 
-<table class="list_table" style="border: 1px solid; width: 85%;">
+<table class="noti">
 
 <thead>
-	<tr>
-		<th>순서</th><th>제목</th><th>작성자</th><th>조회수</th><th>등록일</th>
+	<tr class="noto">
+		<th width="10%">순서</th>
+		<th width="50%">제목</th>
+		<th width="10%">작성자</th>
+		<th width="15%">조회수</th>
+		<th width="15%">등록일</th>
 	</tr>
 </thead>
 <tbody>
@@ -82,30 +93,31 @@ $(document).ready(function(){
 	
 	<tr class="_hover_tr">
 		<td>${vs.count }</td>
-		<td style="text-align: left;">	
+		<td style="text-align: left; padding-left: 15px;">	
 			<a href="#none" onclick="titleclick(${vs.index})">
 				${bbs.title }
 			</a>
 		</td>
 		<td>${bbs.id }</td>
 		<td>
-			<p id="read${vs.index }">${bbs.readcount }</p>
+			<font id="read${vs.index }">${bbs.readcount }</font>
 			<input type="hidden" id="seq${vs.index }" value="${bbs.noti_seq }">
 		</td>
 		<td><fmt:formatDate value="${bbs.rdate }" 
-      pattern="yyyy/MM/dd"/></td>
+     			 pattern="yyyy/MM/dd"/>
+      	</td>
 	</tr>
-	<tr id="content${vs.index }" style="display: none">
+	<tr id="content${vs.index }" class="content" style="display:none;">
 		<td colspan="5">
-			<div style="padding: 10% 10% 10% 10%; text-align:left;">
-				<pre>${bbs.content }</pre>
+			<div id="slide${vs.index }" class="slide" style="padding: 10% 10% 10% 10%; text-align:left;">
+				<pre><font size="3px">${bbs.content }</font></pre>
+				<c:if test="${login.auth == 1 }">
+					<div>
+						<button id="updateBtn" onclick="location.href='noticeUpdate.do?seq=${bbs.noti_seq }'">수정</button>
+						<button id="deleteBtn" onclick="location.href='noticeDelete.do?seq=${bbs.noti_seq }'">삭제</button>
+					</div>
+				</c:if>
 			</div>
-			<c:if test="${login.auth == 1 }">
-				<div>
-					<button id="updateBtn" onclick="location.href='noticeUpdate.do?seq=${bbs.noti_seq }'">수정</button>
-					<button id="deleteBtn" onclick="location.href='noticeDelete.do?seq=${bbs.noti_seq }'">삭제</button>
-				</div>
-			</c:if>
 		</td>
 	</tr>
 	</c:forEach>
@@ -122,8 +134,45 @@ $(document).ready(function(){
 	</jsp:include>
 </div>
 
+
+<div style="margin-top: 5px; margin-bottom: 10px;">
+
+<form action="" name="frmForm1" id="_frmFormSearch" method="post">
+
+<table style="margin-left: auto; margin-right: auto;
+		margin-top:	3px; margin-bottom: 3px;">
+
+	<tr>
+		<td>검색:</td>
+		<td style="padding-left:5px;">
+			<select id="_s_category" name="s_category">
+				<option value="" selected="selected">선택</option>
+				<option value="title">제목</option>
+				<option value="contents">내용</option>
+				<!-- <option value="writer">작성자</option> -->
+			</select>
+		</td>
+		<td style="padding-left: 5px;">
+			<input type="text" id="_s_keyword" name="s_keyword">
+		</td>
+		<td style="padding-left: 5px;">
+			<span class="button blue">
+				<button type="button" id="_btnSearch">검색</button>
+			</span>
+		</td>
+	</tr>
+
+</table>
+
+<input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
+<input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?10:recordCountPerPage }">
+
+</form>
+</div>
+
+
 <div id="buttons_wrap">
-	<span class="button blue">
+	<span>
 		<button type="button" id="_btnAdd">글쓰기</button>
 	</span>
 </div>
@@ -136,8 +185,9 @@ function titleclick(seq) {
 	
 	if(status == "none"){
 		
-		for(i=0; i<10; i++){
-			$("#content" + i).css("display","none");
+		for(i = 0; i < 10; i++){
+			// if(i == seq)break;
+			$("#content" + i).css("display", "none");
 		}
 		
 		$("#content" + seq).css("display", "");
@@ -150,7 +200,7 @@ function titleclick(seq) {
 			success:function(data){
 			//	alert("success");
 			//	alert(data);
-			$("#read" + seq).text(data);
+				$("#read" + seq).text(data);
 			},
 			error:function(r,s,err){
 				alert("error");

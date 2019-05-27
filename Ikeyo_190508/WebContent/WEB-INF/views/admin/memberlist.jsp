@@ -98,10 +98,10 @@ $(document).ready(function () {
 		<td align="center">${member.email }</td>
 		<td align="center">${member.address1 } ${member.address2}</td>
 		<td align="center">
-		<c:if test="${member.auth == 1 }">
+		<c:if test="${member.auth == 3 }">
 		일반회원
 		</c:if>
-		<c:if test="${member.auth == 3 }">
+		<c:if test="${member.auth == 1 }">
 		관리자
 		</c:if>
 	

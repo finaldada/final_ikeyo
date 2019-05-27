@@ -18,7 +18,7 @@
 List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 %>
 
-<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%">
+<div style="margin-left: 10%; margin-right: 10%;">
 <!-- 관리자 -->
 <c:if test="${login.auth eq '1' }">
 

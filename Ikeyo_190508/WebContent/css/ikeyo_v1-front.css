@@ -1,0 +1,417 @@
+@charset "UTF-8";
+#info{
+	min-width: 1500px;
+	padding-top: 168px;
+	padding-bottom: 100px;
+}
+
+#info .container{
+	margin: 0 auto;
+	border: 1px #aaa solid;
+	width: 500px;
+	height: 850px;
+}
+
+#info .container .active{
+	height: 750px;
+}
+
+#info .head{
+	border-bottom: 1px solid #EEEEEE;
+	text-align: center;	
+}
+
+#info .head p{
+	font-size: 30px;
+	margin: 0 auto;
+	padding: 40px 0 0 0;
+}
+
+#info .body{
+	margin: 0 40px 0 40px;
+	height: 675px;
+	position: relative;
+}
+
+#info .body .active{
+	height: 750px;
+}
+
+#info .insert{
+	padding-top: 40px;
+} 
+
+#info .insert input{
+	height: 38px;
+	border: 1px solid #aaa;
+	font-size: 14px;
+	padding-left: 15px;
+}
+
+#info .insert input:-ms-input-placeholder{
+	color: #aaa;
+	font-size: 14px;
+}
+
+#info .insert input::-webkit-input-placeholder{
+	color: #aaa;
+	font-size: 14px;
+}
+
+#info .insert input::-moz-placeholder{
+	color: #aaa;
+	font-size: 14px;
+}
+
+#info .insert input::-moz-placeholder{
+	color: #aaa;
+	font-size: 14px;
+}
+
+#info .insert select{
+	padding-left: 10px;
+	font-size: 14px;
+	height: 40px;
+	width: 100px;
+	background: url('../image/selectDown.png') no-repeat 95% 50%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: 1px solid #aaa;
+}
+
+#info .insert .id{}
+#info .insert .id input{
+	/* width: 131px; */
+	width: 403px;
+}
+
+#info .insert .id p{
+	cursor: pointer;
+	font-size: 14px;
+	color: #c80a1e;
+	border-bottom: 1px solid #c80a1e;
+	padding: 10px 2px 6px 0;
+}
+
+#info .insert .pwd{
+	margin-top: 50px;
+}
+
+#info .insert .pwd div{
+	border: 1px solid #aaa;
+	margin-bottom: 10px;
+}
+
+#info .insert .pwd div:nth-child(2){
+	background-color: rgb(235, 235, 228);
+}
+
+#info .insert .pwd div>p{
+	float: right;
+	padding: 12px 5px 0 0;
+	color: #c80a1e;
+}
+
+#info .insert .pwd input{
+	width: 140px; 
+	margin-bottom: 0px;
+	border: none;
+}
+
+#info .insert .pwd p{
+	font-size: 13px;
+	color: #aaa;
+}
+
+#info .insert .name{
+	margin-top: 50px;
+}
+
+#info .insert .name input{
+	width: 403px;
+	margin-bottom: 10px;
+}
+
+#info .insert .phone{
+	margin-top: 20px;
+}
+
+#info .insert .phone input{
+	width: 403px;
+}
+
+#info .insert .phone p{
+	cursor: pointer;
+	font-size: 14px;
+	color: #c80a1e;
+	border-bottom: 1px solid #c80a1e;
+	padding: 10px 2px 6px 0;
+}
+
+#info .insert .email{
+	margin-top: 50px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+#info .insert .email input{
+	width: 131px;
+}
+
+#info .insert .email p{
+	cursor: pointer;
+	font-size: 14px;
+	color: #c80a1e;
+	border-bottom: 1px solid #c80a1e;
+	padding: 10px 2px 6px 0;
+}
+
+#info .insert .addr{
+	margin-top: 50px;
+}
+
+#info .button{
+	bottom: 20px;
+	position: absolute;
+}
+
+#info .button button:nth-child(1){
+	margin-right: 5px;
+}
+
+#login {
+	min-width: 1500px;
+	padding-top: 168px;
+	padding-bottom: 100px;
+}
+
+#login .container {
+	margin: 0 auto;
+	border: 1px #aaa solid;
+	width: 500px;
+	height: 470px;
+}
+
+#login .head p {
+	font-size: 30px;
+	margin: 0 auto;
+	padding: 40px 0 0 0;
+	text-align: center;
+}
+
+#login .head ul{
+	width: 420px;
+	margin: 30px 0 0 40px;
+}
+
+#login .head li{
+	cursor: pointer;
+	display: inline-block;
+	font-size: 16px;
+	color: #AAAAAA;
+	padding-bottom: 10px;
+}
+
+#login .head li:nth-child(1){
+	color: #c80a1e;
+	border-bottom: solid 1px #c80a1e;
+}
+
+#login .head li:nth-child(-n+3){
+	margin-right: 20px;
+}
+
+#login .body {
+	text-align: center;
+	margin: 0 40px 0 40px;
+}
+
+#login .body .big {
+	font-size: 33px;
+	margin: 80px 0 35px 0;
+}
+
+#login .body .small {
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+
+#login .body .joinButton {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#login .enter {
+	margin-top: 20px;
+	text-align: left;
+}
+
+#login .enter input {
+	width: 95%;
+	margin-bottom: 10px; 
+	border: none;
+	margin-top: 0px;
+}
+
+#login .enter p {
+	font-size: 13px;
+	color: #aaa;
+}
+
+#login .enter input {
+	height: 38px;
+	border: 1px solid #aaa;
+	font-size: 14px;
+	padding-left: 4.5%;
+}
+
+#login .enter input:-ms-input-placeholder {
+	color: #aaa;
+	font-size: 14px;
+}
+
+#login .enter input::-webkit-input-placeholder {
+	color: #aaa;
+	font-size: 14px;
+}
+
+#login .enter input::-moz-placeholder {
+	color: #aaa;
+	font-size: 14px;
+}
+
+#login .enter input::-moz-placeholder {
+	color: #aaa;
+	font-size: 14px;
+}
+
+#login .all {
+	padding: 15px 0 30px 0;
+	height: 20px;
+}
+
+#login .all p {
+	font-weight: bold;
+	font-size: 13px;
+	height: 20px;
+	overflow: hidden;
+	float: left;
+	color: #aaa;
+	margin-right: 10px;
+}
+
+#login .all p:nth-child(1){
+	position: relative;
+	width: 20px;
+}
+
+#login .all ul{
+	float: right;
+}
+
+#login .all li{
+	display: inline-block;
+	font-size: 13px;
+	color: #AAAAAA;
+}
+
+#login .findId {
+	height: 315px;
+	position: relative;
+}
+
+#login .findId>button{
+	position: absolute;
+	left: 50%;
+	margin: 0 0 0 -120px;
+	bottom: 40px;
+}
+
+#login .findId>div>button:nth-child(1){
+	margin-right: 5px;
+}
+
+#login .findId .buttonDiv1{
+	position: absolute;
+	bottom: 40px;
+	display: none;
+}
+
+#login .findId .buttonDiv2{
+	position: absolute;
+	bottom: 40px;
+	display: none;
+}
+
+#login .findId .buttonDiv3{
+	display: none;
+}
+
+#login .findId .email input{
+	width: 29%
+}
+
+#login .findId select{
+	padding-left: 4.5%;
+	height: 40px;
+	width: 125px;
+}
+
+#login .findId .resultCmt{
+	padding-top: 85px;
+	font-size: 20px;
+	display: none;
+}
+
+#login .findPwd{
+	position: relative;
+	height: 315px;
+	display: none;
+}
+
+#login .findPwd ul{
+	margin-top: 20px;
+}
+
+#login .findPwd li{
+	font-size: 13px;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+#login .findPwd div:nth-child(1) .enter input:nth-child(n+2){
+	width: 131px;
+}
+
+#login .findPwd .email input{
+	width: 29%
+}
+
+#login .findPwd select{
+	padding-left: 4.5%;
+	height: 40px;
+	width: 125px;
+}
+
+#login .findPwd>div:nth-child(2){
+	display: none;
+}
+
+#login .findPwd button{
+	position: absolute;
+	margin: 0 0 0 -120px;
+	bottom: 40px;
+}
+
+#login .findPwd button>span{
+	color: white;
+	font-size: 13px;
+}
+
+#login .findPwd>div:nth-child(2){
+	display: none;
+}

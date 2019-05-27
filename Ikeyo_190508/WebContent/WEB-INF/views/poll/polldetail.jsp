@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
-<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%">
+
 <form action="polling.do" method="post">
 
 <table class="list_table" style="width: 95%">
@@ -73,4 +73,3 @@
 </table>
 
 </form>
-</div>

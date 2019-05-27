@@ -33,7 +33,7 @@
 <body id="page-top">
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-     <c:if test="${login.id != null }">${login.id }님 환영합니다.</c:if> 
+     <c:if test="${login.id != null }">${login.id }님 환영합니다.</c:if>
  	<a class="navbar-brand js-scroll-trigger" href="main.do">
       <span class="d-block d-lg-none">IKEYO</span>
       <span class="d-none d-lg-block">
@@ -48,7 +48,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item"><br><br> <!--  내 정보    주문내역  장바구니 위시리스트 출석체크 /회원관리 재고관리  -->
-          <a class="nav-link js-scroll-trigger active" href="#about">내 정보</a>
+          <a class="nav-link js-scroll-trigger active" href="myInfoGo.do">내 정보</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#">주문내역</a>

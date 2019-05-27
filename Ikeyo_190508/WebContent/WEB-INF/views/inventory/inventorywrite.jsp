@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%">
+<div align="center">
 <h3>재고 등록</h3>
 <form id="inven_frm" method="post">
 <table border="1"> 

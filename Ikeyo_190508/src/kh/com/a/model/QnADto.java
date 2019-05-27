@@ -13,6 +13,7 @@ DROP SEQUENCE SEQ_QNA;
 CREATE TABLE QNA(
 QNA_SEQ NUMBER(8) PRIMARY KEY,
 ID VARCHAR2(50) NOT NULL,
+TITLE VARCHAR2(200) NOT NULL,
 CONTENT VARCHAR2(2000) NOT NULL,
 WDATE DATE NOT NULL,
 ANSWER VARCHAR2(2000),
@@ -34,6 +35,7 @@ public class QnADto implements Serializable {
 
 	private int qna_seq;		// 시퀀스
 	private String id;			// 아이디
+	private String title;		// 제목
 	private String content;		// 내용
 	private Date wdate;			// 작성일
 	private String answer;		// 답글
@@ -45,11 +47,12 @@ public class QnADto implements Serializable {
 	public QnADto() {
 	}
 
-	public QnADto(int qna_seq, String id, String content, Date wdate, String answer, Date adate, int readcount,
+	public QnADto(int qna_seq, String id, String title, String content, Date wdate, String answer, Date adate, int readcount,
 			int parent, int del) {
 		super();
 		this.qna_seq = qna_seq;
 		this.id = id;
+		this.title = title;
 		this.content = content;
 		this.wdate = wdate;
 		this.answer = answer;
@@ -73,6 +76,14 @@ public class QnADto implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getContent() {
@@ -133,8 +144,9 @@ public class QnADto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "QnADto [qna_seq=" + qna_seq + ", id=" + id + ", content=" + content + ", wdate=" + wdate + ", answer="
-				+ answer + ", adate=" + adate + ", readcount=" + readcount + ", parent=" + parent + ", del=" + del
-				+ "]";
+		return "QnADto [qna_seq=" + qna_seq + ", id=" + id + ", title=" + title + ", content=" + content + ", wdate="
+				+ wdate + ", answer=" + answer + ", adate=" + adate + ", readcount=" + readcount + ", parent=" + parent
+				+ ", del=" + del + "]";
 	}
+	
 }

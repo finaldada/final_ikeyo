@@ -15,7 +15,7 @@
 
 
 
-<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%"> 
+<div align="center">
 <h3>재고 수정</h3>
 <form action="inventoryupdateAf.do">
 <table border="1"> 

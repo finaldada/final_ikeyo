@@ -16,9 +16,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>calendar</title>
 
+<!-- // ajax -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<!-- content.css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/content.css">
+
 <style>
 table {
-   border: 1px solid #999;
+  /*  border: 1px solid #999; */
    border-collapse: collapse;
    font-family: Georgia, Times, serif;
 }
@@ -35,6 +42,7 @@ td {
   vertical-align: top;
 }
 </style>
+
 
 </head>
 <body>
@@ -83,7 +91,6 @@ String n = String.format("<a href='%s?year=%d&month=%d'><img src='image/next.gif
 String nn = String.format("<a href='%s?year=%d&month=%d'><img src='image/last.gif'></a>", 
 		"calendar.do", year+1, month);
 
-
 // 오늘날짜 설정(오늘날짜 색 표시해 주는 부분)!!
 Calendar todaycal = Calendar.getInstance();
 int tyear = todaycal.get(Calendar.YEAR);
@@ -102,23 +109,36 @@ int endDate = cal.getActualMaximum(Calendar.DATE); // 해당 월의 마지막날
 
 int count = 0;
 
-
 MemberDto user = (MemberDto)session.getAttribute("login");
-//List<CalendarDto> list = dao.getCalendarList(user.getId(), year + CalendarUtil.two(month + ""));
+
+List<CalendarDto> list = (List<CalendarDto>)request.getAttribute("list");
 %>
 
-<h1>일정관리</h1>
+<div class="f_content">
+<div class="f2_content">
+
+<h4>일정관리</h4>
 
 <!-- // 로그아웃 & 로그인  후 정보(이름)-->
 <c:if test="${login.id ne ''}">
-			<a href="logout.do" title="로그아웃">[로그아웃]</a>&nbsp;&nbsp;&nbsp;
-		</c:if>
-		
-		<c:if test="${login.name ne '' }">
-			[${login.name }]님 환영합니다
-		</c:if>
-	
-<br><br><br><br>
+	<a href="logout.do" title="로그아웃">[로그아웃]</a>&nbsp;&nbsp;&nbsp;
+</c:if>
+
+<c:if test="${login.name ne '' }">
+	[${login.name }]님 환영합니다
+</c:if>
+
+<!-- // 접속보상확인 -->
+	 <input type="button" id="_btnGetId" onclick="disable(this)" value="접속보상"/>
+	 
+	 
+<!-- // 한번 실행 후 실행 안되게 막음 -->	 
+<script type="text/javascript">
+function disable(ctr) {
+	ctr.disabled = true;
+}
+</script>	 
+
 
 <div align="center">
 
@@ -164,9 +184,9 @@ for(int i = 1;i <= lastDay; i++){
 	String color = (count%7 == 0 || count%7 == 6)? "red" : "black";
 	count++;
 	%>
-	<td bgcolor="<%=bgcolor %>"><font size="2" color=<%=color %>><%=CalendarUtil.caltoday(year, month, i) %></font>
-	<br><%=CalendarUtil.showimage(year, month, i) %>
-		<%-- <%=CalendarUtil.makeTable(year, month, i, list) %> --%>
+	<td bgcolor="<%=bgcolor %>"><font size="2" color=<%=color %>>
+	    <%=CalendarUtil.caltoday(year, month, i) %></font>
+		<%=CalendarUtil.makeTable(year, month, i, list) %>
 	</td>
 	<%
 	if((i + dayOfWeek - 1) % 7 == 0 && i != lastDay){
@@ -186,11 +206,72 @@ for(int i = 0; i < (7 - (dayOfWeek + lastDay - 1) % 7 ) % 7; i++){
 	count++;
 }
 %>	
-
 </tr>
 </table>
 </div>
 
+<br>
+<!-- 오늘날짜,시간 & 출석체크 버튼  -->
+<%
+String day = request.getParameter("day");
+
+int thour = cal.get(Calendar.HOUR_OF_DAY);
+int tmin = cal.get(Calendar.MINUTE);
+%>
+
+<div align="center">
+<form action="calwrite.do" method="post">
+	<h4 style="color: blue">" 현재시간 "</h4>
+	
+	<!-- // db에 넣기 위해  id값을 가져와야 함 -->
+	<input type="hidden" name="id" id="_id" value="<%=user.getId() %>">
+	
+	<%=tyear %>년&nbsp;<%=tmonth+1 %>월&nbsp;<%=tday %>일&nbsp;<%=thour %>시&nbsp;<%=tmin %>분
+	<input type="hidden" name="year" value="<%=tyear %>">
+	<input type="hidden" name="month" value="<%=tmonth+1 %>">
+	<input type="hidden" name="day" value="<%=tday %>">	
+	<input type="hidden" name="hour" value="<%=thour %>">
+	<input type="hidden" name="min" value="<%=tmin %>">
+	<br>
+	<button type="submit" value="출석체크" onclick="btncheck()"><img alt="" src="./image/stamp_check.png"></button>
+</form>
+
+	 
+</div>
+
+<script type="text/javascript">
+
+$("#_btnGetId").click(function () {   
+	alert("포인트 지급 테스트");
+	
+	$.ajax({
+		type:"post",
+		url:"getIdCount.do",		
+		data:{ id:$("#_id").val() },
+		async:true,
+		success:function(msg){	
+			
+			if(msg== 'YES'){				
+				alert("포인트 지급완료");
+				
+			}else{
+				alert("출석일수가 모자랍니다.");
+				
+			}		
+		},
+		error:function(){
+			alert("error");	
+		}		
+		
+	});
+	
+});
+
+</script>
+
+	
+</div>
+</div>
 
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.ProductDao;
 import kh.com.a.model.CartDto;
+import kh.com.a.model.InventoryDto;
 import kh.com.a.model.PagingParam;
 import kh.com.a.model.ProductDto;
 
@@ -104,4 +105,22 @@ public class ProductDaoImpl implements ProductDao {
 		return n>0?true:false;
 	}
 
+	@Override
+	public ProductDto getProduct(String model_id) {		
+		ProductDto pdto = sqlSession.selectOne(ns + "productDetila", model_id);
+		
+		return pdto;
+	}
+
+	@Override
+	public InventoryDto getinven(String model_id) {
+		
+		InventoryDto idto = sqlSession.selectOne(ns + "getinven", model_id);
+		
+		return idto;
+	}
+	
+	
+	
+	
 }

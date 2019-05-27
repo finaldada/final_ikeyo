@@ -8,7 +8,7 @@
   		INSERT INTO MEMBER(ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
   							AUTH, PHONE, PAYPWD, DEL, GRADE, POINT, AUTHKEY, AUTHSTATUS)
   		VALUES(#{id}, #{pwd}, #{name}, #{email}, #{address1}, #{address2},
-  				3, #{phone}, #{paypwd}, 0, '일반', 1000, NULL, 0)
+  				3, #{phone}, 0, 0, '일반', 1000, NULL, 0)
   	</insert>
   	
   	<select id="idcheck" parameterType="java.lang.String" resultType="java.lang.String">
@@ -38,6 +38,7 @@
   	<update id="updateAuthKey" parameterType="kh.com.a.model.MemberDto">
   		UPDATE MEMBER SET
   		AUTHKEY=#{authkey}
+  		WHERE ID=#{id}
   	</update>
   	
   	<update id="userAuth" parameterType="java.lang.String">
@@ -52,6 +53,11 @@
   		WHERE name=#{name} AND EMAIL=#{email}
   	</select>
   	
+  	<update id="findPwd" parameterType="kh.com.a.model.MemberDto">
+  		UPDATE MEMBER SET
+  		PWD=#{pwd}
+  		WHERE id=#{id} AND EMAIL=#{email}
+  	</update>
   	
 	<select id="memberList"  resultType="kh.com.a.model.MemberDto">
   		SELECT ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
@@ -100,10 +106,10 @@
 	 </if>  
 </select>
   	
-  	<update id="memberDel" parameterType="java.lang.String">
-  	  	UPDATE MEMBER SET
-  		DEL=1
-  		WHERE ID=#{id}
-  	</update>
+<update id="memberDel" parameterType="java.lang.String">
+  	UPDATE MEMBER SET
+	DEL=1
+	WHERE ID=#{id}
+</update>
 
-  </mapper>
+</mapper>

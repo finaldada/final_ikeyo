@@ -65,15 +65,19 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return sqlSession.selectOne(ns + "findId", mem);
 	}
-
+	
+	@Override
+	public void findPwd(MemberDto mem) {
+		
+		sqlSession.update(ns + "findPwd", mem);
+	}
+	
 	@Override
 	public List<MemberDto> memberList() {
 		
 		return sqlSession.selectList(ns + "memberList");
 	}
 	
-	
-
 	@Override 
 	public List<MemberDto> getMemberList(BbsParam param) {
 		

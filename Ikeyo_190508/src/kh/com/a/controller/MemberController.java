@@ -132,12 +132,12 @@ public class MemberController {
 			return "error.tiles";
 		}
 	}
-	
-	@RequestMapping(value = "findId.do", method = RequestMethod.GET)
+
+	@RequestMapping(value = "findIdAndPwd.do", method = RequestMethod.GET)
 	public String findId() {
 		logger.info("MemberController findId " + new Date());
 		
-		return "findId.tiles";
+		return "findIdAndPwd.tiles";
 	}
 	
 	@ResponseBody
@@ -165,14 +165,14 @@ public class MemberController {
 		
 		return "findPwd.tiles";
 	}
-	
+
 	@RequestMapping(value = "findPwdAf.do", method = RequestMethod.POST)
-	public String findPwd(MemberDto mem) {
+	public String findPwd(MemberDto mem) throws Exception {
 		logger.info("MemberController findPwdAf " + new Date());
 		
-		//memberService.findPwd(mem);
+		memberService.findPwd(mem);
 		
-		return "";
+		return "login.tiles";
 	}
 	
 	@RequestMapping(value = "logout.do", method = RequestMethod.GET)

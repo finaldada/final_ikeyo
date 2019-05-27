@@ -2,10 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>  
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <fmt:requestEncoding value="utf-8"/>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
@@ -22,8 +20,7 @@
 <table>
 
 <tr>	
-	    <tiles:insertAttribute name="left_menu"/>
-	
+	<tiles:insertAttribute name="left_menu"/>
 	<td colspan="2" style="position: fixed; z-index: 100;">
 		<tiles:insertAttribute name="header"/>
 	</td>
@@ -31,7 +28,7 @@
 
 <tr>
 	<td colspan="2" style="width: 100%; height: 100%;">
-		<tiles:insertAttribute name="content"/>  
+		<tiles:insertAttribute name="content"/>
 	</td>
 </tr>
 

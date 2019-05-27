@@ -23,7 +23,8 @@ WDATE DATE NOT NULL,
 PARENT NUMBER(8) NOT NULL,
 DEL NUMBER(1) NOT NULL,
 LOCK_ NUMBER(1) NOT NULL,
-READCOUNT NUMBER(8) NOT NULL
+READCOUNT NUMBER(8) NOT NULL,
+FILENAME VARCHAR2(50)
 );
 
 CREATE SEQUENCE SEQ_CUST
@@ -49,13 +50,14 @@ public class CustomDto implements Serializable {
 	private int del;        //  삭제유무 
 	private int lock_;      //  공개 ,비공개
 	private int readcount;  // 조회수 
+	private String filename;	// 파일경로
 	
 	public CustomDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public CustomDto(int cust_seq, String id, int ref, int step, int depth, String title, String content, Date wdate,
-			int parent, int del, int lock_, int readcount) {
+			int parent, int del, int lock_, int readcount, String filename) {
 		super();
 		this.cust_seq = cust_seq;
 		this.id = id;
@@ -69,6 +71,7 @@ public class CustomDto implements Serializable {
 		this.del = del;
 		this.lock_ = lock_;
 		this.readcount = readcount;
+		this.filename = filename;
 	}
 
 	public int getCust_seq() {
@@ -167,12 +170,22 @@ public class CustomDto implements Serializable {
 		this.readcount = readcount;
 	}
 
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
 	@Override
 	public String toString() {
 		return "CustomDto [cust_seq=" + cust_seq + ", id=" + id + ", ref=" + ref + ", step=" + step + ", depth=" + depth
 				+ ", title=" + title + ", content=" + content + ", wdate=" + wdate + ", parent=" + parent + ", del="
-				+ del + ", lock_=" + lock_ + ", readcount=" + readcount + "]";
+				+ del + ", lock_=" + lock_ + ", readcount=" + readcount + ", filename=" + filename + "]";
 	}
+	
+	
 	
 	
 	
