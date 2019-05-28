@@ -21,9 +21,10 @@
 <%--주문관리 시퀀스 , 사진 ? 상품명  아이디 모델명 날짜 수량 가격 상태메세지   
 		텍스트 필드 검색  , 페이징 처리 --%>
 
-<div align="center" style="margin-left: 10%; margin-right: 10%">
-<h3>일단 보류 !</h3>
+<div align="center" style="margin-left: 10%; margin-right: 10%;">
+
 <h3>주문 관리 페이지 </h3>
+<hr><br><br>
 <form id="order_frm" method="post">
 
 

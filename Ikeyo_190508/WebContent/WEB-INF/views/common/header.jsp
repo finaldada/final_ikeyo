@@ -19,20 +19,12 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/header.css">
 
 
-<div id="header_div" style="height: 60px;">
+<div id="header_div" style="height: 60px; min-width: 890px;">
 
-<div id="header_nav" style="margin-left: 20px;">
+<div id="header_nav" style="margin-left: 5%;">
 <br>
      <ul>
-		<li style="margin-left: 90px;">
-        	<!--
-        	<b><a href="#" style="color: #535353; text-decoration: none;">고객지원  ｜</a>
-        	</b>
-        	<ul>
-        		<li><a href="noticelist.do">공지사항</a></li>
-        		<li><a href="customlist.do">고객의 소리</a></li>
-        	</ul>
-        	-->
+		<li style="margin-left: 5%;">
         	<div class="dropdown">
 				<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -46,21 +38,25 @@
         	</div>
         </li>
         <li><b><a href="storeInfo.do" style="color:#535353; text-decoration: none;">&nbsp;매장 안내 ｜</a></b></li>
-        <li><b><a href="polllist.do" style="color:#535353; text-decoration: none;">&nbsp;투표 ｜</a></b></li>
-        <li><b><a href="calendar.do" style="color:blue; text-decoration: none;">&nbsp;출석체크 ｜</a></b></li>
-        <li><b><a href="inventorylist.do" style="color:orange; text-decoration: none;">&nbsp;재고리스트 ｜</a></b></li>
+        <li><b><a href="calendar.do" style="color:#535353; text-decoration: none;">&nbsp;출석체크 </a>｜</b></li>
         
-        <c:if test="${not empty login && login.id ne ''}">
-			<a href="logout.do" title="로그아웃">[로그아웃]</a>
-		</c:if>
+        <c:if test="${login.id == null}">	
         <li style="padding-left: 0px;"><b><a href="login.do" style="color: #535353; text-decoration: none;">
-        &nbsp;로그인 ｜</a></b></li>
-        <li><b><a href="mypage.do" style="color:#535353; text-decoration: none;">&nbsp;마이페이지 ｜</a></b></li>
+        &nbsp;로그인 </a>｜</b></li>
+        </c:if>
+        
+        <c:if test="${not empty login && login.id ne ''}">	
+			<li><b><a href="logout.do" title="로그아웃" >&nbsp;[로그아웃]</a>｜</b></li>
+			<li><b><a href="mypage.do" style="color:#535353; text-decoration: none;">&nbsp;마이페이지 ｜</a></b></li>
+		</c:if>
+        
         <li><b><a href="wishList.do" style="color:#535353; text-decoration: none;">&nbsp;위시리스트 ｜</a></b></li>
-        <li><b><a href="cartList.do" style="color:#535353; text-decoration: none;">&nbsp;장바구니 </a></b></li>
+        <li><b><a href="cartList.do" style="color:#535353; text-decoration: none;">&nbsp;장바구니  ｜</a></b></li>
+        <li><b><a href="#" style="color:#535353; text-decoration: none;" onclick="goPoll()">&nbsp;투표 ｜</a></b></li>
      	
      	<c:if test="${login.auth eq '1' }">
-			<li><b><a href="pollmake.do" >&nbsp;투표 만들기 ｜</a></b></li>
+			<li><b><a href="pollmake.do" style="color:deepskyblue; text-decoration: none;" >&nbsp;투표 만들기 ｜</a></b></li>
+			<li><b><a href="inventorylist.do" style="color:deepskyblue; text-decoration: none;">&nbsp;재고리스트 </a>｜</b></li>
 		</c:if>
 		
      </ul>
@@ -68,3 +64,16 @@
 
 
 </div>
+
+<script>
+
+function goPoll() {
+	if(${empty login.id}){
+		alert("로그인해주세요");
+		location="login.do";
+	}else {
+		
+		location="polllist.do";
+	}
+}
+</script>

@@ -97,16 +97,18 @@ public class InventoryController {
 					produces = "application/String; charset=utf-8",
 				   method= {RequestMethod.GET, RequestMethod.POST})
 	public String inventoryCheck(String model_id) {
-		
+		System.out.println("model_id:" + model_id);
 		String str = inventoryService.inventoryCheck(model_id);
 		System.out.println("str:" + str);
-		if(str == null) {
-			String msg = "OK";  // 한글 깨짐  String으로 받을때는 value와 method 사이에 produces를 추가해주어야 한다 
+		
+		String msg = "";
+		if(str == null ) {
+			msg = "OK";
 			return msg;  
 			
 		}else {			
 			
-			String msg = "이미 등록된 모델명입니다";
+			msg = "이미 등록된 모델명입니다";
 			return msg;  
 		}
 		

@@ -17,37 +17,49 @@
 
 
 
-<div style="margin-left: 5%; margin-right: 5%">
+<div style="margin-right: 5%; margin-top: 5%;">
 
-<table border="2" style="height: 100%; width: 100%;">
+<table style="height: 100%; width: 100%;">
 <colgroup>
-<col width="10"><col width="70"><col width="40"><col width="10">
+<col width="2%"><col width="73%"><col width="20%"><col width="5%">
 </colgroup>
 
 <c:if test="${empty memolist }">
 <tr>
-	<td colspan="3" align="center">메모가 존재하지 않습니다</td>
+	<td colspan="4" align="center">메모가 존재하지 않습니다</td>
 </tr>
 
 </c:if>
 
 <c:if test="${not empty memolist }">
 
+
+
+<tr>
+	<th>ID</th>
+	<th>Memo</th>
+	<th>Date</th>
+	<th>Del</th>
+</tr>
+
 <form id="memo_frm"  method="get">	
+
 <c:forEach items="${memolist }" var="memo" varStatus="vs">
+
+
 
 <tr>
 	
-	<td>${memo.id}
-	<input type="hidden" id="memo_seq" name="memo_seq" value="${memo.memo_seq }">
+	<td align="center"><b>${memo.id}</b><input type="hidden" id="memo_seq" name="memo_seq" value="${memo.memo_seq }">  
 	</td> 
-	<td>${memo.content }</td>
+	<td style="margin-left: 10px;">${memo.content }</td>
 	<td><fmt:formatDate value="${memo.rdate }" pattern="yyyy/MM/dd"/></td> 
-	<td colspan="2"><input type="button" onclick="memoDelete('${memo.memo_seq }')" value="X"><td>
+	<td><input type="button" class="joinButton btn_s_gray btn_30" onclick="memoDelete('${memo.memo_seq }')" value="X"></td>
+	
 </tr>
 
 </c:forEach>
-	</form>
+</form>
 
 
 </c:if>
@@ -62,8 +74,8 @@
 <input type="text" id="content" name="content" size="60" value="" >
 </td>
 
-<td>
-<input type="button" onclick="memoWrite()" value="메모 등록">
+<td colspan="2" align="center">
+<input type="button" class="joinButton btn_s_blue btn_130" onclick="memoWrite()" value="메모 등록">
 </td>
 
 </tr>

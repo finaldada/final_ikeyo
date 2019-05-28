@@ -8,6 +8,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<style type="text/css">
+input,textarea{
+	background-color: #ffffff00;
+}
+
+/* Button */
+
+.btn_s_blue{
+	border: none;
+	background-color: #0051ba;
+	color: #FFF;
+}
+.btn_s_blue:hover{
+	background-color: #0a3670
+}
+
+.btn_s_gray{
+	border: none;
+	background: #63666A;
+	color: #FFF;
+}
+
+.btn_s_gray:hover{
+	background-color: #4F5256;
+}
+
+.btn_100{
+	width: 100px; 
+	height: 50px;
+	font-size: 16px;
+}
+
+.btn_50{
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+}
+
+
+
+</style>
 <title>inventoryupdate.jsp</title>
 </head>
 <body>
@@ -16,17 +57,19 @@
 
 
 <div align="center">
-<h3>재고 수정</h3>
+<h3>Inventory Update</h3>
+<hr><br><br>
 <form action="inventoryupdateAf.do">
-<table border="1"> 
+<table> 
 
 <input type="hidden" id="inven_seq" name="inven_seq" value="${inven.inven_seq }">
 
 <tr>
 	<td>모델명:<input type="text" size="50" id="model_id" name="model_id" 
 	value="${inven.model_id }" >
-	<input type="button" value="중복체크" onclick="inventoryCheck()">
+	<input type="button" value="Check"  class="joinButton btn_s_blue btn_100" onclick="inventoryCheck()">
 	<div id="_model_id"></div>
+	<hr>
 	</td>
 	
 </tr>
@@ -46,20 +89,26 @@
 		<option value="액세서리" ${inven.category eq '액세서리"'?"selected='selected'":""  }>액세서리</option>
 	
 		</select> 
+		<hr>
 	</td>
 </tr>
 
-<tr>    <%-- + - 버튼 ??  --%>
-	<td>수량:<input type="number" id="count" name="count" 
-	size="50" min="1" max="1000" value="${inven.count }" >개</td>
+<tr>    
+	<td>수량:&nbsp;&nbsp;<a href="#" class="joinButton btn_s_blue btn_30" onclick="minusCount()"><img alt="" src="./image/btn_pre.gif"></a>&nbsp;&nbsp;
+	<input type="text" id="count" name="count" value="${inven.count }" size="5">개&nbsp;&nbsp;
+	<a href="#" class="joinButton btn_s_blue btn_30" onclick="plusCount()"><img alt="" src="./image/btn_next.gif"></a>
+	<hr></td>
 </tr>
 
 <tr>  
-	<td><input type="text" id="price" name="price" value="${inven.price }" >원</td>
+	<td><input type="text" id="price" name="price" value="${inven.price }" >원
+	<hr></td>
 </tr>
 
 <tr>
-	<td align="center"><input type="button" value="재고 수정 요청" onclick="goUpdateAf()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="취소" onclick="goBack()"></td>
+	<td align="center"><input type="button" value="Update" class="joinButton btn_s_blue btn_100" onclick="goUpdateAf()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" value="Cancel" class="joinButton btn_s_gray btn_100" onclick="goBack()">
+	<hr></td>
 </tr>
 
 </table>
@@ -103,8 +152,10 @@ function inventoryCheck() {
 
 
  function goBack() {
-	var inven_seq = $("#inven_seq").val();
-	location.href = "inventorydetail.do?inven_seq=" + inven_seq;
+/* 	var inven_seq = $("#inven_seq").val();
+	location.href = "inventorydetail.do?inven_seq=" + inven_seq; */
+	 window.close();
+	
 } 
 
 function goUpdateAf() {
@@ -125,7 +176,7 @@ function goUpdateAf() {
 		success:function(data){
 			//alert("success");
 			//alert(data);
-			if(data.trim() == "업데이트 성공"){
+			if(data.trim() == "\"업데이트 성공\""){
 				
 				alert(data);
 				opener.parent.location.reload();
@@ -143,6 +194,50 @@ function goUpdateAf() {
 	});
 		
 }
+
+
+function minusCount(){
+	
+	
+	var count = $("#count").val();
+	
+	if(count != 0 && count > 0){
+		count --;
+		$("#count").val(count); 
+	}else {
+		alert("수량을 다시 확인 해주세요");
+		 $("#count").val(1);
+		$("#count").focus();
+		
+	}
+	
+
+}
+
+function plusCount(){
+	var count = $("#count").val();
+	
+	
+	if(count<500 && count>=0){
+		
+		count ++;
+		$("#count").val(count); 
+		
+	}else {
+		if(count < 0){
+			alert("재고 수량이 1보다 작습니다.");
+			$("#count").val(1);
+			$("#count").focus();
+		}else {
+			
+		alert("재고 수량이 500개를 넘을 수 없습니다. 수량을 확인해주세요");
+		 $("#count").val(500);
+		 $("#count").focus();
+		}
+		
+	}
+}	
+
 
 
 </script>

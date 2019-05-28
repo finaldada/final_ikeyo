@@ -78,8 +78,7 @@
  </select>
  
  <select id="inventoryCheck" parameterType="java.lang.String" resultType="java.lang.String">
- 	SELECT INVEN_SEQ, MODEL_ID, CATEGORY, 
-	COUNT, PRICE, RDATE, DEL  
+ 	SELECT MODEL_ID
     FROM INVENTORY 
     WHERE MODEL_ID=#{model_id} 
  </select>

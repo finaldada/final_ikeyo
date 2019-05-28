@@ -57,15 +57,30 @@ $(document).ready(function () {
 <%-- 아이디/ 이름/ 이메일 /주소/ 회원권한 /  전화번호/ 등급 /포인트 / 회원 삭제 
 	id,이름 으로 검색    core el tag 사용으로 뿌리기    del 0,1로 나눠서 조건을 세부적으로 준다   --%>
 <form id="mem_frm" method="post">
-<div align="center" style="margin-left: 10%; margin-right: 10%; margin-top: 10%;">
+<div align="center" style="margin-left: 5%; margin-right: 5%; margin-top: 10%;">
 <h3>회원 관리 페이지</h3>
-<br>
+<hr><br>
+
 
 <table border="1" id="list_table" class="tablesorter">
 
+<colgroup>
+	<col style="width: 10%">
+	<col style="width: 10%">
+	<col style="width: 15%">
+	<col style="width: 20%">
+	<col style="width: 10%">
+	<col style="width: 15%">
+	<col style="width: 7%">
+	<col style="width: 8%">
+	<col style="width: 5%">
+</colgroup>
+
+
+
 <thead>
 
-<tr style="border: 3px solid deepskyblue;">
+<tr align="center"  style="border: 3px solid deepskyblue;">
 <th>아이디</th> <th>이름</th> <th>이메일</th> <th>주소</th> <th>회원권한</th>
 <th>전화번호</th> <th>등급</th> <th>포인트(p)</th> <th>회원삭제</th> 
 </tr>
@@ -139,7 +154,7 @@ $(document).ready(function () {
 <input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?10:recordCountPerPage }">
  
 
-<div>
+<div style="margin-bottom: 10%;">
 	<jsp:include page="/WEB-INF/views/inventory/paging.jsp" flush="false">
 		<jsp:param value="${pageNumber }" name="pageNumber"/>
 		<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>

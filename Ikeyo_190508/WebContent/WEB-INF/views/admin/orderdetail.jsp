@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div align="center" style="margin-left: 10%; margin-right: 10%">
+<div align="center" style="margin-left: 10%; margin-right: 10%;">
 <h3>일단 보류 !</h3>
 <h3>주문 관리 상세내역 </h3>
 <form id="order_frm" method="post">

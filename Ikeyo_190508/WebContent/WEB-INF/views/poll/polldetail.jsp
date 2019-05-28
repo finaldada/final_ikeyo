@@ -5,6 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
+
+<div align="center" style="margin-left: 5%; margin-right: 5%" >
+<h3>투표 결과</h3>
+<hr><br><br>
+
 <form action="polling.do" method="post">
 
 <table class="list_table" style="width: 95%">
@@ -73,3 +78,5 @@
 </table>
 
 </form>
+
+</div>
