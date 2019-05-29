@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.QnADao;
+import kh.com.a.model.BbsParam;
 import kh.com.a.model.QnADto;
 
 @Repository
@@ -40,6 +41,25 @@ public class QnADaoImpl implements QnADao {
 		int n = sqlSession.update(ns + "qnaAnswer", dto);
 		return n>0?true:false;
 	}
+
+	@Override
+	public List<QnADto> getQnAPagingList(BbsParam param) {
+		
+		return sqlSession.selectList(ns + "getQnAPagingList", param);
+	}
+
+	@Override
+	public int getQnACount(BbsParam param) {
+		
+		return sqlSession.selectOne(ns + "getQnACount", param);
+	}
+
+	@Override
+	public String getModel_id(int parent) {
+		
+		return sqlSession.selectOne(ns + "getModel_id", parent);
+	}
+	
 	
 	
 	

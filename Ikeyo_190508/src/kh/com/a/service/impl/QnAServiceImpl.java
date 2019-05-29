@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.com.a.dao.QnADao;
+import kh.com.a.model.BbsParam;
 import kh.com.a.model.QnADto;
 import kh.com.a.service.QnAService;
 
@@ -33,6 +34,24 @@ public class QnAServiceImpl implements QnAService {
 	@Override
 	public boolean qnaAnswer(QnADto dto) {
 		return qnADao.qnaAnswer(dto);
+	}
+
+	@Override
+	public List<QnADto> getQnAPagingList(BbsParam param) {
+		
+		return qnADao.getQnAPagingList(param);
+	}
+
+	@Override
+	public int getQnACount(BbsParam param) {
+		
+		return qnADao.getQnACount(param);
+	}
+
+	@Override
+	public String getModel_id(int parent) {
+		
+		return qnADao.getModel_id(parent);
 	}
 	
 	

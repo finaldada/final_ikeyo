@@ -72,12 +72,15 @@
 <definition name="calwrite.tiles" template="/WEB-INF/views/calendar/calwrite.jsp"/>
 
 
-<!-- admin 테스트  -->
+<!-- admin   -->
 
 <definition name="memberlist.tiles" extends="mypage.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/admin/memberlist.jsp"/>
 </definition>
 
+<definition name="qnalist_admin.tiles" extends="mypage.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/admin/qnalist_admin.jsp"/>
+</definition>
 		
 <!--  poll -->
 

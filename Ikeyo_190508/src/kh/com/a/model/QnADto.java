@@ -43,6 +43,7 @@ public class QnADto implements Serializable {
 	private int readcount;		// 조회수
 	private int parent;			// 상품글 시퀀스
 	private int del;			// 삭제여부
+     
 	
 	public QnADto() {
 	}

@@ -69,6 +69,9 @@
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="inventorylist.do">재고관리</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="qnaList_admin.do">QnA관리</a>
+        </li>
         </c:if>
       </ul>
     </div>
