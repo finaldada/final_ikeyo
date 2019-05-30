@@ -28,7 +28,7 @@
 <insert id="order" parameterType="kh.com.a.model.Order_Dto">
 	INSERT INTO ORDER_(ORD_SEQ, ID, TOTAL_PRICE, ORDER_NUM, DELI_INFO, 
 	                   REGDATE, RNAME, ADDRESS1, ADDRESS2, PHONE, CONTENT)
-	VALUES(SEQ_ORDER.NEXTVAL, #{id}, #{total_price}, #{order_num}, #{dell_info},
+	VALUES(SEQ_ORDER.NEXTVAL, #{id}, #{total_price}, #{order_num}, #{deli_info},
 	       SYSDATE, #{rname}, #{address1}, #{address2}, #{phone}, #{content})                        
 </insert>
 

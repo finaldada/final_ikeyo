@@ -77,7 +77,7 @@ input,textarea{
 		카테고리:<select id="category" name="category"> 
 		<option value="" selected="selected">선택</option>
 		<option value="침대" >침대</option>
-		<option value="매트릭스" >매트릭스</option>
+		<option value="매트리스" >매트리스</option>
 		<option value="의자" >의자</option>
 		<option value="소파" >소파</option>
 		<option value="옷장">옷장</option>

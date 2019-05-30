@@ -95,8 +95,8 @@ public class OrderController {
 		dto.setOrder_num(order_num);
 		
 		// 배송상태
-		int dell_info = 0; 
-		dto.setDeli_info(dell_info);
+		int deli_info = 0; 
+		dto.setDeli_info(deli_info);
 
 		// 주소
 		String addr1 = address1 + "/" + address2;
