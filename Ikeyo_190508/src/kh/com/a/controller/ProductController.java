@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kh.com.a.model.CartDto;
 import kh.com.a.model.InventoryDto;
+import kh.com.a.model.MemberDto;
 import kh.com.a.model.PagingParam;
 import kh.com.a.model.ProductDto;
 import kh.com.a.model.QnADto;
@@ -123,7 +126,7 @@ public class ProductController {
 
 		// 재고 리스트 받아오기
 		List<InventoryDto> invenlist = inventoryService.getInventoryList();
-		System.out.println("dddd:");
+		//System.out.println("dddd:");
 		model.addAttribute("invenlist", invenlist);	// 모델에 재고리스트 날려줌
 		
 		return "productAdd.tiles";
@@ -232,7 +235,7 @@ public class ProductController {
 	
 	// 상품 디테일
 	@RequestMapping(value="productDetail.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String productDetila(String model_id, Model model) {
+	public String productDetila(HttpSession session, String model_id, Model model) {
 		System.out.println("model_id : " + model_id);
 		
 		// 상품받아오기
@@ -253,7 +256,57 @@ public class ProductController {
 		model.addAttribute("qlist", qlist);
 		
 		
+		// 위시리스트 체크
+		CartDto cart = new CartDto();
+				
+		// 로그인 한 정보 가져오기
+		MemberDto mem = (MemberDto)session.getAttribute("login");
+		System.out.println("mem : " + mem);
+		if(mem == null) {
+			model.addAttribute("mem", null);
+		}else {
+			model.addAttribute("mem", mem);	// 로그인정보를 넘겨줌
+			cart.setModel_id(model_id);
+			cart.setId(mem.getId());
+		}
+		
+		
+		
+		System.out.println("cart model_id : " + cart.getModel_id());
+		System.out.println("cartid : " + cart.getId());
+		
+		int ck = productService.checkWish(cart);
+		model.addAttribute("cart", cart);
+		//System.out.println("ck : " + ck);
+		//System.out.println(ck>0?true:false);
+		//model.addAttribute("ck", ck>0?true:false); // 논리형 체크되어있으면 true,아니면false
+		
+		
+		
 		return "productDetail.tiles";
+	}
+	
+	// 장바구니 보내기
+	@ResponseBody
+	@RequestMapping(value="product_cart.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public Map<String, Object> cart_input(String model_id, String id, int count) {
+		
+		CartDto cart = new CartDto();
+		cart.setId(id);
+		cart.setModel_id(model_id);
+		cart.setCount(count);
+		
+		boolean isS = productService.cartInput(cart);
+		if(isS) {
+			System.out.println("카트담기 성공!");
+		}else {
+			System.out.println("카트담기 실패..");
+		}
+		
+		Map<String, Object> cartmap = new HashMap<String, Object>();
+		//cartmap.put("isS", isS);		
+		return cartmap;
+		
 	}
 	
 	// 파일 다운로드

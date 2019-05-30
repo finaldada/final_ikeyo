@@ -119,6 +119,14 @@ public class ProductDaoImpl implements ProductDao {
 		
 		return idto;
 	}
+
+	@Override
+	public boolean cartInput(CartDto dto) {
+		int n = sqlSession.insert(ns + "cartInput", dto);
+		return n>0?true:false;
+	}
+	
+	
 	
 	
 	

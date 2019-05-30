@@ -39,7 +39,10 @@ public class MyPageController {
 		
 		MemberDto dto = (MemberDto)req.getSession().getAttribute("login");
 		dto.setPwd(pwd);
-
+		
+		System.out.println("myInfoGoAf RUN() id=" + dto.getId());
+		System.out.println("myInfoGoAf RUN() pwd=" + dto.getPwd());
+		
 		MemberDto checkPwd = myPageService.checkPwd(dto);
 		
 		if(checkPwd == null) {
@@ -78,7 +81,7 @@ public class MyPageController {
 			}
 		}
 		if(b) {
-			return "redirect:/login.do";
+			return "redirect:/main.do";
 		} else {
 			return "myInfo.do";
 		}

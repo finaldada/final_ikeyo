@@ -43,10 +43,17 @@
 </definition>
 
 <!-- 마이페이지 -->
+<definition name="myInfoGo.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/mypage/myPageGo.jsp"/>
+</definition>
+
 <definition name="mypage.tiles" extends="main.tiles">
    <put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
    <put-attribute name="content" value="/WEB-INF/views/mypage/mypage.jsp"/>
 </definition>
+
+
 
 <!-- 재고관리 리스트 -->
 <definition name="inventorylist.tiles" extends="mypage.tiles">
@@ -118,8 +125,6 @@
 	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
 	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo.jsp"/>
 </definition>
-
-<!-- storeInfo_a.tiles -->
 <definition name="storeInfo_a.tiles" extends="main.tiles">
 	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_storeInfo.jsp"/>
 	<put-attribute name="content" value="/WEB-INF/views/storeInfo/storeInfo_a.jsp"/>
@@ -186,6 +191,18 @@
 
 <!-- 장바구니 -->
 <definition name="cartlist.tiles" template="/WEB-INF/views/cart/cart.jsp"/>
+
+<!-- 장바구니 에서 주문서로 이동 -->
+<definition name="orderlist.tiles" template="/WEB-INF/views/order/orderlist.jsp"/>
+
+<!-- 결제페이지 이동 -->
+<definition name="payment.tiles" template="/WEB-INF/views/order/payment.jsp"/>
+
+<!-- 주문  관리  -->
+<definition name="allorderlist.tiles" extends="mypage.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/admin/allorderlist.jsp"/>
+</definition> 
+<definition name="allorderdetail.tiles" template="/WEB-INF/views/admin/allorderdetail.jsp"/>
 
 
 </tiles-definitions>

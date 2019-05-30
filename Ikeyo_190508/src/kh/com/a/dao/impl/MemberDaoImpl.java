@@ -1,8 +1,6 @@
 package kh.com.a.dao.impl;
 
-
 import java.util.List;
-
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,17 +63,29 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return sqlSession.selectOne(ns + "findId", mem);
 	}
-	
+
 	@Override
 	public void findPwd(MemberDto mem) {
 		
 		sqlSession.update(ns + "findPwd", mem);
 	}
-	
+
 	@Override
-	public List<MemberDto> memberList() {
+	public void naverLogin(MemberDto mem) {
+	
+		sqlSession.insert(ns + "naverLogin", mem);
+	}
+
+	@Override
+	public int naverLoginCount(MemberDto mem) {
 		
-		return sqlSession.selectList(ns + "memberList");
+		return sqlSession.selectOne(ns + "naverLoginCount", mem);
+	}
+
+	@Override
+	public MemberDto naverEmailCheck(MemberDto mem) {
+		
+		return sqlSession.selectOne(ns + "naverEmailCheck", mem);
 	}
 	
 	@Override 
@@ -98,6 +108,5 @@ public class MemberDaoImpl implements MemberDao {
 	
 		return n>0?true:false; 
 	}
-	
-	
+
 }

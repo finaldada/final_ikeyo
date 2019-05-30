@@ -1,7 +1,8 @@
 package kh.com.a.service.impl;
 
-
 import java.util.List;
+
+import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,10 +15,6 @@ import kh.com.a.model.MemberDto;
 import kh.com.a.service.MemberService;
 import kh.com.a.util.MailHandler;
 import kh.com.a.util.TempKey;
-
-
-import javax.inject.Inject;
-
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -47,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
 		sendMail.setSubject("[ikeyo] 회원가입 이메일 인증");
 		sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
 				.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-				.append("<a href='http://192.168.110.129:8090/Ikeyo_190508/emailConfirm.do")
+				.append("<a href='http://192.168.1.22:8090/Ikeyo_190508/emailConfirm.do")
 				.append("?email=")
 				.append(mem.getEmail())
 				.append("&authkey=")
@@ -100,7 +97,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.findId(mem);
 	}
-	
+
 	@Transactional
 	@Override
 	public void findPwd(MemberDto mem) throws Exception {
@@ -124,11 +121,28 @@ public class MemberServiceImpl implements MemberService {
 		sendMail.setTo(mem.getEmail());
 		sendMail.send();
 	}
-	
+
 	@Override
-	public List<MemberDto> memberList() {
+	public void naverLogin(MemberDto mem) {
+		String address1 = new TempKey().getKey(10, false);
+		String phone = new TempKey().getKey(10, false);
 		
-		return memberDao.memberList();
+		mem.setAddress1(address1);
+		mem.setPhone(phone);
+		
+		memberDao.naverLogin(mem);
+	}
+
+	@Override
+	public int naverLoginCount(MemberDto mem) {
+		
+		return memberDao.naverLoginCount(mem);
+	}
+
+	@Override
+	public MemberDto naverEmailCheck(MemberDto mem) {
+		
+		return memberDao.naverEmailCheck(mem);
 	}
 	
 	@Override
@@ -147,5 +161,8 @@ public class MemberServiceImpl implements MemberService {
 	public boolean memberDel(String id) {
 		
 		return memberDao.memberDel(id);
-	}
+	
+	
+}
+	
 }

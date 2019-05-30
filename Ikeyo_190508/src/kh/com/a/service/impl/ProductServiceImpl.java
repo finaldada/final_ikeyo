@@ -89,6 +89,12 @@ public class ProductServiceImpl implements ProductService {
 	public InventoryDto getinven(String model_id) {
 		return productDao.getinven(model_id);
 	}
+
+	@Override
+	public boolean cartInput(CartDto dto) {
+		return productDao.cartInput(dto);
+	}
+	
 	
 	
 	

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/ikeyo_v1-front.css">
 
 <div id="login">
-	<div class="container">
+	<div class="container_c">
 		<div class="head">
 			<p class="noto">내 계정 찾기</p>
 			<ul>

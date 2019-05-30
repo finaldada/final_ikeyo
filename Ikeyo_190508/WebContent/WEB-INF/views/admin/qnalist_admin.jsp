@@ -145,7 +145,7 @@ $(document).ready(function () {
 		</td>
 		<td>${qna.id }</td>
 		<td><a href="#" onclick="goAnswer('${qna.parent }')">${qna.title }</a>
-		<input type="hidden" id="parent" name="parent" value="${qna.parent }">+${qna.parent }</td>
+		<input type="hidden" id="parent" name="parent" value="${qna.parent }"></td>
 		<td><fmt:formatDate value="${qna.wdate }" pattern="yyyy.MM.dd"/></td>
 		<td><fmt:formatDate value="${qna.adate }" pattern="yyyy.MM.dd"/></td>
 	</tr>
@@ -220,7 +220,7 @@ $("#_btnSearch").click(function () {
 
 function goAnswer(parent) {
 	//var parent = $("#parent").val();
-	alert(parent);
+	//alert(parent);
 	
 	$.ajax({
 		url:"goProductDetail.do",
@@ -233,7 +233,7 @@ function goAnswer(parent) {
 				
 			    var data = data.replace(/\"/gi, "");  
 			    // "" 붙는 에러로 정규식으로 사용 ,
-				alert(data);
+				//alert(data);
 				
 				location = "productDetail.do?model_id=" + data;
 				

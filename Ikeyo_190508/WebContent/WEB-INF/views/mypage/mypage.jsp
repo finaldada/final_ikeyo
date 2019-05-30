@@ -8,45 +8,110 @@
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+<link rel="stylesheet" href="css/_common.css"/>
+<link rel="stylesheet" href="css/ikeyo_v1-front.css">
+
+<style>
+.btn_100_41{
+	width: 100px;
+	height: 41px;
+	font-size: 14px;
+}
+</style>
+
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
 
-<div>
-	<form name="frmForm" id="_frmForm" method="post">
-		<div>
-			아이디: <input type="text" name="id" id="_id" value="${login.id }" readonly="readonly">
-			<br>
-			비밀번호: <input type="password" name="pwd" id="_pwd" value="">
-			<br>
-			이름: <input type="text" name="name" id="_name" value="${mem.name }" readonly="readonly">
-			<br>
-			Email: <input type="text" name="email" id="_email" value="${mem.email }" readonly="readonly">
-			<br>
-			결제비밀번호: <input type="password" name="paypwd" id="_paypwd" value="${mem.paypwd }">
-			<br>
-			핸드폰: <input type="text" name="phone" id="_phone" value="${mem.phone }" data-msg="핸드폰을">
-			<br>
-			<div id="_getPhone"></div>
-			<br>
-			주소: <input type="text" id="sample2_postcode" placeholder="우편번호">
-				<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기" size="10"><br>
-				<input type="text" name="address1" id="sample2_address" placeholder="주소" size="50" value="${mem.address1 }" data-msg="주소를"><br>
-				<input type="text" name="address2" id="sample2_detailAddress" placeholder="상세주소" size="25" value="${mem.address2 }" data-msg="상세주소를">
-				<input type="text" id="sample2_extraAddress" placeholder="참고항목" size="20">
-			<br>
-			Point: <input type="text" name="point" value="${mem.point }" readonly="readonly">
-			<br>
-			등급: <input type="text" name="grade" value="${mem.grade }" readonly="readonly">
+<div id="updateMyInfo">
+	<div class="title">
+		회원정보 수정
+	</div>
+	<div class="container_c">
+		<div class="head"></div>
+		<div class="body">
+			<form action="myInfoAf.do" name="frmForm" id="_frmForm" method="post">
+				<div class="insert">
+					<div class="name">
+						<input type="text" name="id" id="_id" value="${login.id }" readonly="readonly">
+						<input type="text" name="name" id="_name" value="${mem.name }" readonly="readonly">
+					</div>
+					<div class="pwd">
+						<div>
+							<input type="password" name="pwd" id="_pwd" class="first" data-msg="패스워드를" autocomplete="off" placeholder="비밀번호">
+							<p></p>
+						</div>
+						<div>
+							<input type="password" id="_pwdchk" class="second" data-msg="패스워드 확인을" placeholder="비밀번호 확인 " disabled="true">
+							<p></p>
+						</div>
+					</div>
+					<div class="email">
+						<input type="text" name="email" id="_email" value="${mem.email }" readonly="readonly" style="width: 403px;">
+					</div>
+					<div class="phone">
+						<input type="text" name="phone" id="_phone" value="${mem.phone }" data-msg="핸드폰을">
+						<p onclick="checkPhone()" class="frt">중복확인</p>
+					</div>
+					<div class="addr">
+						<input type="text" id="sample2_postcode" placeholder="우편번호" style="width: 295px; margin: 15px 0 9px 0px;">
+						<input type="button" class="btn_s_gray btn_100_41" onclick="sample2_execDaumPostcode()" value="주소검색" size="10" style="padding-left: 0 !important;"><br>
+						<input type="text" name="address1" id="sample2_address" placeholder="주소" size="50" value="${mem.address1 }" data-msg="주소를" style="width: 295px; margin: 0 0 9px 0px;">
+						<input type="text" name="address2" id="sample2_detailAddress" placeholder="상세주소" size="25" value="${mem.address2 }" data-msg="상세주소를">
+						<input type="text" id="sample2_extraAddress" placeholder="참고항목" size="20">
+					</div>
+					<div class="point">
+						<p>포인트</p>
+						<input type="text" name="point" value="${mem.point }" readonly="readonly">
+					</div>
+					<div class="grade">
+						<p>등급</p>
+						<input type="text" name="grade" value="${mem.grade }" readonly="readonly">
+					</div>
+				</div>
+			</form>
+			<div class="button_r">
+				<button class="joinButton btn_s_gray btn_205" onclick="location.href='main.do'">취소</button>
+				<button class="joinButton btn_s_blue btn_205" id="_btnInfo">확인</button>
+			</div>
 		</div>
-		<input type="submit" id="_btnInfo" title="정보수정" value="정보수정">
-	</form>
+	</div>
 </div>
+
+<script>
+var checkIdGb = "";
+var checkPhoneGb = "Y";
+var checkPw1Gb = ""
+var checkPw2Gb = ""
+var checkAddrGb = "N";
+
+$("#_btnInfo").click(function(){
+	if(checkPhoneGb != 'Y' && $("#_phone").val() != '${login.phone}'){
+		alert("전화번호 중복체크를 해주세요.");
+		return false;
+	} else if(checkAddrGb != 'Y' && $("#sample2_address").val() == ""){
+		alert("주소를 입력해주세요.");
+		return false;
+	}
+	
+	if(confirm("회원정보를 수정하시겠습니까?") == true){
+		var pwd = $('#_pwd').val();
+		
+		if(pwd == "") {
+			pwd = '${mem.pwd}';
+		}
+		$('#_pwd').val(pwd);
+		$('#_frmForm').submit();
+	} else{
+		return false;
+	}
+});
+</script>
 
 <script>
 var pwd = $('#_pwd').val();
 var paypwd = $('#_paypwd').val();
-
+/*
 $(function() {
 	$('#_btnInfo').attr("disabled", "disabled");
 	
@@ -61,7 +126,7 @@ $(function() {
 	} else if($('#sample2_address').val() == ""){
 		alert($('#sample2_address').attr("data-msg") + " 입력해주세요");
 		return false;
-	} else if($('#sample2_detailAddress').val() == "") {
+	} /* else if($('#sample2_detailAddress').val() == "") {
 		alert($('#sample2_detailAddress').attr("data-msg") + " 입력해주세요");
 		return false;
 	} else {
@@ -76,45 +141,97 @@ $('#_btnInfo').click(function() {
 		pwd = '${mem.pwd}';
 	}
 	$('#_pwd').val(pwd);
-	$('#_frmForm').attr("action", "myInfoAf.do").submit();
+	$('#_frmForm').submit();
+});
+*/
+
+/* 비밀번호 유효성 판단 */
+$(".first").keyup(function(){
+	var pw = $(this).val();
+	var pw2 = $(".second").val();
+	var num = pw.search(/[0-9]/g);
+	var eng = pw.search(/[a-z]/ig);
+	var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+	var str_space = /\s/;
+	
+	/* if(pw.length < 6 || 15 < pw.length){
+		$(".pwd div:nth-child(1)>p").text("6자리 ~ 15자리 이내로 입력해주세요.");
+		checkPw1Gb = 'N'
+	} else if(str_space.exec(pw)){
+		$(".pwd div:nth-child(1)>p").text("비밀번호는 공백없이 입력해주세요.");
+		checkPw1Gb = 'N'
+	} else if(num < 0 || eng < 0 || spe < 0){
+		$(".pwd div:nth-child(1)>p").text("영문, 숫자, 특수문자를 혼합하여 입력해주세요.");
+		checkPw1Gb = 'N'
+	} else{
+		$(".pwd div:nth-child(1)>p").text("사용 가능한 비밀번호입니다.");
+		$(".second").attr("disabled", false);
+		$(".pwd div:nth-child(2)").css("background-color", "white");
+		checkPw1Gb = 'Y'
+	} */
+	
+	$(".pwd div:nth-child(1)>p").text("사용 가능한 비밀번호입니다.");
+	$(".second").attr("disabled", false);
+	$(".pwd div:nth-child(2)").css("background-color", "white");
+	checkPw1Gb = 'Y'
+	
+	if((pw2.length > 0) && (pw != pw2)){
+		$(".pwd div:nth-child(2)>p").text("비밀번호가 서로 다릅니다.");
+		checkPw2Gb = 'N'
+	} else if((pw2.length > 0) && (pw = pw2)){
+		$(".pwd div:nth-child(2)>p").text("비밀번호가 같습니다.");
+		checkPw2Gb = 'Y'
+	}
+});
+
+/* 비밀번호 일치 확인  */
+$(".second").keyup(function(){
+	var pw1 = $(".first").val()
+	var pw2 = $(this).val()
+	
+	if(pw1 == pw2){
+		$(".pwd div:nth-child(2)>p").text("비밀번호가 같습니다.");
+		checkPw2Gb = 'Y'
+	} else{
+		$(".pwd div:nth-child(2)>p").text("비밀번호가 서로 다릅니다.");
+		checkPw2Gb = 'N'
+	}
 });
 
 //핸드폰 확인
-$(function() {
-	$('#_phone').focusout(function() {
-		if($('#_phone').val().trim() == "") {
-			alert("폰번호를 입력해주세요.");
-		} else {
-			var id = '${login.id}';
-			$.ajax({
-				url:"myInfoPhone.do",
-				type:"post",
-				data: {"phone" : $('#_phone').val().trim(), "id" : id},
-				success:function(data) {
-					if(data.OK == "OK"){
-						$('#_getPhone').css({"color":"blue", "font-weight":"900"});
-						$('#_getPhone').html("핸드폰 사용가능");
-						$('#_btnInfo').removeAttr("disabled");
-					} else{
-						if(data.MY == "MYPHONE"){
-							$('#_getPhone').css({"color":"red", "font-weight":"900"});
-							$('#_getPhone').html("자신의 핸드폰");
-							$('#_btnInfo').removeAttr("disabled");
-						} else {
-							$('#_getPhone').css({"color":"red", "font-weight":"900"});
-							$('#_getPhone').html("핸드폰 사용중");
-							$('#_btnInfo').attr("disabled", "disabled");
-							$('#_phone').val("");	
-						}
-					}
-				},
-				error:function(r, s, err) {
-					alert("error");
+function checkPhone(){
+	var phoneNo1 = $("#_phone").val();
+	if($.isNumeric(phoneNo1)){
+	} else{
+		alert("핸드폰은 숫자를 입력해주세요");
+		return false;
+	}
+	
+	var id = '${login.id}';
+	$.ajax({
+		url:"myInfoPhone.do",
+		type:"post",
+		data: {"phone" : $('#_phone').val().trim(), "id" : id},
+		success:function(data) {
+			if(data.OK == "OK"){
+				alert("사용 가능한 핸드폰입니다.");
+				$('#_btnInfo').removeAttr("disabled");
+			} else{
+				if(data.MY == "MYPHONE"){
+					alert("기존에 등록된 핸드폰입니다.");
+					$('#_btnInfo').removeAttr("disabled");
+				} else {
+					alert("이미 등록된 핸드폰입니다.");
+					$('#_btnInfo').attr("disabled", "disabled");
+					$('#_phone').val("");	
 				}
-			});
+			}
+		},
+		error:function(r, s, err) {
+			alert("error");
 		}
 	});
-});
+}
 </script>
 
 <!-- 다음 주소 API -->

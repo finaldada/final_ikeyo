@@ -47,7 +47,7 @@
         
         <c:if test="${not empty login && login.id ne ''}">	
 			<li><b><a href="logout.do" title="로그아웃" >&nbsp;[로그아웃]</a>｜</b></li>
-			<li><b><a href="mypage.do" style="color:#535353; text-decoration: none;">&nbsp;마이페이지 ｜</a></b></li>
+			<li><b><a href="myInfoGo.do" style="color:#535353; text-decoration: none;">&nbsp;마이페이지 ｜</a></b></li>
 		</c:if>
         
         <li><b><a href="wishList.do" style="color:#535353; text-decoration: none;">&nbsp;위시리스트 ｜</a></b></li>

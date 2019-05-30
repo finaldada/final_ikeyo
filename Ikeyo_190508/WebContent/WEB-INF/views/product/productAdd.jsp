@@ -50,10 +50,11 @@
 
 </head>
 <body>
+<div align="center" style="margin-top: 10%;margin-bottom: 10%;">
+
 <h3>상품등록 write</h3>
 
 <!-- <form action="productAddAf.do" method="post" enctype="multipart/form-data"> -->
-<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%; margin-bottom: 10%;">
 <form id="_frmForm" method="post" enctype="multipart/form-data">
 <table border="1">
 <colgroup>
@@ -120,7 +121,7 @@
 <input type="hidden" name="photo_af2">
 <input type="hidden" name="photo_af3">
 </form>
-</div>
+
 <!-- The Modal -->
 <div id="myModal" class="modal">
  
@@ -206,6 +207,6 @@ function invenAdd(i_seq) {
 	
 
 </script>
-
+</div>
 </body>
 </html>

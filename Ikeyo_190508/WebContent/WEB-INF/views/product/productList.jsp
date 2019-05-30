@@ -202,7 +202,7 @@ img {
 
 <jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
 
-<div id="product_list" style="margin-left: 15%; margin-top: 10%; ">
+<div id="product_list" style="margin-left: 15%;">
 	<div class="container_2">
 		<div class="list_all">
 			<form action="productAdd.do" method="post">

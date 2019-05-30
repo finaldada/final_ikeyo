@@ -30,13 +30,13 @@
   	
   	<update id="myInfoUpdate" parameterType="kh.com.a.model.MemberDto">
   		UPDATE MEMBER SET
-  		PWD=#{pwd}, ADDRESS1=#{address1}, ADDRESS2=#{address2}, PAYPWD=#{paypwd}, PHONE=#{phone}
+  		PWD=#{pwd}, ADDRESS1=#{address1}, ADDRESS2=#{address2}, PHONE=#{phone}
   		WHERE ID=#{id}
   	</update>
   	
   	<update id="myInfoUp" parameterType="kh.com.a.model.MemberDto">
   		UPDATE MEMBER SET
-  		PWD=#{pwd}, ADDRESS1=#{address1}, ADDRESS2=#{address2}, PAYPWD=#{paypwd}
+  		PWD=#{pwd}, ADDRESS1=#{address1}, ADDRESS2=#{address2}
   		WHERE ID=#{id}
   	</update>
   </mapper>

@@ -104,6 +104,42 @@
 	color:#000;
 	z-index:5;
 }
+
+/*위시리스트*/
+.exist img {
+	margin-top: -14px !important;
+}
+
+.empty img {
+	margin-top: 2px !important;
+}
+
+.icon {
+	float: right;
+	overflow: hidden;
+	height: 16px;
+	margin-top: 14px;
+	cursor: pointer;
+}
+
+/*버튼*/
+.btn_s_gray {/*장바구니*/
+    border: none;
+    background-color: #a9a9a9;
+    color: #FFF;
+}
+
+.btn_205 {
+    width: 205px;
+    height: 50px;
+    font-size: 16px;
+}
+.btn_s_red {
+    border: none;
+    background-color: #007bff;
+    color: #FFF;
+}
+
 </style>
 
 
@@ -133,14 +169,14 @@
 		<tr>
 			<td colspan="3">
 				<div style="margin: 20 20 20 20;" id="mainImgConatiner">
-					<img src="/img/${pdto.photo_af1 }" id="img_main" style="width: 400; height: auto; border: 1px solid;" />
+					<img src="/img/${pdto.photo_af1 }" id="img_main" style="width: 450; height: 450; border: 1px solid;" />
 				</div>
 			</td>
 		</tr>
 		<tr>
 			<td width="33%">
 				<div style="margin: 20 20 20 20;" id="imageThumb_0">
-				<img src="/img/${pdto.photo_af1 }" alt="" id="${pdto.photo_af1 }" style="width: 100%; height: auto; border: 1px solid;"  />
+				<img src="/img/${pdto.photo_af1 }" alt="" id="${pdto.photo_af1 }" style="width: 123px; height: 123px; border: 1px solid;"  />
 				</div>
 			</td>
 			<td width="33%">
@@ -160,9 +196,13 @@
 	</td>
 	
 	<!-- 오른쪽 content -->
-	<td style="padding: 20 0 40% 10px;">
+	<td style="padding: 20 0 40% 10px;" align="center" valign="middle">
 	
 		<div id="right_container" style="width: 100%; height: auto;">
+		<!-- 장바구니 폼 -->
+		<form action="" method="post" id="_frm_cart">
+		<input type="hidden" name="model_id" id="cart_model"  value="${pdto.model_id }"/>
+		<input type="hidden" name="id" id="cart_id" value="${login.id }" />
 		<table>
 		<colgroup>
 			<col width="50%"/><col width="50%"/>
@@ -171,34 +211,76 @@
 		<tr align="center">
 			<td colspan="2" align="left">
 			<br/><br/>
+				<h4>${idto.category }</h4><!-- 카테고리 --> 
+			</td>
+		</tr>
+		
+		<tr align="center">
+			<td align="left">
+			<br/><br/>
 				<h3>${pdto.p_name }</h3><!-- 상품명 --> 
 				<br/>
 			</td>
-		</tr>
-		
-		
-		<tr>
-			<td colspan="2">
-				<span><b>배송기간</b></span>
-				<span>약 7일</span>
-				<span><b>배송비</b></span>
-				<span>무료배송</span>
-				
-				<span><b>제품코드</b> : ${pdto.model_id }</span>
-				<hr/>
+			<td>
+			
+			<!-- 위시리스트 -->
+			<c:if test="${empty login or login == null}">
+				<p class="icon wish_icon empty">
+					<img src="/img/icon_wish.svg"/>
+				</p>
+			</c:if>				
+								
+			<c:if test="${!empty login or login != null}">
+				<c:set var="loop_flag" value="false"/>									
+																						
+				<c:if test="${pdto.model_id eq cart.model_id && login.id eq cart.id }">
+					<c:set var="loop_flag" value="true"/>
+				</c:if>																
+			
+				<c:if test="${loop_flag eq true }">
+					<p class="icon wish_icon exist">									
+						<img src="/img/icon_wish.svg"/>		
+					</p>
+				</c:if>
+				<c:if test="${loop_flag eq false }">
+					<p class="icon wish_icon empty">
+						<img src="/img/icon_wish.svg"/>		
+					</p>
+				</c:if>
+			</c:if>						
+			<label class="wishCnt" style="float: right; margin-top: 15px; margin-right: 4px; font-size: 12px; display: block;">										
+				<c:if test="${pdto.likecount ne 0 }">
+					${pdto.likecount }	
+				</c:if>								
+			</label>		
 			</td>
 		</tr>
+		
 		<tr>
 			<td colspan="2">
 				<font size="15"><b style="color: red;">￦ <fmt:formatNumber value="${idto.price }" pattern="#,###"/></b> / 개</font> 
 				<br/><br/>
 			</td>
 		</tr>
+		
 		<tr>
-			<td align="center">			
+			<td colspan="2">
+				<hr/>
+				<span><b>배송기간</b></span>
+				<span>약 7일</span>
+				<span><b>배송비</b></span>
+				<span>무료배송</span>
+				
+				<span><b>제품코드</b> : ${pdto.model_id }</span>
+			</td>
+		</tr>
+		
+		<tr>
+			<td align="center"><br/><br/>			
 				수량 : 
 			</td>
 			<td>
+			<br/><br/>
 			<span class="quantity">
 				<input type="text" id="count" name="count" value="1" size="20" readonly="readonly"/>&nbsp;&nbsp;
 				<a href="#" onclick="plusCount()"><img alt="" src="./image/btn_count_up.gif" class="up" /></a>
@@ -211,7 +293,7 @@
 			<br/><hr/>
 				<span style="text-align: right;"><b>총 상품금액</b> : 
 					<span id="test"></span>
-					<input type="text" id="totalprice" name="totalprice" value="" readonly="readonly" style="text-align: right; border: none; padding-right: 5px;"/> 
+					<input type="text" id="totalprice" value="" readonly="readonly" style="text-align: right; border: none; padding-right: 5px;"/> 
 				</span>
 				<hr/>
 				<br/><br/>
@@ -220,14 +302,15 @@
 		
 		<tr>
 			<td align="center">
-				<input type="button" value="장바구니" onclick="" />
+				<input type="button" value="장바구니" class="btn_s_gray btn_205" onclick="goCart()" />
 			</td>
 			<td align="center">
-				<input type="button" value="바로구매" onclick="" />
+				<input type="button" value="바로구매" class="btn_s_red btn_205" onclick="nowCart()" />
 			</td>
 		</tr>
 		
 		</table>
+		</form>
 		</div>	<!-- id="right_container" -->
 		
 	</td>
@@ -235,6 +318,7 @@
 
 </table>
 </div>
+
 <!-- 제품정보 컨테이너 -->
 <div id="tabContainer" style="box-sizing: border-box;" align="left">
 	<ul class="cloneTabsContainer">
@@ -335,7 +419,92 @@ $("#qnas").click(function() {
 	$("#qnasContainer").css("display", "block");
 });
 
+// 장바구니클릭시
+function goCart() {	
+	var id = $("#cart_id").val();
+	var model_id = $("#cart_model").val();
+	var count = $("#count").val();
+	if(id == null || id == ""){
+		alert("로그인 후 이용 가능합니다.");
+		return false;
+	}
+	
+	$.ajax({
+		url: "product_cart.do",
+		method: "post",
+		dataType: "json",
+		data: {"model_id" : model_id, "id" : id, "count" : count},
+		success:function(data){
+			alert("카트에 담겼습니다.");
+			if(confirm("장바구니로 가시겠습니까?")){
+				location.href="cartList.do";				
+			}else{				
+			}
+		},
+		error:function(xhr, textStatus, err){
+			console.log("ajax 에러가 발생했습니다.: " + xhr.responseText);
+			console.log("textStatus: " + textStatus);
+			console.log("error: " + error);
+		}	
+	});	
+}
 
+function nowCart() {
+	$("#");
+	
+}
+
+</script>
+
+<script>
+$(document).on("click", ".wish_icon", function(event){
+	var id = '${login.id}';
+	
+	if(id == null || id == "") {
+		alert("로그인 후 이용 가능합니다.");
+		return false;
+	}
+	
+	/* var model_id = $(this).parent().attr('data-product-cd'); */
+	var model_id = '${pdto.model_id}';
+	
+	$.ajax({
+		url: "updateWish.do",
+		cache: false,
+		method: "post",
+		dataType: "json",
+		data: {"model_id" : model_id, "id" : id},
+		success:function(data){
+			console.log(data.result);
+			console.log(data.isExist);
+			console.log(data.wishCnt);
+			
+			if(data.result == "SUCCESS"){
+				if(data.isExist == true) {
+					alert("위시리스트에 등록되었습니다.");
+					$(event.target).parent().addClass('exist');
+					$(event.target).parent().removeClass('empty');	
+				} else {
+					alert("위시리스트에서 삭제되었습니다.");
+					$(event.target).parent().addClass('empty');
+					$(event.target).parent().removeClass('exist');
+				}
+				
+				if(data.wishCnt == 0) {
+					$(event.target).parent().parent().find('.wishCnt').css("display", "none");
+				} else {
+					$(event.target).parent().parent().find('.wishCnt').css("display", "block");
+					$(event.target).parent().parent().find('.wishCnt').text(data.wishCnt);
+				}
+			}
+		},
+		error:function(xhr, textStatus, err){
+			console.log("ajax 에러가 발생했습니다.: " + xhr.responseText);
+			console.log("textStatus: " + textStatus);
+			console.log("error: " + error);
+		}
+	});
+});
 </script>
 
 </body>

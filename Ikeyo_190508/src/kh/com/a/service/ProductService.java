@@ -22,4 +22,6 @@ public interface ProductService {
 	
 	public ProductDto getProduct(String model_id);
 	public InventoryDto getinven(String model_id);
+	
+	public boolean cartInput(CartDto dto);
 }

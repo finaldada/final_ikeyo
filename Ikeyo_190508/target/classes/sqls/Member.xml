@@ -46,7 +46,7 @@
   		AUTHSTATUS=1
   		WHERE EMAIL=#{email}
   	</update>
-		
+  	
   	<select id="findId" parameterType="kh.com.a.model.MemberDto" resultType="kh.com.a.model.MemberDto">
   		SELECT ID
   		FROM MEMBER
@@ -59,13 +59,26 @@
   		WHERE id=#{id} AND EMAIL=#{email}
   	</update>
   	
-	<select id="memberList"  resultType="kh.com.a.model.MemberDto">
-  		SELECT ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
-  		AUTH, PHONE, PAYPWD, DEL, GRADE, POINT, AUTHKEY, AUTHSTATUS
-  		FROM MEMBER
+  	<insert id="naverLogin" parameterType="kh.com.a.model.MemberDto">
+  		INSERT INTO MEMBER(ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
+  							AUTH, PHONE, PAYPWD, DEL, GRADE, POINT, AUTHKEY, AUTHSTATUS)
+  		VALUES(#{id}, '0000', #{name}, #{email}, #{address1}, NULL, 3, #{phone},
+  				0, 0, '일반', 1000, NULL, 1)
+  	</insert>
+  	
+  	<select id="naverLoginCount" parameterType="kh.com.a.model.MemberDto" resultType="java.lang.Integer">
+  		select NVL(COUNT(*), 0)
+  		from member
+  		where id=#{id} or email=#{email}
   	</select>
   	
-  	 <select id="getMemberPagingList" parameterType="kh.com.a.model.BbsParam"
+  	<select id="naverEmailCheck" parameterType="kh.com.a.model.MemberDto" resultType="kh.com.a.model.MemberDto">
+  		select *
+  		from member
+  		where email=#{email}
+  	</select>
+  	
+<select id="getMemberPagingList" parameterType="kh.com.a.model.BbsParam"
 	resultType="kh.com.a.model.MemberDto">
 	SELECT ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
   		   AUTH, PHONE, PAYPWD, DEL, GRADE, POINT, AUTHKEY, AUTHSTATUS
@@ -111,5 +124,4 @@
 	DEL=1
 	WHERE ID=#{id}
 </update>
-
-</mapper>
+  </mapper>
