@@ -28,7 +28,7 @@
 		WHERE REV_SEQ=#{rev_seq}
 	</update>
 	
-	<!-- 상품평 한나 가져오기 -->
+	<!-- 상품평 하나 가져오기 -->
 	<select id="getreview" parameterType="java.lang.Integer" resultType="kh.com.a.model.ReviewDto">
 		SELECT *
 		FROM REVIEW

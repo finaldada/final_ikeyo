@@ -1,5 +1,7 @@
 package kh.com.a.service.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kh.com.a.dao.MemberDao;
+import kh.com.a.model.BbsParam;
 import kh.com.a.model.MemberDto;
 import kh.com.a.service.MemberService;
 import kh.com.a.util.MailHandler;
@@ -141,5 +144,25 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.naverEmailCheck(mem);
 	}
+	
+	@Override
+	public List<MemberDto> getMemberList(BbsParam param) {
+		
+		return memberDao.getMemberList(param);
+	}
+
+	@Override
+	public int getMemberCount(BbsParam param) {
+		
+		return memberDao.getMemberCount(param);
+	}
+
+	@Override
+	public boolean memberDel(String id) {
+		
+		return memberDao.memberDel(id);
+	
+	
+}
 	
 }

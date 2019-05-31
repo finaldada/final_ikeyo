@@ -106,7 +106,6 @@ public class MyPageDaoImpl implements MyPageDao {
 		
 		return sqlSession.selectList(ns + "getQnAPagingList", param);
 	}
-	
 	//주문내역 페이지
 	@Override
 	public List<Order_Dto> myorderpage(String id) {
@@ -118,5 +117,4 @@ public class MyPageDaoImpl implements MyPageDao {
 		System.out.println("오더넘버: " + order_num);
 		return sqlSession.selectList(ns + "mySubOrder", order_num);
 	}
-	
 }

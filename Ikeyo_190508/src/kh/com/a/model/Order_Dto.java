@@ -10,13 +10,13 @@ DROP TABLE ORDER_
 CASCADE CONSTRAINTS;
 
 DROP SEQUENCE SEQ_ORDER;
+DROP SEQUENCE ORDER_NUM_SEQ;
 
 CREATE TABLE ORDER_(
 ORD_SEQ NUMBER(8) PRIMARY KEY,
-MODEL_ID VARCHAR2(50) NOT NULL,
 ID VARCHAR2(50) NOT NULL,
 TOTAL_PRICE NUMBER(20) NOT NULL,
-ORDER_NUM NUMBER(20) NOT NULL,
+ORDER_NUM NUMBER(20) UNIQUE NOT NULL,
 DELI_INFO NUMBER(1) NOT NULL,
 REGDATE DATE NOT NULL,
 RNAME VARCHAR2(50) NOT NULL,
@@ -35,23 +35,18 @@ START WITH 1000
 INCREMENT BY 1;
 
 ALTER TABLE ORDER_
-ADD CONSTRAINT FK_ORD_MD FOREIGN KEY(MODEL_ID)
-REFERENCES INVENTORY(MODEL_ID);
-
-ALTER TABLE ORDER_
 ADD CONSTRAINT FK_ORD_ID FOREIGN KEY(ID)
 REFERENCES MEMBER(ID);
 
 ALTER TABLE ORDER_ MODIFY(REGDATE DATE DEFAULT sysdate);
 
-ALTER TABLE ORDER_ MODIFY(order_num VARCHAR2(30));
+--ALTER TABLE ORDER_ MODIFY(ORDER_NUM VARCHAR2(30));
 
-alter table ORDER_ MODIFY(ADDRESS1 VARCHAR2(70));
+ALTER table ORDER_ MODIFY(ADDRESS1 VARCHAR2(70));
 
-alter table ORDER_ MODIFY(ADDRESS2 VARCHAR2(70));
+ALTER table ORDER_ MODIFY(ADDRESS2 VARCHAR2(70));
 
 ALTER TABLE ORDER_ ADD(CARTSEQ NUMBER(8));
-
  */
 
 public class Order_Dto implements Serializable {
@@ -61,12 +56,13 @@ public class Order_Dto implements Serializable {
 	private int total_price;	// 총 가격
 	private String order_num;		// 주문번호
 	private int deli_info;		// 배송상태
-	private Date regdate;		// 주문완료날짜
+	private Date regdate;		// 주문일
 	private String rname;		// 배송자이름
 	private String address1;	// 배송지 주소1
 	private String address2;	// 배송지 주소2
 	private String phone;		// 배송자 폰번호
 	private String content;		// 주문요청사항
+	private int cartseq;  
 
 	
 	public Order_Dto() {
@@ -75,7 +71,7 @@ public class Order_Dto implements Serializable {
 
 
 	public Order_Dto(int ord_seq, String id, int total_price, String order_num, int deli_info, Date regdate,
-			String rname, String address1, String address2, String phone, String content) {
+			String rname, String address1, String address2, String phone, String content, int cartseq) {
 		super();
 		this.ord_seq = ord_seq;
 		this.id = id;
@@ -88,6 +84,7 @@ public class Order_Dto implements Serializable {
 		this.address2 = address2;
 		this.phone = phone;
 		this.content = content;
+		this.cartseq = cartseq;
 	}
 
 
@@ -201,13 +198,24 @@ public class Order_Dto implements Serializable {
 	}
 
 
+	public int getCartseq() {
+		return cartseq;
+	}
+
+
+	public void setCartseq(int cartseq) {
+		this.cartseq = cartseq;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Order_Dto [ord_seq=" + ord_seq + ", id=" + id + ", total_price=" + total_price + ", order_num="
 				+ order_num + ", deli_info=" + deli_info + ", regdate=" + regdate + ", rname=" + rname + ", address1="
-				+ address1 + ", address2=" + address2 + ", phone=" + phone + ", content=" + content + "]";
+				+ address1 + ", address2=" + address2 + ", phone=" + phone + ", content=" + content + ", cartseq="
+				+ cartseq + "]";
 	}
 
 
-
+	
 }

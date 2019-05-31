@@ -96,6 +96,7 @@
 		ORDER BY QNA_SEQ ASC
   	</select>
   	
+  	
   	<select id="myOrderpage" parameterType="java.lang.String"
   		resultType="kh.com.a.model.Order_Dto">
 		SELECT * FROM ORDER_ 
@@ -113,5 +114,4 @@
 		WHERE a.model_id = p.model_id 
 		AND ORDER_NUM=#{order_num} 
   	</select>
-  	
   </mapper>

@@ -57,7 +57,7 @@ public class AllOrderController {
 
 		Order_Dto order_ = allOrderService.getDetail(order_num);
 		System.out.println(order_.toString());
-		Order_Sub_Dto order_sub = allOrderService.getDetail_sub(order_num);
+		List<Order_Sub_Dto> order_sub = allOrderService.getDetail_sub(order_num);
 		System.out.println(order_sub.toString());
 		
 		model.addAttribute("order_", order_);

@@ -103,7 +103,7 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		return myPageDao.getQnAPagingList(param);
 	}
-	
+
 	// 주문내역 페이지
 	@Override
 	public List<Order_Dto> myorderpage(String id) {
@@ -114,6 +114,5 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<Order_Sub_Dto> getMySubOrder(String order_num) {
 		return myPageDao.getMySubOrder(order_num);
 	}
-	
 	
 }

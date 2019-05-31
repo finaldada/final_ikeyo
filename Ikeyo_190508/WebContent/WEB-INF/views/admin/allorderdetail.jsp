@@ -66,18 +66,26 @@
 
 <tr align="left">
 	<td>주문번호<hr></td>
-	<td>${order_sub.order_num }<hr></td>
+	<td>${order_.order_num }<hr></td>
 	
 </tr>
 
 <tr align="left">
-	<td>모델명<br>물품가격<hr></td>
-	<td>${order_sub.model_id }<br>${order_.total_price / order_sub.count }원<hr></td>
+	<td>모델명/수량<hr></td>
+	<td><c:forEach items="${order_sub }" var="sub">[<b>${sub.model_id }</b>]&nbsp;&nbsp;&nbsp;[<b>${sub.count }</b>]개<br></c:forEach><hr></td>
 </tr>
 
 <tr align="left">
-	<td>주문 수량<hr></td>
-	<td>${order_sub.count }<hr></td>
+	<td>총수량<hr></td>
+	<td><c:set var = "total" value = "0" />
+
+<c:forEach var="sub" items="${order_sub}" varStatus="vs">     
+
+<c:set var= "total" value="${total + sub.count}"/>
+
+</c:forEach>
+
+<c:out value="${total}"/><hr></td>
 </tr>
 
 <tr align="left">
@@ -128,7 +136,7 @@
 
 <tr align="center">
 	<td colspan="2">
-	<input type="button" value="Update"  class="joinButton btn_s_blue btn_100" onclick="goUpdate()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" value="Update"  class="joinButton btn_s_blue btn_100" onclick="goUpdate('${order_.deli_info }')">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" value="Cancel" class="joinButton btn_s_gray btn_100" onclick="window.close()">
 	<input type="hidden" id="ord_seq" name="ord_seq" value="${order_.ord_seq }">
 	</td>
@@ -142,17 +150,34 @@
 
 <script type="text/javascript">
 
-function goUpdate() {
+function goUpdate(deli_info) {
 	
+	//alert(deli_info);
+	
+	var result = confirm('배송상태를 업데이트 하시겠습니까?'); 
+	
+	if(result) { 
+		
+	if(deli_info >= 1){
+		
+		alert("이미 업데이트가 되어있습니다.");
+		
+		
+	}else { // 0일 때 작동 
+			
 	var ord_seq = $("#ord_seq").val();
-	alert("ord_seq");
+	
+	//alert("ord_seq");
+	
 	$.ajax({
 		url:"allorderupdate.do",
 		type:"post",
 		data:{ ord_seq:ord_seq },
 		success:function(data){
-			alert("success");
-			alert(data);
+			
+			//alert("success");
+			//alert(data);
+			
 			if(data.trim() == "\"OK\""){
 				
 				alert("배송 상태 업데이트 완료");
@@ -168,6 +193,15 @@ function goUpdate() {
 			alert("error");
 		}
 	});
+	
+	}
+	
+	}else{
+		
+		
+		
+	}	
+	
 }
 
 

@@ -13,6 +13,6 @@ public interface AllOrderService {
 	public int getAllOrderCount(BbsParam param);
 	
 	public Order_Dto getDetail(String order_num);
-	public Order_Sub_Dto getDetail_sub(String order_num);
+	public List<Order_Sub_Dto> getDetail_sub(String order_num);
 	public boolean deliInfoUpdate(String ord_seq);
 }

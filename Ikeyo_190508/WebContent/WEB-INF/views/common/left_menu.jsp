@@ -62,19 +62,19 @@
           <a class="nav-link js-scroll-trigger" href="productList.do">▤ 모든 제품!!</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=책상">책상/테이블</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=책상/테이블">책상/테이블</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=침대">침대/매트릭스</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=침대/매트릭스">침대/매트릭스</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=의자">의자/소파</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=의자/소파">의자/소파</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=수납장">옷장/수납장</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=옷장/수납장">옷장/수납장</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=커튼">커튼/블라인드/조명</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=액세서리">액세서리</a>
         </li>
       </ul>
     </div>

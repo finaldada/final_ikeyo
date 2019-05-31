@@ -229,7 +229,7 @@ img {
 									</p>
 									<c:if test="${empty cartList }">
 										<p class="icon wish_icon empty">
-											<img src="/img/icon_wish.svg">
+											<img src="image/icon_wish.svg">
 										</p>
 									</c:if>									
 									<c:if test="${!empty cartList }">
@@ -241,12 +241,12 @@ img {
 										</c:forEach>
 										<c:if test="${loop_flag eq true }">
 											<p class="icon wish_icon exist">									
-												<img src="/img/icon_wish.svg">		
+												<img src="image/icon_wish.svg">		
 											</p>
 										</c:if>
 										<c:if test="${loop_flag eq false }">
 											<p class="icon wish_icon empty">
-												<img src="/img/icon_wish.svg">		
+												<img src="image/icon_wish.svg">		
 											</p>
 										</c:if>
 									</c:if>						

@@ -2,6 +2,7 @@ package kh.com.a.controller;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import kh.com.a.model.BbsParam;
 import kh.com.a.model.MemberDto;
 import kh.com.a.service.MemberService;
 import kh.com.a.util.JsonStringParse;
@@ -262,4 +264,52 @@ public class MemberController {
 		
 		return "main.tiles";
 	}
+	
+//  회원 관리 !! 
+	@RequestMapping(value = "memberlist.do", method= {RequestMethod.GET,RequestMethod.POST})
+	public String memberlist(Model model, BbsParam param) {
+		
+		
+		
+		// paging 처리
+		int sn = param.getPageNumber();
+		int start = (sn) * param.getRecordCountPerPage() + 1;
+		int end = (sn+1) * param.getRecordCountPerPage();
+		
+		param.setStart(start);
+		param.setEnd(end);
+		
+		List<MemberDto> memberlist = memberService.getMemberList(param); 
+		int totalRecordCount = memberService.getMemberCount(param);
+		
+		model.addAttribute("memberlist", memberlist);
+		model.addAttribute("pageNumber", sn);
+		model.addAttribute("pageCountPerScreen", 10); 
+		model.addAttribute("recordCountPerPage", param.getRecordCountPerPage());
+		model.addAttribute("totalRecordCount", totalRecordCount);
+		
+		
+		model.addAttribute("s_category", param.getS_category());
+		model.addAttribute("s_keyword", param.getS_keyword());
+		
+		
+		return "memberlist.tiles";
+	}
+	
+	@RequestMapping(value = "memberdel.do", method= {RequestMethod.GET,RequestMethod.POST})
+	public String memberDel(String id) {
+		
+		boolean isS = memberService.memberDel(id);
+		if(isS) {
+			
+			System.out.println(id + "회원 정보 삭제 성공 ");
+			return "redirect:/memberlist.do";
+		}else {
+			
+			System.out.println(id + "회원 정보 삭제 실패 ");
+			return "redirect:/memberlist.do";
+		}
+		
+	}
+	
 }

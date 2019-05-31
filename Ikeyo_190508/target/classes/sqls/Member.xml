@@ -77,4 +77,51 @@
   		from member
   		where email=#{email}
   	</select>
+  	
+<select id="getMemberPagingList" parameterType="kh.com.a.model.BbsParam"
+	resultType="kh.com.a.model.MemberDto">
+	SELECT ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
+  		   AUTH, PHONE, PAYPWD, DEL, GRADE, POINT, AUTHKEY, AUTHSTATUS
+	FROM
+		(SELECT ROW_NUMBER() OVER(ORDER BY GRADE DESC, AUTH ASC)AS RNUM,
+			ID, PWD, NAME, EMAIL, ADDRESS1, ADDRESS2,
+  			AUTH, PHONE, PAYPWD, DEL, GRADE, POINT, AUTHKEY, AUTHSTATUS
+		 FROM MEMBER
+		 WHERE DEL=0 AND 1=1
+		 <if test="s_category != null and s_category != ''
+		 		and s_keyword != null and s_keyword != ''">
+		 	
+		 	<if test="s_category == 'model_id'">
+		 		AND MODEL_ID LIKE '%'||#{s_keyword}||'%'
+		 	</if>
+		 	<if test="s_category == 'category'">
+		 		AND CATEGORY LIKE '%'||#{s_keyword}||'%'
+		 	</if>	 		
+		 </if> 
+		) A
+	WHERE RNUM BETWEEN ${start} AND ${end}	
+</select>
+
+<select id="getMemberCount" parameterType="kh.com.a.model.BbsParam" resultType="java.lang.Integer">
+	
+	SELECT NVL(COUNT(*), 0) AS CNT
+	FROM MEMBER
+	WHERE DEL=0 AND 1=1
+	<if test="s_category != null and s_category != ''
+		 		and s_keyword != null and s_keyword != ''">		 	
+	 	<if test="s_category == 'model_id'">
+	 		AND MODEL_ID LIKE '%'||#{s_keyword}||'%'
+	 	</if>
+	 	<if test="s_category == 'category'">
+	 		AND CATEGORY LIKE '%'||#{s_keyword}||'%'
+	 	</if>
+	 		
+	 </if>  
+</select>
+  	
+<update id="memberDel" parameterType="java.lang.String">
+  	UPDATE MEMBER SET
+	DEL=1
+	WHERE ID=#{id}
+</update>
   </mapper>

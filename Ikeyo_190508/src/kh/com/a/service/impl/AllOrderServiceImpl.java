@@ -37,7 +37,7 @@ public class AllOrderServiceImpl implements AllOrderService {
 	}
 
 	@Override
-	public Order_Sub_Dto getDetail_sub(String order_num) {
+	public List<Order_Sub_Dto> getDetail_sub(String order_num) {
 		
 		return allOrderDao.getDetail_sub(order_num);
 	}

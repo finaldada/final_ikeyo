@@ -148,18 +148,21 @@ public class InventoryController {
 	}
 	
 
-	@RequestMapping(value="inventorydelete.do", method={RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	@RequestMapping(value="inventorydelete.do",
+				    produces = "application/String; charset=utf-8",
+					method={RequestMethod.GET, RequestMethod.POST})
 	public String inventorydelete(InventoryDto dto) {
 		
 		
 		boolean isS = inventoryService.inventoryDelete(dto);
 		
 		if(isS) {
-			System.out.println("인벤토리 삭제성공");
-			return "forward:/inventorydetail.do";
+			String msg = "OK";
+			return msg; 
 		}else {
-			System.out.println("인벤토리 삭제실패");
-			return "forward:/inventorydetail.do";
+			String msg = "인벤토리 삭제 실패";
+			return msg;  
 		}
 	}
 	
