@@ -21,6 +21,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>InventoryList</title>
+
 </head>
 <body>
 
@@ -63,17 +64,18 @@ $(document).ready(function () {
 <!--  품명(모델번호) / 카테고리 / 수량 / 등록일 / 가격
     모델번호 카테고리    |       |  검색 -->
 
-<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%">
+<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%;">
 <h3>Inventory List</h3>
+<hr><br>
 <form action="" id="inven_frm" name="inven_frm" method="post">
 <table border="2" width="100%" height="100%" id="list_table" class="tablesorter">
 
 <colgroup>
-	<col style="width: 70px">
-	<col style="width: 70px">
-	<col style="width: 200px">
-	<col style="width: 100px">
-	<col style="width: 200px">
+	<col style="width: 15%">
+	<col style="width: 20%">
+	<col style="width: 30%">
+	<col style="width: 10%">
+	<col style="width: 25%">
 </colgroup>
 
 <thead>
@@ -128,10 +130,10 @@ $(document).ready(function () {
 	<option value="category">카테고리</option>
 	</select>
 	<input type="text" id="s_keyword" name="s_keyword">
-	<input type="button" id="_btnSearch" value="검색">
+	<input type="button"  class="joinButton btn_s_blue btn_100" id="_btnSearch" value="검색">
 	</td>
-	<td>
-	<input type="button" value="글쓰기" onclick="goWrite()"> 
+	<td align="center">
+	<input type="button" class="joinButton btn_s_blue btn_100" value="글쓰기" onclick="goWrite()"> 
 	</td>
 </tr>
 
@@ -143,7 +145,7 @@ $(document).ready(function () {
 </form>  
 </div>   
 
-<div>
+<div style=" margin-bottom: 10%; font-size: 20pt;">
 	<jsp:include page="/WEB-INF/views/inventory/paging.jsp" flush="false">
 		<jsp:param value="${pageNumber }" name="pageNumber"/>
 		<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>

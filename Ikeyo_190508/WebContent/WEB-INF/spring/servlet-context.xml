@@ -104,6 +104,9 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
+	<!-- NaverLoginBO class에 대한 bean설정 추가 -->
+	<bean id="naverLoginBO" class="kh.com.a.util.NaverLoginBO"/>
+	
 	<!-- SockJS관련 빈등록 -->
 	<!-- <bean id="echoHandler" class="kh.com.a.ws.EchoHandler" />
 	<websocket:handlers>

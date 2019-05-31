@@ -35,6 +35,7 @@ public class MemberDto implements Serializable {
 	   private int point;		// 포인트
 	   private String authkey;	// 인증키생성
 	   private int authstatus;	// 인증값(0, 1)
+	   private int naver=0;
 	   
 	   public MemberDto() {
 	   }
@@ -166,6 +167,14 @@ public class MemberDto implements Serializable {
 
 	public void setAuthstatus(int authstatus) {
 		this.authstatus = authstatus;
+	}
+
+	public int getNaver() {
+		return naver;
+	}
+
+	public void setNaver(int naver) {
+		this.naver = naver;
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import kh.com.a.dao.ReviewDao;
 import kh.com.a.model.ReviewDto;
 
 @Repository
-public class ReciewDaoImpl implements ReviewDao {
+public class ReviewDaoImpl implements ReviewDao {
 
 	@Autowired
 	SqlSession sqlSession;
@@ -31,6 +31,25 @@ public class ReciewDaoImpl implements ReviewDao {
 		
 		return list;
 	}
+
+	@Override
+	public ReviewDto getreview(int rev_seq) {
+		ReviewDto dto = sqlSession.selectOne(ns + "getreview", rev_seq); 
+		return dto;
+	}
+
+	@Override
+	public boolean reviewUpdate(ReviewDto dto) {
+		int n = sqlSession.update(ns + "reviewUpdate", dto);
+		System.out.println("up? : " + n);
+		return n>0?true:false;
+	}
+	
+	@Override
+	public void reviewDeleteMy(ReviewDto dto) {
+		sqlSession.update(ns + "reviewDeleteMy", dto);
+	}
+	
 	
 	
 	

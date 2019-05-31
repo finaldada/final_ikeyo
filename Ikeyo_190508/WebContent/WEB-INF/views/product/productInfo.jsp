@@ -19,7 +19,7 @@ ${pdto.content }
 <br/>
 
 <h4>다운로드</h4>
-<font>최신 버전의 문서만 다운로드할 수 있습니다. 제품에 포함된 문서와 내용이 다를 수 있습니다.</font>
+<font style="font-size: 14px;">최신 버전의 문서만 다운로드할 수 있습니다. 제품에 포함된 문서와 내용이 다를 수 있습니다.</font>
 <br/><br/>
 <b>PDF 파일 : </b> <a href="#none" onclick="filedowns('${pdto.pdf_af}', '${pdto.model_id }')">${pdto.pdf_bf }</a>
 

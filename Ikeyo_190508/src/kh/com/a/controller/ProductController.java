@@ -3,10 +3,13 @@ package kh.com.a.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -22,11 +25,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kh.com.a.model.CartDto;
 import kh.com.a.model.InventoryDto;
+import kh.com.a.model.MemberDto;
 import kh.com.a.model.PagingParam;
 import kh.com.a.model.ProductDto;
+import kh.com.a.model.QnADto;
 import kh.com.a.model.ReviewDto;
 import kh.com.a.service.InventoryService;
 import kh.com.a.service.ProductService;
+import kh.com.a.service.QnAService;
 import kh.com.a.service.ReviewService;
 import kh.com.a.util.FUpUtil;
 
@@ -43,41 +49,47 @@ public class ProductController {
 	@Autowired
 	ReviewService reviewService;
 	
-	// 상품 리스트 출력
-	@RequestMapping(value = "productList.do", method = RequestMethod.GET)
-	public String productList(Model model, String category, PagingParam param) {
-		logger.info("ProductController productList " + new Date());
-		
-		int sn = param.getPageNumber();
-		int start = (sn) * param.getRecordCountPerPage()+1;
-		int end = (sn+1) * param.getRecordCountPerPage();
-		
-		
-		System.out.println("sn : " + sn);
-		System.out.println("start : " + start);
-		System.out.println("end : " + end);
-		
-		param.setStart(start);
-		param.setEnd(end);
-		param.setCategory(category);
-		
-		List<ProductDto> productList = productService.getProductPagingList(param);
-		int totalRecordCount = productService.getProductCount(param);
-				//productService.getProductList(category);
-		List<CartDto> cartList = productService.getCartList(category);
-		
-		model.addAttribute("productList", productList);
-		model.addAttribute("pageNumber", sn);
-		model.addAttribute("pageCountPerScreen", 8);
-		model.addAttribute("recordCountPerPage", param.getRecordCountPerPage());
-		model.addAttribute("totalRecordCount", totalRecordCount);
-		model.addAttribute("category", param.getCategory());
-		model.addAttribute("cartList", cartList);
-		
-		return "productList.tiles";
-	}
+	@Autowired
+	QnAService qnaService;
 	
-	// 위시리스트 업데이트
+	// 상품 리스트 출력
+		@RequestMapping(value = "productList.do", method = RequestMethod.GET)
+		public String productList(Model model, String category, PagingParam param) {
+			logger.info("ProductController productList " + new Date());
+			
+			System.out.println("category=" + category);
+			
+			int sn = param.getPageNumber();
+			int start = (sn) * param.getRecordCountPerPage()+1;
+			int end = (sn+1) * param.getRecordCountPerPage();
+			
+			System.out.println("sn : " + sn);
+			System.out.println("start : " + start);
+			System.out.println("end : " + end);
+			
+			param.setStart(start);
+			param.setEnd(end);
+			
+			if(category != null)
+				param.setCategory(category);
+			
+			List<ProductDto> productList = productService.getProductPagingList(param);
+			int totalRecordCount = productService.getProductCount(param);
+					//productService.getProductList(category);
+			List<CartDto> cartList = productService.getCartList(param);
+			
+			model.addAttribute("productList", productList);
+			model.addAttribute("pageNumber", sn);
+			model.addAttribute("pageCountPerScreen", 8);
+			model.addAttribute("recordCountPerPage", param.getRecordCountPerPage());
+			model.addAttribute("totalRecordCount", totalRecordCount);
+			model.addAttribute("category", param.getCategory());
+			model.addAttribute("cartList", cartList);
+			
+			return "productList.tiles";
+		}
+	
+	// 위시리스트 업데이트(ajax)
 	@ResponseBody
 	@RequestMapping(value = "updateWish.do", method = RequestMethod.POST)
 	public Map<String, Object> updatewish(String model_id, String id, Model model) throws Exception {
@@ -118,7 +130,7 @@ public class ProductController {
 
 		// 재고 리스트 받아오기
 		List<InventoryDto> invenlist = inventoryService.getInventoryList();
-		System.out.println("dddd:");
+		//System.out.println("dddd:");
 		model.addAttribute("invenlist", invenlist);	// 모델에 재고리스트 날려줌
 		
 		return "productAdd.tiles";
@@ -227,7 +239,7 @@ public class ProductController {
 	
 	// 상품 디테일
 	@RequestMapping(value="productDetail.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String productDetila(String model_id, Model model) {
+	public String productDetila(HttpSession session, String model_id, Model model) {
 		System.out.println("model_id : " + model_id);
 		
 		// 상품받아오기
@@ -238,12 +250,80 @@ public class ProductController {
 		InventoryDto idto = productService.getinven(model_id);
 		model.addAttribute("idto", idto);
 		
-		// 상품평 받아오기
+		// 상품평 리스트 받아오기
 		List<ReviewDto> rlist = reviewService.reviewList(model_id);
 		model.addAttribute("rlist", rlist);
 		
+		int parent = pdto.getProd_seq();
+		// QnA 리스트 받아오기
+		List<QnADto> qlist = qnaService.qnaList(parent);
+		model.addAttribute("qlist", qlist);
+		
+		// 위시리스트
+		List<CartDto> cartlist = productService.p_datailCart(model_id);
+		model.addAttribute("cartlist", cartlist);
+		
+		//int ck = productService.checkWish(cart);
+		
+		// 로그인 한 정보 가져오기
+		MemberDto mem = (MemberDto)session.getAttribute("login");
+		model.addAttribute("mem", mem);	// 로그인정보를 넘겨줌
+
 		return "productDetail.tiles";
 	}
+	
+	// 장바구니 보내기
+	@ResponseBody
+	@RequestMapping(value="product_cart.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public Map<String, Object> cart_input(String model_id, String id, int count) {
+		
+		CartDto cart = new CartDto();
+		cart.setId(id);
+		cart.setModel_id(model_id);
+		cart.setCount(count);
+		
+		boolean isS = productService.cartInput(cart);
+		if(isS) {
+			System.out.println("카트담기 성공!");
+		}else {
+			System.out.println("카트담기 실패..");
+		}
+		
+		Map<String, Object> cartmap = new HashMap<String, Object>();
+		//cartmap.put("isS", isS);		
+		return cartmap;		
+	}
+	
+	// 바로결제하기
+	@RequestMapping(value="productOrder.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String productOrder(CartDto dto, Model model) {
+		System.out.println(dto.toString());
+		
+		List<CartDto> orderlist = productService.ordercartSel(dto.getId());
+		System.out.println("orderlist : " + orderlist + " g : " + orderlist.size() + "f : " + orderlist.isEmpty());
+		if(orderlist.isEmpty() == false) {
+			System.out.println("아니..");
+			productService.ordercartDel(dto.getId());	// 삭제			
+			
+			productService.ordercartInput(dto);	// 카트에 담기
+			
+			orderlist = productService.ordercartSel(dto.getId()); // 리스트에 담기
+		}else {
+			productService.ordercartInput(dto);	// 카트에 담기				
+			// 장바구니...
+			orderlist = productService.ordercartSel(dto.getId());	// 리스트에 담기
+		}
+		
+		model.addAttribute("orderlist", orderlist);		
+
+		// 상품리스트
+		List<ProductDto> orderplist = new ArrayList<ProductDto>(); 
+		orderplist.add(productService.getProduct(dto.getModel_id()));
+		model.addAttribute("orderplist", orderplist);		
+		
+		return "orderlist.tiles";
+	}
+	
 	
 	// 파일 다운로드
 	@RequestMapping(value="productfileDownload.do", method= {RequestMethod.GET, RequestMethod.POST})

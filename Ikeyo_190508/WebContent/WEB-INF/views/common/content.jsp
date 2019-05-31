@@ -7,12 +7,14 @@
 <!-- content.css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/content.css">
 
+
 <div class="f_content">
 <div class="f2_content">
   
   <h3 style="color: #2e497e;">meubelmake</h3>
   
-  <div class="bd-example" style="width: 100%; height: 80%;">
+  
+  <div class="bd-example" style="">
  
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -24,25 +26,17 @@
     <div class="carousel-inner">
       
       <div class="carousel-item active">
-        <img src="image/top-bn-ko.jpg" class="d-block w-100" alt="" >
-        <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </div>
+        <img src="image/top-bn-ko.jpg" class="d-block w-80" alt="" style="width: 100%; height: 80%;">
       </div>
       
       <div class="carousel-item">
-        <img src=".." class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
+        <img src="image/20190508_betterworld_pcko.jpg" class="d-block w-80" alt="..." style="width: 100%; height: 80%;">
       </div>
       <div class="carousel-item">
-        <img src="..." class="d-block w-100" alt="...">
+        <img src="image/S12001.jpg" class="d-block w-80" alt="..." style="width: 100%; height: 80%;">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <h5><b>보스턴 3인(패브릭)</b></h5>
+			  <p><b>몸을 포근하게 감싸주어 오래 머물고 싶은 기분 좋은 휴식을 선사합니다.</b></p>
         </div>
       </div>
     </div>
@@ -58,5 +52,5 @@
 </div>
 	
 </div>	
-</div> 
+</div>
  

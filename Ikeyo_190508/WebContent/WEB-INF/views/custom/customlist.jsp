@@ -6,13 +6,16 @@
 
 <style>
 .headtitle p {
-    font-size: 35px;
-    margin-bottom: 50px;
-    padding-top: 80px;
+    margin-bottom: 70px;
+    padding-top: 130px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+    font-family: 'NanumBarunGothic', 'Nanum Gothic', '돋움', Dotum, sans-serif;
 }
 
 table.noti {
-    width: 70%;
+    width: 80%;
     border-collapse: collapse;
     display: table;
     border-spacing: 2px;
@@ -40,9 +43,74 @@ table.noti {
     color: #aaa;
     text-align: center;
 }
+
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 9; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 100px auto 0px; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 500px; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.btnwrite{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background-color: #0051ba;
+    color: #FFF;
+}
+
+.btnsearch{
+	margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70px;
+    height: 30px;
+    font-size: 16px;
+    border: 1px solid #000;
+    background-color: #f0f0f0;
+    color: black;
+}
+
+button{
+	cursor: pointer;
+}
 </style>
-
-
 
 <%
 String category = (String)request.getAttribute("s_category");
@@ -63,13 +131,15 @@ $(document).ready(function(){
 </script>
 
 
+<div class="headtitle">
+	<p>고객의 소리</p>
+</div>
 
 <!-- arrow생성 -->
 <jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
 
+<div align="center">
 <table class="noti">
-
-
 <thead>
 	<tr class="noto">
 		<th>순서</th>
@@ -156,6 +226,17 @@ $(document).ready(function(){
 		</c:choose>
 	</tr>
 	</c:forEach>
+	<c:if test="${not empty login }">
+		<tr>
+			<td colspan="6" style="border: 1px solid #fff">
+				<div align="center">
+					<span>
+						<button type="button" class="btnwrite" style="border-color: #0051ba;" id="_btnAdd">글쓰기</button>
+					</span>
+				</div>
+			</td>
+		</tr>
+	</c:if>
 </tbody>
 </table>
 
@@ -163,13 +244,6 @@ $(document).ready(function(){
 <form id="frmDetail" action="customdetail.do" method="post">
 	<input type="hidden" id="hid" name="seq">
 </form>
-<c:if test="${not empty login }">
-	<div align="center">
-		<span>
-			<button type="button" id="_btnAdd">글쓰기</button>
-		</span>
-	</div>
-</c:if>
 <!-- 페이징 처리 -->
 <div id="paging_wrap">
 	<jsp:include page="/WEB-INF/views/notice/paging.jsp" flush="false">
@@ -203,7 +277,7 @@ $(document).ready(function(){
 	</td>
 	<td style="padding-left: 5px;">
 		<span class="button blue">
-			<button type="button" id="_btnSearch">검색</button>
+			<button type="button" id="_btnSearch" class="btnsearch">검색</button>
 		</span>
 	</td>
 </tr>
@@ -215,6 +289,34 @@ $(document).ready(function(){
 
 </form>
 </div>
+
+</div>
+
+<div id="myModal" class="modal">
+	<!-- Modal content -->
+    <div class="modal-content">
+    	<span class="close" style="text-align: right;">&times;</span>                                                               
+        <jsp:include page="/WEB-INF/views/custom/customwrite.jsp" flush="false"/> 
+    </div>
+</div>
+
+<script>
+//When the user clicks on the button, open the modal 
+$("#_btnAdd").on("click", function() {
+	$(".modal").css("display", "block");
+});
+
+//When the user clicks on <span> (x), close the modal
+$(".close").click(function() {
+	var im;
+	$(".modal").css("display", "none");
+	$("#title").val("");
+	$("#content").val("");
+	$("#lock_").prop('checked',false);
+	$("#fileload").val("");
+});
+</script>
+
 
 
 <script type="text/javascript">
@@ -231,11 +333,11 @@ function goPage(pageNumber) {
 	$("#_frmFormSearch").attr("action", "customlist.do").submit();
 }
 
-
+/*
 $("#_btnAdd").click(function () {
 	location.href="customwrite.do";
 });
-
+*/
 
 $("#_btnSearch").click(function(){
 //	alert("_btnSearch");

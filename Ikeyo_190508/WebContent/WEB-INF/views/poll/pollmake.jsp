@@ -6,6 +6,53 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
+<style type="text/css">
+
+input,textarea{
+	background-color: #ffffff00;
+}
+
+/* Button */
+
+.btn_s_blue{
+	border: none;
+	background-color: #0051ba;
+	color: #FFF;
+}
+.btn_s_blue:hover{
+	background-color: #0a3670
+}
+
+.btn_s_gray{
+	border: none;
+	background: #63666A;
+	color: #FFF;
+}
+
+.btn_s_gray:hover{
+	background-color: #4F5256;
+}
+
+.btn_100{
+	width: 100px; 
+	height: 50px;
+	font-size: 16px;
+}
+
+.btn_50{
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+}
+
+.btn_30{
+	width: 30px;
+	height: 30px;
+	font-size: 16px;
+}
+
+</style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 <script>
 
@@ -20,7 +67,7 @@ $(document).ready(function () {
 function pollchange( me ) { // 보기의 갯수를 갱신하는 함수 
 	
 	var num = me.options[me.selectedIndex].value;
-	alert(num + "개");
+	//alert(num + "개");
 	
 	for(i = 1; i <= 10; i++){ // 초기화 하는 이유 ?  기존에 있던 값을 없애기 위해  
 		$("#poll" + i).val("");
@@ -43,6 +90,9 @@ int tmonth = cal.get(Calendar.MONTH) + 1; // month는  0부터 시작하므로
 int tday = cal.get(Calendar.DATE);
 %>
 
+<div align="center"  style="margin-left: 10%; margin-right: 10%; margin-top: 10%; margin-bottom: 10%;">
+<h3>투표&nbsp;&nbsp;생성</h3>
+<hr><br><br>
 <form action="pollmakeAf.do" method="post">
 
 <table class="list_table" style="width: 85%">
@@ -51,15 +101,16 @@ int tday = cal.get(Calendar.DATE);
 </colgroup>
 
 <tr>
-	<th>아이디</th>
+	<th>아이디<hr></th>
 	<td style="text-align: left;">
 		${login.id }
-		<input type="hidden" name="id" value="${login.id }"> 
+		<input type="hidden" name="id" value="${login.id }">
+		<hr> 
 	</td>
 </tr>
 
 <tr>
-	<th>투표기한</th>
+	<th>투표기한<hr></th>
 	<td style="text-align: left;">
 		
 		<!--sdate연도 -->
@@ -149,6 +200,7 @@ int tday = cal.get(Calendar.DATE);
 		
 		%>
 		</select>일
+		<hr>
 	</td>
 </tr>
 
@@ -156,7 +208,7 @@ int tday = cal.get(Calendar.DATE);
 <tr>
 	<th>투표내용</th>
 	<td style="text-align: left;">
-		<textarea rows="10" cols="50" name="question"></textarea>
+		<textarea rows="10" cols="50" name="question"></textarea><hr>
 	</td>
 </tr>
 
@@ -173,7 +225,7 @@ int tday = cal.get(Calendar.DATE);
 				<%
 			}
 			%>
-		</select>개
+		</select>개<hr>
 	</td>
 </tr>
 
@@ -193,15 +245,17 @@ int tday = cal.get(Calendar.DATE);
 	</td>
 </tr>
 
-<tr align="center">
+<!-- <tr align="center" style="margin-top: 10%;">
 	<td colspan="2">
-		<input type="submit" value="투표 만들기">
+		<input type="submit" value="투표 만들기" class="joinButton btn_s_blue btn_100">
 	</td>
-</tr>
-
+</tr> -->
 
 </table>
 
-</form>
+<br><br>
+<input type="submit" value="투표 만들기" class="joinButton btn_s_blue btn_100">
 
+</form>
+</div>
 

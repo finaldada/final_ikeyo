@@ -50,6 +50,8 @@
 
 </head>
 <body>
+<div align="center" style="margin-top: 10%;margin-bottom: 10%;">
+
 <h3>상품등록 write</h3>
 
 <!-- <form action="productAddAf.do" method="post" enctype="multipart/form-data"> -->
@@ -205,6 +207,6 @@ function invenAdd(i_seq) {
 	
 
 </script>
-
+</div>
 </body>
 </html>

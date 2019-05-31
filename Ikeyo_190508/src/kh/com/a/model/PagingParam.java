@@ -10,6 +10,7 @@ public class PagingParam implements Serializable {
 	private int pageNumber = 0;	// 페이지 번호
 	private int start = 1;
 	private int end = 10;
+	private	String id;
 	
 	public PagingParam() { }
 
@@ -79,5 +80,13 @@ public class PagingParam implements Serializable {
 
 	public void setEnd(int end) {
 		this.end = end;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

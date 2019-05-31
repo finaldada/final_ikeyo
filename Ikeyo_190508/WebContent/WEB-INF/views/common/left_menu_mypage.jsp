@@ -62,12 +62,24 @@
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#">출석체크</a>
         </li>
+        <li class="nav-item">
+        	<a class="nav-link js-scroll-trigger" href="myQnA.do">상품 Q&A</a>
+        </li>
+        <li class="nav-item">
+        	<a class="nav-link js-scroll-trigger" href="myReview.do">상품평 관리</a>
+        </li>
         <c:if test="${login.auth == 1 }">
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="memberlist.do">회원관리</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="inventorylist.do">재고관리</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link js-scroll-trigger" href="qnaList_admin.do">QnA관리</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link js-scroll-trigger" href="allorderlist.do">주문관리</a>
         </li>
         </c:if>
       </ul>

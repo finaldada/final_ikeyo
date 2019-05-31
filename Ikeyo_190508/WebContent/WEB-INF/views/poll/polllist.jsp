@@ -14,57 +14,18 @@
 <script type="text/javascript" src="./jquery/jquery.tablesorter.min.js"></script>
 
 
+
 <%
 List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 %>
 
-<div style="margin-left: 10%; margin-right: 10%;">
-<!-- 관리자 -->
-<c:if test="${login.auth eq '1' }">
-
+<div align="center" style="margin-left: 10%; margin-right: 10%; margin-top: 10%; margin-bottom: 10%;">
+<h3>투&nbsp;&nbsp;표</h3>
+<hr><br><br>
 <table id="list_table" class="tablesorter" style="width: 95%" border="2">
-<col width="50"><col width="50"><col width="300">
-<col width="100"><col width="100"><col width="100">
-<col width="50"><col width="100">
-
-<thead>
-<tr>
-	<th>번호</th><th>아이디</th><th>질문</th>
-	<th>시작일</th><th>종료일</th><th>질문항수</th>
-	<th>투표수</th><th>등록일</th>
-</tr>
-</thead>
-
-<tbody>
-<%
-	for(int i = 0;i < plists.size(); i++){
-		PollDto poll = plists.get(i);
-		%>
-		<tr bgcolor="#aabbcc">
-			<td><%=i+1 %></td>
-			<td><%=poll.getId() %></td>
-			<td><%=poll.getQuestion() %></td>
-			<td><fmt:formatDate value="<%=poll.getSdate() %>" pattern="yyyy/MM/dd/"/></td>
-			<td><fmt:formatDate value="<%=poll.getEdate() %>" pattern="yyyy/MM/dd/"/></td>
-			<td style="text-align: center;"><%=poll.getItemcount() %></td>
-			<td style="text-align: center;"><%=poll.getPolltotal() %></td>
-			<td><fmt:formatDate value="<%=poll.getRegdate() %>" pattern="yyyy/MM/dd/"/></td>
-			
-		</tr>		
-		<%
-	}
-%>
-</tbody>
-</table>
-</c:if>
-
-<!-- 사용자 -->
-<c:if test="${login.auth eq '3' }">
-
-<table id="list_table" class="tablesorter" style="width: 95%" border="2">
-<col width="50"><col width="50"><col width="300"><col width="50">
-<col width="100"><col width="100"><col width="100">
-<col width="50"><col width="100">
+<col width="5%"><col width="10%"><col width="30%"><col width="5%">
+<col width="10%"><col width="10%"><col width="10%">
+<col width="10%"><col width="10%">
 
 <thead>
 <tr>
@@ -80,14 +41,14 @@ List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 		PollDto poll = plists.get(i);
 		%>
 		<tr bgcolor="#aabbcc">
-			<td><%=i+1 %></td>
-			<td><%=poll.getId() %></td>
+			<td align="center"><%=i+1 %></td>
+			<td align="center"><%=poll.getId() %></td>
 			<%
 			boolean isS = poll.isVote();
 			if(isS || DateUtil.isEnd(poll.getEdate())){
 			// 투표했음	투표기한이 끝났음 	
 				%>				
-				<td>[마감]<%=poll.getQuestion() %></td>				
+				<td><a href="#"><img alt="" src="image/end.jpg" style="	width: 30px; height: 30px;"></a>&nbsp;&nbsp;<%=poll.getQuestion() %></td>				
 				<%
 			}else{
 				%>
@@ -114,11 +75,11 @@ List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 			%>
 			</td>
 			
-			<td><fmt:formatDate value="<%=poll.getSdate() %>" pattern="yyyy/MM/dd/"/></td>
-			<td><fmt:formatDate value="<%=poll.getEdate() %>" pattern="yyyy/MM/dd/"/></td>
+			<td><fmt:formatDate value="<%=poll.getSdate() %>" pattern="yyyy/MM/dd"/></td>
+			<td><fmt:formatDate value="<%=poll.getEdate() %>" pattern="yyyy/MM/dd"/></td>
 			<td style="text-align: center;"><%=poll.getItemcount() %></td>
 			<td style="text-align: center;"><%=poll.getPolltotal() %></td>
-			<td><fmt:formatDate value="<%=poll.getRegdate() %>" pattern="yyyy/MM/dd/"/></td>		
+			<td><fmt:formatDate value="<%=poll.getRegdate() %>" pattern="yyyy/MM/dd"/></td>		
 		</tr>
 		<%
 	}
@@ -126,7 +87,7 @@ List<PollDto> plists = (List<PollDto>)request.getAttribute("plists");
 
 </tbody>
 </table>
-</c:if>
+
 
 </div>
 

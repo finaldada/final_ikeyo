@@ -9,7 +9,7 @@
 .noto { font-family: 'Noto Sans KR'; letter-spacing: -1px;}
 .f13 {
 	font-size:13px;	/* 10pt */
-	margin-bottom: 5px;
+	margin-bottom: 5px; 
 }
 </style>
 </head>
@@ -78,8 +78,22 @@ function mark(st) {
 }
 
 function goWrite() {
-	alert("왜 안되냐?");
-	$("#_frmForm1").attr("action", "reviewWriteAf.do").submit();
+	
+	if($("#title").val().trim() == ""){
+		alert("제목을 입력하세요");
+		$("#title").focus();
+	}else if($("#content").val().trim() == ""){
+		alert("내용을 입력하세요");
+		$("#content").focus();
+	}else if($("#starpoint").val() == ""){
+		alert("만족도를 설정해 주세요");
+	}else if($("#fileload").val() == ""){
+		alert("사진을 넣어주세요");
+	}else if(${login.id eq null}){
+		alert("로그인을 해야 작성할 수 있습니다.");
+	}else{
+		$("#_frmForm1").attr("action", "reviewWriteAf.do").submit();
+	}
 }
 
 </script>

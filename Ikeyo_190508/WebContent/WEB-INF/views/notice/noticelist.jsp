@@ -8,8 +8,9 @@
 <style>
 .headtitle p {
     font-size: 35px;
-    margin-bottom: 50px;
-    padding-top: 80px;
+    margin-bottom: 70px;
+    padding-top: 130px;
+    text-align: center;
 }
 
 table.noti {
@@ -70,8 +71,8 @@ $(document).ready(function(){
 <!-- arrow생성 -->
 <jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
 
+<div align="center">
 <table class="noti">
-
 <thead>
 	<tr class="noto">
 		<th width="10%">순서</th>
@@ -109,7 +110,7 @@ $(document).ready(function(){
 	</tr>
 	<tr id="content${vs.index }" class="content" style="display:none;">
 		<td colspan="5">
-			<div id="slide${vs.index }" class="slide" style="padding: 10% 10% 10% 10%; text-align:left;">
+			<div id="slide${vs.index }" class="slide" style="padding: 10% 10% 10% 10%; text-align:left; background-color: #f0f0f0;">
 				<pre><font size="3px">${bbs.content }</font></pre>
 				<c:if test="${login.auth == 1 }">
 					<div>
@@ -123,7 +124,7 @@ $(document).ready(function(){
 	</c:forEach>
 </tbody>
 </table>
-
+<br>
 <!-- 페이징 처리 -->
 <div id="paging_wrap">
 	<jsp:include page="/WEB-INF/views/notice/paging.jsp" flush="false">
@@ -133,9 +134,9 @@ $(document).ready(function(){
 		<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
 	</jsp:include>
 </div>
+<br>
 
-
-<div style="margin-top: 5px; margin-bottom: 10px;">
+<div style="margin-top: 20px; margin-bottom: 10px;">
 
 <form action="" name="frmForm1" id="_frmFormSearch" method="post">
 
@@ -172,10 +173,17 @@ $(document).ready(function(){
 
 
 <div id="buttons_wrap">
-	<span>
-		<button type="button" id="_btnAdd">글쓰기</button>
-	</span>
+	<c:if test="${login.auth eq 1 }">
+		<span>
+			<button type="button" id="_btnAdd">글쓰기</button>
+		</span>
+	</c:if>
 </div>
+
+
+<br><br><br><br><br><br><br>
+</div>
+
 
 
 <script type="text/javascript">

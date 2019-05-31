@@ -6,6 +6,95 @@
 <fmt:requestEncoding value="utf-8"/>
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+.uul{
+	display: block;
+	/* list-style-type: disc; */
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
+	
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.text {
+	float: left;
+	
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+.text span:nth-child(3) {
+	font-size: 14px;
+	color: #c80a1e;
+	display: inline-block;
+	padding-top: 5px;
+}
+
+.icon {
+	float: right;
+	overflow: hidden;
+	height: 16px;
+	margin-top: 14px;
+	cursor: pointer;
+}
+
+.exist img {
+	margin-top: -14px !important;
+}
+
+.empty img {
+	margin-top: 2px !important;
+}
+
+.container_2 {
+	max-width: 1410px;
+	min-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.list_all {
+	min-height: 1000px;
+	padding-top: 30px;
+	margin: 0 20px 0 20px;
+}
+.list_all .image img {
+	width: 100%;
+	cursor: pointer;
+}
+.lii {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	
+	
+}
+
+.lii:nth-child(-n+3) {
+	width: 23.62%;
+	display: inline-block;
+	margin: 0 1.4% 40px 0px;
+}
+.lii:nth-child(4) {
+	width: 23.62%;
+	display: inline-block;
+	margin: 0 0 40px 0px;
+}
+.lii p {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+</style>
 <!-- 
 <style>
 * {
@@ -104,34 +193,33 @@ img {
 }
 </style>
 -->
+
 <form action="" name="frmForm1" id="_frmFormSearch" method="get">
 <input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
 <input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?8:recordCountPerPage }">
 <input type="hidden" name="category" value="${category }">
 </form>
 
-<jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
-
-<div id="product_list" style="margin-left: 15%;">
+<div id="product_list" style="margin-top: 5%;">
 	<div class="container_2">
 		<div class="list_all">
 			<form action="productAdd.do" method="post">
-				<div>
+				<div style="margin: 0;padding: 0;display: block;">
 					<c:if test="${empty productList }">
-						<ul>
+						<ul class="uul">
 							<li>목록이 없습니다</li>
 						</ul>
 					</c:if>
 					
 					<c:if test="${not empty productList }">
 						<input type="hidden" id="_id" value="${login.id }">
-						<ul>
+						<ul class="uul">
 							<c:forEach var="i" items="${productList }" varStatus="vs">
 								<c:if test="${vs.index % 4 eq 0 }">
 									</ul>
-									<ul>
+									<ul class="uul">
 								</c:if>
-								<li data-product-cd="${i.model_id }">												
+								<li data-product-cd="${i.model_id }" class="lii">												
 									<p class="image">
 										<a href="productDetail.do?model_id=${i.model_id }"><img src="/img/${i.photo_af1 }"></a> 
 									</p>
@@ -171,9 +259,11 @@ img {
 							</c:forEach>
 						</ul>
 					</c:if>
+					<c:if test="${login.auth eq 1 }">
 					<span style="margin: auto;">
 						<input type="submit" value="글쓰기">
 					</span>
+					</c:if>
 				</div>
 			</form>
 		</div>

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/_common.css"/>
 
 <div id="login">
-	<div class="container">
+	<div class="container_c">
 		<div class="head">
 			<p class="noto">로그인</p>
 		</div>
@@ -45,11 +45,14 @@
 						</ul>
 					</div>
 				</form>
+				<br><br>
 				<button class="joinButton btn_s_blue btn_240" id="_btnLogin">
 					로그인
 				</button>
 				<div id="naver_id_login" onclick="naverIdLogin">
-					<img src="image/nearo.png" border="0" title="네이버 아이디로 로그인" width="240.5px" height="52px"/>
+					<a href="${url }">
+						<img src="image/nearo.png" border="0" title="네이버 아이디로 로그인" width="240.5px" height="52px"/>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -135,64 +138,22 @@ function getCookie(cookieName){
 	}
 	return unescape(cookieValue);
 }
+
+/* var naver_id_login = new naver_id_login("7Aw7poVc4DiXisY9fEze", "http://localhost:8090/Ikeyo_190508/naverIdCheck.do");
+naver_id_login.setButton("white", 3, 52);
+var state = naver_id_login.getUniqSate();
+naver_id_login.init_naver_id_login();
+naver_id_login.setState(state); */
+// 회원가입에 네이버 회원가입
+/* naver_id_login.setDomain("http://127.0.0.1:8090/Ikeyo_190508/main.do"); */
+
+// 네이버 사용자 프로필 조회
+/* if(naver_id_login.is_callback == true){
+	naver_id_login.get_naver_userprofile("naverSignInCallback()");
+} */
 </script>
 
 <script>
-// ID 저장
-/* $(document).ready(function() {
-	// 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
-	var uid = getCookie("uid");
-	
-	$('#_uid').val(uid);
-
-	if($('#_uid').val() != "") { // 그전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
-		$('#idSaveCheck').attr("checked", true);
-	}
-	
-	$('#idSaveCheck').change(function() {
-		if($('#idSaveCheck').is(":checked")) {	// ID 저장하기 체크했을 때,
-			setCookie("uid", $('#_uid').val(), 7);	// 7일 동안 쿠키 보관
-		} else {	// ID 저장하기 체크 해제 시,
-			deleteCookie("uid");
-		}
-	});
-	
-	// ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
-	$('#_uid').keyup(function() {	// ID 입력 칸에 ID를 입력할 때,
-		if($('#idSaveCheck').is(":checked")) {	// ID 저장하기를 체크한 상태라면,
-			setCookie("uid", $('#_uid').val(), 7);
-		}	
-	});
-});
-
-function setCookie(cookieName, value, exdays) {
-	var exdate = new Date();
-	exdate.setDate(exdate.getDate() + exdays);
-	var cookieValue = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
-	document.cookie = cookieName + "= " + cookieValue;
-}
-
-function deleteCookie(cookieName) {
-	var expireDate = new Date();
-	expireDate.setDate(expireDate.getDate() - 1);
-	document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-}
-
-function getCookie(cookieName) {
-	cookieName = cookieName + "=";
-	var cookieData = document.cookie;
-	var start = cookieData.indexOf(cookieName);
-	var cookieValue = '';
-	if(start != -1) {
-		start += cookieName.length;
-		var end = cookieData.indexOf(';', start);
-		if(end == -1)
-			end = cookieData.length;
-		cookieValue = cookieData.substring(start, end);
-	}
-	return unescape(cookieValue);
-} */
-
 $('#_btnLogin').click(function() {
 	if($('#_uid').val() == "") {
 		alert($('#_uid').attr("data-msg") + " 입력해 주세요");

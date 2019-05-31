@@ -24,7 +24,21 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewDto> reviewList(String model_id) {
 		return reviewDao.reviewList(model_id);
 	}
+
+	@Override
+	public ReviewDto getreview(int rev_seq) {
+		return reviewDao.getreview(rev_seq);
+	}
+
+	@Override
+	public boolean reviewUpdate(ReviewDto dto) {
+		return reviewDao.reviewUpdate(dto);
+	}
 	
+	@Override
+	public void reviewDeleteMy(ReviewDto dto) {
+		reviewDao.reviewDeleteMy(dto);
+	}
 	
 	
 	

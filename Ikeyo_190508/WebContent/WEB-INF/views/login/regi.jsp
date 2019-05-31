@@ -23,7 +23,7 @@
 </div>
 
 <div id="info">
-	<div class="container active">
+	<div class="container_c active">
 		<div class="head">
 			<p class="noto">회원가입</p> <br>
 		</div>
@@ -72,8 +72,8 @@
 					</div>
 				</div>
 			</form>
-			<div class="button">
-				<button class="joinButton btn_s_gray btn_205" onclick="location.href='login.do'">
+			<div class="button_r">
+				<button class="joinButton btn_s_gray btn_205" onclick="location.href='main.do'">
 					메인화면
 				</button>
 				<button class="joinButton btn_s_blue btn_205" id="_btnRegi">

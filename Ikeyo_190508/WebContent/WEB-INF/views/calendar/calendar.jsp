@@ -20,9 +20,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
-<!-- content.css -->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/content.css">
-
 <style>
 table {
   /*  border: 1px solid #999; */
@@ -46,6 +43,8 @@ td {
 
 </head>
 <body>
+
+<img alt="" src="">
 
 <%
 Calendar cal = Calendar.getInstance();
