@@ -38,16 +38,6 @@
 	VALUES(SEQ_ORDER_SUB.NEXTVAL, #{model_id}, #{count}, #{order_num})
 </insert>
 
-
-
-<!-- 
-<insert id="orderDetail" parameterType="kh.com.a.model.Order_Sub_Dto">
-	INSERT INTO ORDER_SUB(ORDER_SUB_SEQ, MODEL_ID, COUNT, PRICE, ORDER_NUM, CARTSEQ)
-		SELECT SEQ_ORDER_SUB.NEXTVAL, model_id, count, #{price}, #{order_num}, #{cartseq}
-		FROM CART
-</insert>
--->
-
 <!-- 장바구니 비우기  -->
 <delete id="cartdelete" parameterType="java.lang.Integer">
 	DELETE FROM CART
@@ -55,15 +45,21 @@
 </delete>
 
 <!-- 결제정보 -->
-<!-- <select id="paymentlist" parameterType="java.lang.String" resultType="kh.com.a.model.Order_Dto">
-	SELECT ORD_SEQ, ID, MODEL_ID, TOTAL_PRICE, ORDER_NUM, DELI_INFO, 
+<select id="paymentlist" parameterType="java.lang.String" resultType="kh.com.a.model.Order_Dto">
+	SELECT ORD_SEQ, ID, TOTAL_PRICE, ORDER_NUM, DELI_INFO, 
 	       REGDATE, RNAME, ADDRESS1, ADDRESS2, PHONE, CONTENT
 	FROM ORDER_
-	WHERE ID=#{id}	       
+	WHERE ID=#{id}       
 </select>
- -->
- 
+
+<update id="dellinfo" parameterType="kh.com.a.model.Order_Dto">
+	UPDATE ORDER_ SET DELI_INFO=1
+	WHERE ORD_SEQ=#{ord_seq}
+</update>
+
+
 </mapper>
+
 
 
 

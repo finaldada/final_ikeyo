@@ -71,14 +71,23 @@ public class OrderDaoImpl implements OrderDao {
 		sqlSession.delete(ns + "cartdelete", sseq);
 		
 	}
-	/*
+
 	// 결제정보
 	@Override
 	public List<Order_Dto> paymentlist(String id) throws Exception {
-	
 		return sqlSession.selectList(ns + "paymentlist", id);
 	}
-	*/
+
+	
+	// 결제완료 : deli_info -> 1 변경
+	@Override
+	public boolean dellinfo(int ord_seq) {
+			
+		int b = sqlSession.update(ns + "dellinfo", ord_seq);
+			
+		return b>0?true:false;
+			
+	}
 	
 
 

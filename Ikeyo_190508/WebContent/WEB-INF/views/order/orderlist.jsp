@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
-    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,6 +49,7 @@
 <div class="f2_content">
 
 <div align="center">
+
 <form role="form" method="post" autocomplete="off" action="order.do">
 <!-- // 로그아웃 & 로그인  후 정보(이름)-->
 <c:if test="${login.id ne ''}">
@@ -85,7 +86,7 @@
 <c:forEach var="orderlist" items="${orderlist }">
 
 <c:if test="${orderlist.id == login.id }">
-<c:if test="${orderlist.cart_type == 2}">	
+<c:if test="${orderlist.cart_type != 1}">		
 
 	<tr class="mainProduct">
 			
@@ -100,7 +101,7 @@
 		</c:forEach>
 	
 		<td> <!-- // 상품정보(모델명) -->
-			${orderlist.model_id }
+			${orderlist.model_id }			
 			<input type="hidden" name="id" value="${login.id }">  <!-- // 값 넘기려고 -->
 		</td>
 		
@@ -195,6 +196,22 @@
   	<label for="" style="width: 10%;">배송 시 요청사항</label>
   	<input type="text" name="content" placeholder="200자 이내로 작성해 주세요" style="color: gray; width: 20%"/>
   </div>
+
+   <div class="inputArea">
+  	<hr style="color: gray;">
+  	<label for=""><b>결제 정보</b></label><br>
+  	<p style="color: red;">총 결제 금액 : <fmt:formatNumber pattern="###,###,###" value="${totalsum}"/>&nbsp;원</p>	
+  	<hr style="color: gray;">
+  	
+  	<label for=""><b>결제 전확인사항</b></label><br>
+  	<hr style="color: gray;">
+  	<p>1. 고객의 단순한 변심으로 교환, 반품 및 환불을 요구할 때 수반되는 배송비는 고객님께서 부담하셔야합니다.</p>
+	<p>2.상품을 개봉했거나 설치한 후에는 상품의 재판매가 불가능하므로 고객님의 변심에 대한 교환, 반품이 불가능함을 양지해 주시기 바랍니다.</p>
+  	<hr style="color: gray;">
+  	
+  </div>
+	
+   <!-- // 결제수단 -->
   	
   <div class="inputArea">
    <button type="submit" class="order_btn">주문</button>
@@ -208,7 +225,7 @@
    </script>
    
   </div>
-  
+ 
 	<c:forEach var="orderlist" items="${orderlist }">
 	<input type="hidden" name="seqq" value="${orderlist.cart_seq }">
 	</c:forEach>
@@ -221,6 +238,11 @@
 
 </div>
 </div>
+
+
+<!-- // 결제 API -->
+
+
 
 <script type="text/javascript">
 function execPostCode() {

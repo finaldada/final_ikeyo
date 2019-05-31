@@ -200,9 +200,7 @@ img {
 <input type="hidden" name="category" value="${category }">
 </form>
 
-<jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
-
-<div id="product_list" style="margin-left: 15%;">
+<div id="product_list" style="margin-top: 5%;">
 	<div class="container_2">
 		<div class="list_all">
 			<form action="productAdd.do" method="post">
@@ -231,7 +229,7 @@ img {
 									</p>
 									<c:if test="${empty cartList }">
 										<p class="icon wish_icon empty">
-											<img src="/img/icon_wish.svg">
+											<img src="image/icon_wish.svg">
 										</p>
 									</c:if>									
 									<c:if test="${!empty cartList }">
@@ -243,12 +241,12 @@ img {
 										</c:forEach>
 										<c:if test="${loop_flag eq true }">
 											<p class="icon wish_icon exist">									
-												<img src="/img/icon_wish.svg">		
+												<img src="image/icon_wish.svg">		
 											</p>
 										</c:if>
 										<c:if test="${loop_flag eq false }">
 											<p class="icon wish_icon empty">
-												<img src="/img/icon_wish.svg">		
+												<img src="image/icon_wish.svg">		
 											</p>
 										</c:if>
 									</c:if>						

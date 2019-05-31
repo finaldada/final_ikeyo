@@ -136,6 +136,48 @@ function goUpdate() {
 
 function goDelete() {
 	
+	var inven_seq = $("#inven_seq").val();
+	
+	//alert(inven_seq);
+	
+	var result = confirm('재고를  삭제 하시겠습니까?'); 
+	
+	if(result) { 
+	
+	$.ajax({
+		url:"inventorydelete.do",
+		type:"post",
+		data:{ inven_seq:inven_seq },
+		success:function(data){
+			
+			//alert("success");
+			//alert(data);
+			
+			if(data.trim() == "\"OK\""){
+				
+				alert("인벤토리 삭제 완료");
+				opener.parent.location.reload();
+				window.close();
+				
+			}else{
+				
+				alert(data);
+				
+			}
+		},
+		error:function(r, s, err){
+			
+			alert("error");
+		}
+	});
+	
+	}else{
+		
+		
+		
+	}	
+	
+
 	$("#inven_frm").attr("action", "inventorydelete.do").submit(); 
 	 
 }

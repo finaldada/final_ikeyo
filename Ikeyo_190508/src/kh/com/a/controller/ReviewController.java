@@ -1,10 +1,13 @@
 package kh.com.a.controller;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,7 @@ import kh.com.a.util.FUpUtil;
 
 @Controller
 public class ReviewController {
+	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
 	@Autowired
 	ReviewService reviewService;
@@ -118,5 +122,52 @@ public class ReviewController {
 		return "redirect:/productDetail.do?model_id=" + rdto.getModel_id()+"";
 	}
 
+	/*마이페이지 상품평업데이트*/
+	@RequestMapping(value="reviewUpdateMy.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String reviewUpdateMy(ReviewDto rdto,
+			@RequestParam(value="fileload", required = false)MultipartFile fileload, Model model ) {
+		System.out.println(rdto.toString());
 
+		// 파일이름 취득
+		String filename = fileload.getOriginalFilename();
+
+		rdto.setPhoto_bf(filename);
+		// file
+		String fupload = "c:\\final_file";
+
+		try {
+			if(filename != null && filename != "") {
+				// 파일명.xxx -> 12221321.xxx
+				String f = rdto.getPhoto_bf();
+				String newfilename = FUpUtil.getNewFile(f);	
+				rdto.setPhoto_af(newfilename);
+
+				File file = new File(fupload + "/" + newfilename);	// 파일을 생성	
+				// 실제 파일 업로드 부분 
+				FileUtils.writeByteArrayToFile(file, fileload.getBytes());
+
+				System.out.println("upload 파일경로 : " + fupload + "/" + newfilename);
+			}
+			// DB에 저장
+			reviewService.reviewUpdate(rdto);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return "redirect:/myReview.do";
+	}
+	
+	/*마이페이지 상품평 삭제*/
+	@RequestMapping(value="reviewDeleteMy.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String reviewDeleteMy(ReviewDto dto, Model model) {
+		logger.info("reviewDeleteMy() RUN! / Run Time: " + new Date());
+		
+		System.out.println("리뷰삭제 seq확인=" + dto.getRev_seq());
+		
+		reviewService.reviewDeleteMy(dto);
+		
+		return "redirect:/myReview.do";
+	}
 }

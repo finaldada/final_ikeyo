@@ -30,7 +30,9 @@ public interface OrderService {
  	public void cartdelete(int sseq)throws Exception;
  	
  	// 결제정보
- 	//public List<Order_Dto> paymentlist(String id) throws Exception;
- 	
+  	public List<Order_Dto> paymentlist(String id) throws Exception;
+  	
+  	// 결제완료 : deli_info -> 1 변경
+  	public boolean dellinfo(int ord_seq);
     
 }

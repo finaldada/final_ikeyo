@@ -67,9 +67,6 @@ public class QnAController {
 	// 관리자 qna리스트
 	@RequestMapping(value="qnaList_admin.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String qnaList_admin(Model model, BbsParam param) {
-	
-		
-		
 		
 		int sn = param.getPageNumber();
 		int start = (sn) * param.getRecordCountPerPage() + 1;

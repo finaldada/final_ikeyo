@@ -1,6 +1,6 @@
 @charset "UTF-8";
 #info{
-	min-width: 1500px;
+	/* min-width: 1500px; */
 	padding-top: 168px;
 	padding-bottom: 100px;
 }
@@ -182,7 +182,7 @@
 }
 
 #login {
-	min-width: 1500px;
+	/* min-width: 1500px; */
 	padding-top: 168px;
 	padding-bottom: 100px;
 }
@@ -650,4 +650,242 @@
 
 #updateMyInfo .grade{
 	margin-top: 10px;
+}
+
+#qna{
+	margin: 100px auto 0px;
+	/* width: 1200px; */
+	overflow: hidden;
+	min-height: 900px;
+}
+
+#qna .title{
+	margin: 0 auto;
+	width: 500px;
+	text-align: center;
+	font-size: 35px;
+	margin-bottom: 40px;
+}
+
+#qna .container_c{
+	margin: 0 auto;
+	width: 730px;
+	margin-bottom: 100px;
+}
+
+#qna .head{
+	border-top: 1px #e0e0e0 solid;
+	border-bottom: 1px #e0e0e0 solid;
+	padding: 40px 0 40px 0;
+}
+
+#qna .head tr{
+	height: 40px
+}
+
+#qna .head td{
+	font-family: 'Noto Sans KR';
+	font-size: 15px;
+	cursor: pointer;
+}
+
+#qna .head .cNum{
+	padding-top: 3px;
+	vertical-align: middle;
+	text-align: center;
+	display: inline-block;
+	top: 0px;
+	right: 0px;
+	width: 23px;
+	height: 20px;
+	background-color: #f0f0f0;
+	color: #aaa;
+	border-radius: 50%;
+}
+
+#qna .neck td{
+	cursor: pointer;
+	width: 25%;
+	padding: 17px 0 17px 0;
+	text-align: center;
+	border: 1px #aaaaaa solid;
+}
+
+#qna .neck .selected{
+	border: 1px #c80a1e solid;
+	color: #c80a1e
+}
+
+#qna .neck .leftOfSelected{
+	border-right: 1px #c80a1e solid;
+}
+
+#qna .neck{
+	padding: 60px 0 35px 0;
+}
+
+#qna .body{
+	position: relative;
+}
+
+#qna .body tbody tr:nth-child(1) td{
+	border-top: 1px #aaa solid;
+	border-bottom: 1px #f0f0f0 solid;
+	height: 25px; 
+	font-size: 13px;
+	color: #aaa;
+	text-align: center;
+}
+
+#qna .body tbody .subject td{
+	border-bottom: 1px #f0f0f0 solid;
+	height: 70px;
+	font-size: 15px;
+	cursor: pointer;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#qna .body tbody .subject td:nth-child(2){
+	text-align: left;
+	padding-left: 40px;
+}
+
+#qna .body tbody .subject:hover td span{
+	color: #c80a1e;
+}
+
+#qna .body tbody .subject td:nth-child(2n+1){
+	text-align: center;
+}
+
+#qna .body tbody .subject td:nth-child(2) span:nth-child(1){
+	display: inline-block;
+}
+
+#qna .body tbody .date{
+	display: inline-block;
+	padding-top: 7px;
+	color: #aaa;
+	font-size: 14px;
+}
+
+#qna .body tbody .subject td:nth-child(5) span{
+	color: #c80a1e;
+}
+
+#qna .body tbody .contents td{
+	display: none;
+	vertical-align: top;
+	padding: 30px 0 30px 0;
+	border-bottom: 1px #f0f0f0 solid;
+}
+
+#qna .body tbody .contents td:nth-child(2){
+	text-align: left;
+	padding-left: 40px;
+}
+
+#qna .body tbody .contents img{
+	max-width: 400px;
+}
+
+#qna .body tbody .contents .cnts{
+	font-size: 14px;
+	margin-bottom: 30px;
+}
+
+#qna .body tbody .contents div span{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#qna .body tbody .cBottom td{
+	border-bottom: 1px #aaaaaa solid;
+}
+
+#qna .bodyy tbody tr:nth-child(1) td{
+	border-top: 1px #aaa solid;
+	border-bottom: 1px #f0f0f0 solid;
+	height: 25px;
+	font-size: 13px;
+	color: #aaa;
+	text-align: center;
+}
+
+#qna .bodyy tbody .subject td{
+	vertical-align: top;
+	border-bottom: 1px #f0f0f0 solid;
+	cursor: pointer;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#qna .bodyy tbody .subject td span{
+	font-size: 16px;
+}
+
+#qna .bodyy tbody .subject td:nth-child(2){
+	text-align: left;
+	padding-left: 40px;
+}
+
+#qna .bodyy tbody .subject:hover td span{
+	color: #c80a1e;
+}
+
+#qna .bodyy tbody .subject td:nth-child(2n+1){
+	text-align: center;
+}
+
+#qna .bodyy tbody .subject td:nth-child(2) span:nth-child(1){
+	display: inline-block;
+}
+
+#qna .bodyy tbody .date{
+	display: inline-block;
+	font-size: 14px;
+}
+
+#qna .bodyy tbody .subject td:nth-child(5) span{
+	color: #c80a1e;
+}
+
+#qna .bodyy tbody .contents td{
+	display: none;
+	vertical-align: top;
+	padding: 30px 0 30px 0;
+	border-bottom: 1px #f0f0f0 solid;
+}
+
+#qna .bodyy tbody .contents td:nth-child(2){
+	text-align: left;
+	padding-left: 40px;
+}
+
+#qna .bodyy tbody .contents img{
+	max-width: 400px;
+}
+
+#qna .bodyy tbody .contents div span{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#qna .bodyy tbody .cBottom td{
+	border-bottom: 1px #aaaaaa solid;
+}
+
+#qna .bodyy tbody .tBottom td{
+	border-bottom: 1px #f0f0f0 solid;
+}
+
+#qna .bodyy .img_td{
+	border-bottom: 1px #aaaaaa solid;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#qna .bodyy .border_td{
+	border-bottom: 1px #aaaaaa solid;
 }

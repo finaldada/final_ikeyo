@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -128,45 +130,48 @@ public class OrderController {
 	
 	// 이동
 	@RequestMapping(value = "payment.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String payment() {
+	public String payment(HttpSession session, Order_Dto dto, Model model) throws Exception {
 		
-		return "payment.tiles";
-	}
-	
-	
-	/*	
-	@RequestMapping(value = "payment.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String paymentlist(Order_Dto dto, Model model)throws Exception {
-		
-		
-		 System.out.println("payment id : " + dto.id);
-				
-		 List<Order_Dto> paymentlist = orderService.paymentlist(id);
-		 model.addAttribute("paymentlist", paymentlist);
-				
-		 return "payment.tiles";
-	
-	}
-	 */
-	
-	/*
-	// 결제페이지 이동
-	@RequestMapping(value = "paymentlist.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public void paymentlist(HttpSession session, Order_Dto dto, Model model) throws Exception {
+		logger.info("OrderController payment "+ new Date());
 		
 		// id
 		MemberDto mem = (MemberDto)session.getAttribute("login");
-		//if(mem==null) {
-		//	return "redirect:/login.do";
-		//	}
+		if(mem==null) {
+			 return "redirect:/login.do";
+		}
+		
 		String id = mem.getId();
 		dto.setId(id);
-		System.out.println("payment id : " + id);
 		
 		List<Order_Dto> paymentlist = orderService.paymentlist(id);
 		model.addAttribute("paymentlist", paymentlist);
 		
-	}	*/
-
+		//String order_num = dto.getOrder_num();
+		//model.addAttribute("order_num" , order_num);
+				
+		System.out.println("ctr?" + dto.toString());
+		
+		return "payment.tiles";
+	}
+	
+	 // 결제완료
+	@RequestMapping(value = "success.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String dellinfo(int ord_seq) {
+		
+		logger.info("OrderController dellinfo "+ new Date());
+		
+		boolean d = orderService.dellinfo(ord_seq);
+		
+		if(d) {
+			System.out.println("변경 성공");
+		}else {
+			System.out.println("변경 실패ㅜㅜ");
+		}
+		
+		return "success.tiles";
+		
+	}
+	
+	
 	
 }

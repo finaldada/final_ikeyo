@@ -181,12 +181,12 @@
 			</td>
 			<td width="33%">
 				<div style="margin: 20 20 20 20;" id="imageThumb_1">
-				<img src="/img/${pdto.photo_af2 }" alt="" id="${pdto.photo_af2 }" style="width: 100%; height: auto; border: 1px solid;"  />
+				<img src="/img/${pdto.photo_af2 }" alt="" id="${pdto.photo_af2 }" style="width: 123px; height: 123px; border: 1px solid;"  />
 				</div>
 			</td>
 			<td width="33%">
 				<div style="margin: 20 20 20 20;" id="imageThumb_2">
-				<img src="/img/${pdto.photo_af3 }" alt="" id="${pdto.photo_af3 }" style="width: 100%; height: auto; border: 1px solid;"  />
+				<img src="/img/${pdto.photo_af3 }" alt="" id="${pdto.photo_af3 }" style="width: 123px; height: 123px; border: 1px solid;"  />
 				</div>
 			</td>
 		</tr>
@@ -199,10 +199,11 @@
 	<td style="padding: 20 0 40% 10px;" align="center" valign="middle">
 	
 		<div id="right_container" style="width: 100%; height: auto;">
-		<!-- 장바구니 폼 -->
+		<!-- 바로구매 폼 -->
 		<form action="" method="post" id="_frm_cart">
 		<input type="hidden" name="model_id" id="cart_model"  value="${pdto.model_id }"/>
 		<input type="hidden" name="id" id="cart_id" value="${login.id }" />
+		<input type="hidden" name="cart_type" value="3" />
 		<table>
 		<colgroup>
 			<col width="50%"/><col width="50%"/>
@@ -224,27 +225,28 @@
 			<td>
 			
 			<!-- 위시리스트 -->
-			<c:if test="${empty login or login == null}">
+			<c:if test="${empty cartlist or mem == null}">
 				<p class="icon wish_icon empty">
-					<img src="/img/icon_wish.svg"/>
+					<img src="image/icon_wish.svg"/>
 				</p>
 			</c:if>				
 								
-			<c:if test="${!empty login or login != null}">
+			<c:if test="${!empty cartlist and mem != null}">
 				<c:set var="loop_flag" value="false"/>									
-																						
-				<c:if test="${pdto.model_id eq cart.model_id && login.id eq cart.id }">
-					<c:set var="loop_flag" value="true"/>
-				</c:if>																
-			
+				<c:forEach var="j" items="${cartlist }">							
+					<c:if test="${pdto.model_id eq j.model_id && mem.id eq j.id }">
+						<c:set var="loop_flag" value="true"/>
+					</c:if>																
+				</c:forEach>
+				
 				<c:if test="${loop_flag eq true }">
 					<p class="icon wish_icon exist">									
-						<img src="/img/icon_wish.svg"/>		
+						<img src="image/icon_wish.svg"/>		
 					</p>
 				</c:if>
 				<c:if test="${loop_flag eq false }">
 					<p class="icon wish_icon empty">
-						<img src="/img/icon_wish.svg"/>		
+						<img src="image/icon_wish.svg"/>		
 					</p>
 				</c:if>
 			</c:if>						
@@ -450,7 +452,16 @@ function goCart() {
 }
 
 function nowCart() {
-	$("#");
+	var id = $("#cart_id").val();
+	var model_id = $("#cart_model").val();
+	var count = $("#count").val();
+	
+	if(id == null || id == ""){
+		alert("로그인 후 이용 가능합니다.");
+		return false;
+	}
+	$("#_frm_cart").attr("action", "productOrder.do").submit();
+	
 	
 }
 

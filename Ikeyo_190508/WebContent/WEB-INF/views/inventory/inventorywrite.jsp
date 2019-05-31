@@ -76,14 +76,10 @@ input,textarea{
 	<td>
 		카테고리:<select id="category" name="category"> 
 		<option value="" selected="selected">선택</option>
-		<option value="침대" >침대</option>
-		<option value="매트리스" >매트리스</option>
-		<option value="의자" >의자</option>
-		<option value="소파" >소파</option>
-		<option value="옷장">옷장</option>
-		<option value="수납장">수납장</option>
-		<option value="책상">책상</option>
-		<option value="테이블">테이블</option>
+		<option value="책상/테이블" >책상/테이블</option>
+		<option value="침대/매트리스" >침대/매트리스</option>
+		<option value="의자/소파" >의자/소파</option>
+		<option value="옷장/수납장" >옷장/수납장</option>
 		<option value="액세서리">액세서리</option>
 		</select> 
 		&nbsp;&nbsp;&nbsp;

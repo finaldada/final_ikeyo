@@ -45,7 +45,10 @@ public class ReviewDaoImpl implements ReviewDao {
 		return n>0?true:false;
 	}
 	
-	
+	@Override
+	public void reviewDeleteMy(ReviewDto dto) {
+		sqlSession.update(ns + "reviewDeleteMy", dto);
+	}
 	
 	
 	
