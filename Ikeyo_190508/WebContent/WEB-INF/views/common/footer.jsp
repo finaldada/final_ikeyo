@@ -20,7 +20,7 @@
 				
 				<li class="footer_inner_item">
 					<ul>
-						<li class="item_title noto">ABOUT</li>
+						<li class="item_title noto">-ABOUT</li>
 						<li class="f12"><b><a class="noto" href="/company/brandStory.do" style="color: gray;">회사소개</a></b></li>
 						<li class="f12"><b><a class="noto" href="/store/storeInfo.do" style="color: gray;">매장안내</a></b></li>
 						<li class="f12"><b><a class="noto" href="https://recruit.fursys.com:4431/main.do?command=getMain" style="color: gray;">인재채용</a></b></li>
