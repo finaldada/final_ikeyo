@@ -51,16 +51,16 @@
           <a class="nav-link js-scroll-trigger active" href="myInfoGo.do">내 정보</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">주문내역</a>
+          <a class="nav-link js-scroll-trigger" href="myorder.do">주문내역</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">장바구니</a>
+          <a class="nav-link js-scroll-trigger" href="cartList.do">장바구니</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">위시리스트</a>
+          <a class="nav-link js-scroll-trigger" href="wishList.do">위시리스트</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#">출석체크</a>
+          <a class="nav-link js-scroll-trigger" href="calendar.do">출석체크</a>
         </li>
         <c:if test="${login.auth == 1 }">
         <li class="nav-item">
