@@ -13,6 +13,7 @@
    <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 </definition>
 
+
 <!-- login 화면 -->
 <definition name="login.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/login/login.jsp"/>
@@ -234,4 +235,3 @@
 
 
 </tiles-definitions>
-

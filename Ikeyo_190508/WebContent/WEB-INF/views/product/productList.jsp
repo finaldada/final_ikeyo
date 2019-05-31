@@ -6,10 +6,6 @@
 <fmt:requestEncoding value="utf-8"/>
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-<<<<<<< HEAD
-
-<!-- <style>
-=======
 <style>
 .uul{
 	display: block;
@@ -101,7 +97,6 @@
 </style>
 <!-- 
 <style>
->>>>>>> refs/remotes/origin/jin
 * {
 	margin: 0px;
 	padding: 0px;
@@ -196,20 +191,14 @@ img {
 .empty img {
 	margin-top: 2px !important;
 }
-<<<<<<< HEAD
-</style> -->
-
-<%-- <form action="" name="frmForm1" id="_frmFormSearch" method="get">
-=======
 </style>
 -->
 
 <form action="" name="frmForm1" id="_frmFormSearch" method="get">
->>>>>>> refs/remotes/origin/jin
 <input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
 <input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?8:recordCountPerPage }">
 <input type="hidden" name="category" value="${category }">
-</form> --%>
+</form>
 
 <div id="product_list" style="margin-top: 5%;">
 	<div class="container_2">

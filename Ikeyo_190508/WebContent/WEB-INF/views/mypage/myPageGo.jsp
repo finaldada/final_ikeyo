@@ -6,27 +6,6 @@
 <fmt:requestEncoding value="utf-8"/>
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-<<<<<<< HEAD
-
-<div>
-	<form method="post" id="_frmForm" name="frmForm">
-		비밀번호: <input type="text" name="pwd" id="_pwd" data-msg="비밀번호를">
-		<br>
-		<input type="submit" id="_btn" value="확인">
-		<input type="button" id="_cancle" value="취소">
-	</form>
-</div>
-
-<script>
-$('#_btn').click(function() {
-	var pwd = $('#_pwd').val();
-	if(pwd == "") {
-		alert($('#_pwd').attr("data-msg") + " 입력해주세요");
-		$('#_pwd').focus();
-		return false;
-	} else {
-		$('#_frmForm').attr("action", "myInfoGoAf.do").submit();
-=======
 <link rel="stylesheet" href="css/ikeyo_v1-front.css"/>
 <link rel="stylesheet" href="css/_common.css"/>
 
@@ -71,7 +50,6 @@ $('#_btn').click(function() {
 	} else {
 		//$('#_frmForm').attr("action", "myInfoGoAf.do").submit();
 		$('#_frmForm').submit();
->>>>>>> refs/remotes/origin/jin
 	}
 });
 
