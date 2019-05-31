@@ -7,11 +7,63 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
+<style>
+.headtitle p {
+    font-size: 35px;
+    margin-bottom: 70px;
+    padding-top: 130px;
+    text-align: center;
+}
+
+.intro{
+	overflow: hidden;
+	margin: 0;
+    padding: 0;
+    font-family: 'NanumBarunGothic', 'Nanum Gothic', Dotum, sans-serif;
+    font-size: 13px;
+    color: #6d6e72;
+}
+
+.intro .intro_left {
+    float: left;
+    width: 180px;
+    color: #283444;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: -1px;
+    text-align: left;
+}
+
+.intro .intro_left .intro_bar {
+    width: 30px;
+    border-top: 2px solid #263444;
+    height: 20px;
+}
+
+</style>
 
 
 
-<div align="right">
+<div class="headtitle">
+	<p>고객의 소리</p>
+</div>
+<hr>
 
+
+
+<div align="center">
+
+<div class="intro">
+	<div class="intro_left">
+		<div class="intro_bar"></div>
+		글 보기
+	</div>
+	<div>
+		
+
+
+
+<!-- ==================================================== -->
 <table style="width: 65%; border: 1px solid;">
 <colgroup>
 	<col width="200"><col width="500">
@@ -87,6 +139,9 @@ name="content" id="content">${cust.content }</textarea>
 <form name="frmForm2" id="_frmForm2" action="customdelete.do" method="post">
 	<input type="hidden" name="seq" value="${cust.cust_seq }">
 </form>
+
+	</div>
+</div>
 
 <br><br><br><br>
 

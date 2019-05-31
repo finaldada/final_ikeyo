@@ -230,6 +230,10 @@
 </definition> 
 <definition name="allorderdetail.tiles" template="/WEB-INF/views/admin/allorderdetail.jsp"/>
 
+<!-- 마이페이지(주문내역보기) -->
+<definition name="myorder.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/mypage/myorder.jsp"/>
+</definition>
 
 
 

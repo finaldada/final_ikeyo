@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.com.a.model.MemberDto;
+import kh.com.a.model.Order_Dto;
+import kh.com.a.model.Order_Sub_Dto;
 import kh.com.a.model.PagingParam;
 import kh.com.a.model.ProductDto;
 import kh.com.a.model.QnADto;
@@ -204,5 +206,42 @@ public class MyPageController {
 		model.addAttribute("product", product);
 		
 		return "myQnA.tiles";
+	}
+	
+	@RequestMapping(value = "myorder.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String myorder(Model model, HttpServletRequest req) {
+		logger.info("myorder() RUN! / Run Time: " + new Date());
+		
+		MemberDto mem = (MemberDto)req.getSession().getAttribute("login");
+		
+		if(mem == null) {
+			return "redirect:/login.do";
+		}else{
+			String id = mem.getId();
+			List<Order_Dto> orderlist = myPageService.myorderpage(id);
+			List<Order_Sub_Dto> sublist = new ArrayList<>();
+			if(!orderlist.isEmpty()) {
+				for(int i = 0; i < orderlist.size(); i++) {
+					Order_Dto tmpdto = orderlist.get(i);
+					String orderNum = tmpdto.getOrder_num();
+					List<Order_Sub_Dto> tmplist = myPageService.getMySubOrder(orderNum);
+					System.out.println("tmplist사이즈:" + tmplist.size());
+					sublist.addAll(tmplist);
+				}
+			}
+			
+			model.addAttribute("orderlist", orderlist);
+			model.addAttribute("sublist", sublist);
+			
+			System.out.println("sublist.size() : " + sublist.size());
+			for(int i = 0; i < sublist.size(); i++) {
+				System.out.println(sublist.get(i).toString());
+			}
+			
+			return "myorder.tiles";
+			
+		}
+		
+		
 	}
 }

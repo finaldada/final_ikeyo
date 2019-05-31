@@ -54,6 +54,7 @@ text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
         <c:if test="${not empty login && login.id ne ''}">	
 			<li><b><a href="logout.do" title="로그아웃" style="text-decoration: none;">&nbsp;<img src="image/ico-login.png"></a>｜</b></li>
 			<li><b><a href="myInfoGo.do" style="color:#535353; text-decoration: none;">&nbsp;마이페이지 ｜</a></b></li>
+			<li><b><a href="myorder.do" style="color:#535353; text-decoration: none;">&nbsp;주문내역 </a></b></li>
 		</c:if>
         
         <li><b><a href="wishList.do" style="color:#535353; text-decoration: none;">&nbsp;<img src="image/ico-bookmark.png" title="위시리스트"> ｜</a></b></li>   

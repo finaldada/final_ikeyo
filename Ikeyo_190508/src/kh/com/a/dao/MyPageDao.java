@@ -3,6 +3,8 @@ package kh.com.a.dao;
 import java.util.List;
 
 import kh.com.a.model.MemberDto;
+import kh.com.a.model.Order_Dto;
+import kh.com.a.model.Order_Sub_Dto;
 import kh.com.a.model.PagingParam;
 import kh.com.a.model.ProductDto;
 import kh.com.a.model.QnADto;
@@ -26,4 +28,7 @@ public interface MyPageDao {
 	
 	public int getQnACount(MemberDto dto);
 	public List<QnADto> getQnAPagingList(PagingParam param);
+	// 마이페이지 주문내역
+	public List<Order_Dto> myorderpage(String id);
+	public List<Order_Sub_Dto> getMySubOrder(String order_num);
 }
