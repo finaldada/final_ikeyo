@@ -1,5 +1,6 @@
 package kh.com.a.service.impl;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,8 @@ public class MyPageServiceImpl implements MyPageService {
 }
 package kh.com.a.service.impl;
 
+=======
+>>>>>>> refs/remotes/origin/jin
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package kh.com.a.dao;
 
+<<<<<<< HEAD
 import kh.com.a.model.MemberDto;
 
 public interface MyPageDao {
@@ -12,6 +13,8 @@ public interface MyPageDao {
 }
 package kh.com.a.dao;
 
+=======
+>>>>>>> refs/remotes/origin/jin
 import java.util.List;
 
 import kh.com.a.model.MemberDto;

@@ -2,48 +2,43 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>  
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <fmt:requestEncoding value="utf-8"/>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
 <meta charset="UTF-8">
 
-<title>IKEYO - 1조</title>
+<title> IKEYO - 1조 </title>
 <!-- // 타이틀 로고  -->
 <link rel="icon" type="image/ico" href="image/ikeyo.png" />
 
-</head>
+</head> 
 <body>
 
-<table style="width: 100%; height: 100%">
-	<tr> 
-		<td rowspan="3">
-			<tiles:insertAttribute name="left_menu" />
-		</td> 
-		<td style="background-color: white; position: fixed; height: 20%;">
-			<tiles:insertAttribute name="header" />
-		</td> 
-	</tr>
-	
-	<tr>
-		<td colspan="3">
-			<tiles:insertAttribute name="content" />
-		</td>       
-	</tr>
-	
-	<tr> 
-		<td colspan="3">
-			<tiles:insertAttribute name="footer" />
-		</td>       
-	</tr>
-	
+<table>
+
+<tr>	
+	<tiles:insertAttribute name="left_menu"/>
+	<td colspan="2" style="position: fixed; z-index: 100;">
+		<tiles:insertAttribute name="header"/>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="2" style="width: 100%; height: 100%;">
+		<tiles:insertAttribute name="content"/>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="2">
+		<tiles:insertAttribute name="footer"/>   
+	</td>
+</tr>
+
 </table>
-
-
 
 </body>
 </html>

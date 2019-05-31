@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.a.dao.ProductDao;
 import kh.com.a.model.CartDto;
+import kh.com.a.model.InventoryDto;
 import kh.com.a.model.PagingParam;
 import kh.com.a.model.ProductDto;
 import kh.com.a.service.ProductService;
@@ -35,9 +36,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<CartDto> getCartList(String category) {
+	public List<CartDto> getCartList(PagingParam param) {
 	
-		return productDao.getCartList(category);
+		return productDao.getCartList(param);
 	}
 
 	@Override
@@ -78,4 +79,47 @@ public class ProductServiceImpl implements ProductService {
 	public boolean productAdd(ProductDto productDto) {		
 		return productDao.productAdd(productDto);
 	}
+
+	@Override
+	public ProductDto getProduct(String model_id) {
+		return productDao.getProduct(model_id);
+	}
+
+	@Override
+	public InventoryDto getinven(String model_id) {
+		return productDao.getinven(model_id);
+	}
+
+	@Override
+	public boolean cartInput(CartDto dto) {
+		return productDao.cartInput(dto);
+	}
+
+	@Override
+	public List<CartDto> p_datailCart(String model_id) {
+		return productDao.p_datailCart(model_id);
+	}
+
+	@Override
+	public boolean ordercartInput(CartDto dto) {
+		return productDao.ordercartInput(dto);
+	}
+
+	@Override
+	public boolean ordercartDel(String id) {
+		return productDao.ordercartDel(id);
+		
+	}
+
+	@Override
+	public List<CartDto> ordercartSel(String id) {
+		return productDao.ordercartSel(id);
+	}
+	
+	
+	
+	
+	
+	
+	
 }

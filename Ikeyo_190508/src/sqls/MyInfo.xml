@@ -30,6 +30,7 @@
   	
   	<update id="myInfoUpdate" parameterType="kh.com.a.model.MemberDto">
   		UPDATE MEMBER SET
+<<<<<<< HEAD
   		PWD=#{pwd}, ADDRESS1=#{address1}, ADDRESS2=#{address2}, PAYPWD=#{paypwd}, PHONE=#{phone}
   		WHERE ID=#{id}
   	</update>
@@ -72,6 +73,8 @@
   	
   	<update id="myInfoUpdate" parameterType="kh.com.a.model.MemberDto">
   		UPDATE MEMBER SET
+=======
+>>>>>>> refs/remotes/origin/jin
   		PWD=#{pwd}, ADDRESS1=#{address1}, ADDRESS2=#{address2}, PHONE=#{phone}
   		WHERE ID=#{id}
   	</update>

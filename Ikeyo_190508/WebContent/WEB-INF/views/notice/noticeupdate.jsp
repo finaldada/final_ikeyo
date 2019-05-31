@@ -31,7 +31,7 @@ table.type11 td {
 </style>
 
 
-<div align="center">
+<div align="center" style="margin-top: 10%;">
 
 <form id="frm" action="noticeUpdateAf.do" method="post">
 <input type="hidden" name="noti_seq" value="${ndto.noti_seq }">
@@ -73,6 +73,8 @@ table.type11 td {
 </form>
 
 </div>
+
+<br><br><br><br><br><br><br><br>
 <script type="text/javascript">
 $(function () {
 	$("#_writeBtn").click(function () {

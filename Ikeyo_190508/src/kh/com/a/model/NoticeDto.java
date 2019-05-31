@@ -41,15 +41,6 @@ public class NoticeDto implements Serializable {
 	
 	public NoticeDto() {
 	}
-	
-	public NoticeDto(String id, String title, String content) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.content = content;
-	}
-
-
 
 	public NoticeDto(int noti_seq, String id, String title, String content, int readcount, Date rdate) {
 		super();

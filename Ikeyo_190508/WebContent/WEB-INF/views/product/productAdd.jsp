@@ -45,10 +45,13 @@
 	text-decoration: none;
 	cursor: pointer;
 }
+
 </style>
 
 </head>
 <body>
+<div align="center" style="margin-top: 10%;margin-bottom: 10%;">
+
 <h3>상품등록 write</h3>
 
 <!-- <form action="productAddAf.do" method="post" enctype="multipart/form-data"> -->
@@ -59,27 +62,27 @@
 </colgroup>
 <tbody>
 <tr>
-	<th>모델명 : </th>
-	<td><input type="text" name="model_id" id="_model_id" readonly="readonly" style="text-align: right;"></td>
+	<th>모델명  : </th>
+	<td align="center"><input type="text" name="model_id" id="_model_id" readonly="readonly" style="text-align: right; width: 70%;"></td>
 </tr>
 <tr>
-	<th>가격 : </th>
-	<td><input type="text" name="price" id="_price" readonly="readonly" style="text-align: right;">￦</td>
+	<th>가격  : </th>
+	<td align="center"><input type="text" name="price" id="_price" readonly="readonly" style="text-align: right;"> 원</td>
 </tr>
 <tr>
-	<th>상품이름 : </th>
-	<td><input type="text" name="p_name" id="_p_name"></td>
+	<th>상품이름  : </th>
+	<td align="center"><input type="text" name="p_name" id="_p_name" style="text-align: right;"></td>
 </tr>
 <tr>
-	<th>카테고리 : </th>
-	<td><input type="text" id="_category" readonly="readonly" style="text-align: right;"></td>
+	<th>카테고리  : </th>
+	<td align="center"><input type="text" name="category" id="_category" readonly="readonly" style="text-align: right;"></td>
 </tr>
 <tr>
-	<th>상품갯수 : </th>
-	<td><input type="text" id="_count" readonly="readonly" style="text-align: right;"></td>
+	<th>상품갯수  : </th>
+	<td align="center"><input type="text" id="_count" readonly="readonly" style="text-align: right;"> 개</td>
 </tr>
 <tr>
-	<th>상품내용: </th>
+	<th>상품내용  : </th>
 	<td>
 		<textarea rows="10" cols="50" name="content" id="_content"
 >
@@ -87,23 +90,23 @@
 	</td>
 </tr>
 <tr>
-	<th>메뉴얼 : </th>
-	<td><input type="file" name="pdf_bs" id="_pdf_bf"></td>
+	<th>메뉴얼  : </th>
+	<td align="center"><input type="file" name="pdf_bs" id="_pdf_bf"></td>
 </tr>
 <tr>
-	<th>사진등록1 : </th>
-	<td><input type="file" name="photo_bs1" id="_photo_bf1"></td>
+	<th>사진등록1  : </th>
+	<td align="center"><input type="file" name="photo_bs1" id="_photo_bf1"></td>
 </tr>
 <tr>
-	<th>사진등록2 : </th>
-	<td><input type="file" name="photo_bs2" id="_photo_bf2"></td>
+	<th>사진등록2  : </th>
+	<td align="center"><input type="file" name="photo_bs2" id="_photo_bf2"></td>
 </tr>
 <tr>
-	<th>사진등록3 : </th>
-	<td><input type="file" name="photo_bs3" id="_photo_bf3"></td>
+	<th>사진등록3  : </th>
+	<td align="center"><input type="file" name="photo_bs3" id="_photo_bf3"></td>
 </tr>
 <tr>
-	<td colspan="2">
+	<td colspan="2" align="center">
 		<input type="button" id="pbtnsearch" value="상품 검색">&nbsp;&nbsp;
 		<!-- <input type="submit" value="상품 등록">&nbsp; -->
 		<input type="button" value="상품 등록" onclick="goWrite()">&nbsp;
@@ -124,7 +127,7 @@
  
 	<!-- Modal content -->
     <div class="modal-content">
-    	<span class="close">&times;</span>                                                               
+    	<span class="close" style="text-align: right;">&times;</span>                                                               
         <jsp:include page="/WEB-INF/views/product/inventoryAddlist.jsp" flush="false"/> 
     </div>
 </div>
@@ -204,6 +207,6 @@ function invenAdd(i_seq) {
 	
 
 </script>
-
+</div>
 </body>
 </html>

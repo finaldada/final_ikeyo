@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /*
--- 상품후기
+-- 상품평
 DROP TABLE REVIEW
 CASCADE CONSTRAINTS;
 
@@ -40,6 +40,7 @@ public class ReviewDto implements Serializable {
 	
 	private int rev_seq;		// 시퀀스
 	private String model_id;	// 상품id
+	private String id;			// 작성자 id
 	private String title;		// 제목
 	private String content;		// 내용
 	private int starpoint;		// 별점
@@ -52,11 +53,12 @@ public class ReviewDto implements Serializable {
 	public ReviewDto() {
 	}
 
-	public ReviewDto(int rev_seq, String model_id, String title, String content, int starpoint, String photo_bf,
+	public ReviewDto(int rev_seq, String model_id, String id, String title, String content, int starpoint, String photo_bf,
 			String photo_af, Date wdate, int parent, int del) {
 		super();
 		this.rev_seq = rev_seq;
 		this.model_id = model_id;
+		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.starpoint = starpoint;
@@ -81,6 +83,15 @@ public class ReviewDto implements Serializable {
 
 	public void setModel_id(String model_id) {
 		this.model_id = model_id;
+	}
+
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -149,7 +160,7 @@ public class ReviewDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ReviewDto [rev_seq=" + rev_seq + ", model_id=" + model_id + ", title=" + title + ", content=" + content
+		return "ReviewDto [rev_seq=" + rev_seq + ", model_id=" + model_id + ", id=" + id + ", title=" + title + ", content=" + content
 				+ ", starpoint=" + starpoint + ", photo_bf=" + photo_bf + ", photo_af=" + photo_af + ", wdate=" + wdate
 				+ ", parent=" + parent + ", del=" + del + "]";
 	}

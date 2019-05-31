@@ -10,11 +10,14 @@
 		<!-- 위 footer -->
 		<li>
 		<div class="footer_inner_separator_line"></div>
+		
 			<ul class="footer_inner_box">
+			
 				<li class="footer_inner_item">
 				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<img width="200px" height="70px" src="image/ikeyo.jpg">
 				</li>	
+				
 				<li class="footer_inner_item">
 					<ul>
 						<li class="item_title noto">ABOUT</li>
@@ -38,6 +41,7 @@
 						<li class="f12"><b><a class="noto" href="/policy/privacy.do" style="color: gray;">개인정보 처리방침</a></b></li>
 					</ul>
 				</li>
+				
 				<li class="footer_inner_item">
 					<ul>
 						<li class="item_title noto">고객센터</li>
@@ -89,4 +93,3 @@
 	</ul>
 	
 </div>
-

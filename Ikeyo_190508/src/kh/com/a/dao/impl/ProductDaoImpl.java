@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.ProductDao;
 import kh.com.a.model.CartDto;
+import kh.com.a.model.InventoryDto;
 import kh.com.a.model.PagingParam;
 import kh.com.a.model.ProductDto;
 
@@ -36,9 +37,9 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<CartDto> getCartList(String category) {
+	public List<CartDto> getCartList(PagingParam param) {
 		
-		return sqlSession.selectList(ns + "getCartList", category);
+		return sqlSession.selectList(ns + "getCartList", param);
 	}
 
 	@Override
@@ -103,4 +104,56 @@ public class ProductDaoImpl implements ProductDao {
 		
 		return n>0?true:false;
 	}
+
+	@Override
+	public ProductDto getProduct(String model_id) {		
+		ProductDto pdto = sqlSession.selectOne(ns + "productDetila", model_id);
+		
+		return pdto;
+	}
+
+	@Override
+	public InventoryDto getinven(String model_id) {
+		
+		InventoryDto idto = sqlSession.selectOne(ns + "getinven", model_id);
+		
+		return idto;
+	}
+
+	@Override
+	public boolean cartInput(CartDto dto) {
+		int n = sqlSession.insert(ns + "cartInput", dto);
+		return n>0?true:false;
+	}
+
+	@Override
+	public List<CartDto> p_datailCart(String model_id) {
+		List<CartDto> list = sqlSession.selectList(ns + "p_detailCart", model_id);
+		return list;
+	}
+
+	@Override
+	public boolean ordercartInput(CartDto dto) {
+		int n = sqlSession.insert(ns + "ordercartInput", dto);
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean ordercartDel(String id) {
+		int n = sqlSession.delete(ns + "ordercartDel", id);
+		return n>0?true:false;
+	}
+
+	@Override
+	public List<CartDto> ordercartSel(String id) {
+		List<CartDto> list = sqlSession.selectList(ns + "ordercartSel", id);
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
 }

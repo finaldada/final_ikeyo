@@ -1,5 +1,6 @@
 package kh.com.a.dao.impl;
 
+<<<<<<< HEAD
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,6 +55,8 @@ public class MyPageDaoImpl implements MyPageDao {
 }
 package kh.com.a.dao.impl;
 
+=======
+>>>>>>> refs/remotes/origin/jin
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
