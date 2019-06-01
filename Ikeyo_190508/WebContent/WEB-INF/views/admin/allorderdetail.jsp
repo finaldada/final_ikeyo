@@ -111,7 +111,7 @@
 </tr>
 
 <tr align="left"> <!-- 0: 주문 접수, 1: 결제 완료, 2: 배송중, 3: 배송완료 --> 
-	<td style="text-align: center;">진행 상태<hr></td> 
+	<td style="text-align: center; vertical-align: middle;">진행 상태</td> 
 	<td align="center">    
 	<c:if test="${order_.deli_info == 0 }">  <%--주문접수 --%>
        <!-- <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">상품준비중</font> -->

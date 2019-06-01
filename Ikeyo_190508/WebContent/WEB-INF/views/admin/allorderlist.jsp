@@ -103,7 +103,7 @@ $(document).ready(function () {
 <form id="order_frm" method="post">
 
 
-<table border="1" id="list_table" class="tablesorter">
+<table id="list_table" class="tablesorter">
 
 <thead>
 
@@ -123,13 +123,13 @@ $(document).ready(function () {
 
 <c:if test="${not empty orderlist}">
 <c:forEach items="${orderlist }" var="order" varStatus="vs">
-<tr align="center">  <!--   ORD_SEQ NUMBER(8) PRIMARY KEY,  , ORDER_SUB_SEQ NUMBER(8) PRIMARY KEY -->
-<td>
+<tr align="center" style="vertical-align: middle;">  <!--   ORD_SEQ NUMBER(8) PRIMARY KEY,  , ORDER_SUB_SEQ NUMBER(8) PRIMARY KEY -->
+<td style="vertical-align: middle;">
 <a href="#" onclick="goDetail('${order.order_num }')">${order.order_num }</a>
 </td> 
-<td>${order.id}</td> 
-<td><fmt:formatDate value="${order.regdate }" pattern="yyyy/MM/dd"/></td>
-<td>
+<td style="vertical-align: middle;">${order.id}</td> 
+<td style="vertical-align: middle;"><fmt:formatDate value="${order.regdate }" pattern="yyyy/MM/dd"/></td>
+<td style="vertical-align: middle;">
 	<c:if test="${order.deli_info == 0 }">
        <!-- <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">상품준비중</font> -->
        <img class="orderStatus" alt="" src="image/orderStatus0.png">
@@ -155,6 +155,7 @@ $(document).ready(function () {
 
 <tr>
 	<td colspan="4" style="text-align: center">
+	<br>
 	<select id="s_category" name="s_category">
 	<option value="" selected="selected">선택</option>
 	<option value="category">ID</option>
