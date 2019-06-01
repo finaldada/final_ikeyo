@@ -110,23 +110,24 @@
 	
 </tr>
 
-<tr align="left">  
+<tr align="left"> <!-- 0: 주문 접수, 1: 결제 완료, 2: 배송중, 3: 배송완료 --> 
 	<td style="text-align: center;">진행 상태<hr></td> 
 	<td align="center">    
-	<c:if test="${order_.deli_info == 0 }">
+	<c:if test="${order_.deli_info == 0 }">  <%--주문접수 --%>
        <!-- <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">상품준비중</font> -->
        <img class="orderStatus" alt="" src="image/orderStatus0.png">
     </c:if>
-    <c:if test="${order_.deli_info == 1 }">
+    <c:if test="${order_.deli_info == 1 }"> <%--결제 완료 --%>
       <!--  <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">배송중</font> -->
       <img class="orderStatus" alt="" src="image/orderStatus1.png">
     </c:if>
-    <c:if test="${order_.deli_info == 2 }">
+    <c:if test="${order_.deli_info == 2 }">  <%--배송중 --%>
        <!-- <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">배송완료</font> -->
        <img class="orderStatus" alt="" src="image/orderStatus2.png">
     </c:if>
-    <c:if test="${order_.deli_info == 3 }">
-       <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">주문취소</font>
+    <c:if test="${order_.deli_info == 3 }">  <%--배송완료 --%>
+       <!-- <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">주문취소</font> -->
+       <img class="orderStatus" alt="" src="image/orderStatus3.png">
     </c:if>
     <hr></td>
 	
@@ -139,6 +140,9 @@
 	<input type="button" value="Update"  class="joinButton btn_s_blue btn_100" onclick="goUpdate('${order_.deli_info }')">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" value="Cancel" class="joinButton btn_s_gray btn_100" onclick="window.close()">
 	<input type="hidden" id="ord_seq" name="ord_seq" value="${order_.ord_seq }">
+	<c:if test="${order_.deli_info == 2 }">
+	<input type="button" value="OrderFix"  class="joinButton btn_s_blue btn_100" onclick="goFix('${order_.deli_info }')">
+	</c:if>
 	</td>
 </tr>
 
@@ -158,12 +162,12 @@ function goUpdate(deli_info) {
 	
 	if(result) { 
 		
-	if(deli_info >= 1){
+	if(deli_info >= 2){
 		
 		alert("이미 업데이트가 되어있습니다.");
 		
 		
-	}else { // 0일 때 작동 
+	}else { // 1일 때 작동 
 			
 	var ord_seq = $("#ord_seq").val();
 	
@@ -201,6 +205,66 @@ function goUpdate(deli_info) {
 		
 		
 	}	
+	
+}
+
+
+function goFix(deli_info) {
+	
+	alert(deli_info);
+	
+	
+	var result = confirm('구매 완료 처리 하시겠습니까?'); 
+	
+	if(result) { 
+		
+		
+		if(deli_info == 2){
+			
+			
+			var ord_seq = $("#ord_seq").val();
+			
+			//alert("ord_seq");
+			
+			$.ajax({
+				url:"allorderfix.do",
+				type:"post",
+				data:{ ord_seq:ord_seq },
+				success:function(data){
+					
+					//alert("success");
+					//alert(data);
+					
+					if(data.trim() == "\"OK\""){
+						
+						alert("구매 처리 완료");
+						opener.parent.location.reload();
+						window.close();
+						
+					}else{
+						alert(data);
+						
+					}
+				},
+				error:function(r, s, err){
+					alert("error");
+				}
+			});
+			
+			
+			
+		}else { // 2가 아닌거 
+			
+			alert("구매 완료 처리를 할 수 없습니다.");
+		     
+		}
+		
+		
+		
+		
+	}else {
+		
+	}
 	
 }
 

@@ -37,12 +37,16 @@
      	<jsp:useBean id="nows" class="java.util.Date"/>
 
      <div style="color: white;">
-		<c:if test="${login.name ne '' }">
+		<c:if test="${login.id ne '' && login.id != null  }">
 			[${login.name }]님 환영합니다
-		</c:if>
 		<br>
 		<fmt:formatDate var="now" value="${nows }" pattern="yyyy/MM/dd"/>
 		${now }
+		</c:if>
+		
+<%-- 		<c:if test="${login.id eq '' && login.id == null  }">
+				로그인을 해주세요
+		</c:if> --%>
 	</div>
 	
  	<a class="navbar-brand js-scroll-trigger" href="main.do">

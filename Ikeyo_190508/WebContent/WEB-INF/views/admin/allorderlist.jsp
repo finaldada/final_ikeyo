@@ -143,7 +143,8 @@ $(document).ready(function () {
        <img class="orderStatus" alt="" src="image/orderStatus2.png">
     </c:if>
     <c:if test="${order.deli_info == 3 }">
-       <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">주문취소</font>
+       <!-- <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">주문취소</font> -->
+       <img class="orderStatus" alt="" src="image/orderStatus3.png">
     </c:if>
 </td>
 

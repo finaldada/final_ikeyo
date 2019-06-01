@@ -233,9 +233,12 @@
 <!-- 마이페이지(주문내역보기) -->
 <definition name="myorder.tiles" extends="mypage.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/mypage/myorder.jsp"/>
-</definition>
+</definition>    
 
-
+<!-- company -->
+<definition name="privacy1.tiles" template="/WEB-INF/views/company/privacy1.jsp"/>
+<definition name="privacy2.tiles" template="/WEB-INF/views/company/privacy2.jsp"/>
+ <definition name="brandStory.tiles" template="/WEB-INF/views/company/brandStory.jsp"/>
 
 
 </tiles-definitions>
