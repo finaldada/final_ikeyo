@@ -128,9 +128,11 @@
     background-color: #a9a9a9;
     color: #FFF;
 }
-
+.btn_s_gray:hover{
+    background-color: #6c757d;
+}
 .btn_205 {
-    width: 205px;
+    width: 230px;
     height: 50px;
     font-size: 16px;
 }
@@ -139,7 +141,21 @@
     background-color: #007bff;
     color: #FFF;
 }
-
+.btn_s_red:hover{background-color:#0051ba}
+.grayBtn {
+    display: inline-block;
+    margin-top: 6px;
+    width: 108px;
+    height: 33px;
+    border: 1px solid #63666a;
+    color: #333;
+    background-color: #fff;
+}
+.grayBtn:hover {
+    color: #fff;
+    background-color: #63666a;
+    cursor: pointer;
+}
 </style>
 
 
@@ -159,9 +175,8 @@
 	<col width="50%"/><col width="50%"/>
 </colgroup>
 <tr>
-	<td>
-	
-		<div id="left_container">		
+	<td valign="top">	
+		<!-- <div id="left_container"> -->		
 		<table>
 		<colgroup>
 			<col width="30%"/><col width="30%"/><col width="30%"/>
@@ -191,12 +206,12 @@
 			</td>
 		</tr>
 		</table>
-		</div>
+		<!-- </div> -->
 		
 	</td>
 	
 	<!-- 오른쪽 content -->
-	<td style="padding: 20 0 40% 10px;" align="center" valign="middle">
+	<td style="padding: 20 0 10% 10px;" align="center" valign="top">
 	
 		<div id="right_container" style="width: 100%; height: auto;">
 		<!-- 바로구매 폼 -->
@@ -211,7 +226,7 @@
 		
 		<tr align="center">
 			<td colspan="2" align="left">
-			<br/><br/>
+			<br/>
 				<h4>${idto.category }</h4><!-- 카테고리 --> 
 			</td>
 		</tr>

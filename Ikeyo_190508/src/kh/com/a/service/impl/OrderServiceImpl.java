@@ -74,6 +74,7 @@ public class OrderServiceImpl implements OrderService {
 			
 		return orderDao.dellinfo(ord_seq);
 	}
+
 	
 
 }

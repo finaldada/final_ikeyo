@@ -46,6 +46,39 @@
 	cursor: pointer;
 }
 
+#_frmForm table th{
+	text-align: center;
+}
+
+.tableInput{
+	text-align: right;
+	height: 30px;
+    border: 1px solid #aaa;
+    font-size: 14px;
+    padding-right: 3%;
+}
+
+.btn-ad{
+	width: 90px;
+    height: 30px;
+    font-size: 16px;
+}
+
+.grayBtn {
+    display: inline-block;
+    margin-top: 6px;
+    width: 108px;
+    height: 33px;
+    border: 1px solid #63666a;
+    color: #333;
+    background-color: #fff;
+}
+.grayBtn:hover {
+    color: #fff;
+    background-color: #63666a;
+    cursor: pointer;
+}
+
 </style>
 
 </head>
@@ -63,28 +96,28 @@
 <tbody>
 <tr>
 	<th>모델명  : </th>
-	<td align="center"><input type="text" name="model_id" id="_model_id" readonly="readonly" style="text-align: right; width: 70%;"></td>
+	<td align="center"><input type="text" name="model_id" id="_model_id" readonly="readonly" placeholder="모델명" class="tableInput"></td>
 </tr>
 <tr>
 	<th>가격  : </th>
-	<td align="center"><input type="text" name="price" id="_price" readonly="readonly" style="text-align: right;"> 원</td>
+	<td align="center"><input type="text" name="price" id="_price" readonly="readonly" class="tableInput" placeholder="원"></td>
 </tr>
 <tr>
 	<th>상품이름  : </th>
-	<td align="center"><input type="text" name="p_name" id="_p_name" style="text-align: right;"></td>
+	<td align="center"><input type="text" name="p_name" id="_p_name" class="tableInput" placeholder="상품명"></td>
 </tr>
 <tr>
 	<th>카테고리  : </th>
-	<td align="center"><input type="text" name="category" id="_category" readonly="readonly" style="text-align: right;"></td>
+	<td align="center"><input type="text" name="category" id="_category" readonly="readonly" class="tableInput"placeholder="카테고리"></td>
 </tr>
 <tr>
 	<th>상품갯수  : </th>
-	<td align="center"><input type="text" id="_count" readonly="readonly" style="text-align: right;"> 개</td>
+	<td align="center"><input type="text" id="_count" readonly="readonly" class="tableInput"placeholder="개"></td>
 </tr>
 <tr>
 	<th>상품내용  : </th>
 	<td>
-		<textarea rows="10" cols="50" name="content" id="_content"
+		<textarea rows="10" cols="50" name="content" id="_content" style="resize: none;"
 >
 </textarea>
 	</td>
@@ -107,10 +140,11 @@
 </tr>
 <tr>
 	<td colspan="2" align="center">
-		<input type="button" id="pbtnsearch" value="상품 검색">&nbsp;&nbsp;
+		<input type="button" id="pbtnsearch" value="상품 검색" class="grayBtn">&nbsp;&nbsp;
 		<!-- <input type="submit" value="상품 등록">&nbsp; -->
-		<input type="button" value="상품 등록" onclick="goWrite()">&nbsp;
-		<input type="button" value="상품 등록 취소" id="pbtncancel">
+		<input type="button" value="상품 등록" onclick="goWrite()" class="grayBtn">&nbsp;
+		<input type="button" value="상품 등록 취소" style="width: 100px;" 
+		id="pbtncancel" class="grayBtn" onclick="location.href='productList.do'">
 	</td>
 </tr>
 
@@ -137,6 +171,10 @@
 function goWrite() {
 	
 	// 유효성 검사
+	if($("#_model_id").val().trim() == ""){
+		alert("상품을 넣어주세요");
+		return;
+	}
 	if($("#_p_name").val().trim() == ""){
 		alert("상품명을 입력해 주세요!");
 		$("#_p_name").focus();
@@ -145,6 +183,18 @@ function goWrite() {
 	if($("#_content").val().trim() == ""){
 		alert("상품내용을 입력해 주세요!");
 		$("#_content").focus();
+		return;
+	}
+	if($("#_photo_bf1").val().trim() == ""){
+		alert("상품 사진1을 넣어주세요!");
+		return;
+	}
+	if($("#_photo_bf2").val().trim() == ""){
+		alert("상품 사진2을 넣어주세요!");
+		return;
+	}
+	if($("#_photo_bf3").val().trim() == ""){
+		alert("상품 사진3을 넣어주세요!");
 		return;
 	}
 	

@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/_common.css">
+
 
 <style>
 #contents {
@@ -36,7 +38,7 @@ span {
     padding: 23px;
     margin-bottom: 45px;
     overflow: hidden;
-    padding-left: 160px;
+    padding-left: 90px;
 }
 
 .status_item {
@@ -78,6 +80,11 @@ span {
     vertical-align: top;
 }
 
+.order_table tr:not(:first-child) td:nth-child(2) {
+    text-align: left;
+    padding: 40px 25px;
+}
+
 .order_table tr td.nolist {
     border-bottom: none;
     color: #aaa;
@@ -91,19 +98,6 @@ span {
     border-bottom: 1px solid #f0f0f0;
 }
 
-
-.f20 {
-    font-size: 20px;
-}
-.f14 {
-    font-size: 14px;
-}
-.f13 {
-    font-size: 13px;
-}
-.f16 {
-    font-size: 16px;
-}
 
 .arial {
     font-family: 'arial';
@@ -123,12 +117,93 @@ span {
 .mg190 {
     margin-bottom: 190px;
 }
+
 .table_key_lb {
     margin-bottom: 14px;
     font-weight: 500;
 }
 
+.seriesNm {
+    font-weight: 500;
+    margin-bottom: 11px;
+}
+.oneProductPrice {
+    float: right;
+    padding-top: 6px;
+    font-weight: 300;
+    color: #c80a1e;
+}
+.order_option_div {
+    overflow: hidden;
+    margin: 10px 0px;
+    line-height: 2;
+}
+.optionNm {
+    float: left;
+    font-weight: 300;
+    color: #63666a;
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
+.one_product_price_div {
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+.price_div {
+    overflow: hidden;
+}
+.rightOptionNm {
+    float: right;
+    font-weight: 300;
+    color: #aaa;
+    width: 38px;
+    text-align: center;
+}
+.bar {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin-bottom: 30px;
+}
+.totalPrice {
+    color: #c80a1e;
+    font-weight: 300;
+    float: right;
+}
+
+.orderStatus {
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.orderCancelBtn {
+    border: 1px solid #63666a;
+    background-color: #63666a;
+    color: #fff;
+    border-radius: inherit;
+    cursor: pointer;
+}
+.paymentBtn{
+	border: 1px solid #6610f2;
+    background-color: #6610f2;
+    color: #fff;
+    border-radius: inherit;
+    cursor: pointer;
+}
+.btn:hover {
+    color: #212529;
+    text-decoration: none;
+}
+.reviewBtn {
+    display: inline-block;
+    float: left;
+    width: 108px;
+    height: 28px;
+    border: 1px solid #c80a1e;
+    color: #c80a1e;
+    background-color: #fff;
+}
 
 </style>
 
@@ -138,17 +213,22 @@ span {
 <span class="title noto">주문/배송 조회</span>
 <div class="order_status_div">
 	<div class="status_item">
+		<img src="./image/orderStatus0.png" alt="" class="status_img" />
+		<span class="status_count f13 arial"></span>
+	</div>
+	<div class="bar_item"></div>
+	<div class="status_item">
+		<img src="./image/orderStatus1.png" alt="" class="status_img" />
+		<span class="status_count f13 arial"></span>
+	</div>
+	<div class="bar_item"></div>
+	<div class="status_item">
+		<img src="./image/orderStatus2.png" alt="" class="status_img" />
+		<span class="status_count f13 arial"></span>
+	</div>
+	<div class="bar_item"></div>
+	<div class="status_item">
 		<img src="./image/orderStatus3.png" alt="" class="status_img" />
-		<span class="status_count f13 arial"></span>
-	</div>
-	<div class="bar_item"></div>
-	<div class="status_item">
-		<img src="./image/orderStatus4.png" alt="" class="status_img" />
-		<span class="status_count f13 arial"></span>
-	</div>
-	<div class="bar_item"></div>
-	<div class="status_item">
-		<img src="./image/orderStatus5.png" alt="" class="status_img" />
 	</div>
 </div>
 
@@ -176,9 +256,9 @@ span {
 	
 	<tr>
 		<td>
-			<span class="table_key_lb noto f13">주문번호</span><br>
+			<span class="table_key_lb noto f13"><b>주문번호</b></span><br>
 			<span class="table_value_lb arial f16 orderNo_lb mg190">${olist.order_num }</span><br>
-			<span class="table_key_lb noto f13">주문일</span><br>
+			<span class="table_key_lb noto f13"><b>주문일</b></span><br>
 			<fmt:formatDate var="rdate" value="${olist.regdate }" pattern="yyyy/MM/dd"/>
 			<span class="table_value_lb arial f16">${rdate }</span>
 		</td>
@@ -186,68 +266,66 @@ span {
 			<c:forEach items="${sublist }" var="sub" varStatus="subvs">
 				<c:if test="${sub.order_num eq olist.order_num }">
 				<span class="noto f16 seriesNm">${sub.model_id }</span><br>
-				<!-- <span class="noto f16 productNm">800폭 피넛형 좌식책상</span><br> -->
+				<span class="noto f16 productNm">${sub.p_name }</span><br>
 				<div class="order_option_div">
-					<!-- <span class="noto f13 rightOptionNm ml15">색상</span> -->
+					<span class="noto f13 rightOptionNm ml15"></span>
 					<span class="noto f13 rightOptionNm ">수량</span>
 				</div>
 				
 				<div class="order_option_div">
 					<span class="noto f13 optionNm">${sub.p_name }</span>
-					<!-- <span class="noto f13 rightOptionNm ml15">MLCA</span> -->
+					<span class="noto f13 rightOptionNm ml15"></span>
 					<span class="noto f13 rightOptionNm">${sub.count }</span> 
 				</div>
 				<div class="price_div one_product_price_div">
-					<!-- <input type="button" value="상품평 작성" class="reviewBtn noto f13 disabled" 
-								   data-product-cd="HSLD108" data-group-no="1" data-order-no="OIL190502742" data-review-status="N"
-								   data-order-status="OS0001" /> -->
+					<button type="button" class="reviewBtn noto f13" onclick="review('${sub.model_id }')">상품평 작성</button>
 					<span class="oneProductPrice arial f16">${sub.price * sub.count }<b class="noto" style="color:#c80a1e;">원</b></span>
 				</div>
 			</c:if>
 			</c:forEach>
 				<div class="bar"></div>
 				<div class="total_price_div price_div">
-					<span class="noto f20" style="color: #333;font-weight: 300;">전체</span>
+					<span class="noto f20" style="color: #333; font-weight: 300;">전체</span>
 					<span class="totalPrice arial f20">${olist.total_price }<b class="noto" style="color:#c80a1e;">원</b></span>
 				</div>
 		</td>
 		<td>
-			<!-- 0: 상품 준비중, 1: 배송중, 2: 배송완료, 3: 주문 취소 , 4: 구매 완료-->
+			<!-- 0: 주문 접수, 1: 결제 완료, 2: 배송중, 3: 배송완료 -->
 			<c:if test="${olist.deli_info eq 0 }">
-				<span class="orderStatus noto f16">상품 준비중</span><br>
-				<img src="./image/os1.png" alt="상품 준비중" width="80px" height="80px"/><br>
+				<span class="orderStatus noto f16">주문 접수</span><br>
+				<img src="./image/os0.png" alt="주문 접수" width="80px" height="80px"/><br>
 			</c:if>
 			<c:if test="${olist.deli_info eq 1 }">
+				<span class="orderStatus noto f16">결제 완료</span><br>
+				<img src="./image/os1.png" alt="결제 완료" width="80px" height="80px"/><br>
+			</c:if>
+			<c:if test="${olist.deli_info eq 2 }">
 				<span class="orderStatus noto f16">배송중</span><br>
 				<img src="./image/os2.png" alt="배송중" width="80px" height="80px"/><br>
 			</c:if>
-			<c:if test="${olist.deli_info eq 2 }">
+			<c:if test="${olist.deli_info eq 3 }">
 				<span class="orderStatus noto f16">배송완료</span><br>
 				<img src="./image/os3.png" alt="배송완료" width="80px" height="80px"/><br>
 			</c:if>
-			<c:if test="${olist.deli_info eq 3 }">
-				<span class="orderStatus noto f16" style="color: red">취소된 주문</span><br>
-				<!-- <img src="./image/os1.png" alt="상품 준비중" width="80px" height="80px"/><br> -->
-			</c:if>
-			<c:if test="${olist.deli_info eq 4 }">
-				<span class="orderStatus noto f16" style="color: blue">구매 완료</span><br>
-				<!-- <img src="./image/os1.png" alt="상품 준비중" width="80px" height="80px"/><br> -->
-			</c:if>
 			
 			
-			<c:if test="${olist.deli_info < 2 }">
-				<input type="button" value="주문취소" class="noto f13 btn orderCancelBtn"/>
+			<c:if test="${olist.deli_info eq 0 }">
+				<button type="button" class="noto f13 btn orderCancelBtn" onclick="orderCancel(${olist.order_num })">주문취소</button>
+				<button type="button" class="noto f13 btn paymentBtn" onclick="payment(${olist.order_num })">결제진행</button>
+			</c:if>
+			<c:if test="${olist.deli_info eq 1 }">
+				<button type="button" class="noto f13 btn orderCancelBtn" onclick="orderCancel(${olist.order_num })">주문취소</button>
 			</c:if>
 			<c:if test="${olist.deli_info eq 2 }">
-				<input type="button" value="구매확정" class="noto f13 btn orderCancelBtn"/>
+				<button type="button" class="noto f13 btn orderCancelBtn" onclick="orderFix(${olist.order_num })">구매확정</button>
 			</c:if>
 			
 			<!-- <span class="table_key_lb noto f13">희망 배송일</span><br> -->
 			<!-- <span class="table_value_lb arial f16 mg30">2019.06.07</span><br> -->
 		</td>
 	</tr>
-	<!-- 오더리스트 foreach -->
 	
+	<!-- 오더리스트 foreach -->
 	</c:forEach>
 	
 	<!-- ${not empty orderlist } -->
@@ -256,23 +334,39 @@ span {
 </table>
 
 </div>
-
-
-
-
-
 </div>
+<form id="orderfrm1" method="get">
+	<input type="hidden" id="onum" name="order_num" value="">
+</form>
+
+<form id="orderfrm2" method="get">
+	<input type="hidden" id="mid" name="model_id" value="">
+</form>
+
+<script>
+function orderCancel( order_num ) {
+	$("#onum").val(order_num);
+	$("#orderfrm1").attr("action", "orderCancel.do").submit();
+}
+</script>
+<script>
+function orderFix( order_num ) {
+	$("#onum").val(order_num);
+	$("#orderfrm1").attr("action", "orderFix.do").submit();
+}
+</script>
+<script>
+function payment( order_num ) {
+	$("#onum").val(order_num);
+	$("#orderfrm1").attr("action", "payment_.do").submit();
+}
+</script>
+<script>
+function review( model_id ) {
+	$("#mid").val(model_id);
+	$("#orderfrm2").attr("action","productDetail.do").submit();
+}
+</script>
 
 
-</div>
 
-
-
-
-
-
-
-
-
-</body>
-</html>

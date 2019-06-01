@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <fmt:requestEncoding value="utf-8"/>
@@ -40,6 +39,82 @@
     height: 20px;
 }
 
+table.noti {
+    width: 80%;
+    border-collapse: collapse;
+    display: table;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.noti tbody tr{
+	text-align: center;
+}
+
+.noti tbody tr td{
+	border-bottom: 1px solid #f0f0f0;
+    height: 70px;
+    font-size: 15px;
+    /* cursor: pointer; */
+}
+
+.noto th {
+    font-family: 'Noto Sans KR';
+    letter-spacing: -1px;
+    border-top: 1px #aaa solid;
+    border-bottom: 1px solid #f0f0f0;
+    height: 25px;
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+}
+.btn1{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    border: none;
+    background-color: #0051ba;
+    color: #FFF;
+}
+
+.btn2{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    border: 1px solid #c80a1e;
+    background-color: #fff;
+    color: #c80a1e;
+}
+
+.btn3{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    border: 1px solid #0051ba;
+    background-color: #fff;
+    color: #0051ba;
+    float: right;
+}
+.btn3:hover{
+	background-color: #0051ba;
+	color: #fff;
+}
+
+button{
+	cursor: pointer;
+}
 </style>
 
 
@@ -47,80 +122,78 @@
 <div class="headtitle">
 	<p>고객의 소리</p>
 </div>
-<hr>
 
 
 
 <div align="center">
-
+<!--
 <div class="intro">
 	<div class="intro_left">
 		<div class="intro_bar"></div>
 		글 보기
 	</div>
-	<div>
-		
-
-
+<div>
+-->		
 
 <!-- ==================================================== -->
-<table style="width: 65%; border: 1px solid;">
-<colgroup>
-	<col width="200"><col width="500">
-</colgroup>
-
-<tr>
-	<th>아이디</th>
-	<td style="text-align: left;">${cust.id }</td>
-</tr>
-<tr>
-	<th>제목</th>
-	<td style="text-align: left;">${cust.title }</td>
-</tr>
-
-<tr>
-	<th>조회수</th>
-	<td style="text-align: left;">${cust.readcount }</td>
-</tr>
-
-<tr>
-	<th>등록일</th>
-	<td style="text-align: left;">
-		<fmt:formatDate value="${cust.wdate }" pattern="yyyy/MM/dd"/>
-	</td>
-</tr>
-
-<tr>
-	<th>정보</th>
-	<td>${cust.ref }-${cust.step }-${cust.depth }</td>
-</tr>
-
-<c:if test="${not empty cust.filename && cust.filename ne '' }">
+<table class="noti">
+<thead>
+	<tr class="noto">
+		<th width="10%">공개여부</th>
+		<th width="50%">제목</th>
+		<th width="10%">작성자</th>
+		<th width="10%">조회수</th>
+		<th width="10%">작성일</th>
+		<th width="10%">글정보</th>
+	</tr>
+</thead>
+<tbody>
 	<tr>
-		<th>이미지</th>
+		<td>${cust.lock_ eq 0?"공개":"비공개" }</td>
+		<td style="text-align: left; padding-left: 30px; font-size: 20px;font-family: 'Noto Sans KR';">${cust.title }</td>
+		<td>${cust.id }</td>
+		<td>${cust.readcount }</td>
 		<td>
-			<img alt="" src="/img/${cust.filename }" width="300px;">
+			<fmt:formatDate value="${cust.wdate }" pattern="yyyy/MM/dd"/>
+		</td>
+		<td>${cust.ref }-${cust.step }-${cust.depth }</td>
+	</tr>
+	<c:if test="${not empty cust.filename && cust.filename ne '' }">
+		<tr class="noto">
+			<th>이미지파일</th>
+			<td colspan="5">
+				<img alt="" src="/img/${cust.filename }" width="300px">
+			</td>
+		</tr>
+	</c:if>
+	<tr class="noto">
+		<th>내용</th>
+		<td colspan="5">
+			<div style="padding: 10% 10% 10% 10%; text-align:left; background-color: #fff;">
+				<pre><font size="3px">${cust.content }</font></pre>
+			</div>
 		</td>
 	</tr>
-</c:if>
-<tr>
-	<th>내용</th>
-<td style="text-align: left;"><textarea rows="10" cols="50" readonly 
-name="content" id="content">${cust.content }</textarea>
-</td>
-</tr>
-
+	<tr>
+		<td colspan="6" style="padding-top: 25px; border-bottom: 1px solid #fff;">
+			<c:if test="${login.id eq cust.id }">
+				<button type="button" class="btn1" id="_btnAdd">수정하기</button>
+				<button type="button" class="btn2" id="_btnDel">삭제하기</button>
+			</c:if>
+			<c:if test="${login.auth eq 1 }">
+				<button type="button" id="_btnAnswer" class="btn3">답변하기</button>
+			</c:if>
+		</td>
+	</tr>
+</tbody>
 </table>
-<form action="customAnswer.do" method="get">
-	<input type="hidden" name="seq" value="${cust.cust_seq }">
-	<c:if test="${login.auth eq 1 }">
-		<input type="submit" value="답글">
-	</c:if>
-</form>
+
 </div>
 
 
 
+
+<%-- 
 <c:if test="${login.id eq cust.id }">
 <div id="buttons_wrap">
 	<span class="button blue">
@@ -131,30 +204,35 @@ name="content" id="content">${cust.content }</textarea>
 	</span>
 </div>
 </c:if>
+--%>
 
-<form name="frmForm1" id="_frmForm1" action="customupdate.do" method="post">
+<form name="frmForm1" id="_frmForm1" method="post">
 	<input type="hidden" name="seq" value="${cust.cust_seq }">
 </form>
-
+<%-- 
 <form name="frmForm2" id="_frmForm2" action="customdelete.do" method="post">
 	<input type="hidden" name="seq" value="${cust.cust_seq }">
 </form>
-
-	</div>
-</div>
+<form action="customAnswer.do" method="get">
+	<input type="hidden" name="seq" value="${cust.cust_seq }">
+</form>
+--%>
 
 <br><br><br><br>
 
 <script>
 
 $("#_btnAdd").click(function () {
-	$("#_frmForm1").submit();
+	$("#_frmForm1").attr("action","customupdate.do").submit();
 });
 
 $("#_btnDel").click(function () {
-	$("#_frmForm2").submit();
+	$("#_frmForm1").attr("action","customdelete.do").submit();
 });
 
+$("#_btnAnswer").click(function () {
+	$("#_frmForm1").attr("action","customAnswer.do").submit();
+});
 
 </script>
 
