@@ -235,7 +235,7 @@ int tmin = cal.get(Calendar.MINUTE);
    <button type="submit" value="출석체크" onclick="btncheck()"><img alt="" src="./image/stamp_check.png"></button>
 </form>
 
-
+    
 </div>
 
 <script type="text/javascript">

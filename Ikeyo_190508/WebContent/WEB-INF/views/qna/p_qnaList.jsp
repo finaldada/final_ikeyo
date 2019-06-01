@@ -170,7 +170,6 @@
 
 </table>
 
-<hr />
 </div>
 <!-- The Modal -->
 <div id="myModal2" class="modal2">

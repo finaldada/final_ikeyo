@@ -149,6 +149,12 @@ public class ProductDaoImpl implements ProductDao {
 		List<CartDto> list = sqlSession.selectList(ns + "ordercartSel", id);
 		return list;
 	}
+
+	@Override
+	public boolean productupdate(ProductDto dto) {
+		int n = sqlSession.update(ns + "productupdate", dto);
+		return n>0?true:false;
+	}
 	
 	
 	

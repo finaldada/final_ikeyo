@@ -264,7 +264,6 @@ $(".close1").click(function() {
 </script>
 
 
-<hr/>
 
 
 </body>

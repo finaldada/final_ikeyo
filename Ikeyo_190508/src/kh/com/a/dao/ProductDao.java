@@ -30,4 +30,7 @@ public interface ProductDao {
 	public boolean ordercartDel(String id);		// 바로구매용 삭제
 	public List<CartDto> ordercartSel(String id);	// 바로구매용 찾아오기
 	
+	public boolean productupdate(ProductDto dto);	// 상품 업데이트
+	
+	
 }

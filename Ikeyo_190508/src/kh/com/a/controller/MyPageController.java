@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.a.model.MemberDto;
 import kh.com.a.model.Order_Dto;
@@ -168,6 +169,18 @@ public class MyPageController {
 		return "myReview.tiles";
 	}
 	
+	//pdReview modal
+	@ResponseBody
+	@RequestMapping(value = "modalReview.do", method = {RequestMethod.POST})
+	public ReviewDto modalReview(@RequestParam("rev_seq") int rev_seq) {
+		logger.info("modalReview() RUN! / Run Time: " + new Date());
+		
+		System.out.println("rev_seq=" + rev_seq);
+		ReviewDto review = myPageService.getReviewModal(rev_seq);
+		
+		return review;
+	}
+	
 	@RequestMapping(value = "myQnA.do", method = {RequestMethod.GET})
 	public String myQnA(Model model, HttpSession session, PagingParam param) {
 		logger.info("myQnA() RUN! / Run Time: " + new Date());
@@ -242,7 +255,7 @@ public class MyPageController {
 			
 		}
 	}
-	
+
 	// 마이페이지에서 결제창가기
 	@RequestMapping(value = "payment_.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String payment_(HttpSession session, String order_num, Model model) throws Exception {
@@ -294,6 +307,4 @@ public class MyPageController {
 		
 		return "redirect:/myorder.do";
 	}
-	
-	
 }

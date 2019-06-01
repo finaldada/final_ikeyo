@@ -100,7 +100,7 @@
   	<select id="myOrderpage" parameterType="java.lang.String"
   		resultType="kh.com.a.model.Order_Dto">
 		SELECT * FROM ORDER_ 
-		WHERE ID=#{id}
+		WHERE ID=#{id} 
 		ORDER BY ORD_SEQ DESC 
   	</select>
   	
@@ -114,6 +114,12 @@
 		WHERE o.model_id = i.model_id) a, PRODUCT p 
 		WHERE a.model_id = p.model_id 
 		AND ORDER_NUM=#{order_num} 
+  	</select>
+  	
+  	<select id="getReviewModal" parameterType="java.lang.Integer" resultType="kh.com.a.model.ReviewDto">
+  		select *
+  		from REVIEW
+  		where rev_seq=#{rev_seq}
   	</select>
   	
   	<select id="paymentlist_" parameterType="java.lang.String" resultType="kh.com.a.model.Order_Dto">
@@ -141,6 +147,5 @@
   		UPDATE ORDER_ SET DELI_INFO=3 
   		WHERE ORDER_NUM=#{order_num} 
   	</update>
-  	
   	
   </mapper>

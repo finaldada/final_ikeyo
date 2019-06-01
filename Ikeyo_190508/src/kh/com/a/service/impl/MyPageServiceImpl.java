@@ -116,6 +116,12 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
+	public ReviewDto getReviewModal(int seq) {
+		
+		return myPageDao.getReviewModal(seq);
+	}
+	
+	@Override
 	public List<Order_Dto> paymentlist_(String order_num) {
 		return myPageDao.paymentlist_(order_num);
 	}

@@ -35,5 +35,4 @@ public interface OrderService {
   	// 결제완료 : deli_info -> 1 변경
   	public boolean dellinfo(int ord_seq);
     
-  	
 }

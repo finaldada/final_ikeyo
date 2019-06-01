@@ -119,6 +119,12 @@ public class MyPageDaoImpl implements MyPageDao {
 	}
 
 	@Override
+	public ReviewDto getReviewModal(int seq) {
+		
+		return sqlSession.selectOne(ns + "getReviewModal", seq);
+	}
+	
+	@Override
 	public List<Order_Dto> paymentlist_(String order_num) {
 		return sqlSession.selectList(ns + "paymentlist_", order_num);
 	}
@@ -146,4 +152,5 @@ public class MyPageDaoImpl implements MyPageDao {
 		int n = sqlSession.update(ns + "orderFix", order_num);
 		return n>0?true:false;
 	}
+	
 }
