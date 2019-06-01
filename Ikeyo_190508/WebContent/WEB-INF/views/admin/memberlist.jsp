@@ -113,7 +113,7 @@ $(document).ready(function () {
 
 <thead>
 
-<tr align="center"  style="border: 3px solid deepskyblue;">
+<tr align="center"  style="border: 2px solid deepskyblue;">
 <th>아이디</th> <th>이름</th> <th>이메일</th> <th>주소</th> <th>회원권한</th>
 <th>전화번호</th> <th>등급</th> <th>포인트(p)</th> <th>회원삭제</th> 
 </tr>

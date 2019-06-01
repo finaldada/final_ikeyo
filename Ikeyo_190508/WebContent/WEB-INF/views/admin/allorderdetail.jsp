@@ -40,8 +40,15 @@
 .orderStatus{
 	width: 80px; 
 	height: 80px;
-	border: 3px solid deepskyblue;
+	border: 1px solid deepskyblue;
 }
+
+td,tr{
+font-size: 16px;
+ font-family: 'Noto Sans KR'; 
+ font-weight: 800;
+}
+
 
 </style>
 
@@ -64,18 +71,18 @@
 
 
 
-<tr align="left">
+<tr align="center">
 	<td>주문번호<hr></td>
 	<td>${order_.order_num }<hr></td>
 	
 </tr>
 
-<tr align="left">
+<tr align="center">
 	<td>모델명/수량<hr></td>
-	<td><c:forEach items="${order_sub }" var="sub">[<b>${sub.model_id }</b>]&nbsp;&nbsp;&nbsp;[<b>${sub.count }</b>]개<br></c:forEach><hr></td>
+	<td><c:forEach items="${order_sub }" var="sub"><b>${sub.model_id }</b>&nbsp;&nbsp;/&nbsp;&nbsp;<b>${sub.count }</b>개<br></c:forEach><hr></td>
 </tr>
 
-<tr align="left">
+<tr align="center">
 	<td>총수량<hr></td>
 	<td><c:set var = "total" value = "0" />
 
@@ -85,32 +92,32 @@
 
 </c:forEach>
 
-<c:out value="${total}"/><hr></td>
+<c:out value="${total}"/>개<hr></td>
 </tr>
 
-<tr align="left">
+<tr align="center">
 	<td>주문자<hr></td>
 	<td>${order_.rname }<hr></td>
 </tr>
 
-<tr align="left">
+<tr align="center">
 	<td>연락처<hr></td>
 	<td>${order_.phone }<hr></td>
 
 </tr>
 
-<tr align="left">  
+<tr align="center">  
 	<td>총 가격<hr></td>
 	<td>${order_.total_price }원<hr></td> 
 </tr>
 
-<tr align="left">  
+<tr align="center">  
 	<td>배송지 요청사항<hr></td> 
 	<td>${order_.content }<hr></td>
 	
 </tr>
 
-<tr align="left"> <!-- 0: 주문 접수, 1: 결제 완료, 2: 배송중, 3: 배송완료 --> 
+<tr align="center"> <!-- 0: 주문 접수, 1: 결제 완료, 2: 배송중, 3: 배송완료 --> 
 	<td style="text-align: center; vertical-align: middle;">진행 상태</td> 
 	<td align="center">    
 	<c:if test="${order_.deli_info == 0 }">  <%--주문접수 --%>

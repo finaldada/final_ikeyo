@@ -46,8 +46,6 @@
 
 
 
-
-
 </style>
 
 <title>Insert title here</title>
@@ -136,11 +134,11 @@ $(document).ready(function () {
 		<td>${qna.qna_seq }</td>
 		<td>
 		    <c:if test="${qna.answer eq null }">
-               <font style= "color:#c80a1e; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">접수</font>
+               <font style= "color:#c80a1e; font-size: 16px; font-family: 'Noto Sans KR'; font-weight: 800;">접수</font>
             </c:if>
             
             <c:if test="${qna.answer ne null }">
-               <font style="color:#c80a1e; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">답변완료</font>
+               <font style="color:#c80a1e; font-size: 16px; font-family: 'Noto Sans KR'; font-weight: 800;">답변완료</font>
             </c:if>
 		</td>
 		<td>${qna.id }</td>

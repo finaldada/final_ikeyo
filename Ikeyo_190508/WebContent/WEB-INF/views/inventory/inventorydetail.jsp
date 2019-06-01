@@ -55,6 +55,11 @@ input,textarea{
 	height: 30px;
 	font-size: 14px;
 }
+td,tr{
+font-size: 16px;
+ font-family: 'Noto Sans KR'; 
+ font-weight: 800;
+}
 
 </style>
 
@@ -80,7 +85,7 @@ input,textarea{
 <input type="hidden" id="inven_seq" name="inven_seq" value="${inven.inven_seq }">
 
 
-<tr align="left">
+<tr align="center">
 	<td>모델명<hr></td>
 	<td>${inven.model_id }<input type="hidden" size="50" id="model_id" name="model_id" 
 	value="${inven.model_id }" >
@@ -88,13 +93,13 @@ input,textarea{
 	
 </tr>
 
-<tr align="left">  
+<tr align="center">  
 	<td>카테고리<hr></td>
 	<td>${inven.category }<input type="hidden" id="category" name="category"  value="${inven.category }" > 
 	<hr></td>
 </tr>
 
-<tr align="left">   
+<tr align="center">   
 	<td>수량<hr></td>
 	<td>
 	<input type="hidden" id="count" name="count" 
@@ -102,7 +107,7 @@ input,textarea{
 	<hr></td>
 </tr>
 
-<tr align="left">  
+<tr align="center">  
 	<td>가격<hr></td>
 	<td><input type="hidden" id="price" name="price" value="${inven.price }">${inven.price }원
 	<hr></td>

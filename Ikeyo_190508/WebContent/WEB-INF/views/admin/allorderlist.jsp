@@ -43,12 +43,10 @@
 }
 
 .orderStatus{
-	width: 80px; 
-	height: 80px;
-	border: 3px solid deepskyblue;
+	width: 60px; 
+	height: 60px;
+	/* border: 3px solid deepskyblue; */
 }
-
-
 
 
 
@@ -107,7 +105,7 @@ $(document).ready(function () {
 
 <thead>
 
-<tr style="border: 3px solid deepskyblue;" align="center">
+<tr style="border: 2px solid deepskyblue;" align="center">
 <th>주문번호</th> <th>아이디</th><th>주문일</th> <th>진행 상태</th> 
 </tr>
 
@@ -130,21 +128,33 @@ $(document).ready(function () {
 <td style="vertical-align: middle;">${order.id}</td> 
 <td style="vertical-align: middle;"><fmt:formatDate value="${order.regdate }" pattern="yyyy/MM/dd"/></td>
 <td style="vertical-align: middle;">
-	<c:if test="${order.deli_info == 0 }">
+	<c:if test="${order.deli_info == 0 }"> <!-- 0: 주문 접수, 1: 결제 완료, 2: 배송중, 3: 배송완료 --> 
        <!-- <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">상품준비중</font> -->
-       <img class="orderStatus" alt="" src="image/orderStatus0.png">
+       <!-- <img class="orderStatus" alt="" src="image/orderStatus0.png"> -->
+       <img class="orderStatus" alt="" src="image/os0.png"><br>
+       <span style= "font-size: 16px; font-family: 'Noto Sans KR'; font-weight: 800;">주문 접수</span>
+       <br>
     </c:if>
     <c:if test="${order.deli_info == 1 }">
       <!--  <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">배송중</font> -->
-      <img class="orderStatus" alt="" src="image/orderStatus1.png">
+      <!-- <img class="orderStatus" alt="" src="image/orderStatus1.png"> -->
+      <img class="orderStatus" alt="" src="image/os1.png"><br>
+      <span style= "font-size: 16px; font-family: 'Noto Sans KR'; font-weight: 800;">결제 완료</span>
+      <br>
     </c:if>
     <c:if test="${order.deli_info == 2 }">
        <!-- <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">배송완료</font> -->
-       <img class="orderStatus" alt="" src="image/orderStatus2.png">
+       <!-- <img class="orderStatus" alt="" src="image/orderStatus2.png"> -->
+       <img class="orderStatus" alt="" src="image/os2.png"><br>
+       <span style= "font-size: 16px; font-family: 'Noto Sans KR'; font-weight: 800;">배송중</span>
+       <br>
     </c:if>
     <c:if test="${order.deli_info == 3 }">
        <!-- <font style="color: red; font-size: 18px; font-family: 'Noto Sans KR'; font-weight: 800;">주문취소</font> -->
-       <img class="orderStatus" alt="" src="image/orderStatus3.png">
+       <!-- <img class="orderStatus" alt="" src="image/orderStatus3.png"> -->
+       <img class="orderStatus" alt="" src="image/os3.png"><br>
+       <span style= "font-size: 16px; font-family: 'Noto Sans KR'; font-weight: 800;">배송 완료</span>
+       <br>
     </c:if>
 </td>
 
