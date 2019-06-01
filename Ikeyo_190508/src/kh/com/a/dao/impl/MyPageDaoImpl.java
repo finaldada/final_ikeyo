@@ -117,4 +117,40 @@ public class MyPageDaoImpl implements MyPageDao {
 		System.out.println("오더넘버: " + order_num);
 		return sqlSession.selectList(ns + "mySubOrder", order_num);
 	}
+
+	@Override
+	public ReviewDto getReviewModal(int seq) {
+		
+		return sqlSession.selectOne(ns + "getReviewModal", seq);
+	}
+	
+	@Override
+	public List<Order_Dto> paymentlist_(String order_num) {
+		return sqlSession.selectList(ns + "paymentlist_", order_num);
+	}
+
+	@Override
+	public boolean plusCountInven(Order_Sub_Dto dto) {
+		int n = sqlSession.update(ns + "plusCountInven", dto);
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean deleteOrderSub(String order_num) {
+		int n = sqlSession.delete(ns + "deleteOrderSub", order_num);
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean deleteOrder(String order_num) {
+		int n = sqlSession.delete(ns + "deleteOrder", order_num);
+		return n>0?true:false;
+	}
+
+	@Override
+	public boolean orderFix(String order_num) {
+		int n = sqlSession.update(ns + "orderFix", order_num);
+		return n>0?true:false;
+	}
+	
 }

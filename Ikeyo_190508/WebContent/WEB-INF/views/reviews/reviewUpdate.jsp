@@ -34,7 +34,7 @@
 <br/>
 <span class="noto f13">내용을 입력해 주세요</span>
 <br/>
-<textarea rows="10" cols="50" name="content" id="content1" style="max-width: 338px;"
+<textarea rows="10" cols="50" name="content" id="content1" style="max-width: 338px; resize: none;"
 >
 </textarea>
 <br/>
@@ -56,7 +56,7 @@
 <br/>
 <br/>
 <div align="center">
-	<input type="button" value="작성 완료" onclick="goUpdate()" />
+	<input type="button" value="작성 완료" onclick="goUpdate()" class="redBtn" />
 </div>
 
 </form>

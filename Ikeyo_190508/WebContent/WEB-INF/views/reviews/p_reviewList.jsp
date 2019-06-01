@@ -97,7 +97,7 @@
 <h3>포토 상품평</h3>
 </div>
 <div align="right">
-<input type="button" value="상품평쓰기" id="goWrite" <%-- onclick="goWrite('${pdto.model_id}', '${login.id }')" --%>/>
+<input type="button" value="상품평쓰기" class="grayBtn" id="goWrite" />
 </div>
 <div align="center">
 <span style="font-size: 14px; color: #aaa;">
@@ -153,7 +153,7 @@
 			<td>
 			<c:choose>
 				<c:when test="${login.id eq review.id }">
-					<button type="button" onclick="update(${review.rev_seq})">수정</button>
+					<button type="button" class="grayBtn" onclick="update(${review.rev_seq})">수정</button>
 				</c:when>
 				<c:when test="${login.id ne review.id }">
 					
@@ -264,7 +264,6 @@ $(".close1").click(function() {
 </script>
 
 
-<hr/>
 
 
 </body>

@@ -87,8 +87,8 @@
 </div>
 <div style="text-align:left;left:;top:;width:858px;height:;z-index:2;position:relative;" class="bodyTextGray">
 <i><b>IKEYO</b>의 <b>I</b>와 <b>K</b>는 IT전문학원 KH정보교육원의 이니셜에서, 
-<b>E</b>는 El tag(이엘 태그)에서, <b>Y</b>는 근처 역전인 Yeoksam(역삼)에서,  
-<b>O</b>는 Object Oriented 에서 따온 것이에요.</i>
+<b>E</b>는 El tag(이엘 태그)에서, <b>Y</b>는 근처 역인 Yeoksam(역삼)에서,  
+<b>O</b>는 Object-oriented programming 에서 따온 것이에요.</i>
 </div>
 </div>
 <div class="clearAll">

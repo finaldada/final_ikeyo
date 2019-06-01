@@ -31,4 +31,17 @@ public interface MyPageDao {
 	// 마이페이지 주문내역
 	public List<Order_Dto> myorderpage(String id);
 	public List<Order_Sub_Dto> getMySubOrder(String order_num);
+	
+	// pdReview.jsp modal
+	public ReviewDto getReviewModal(int seq);
+	
+	// 마이페이지 결제진행
+	public List<Order_Dto> paymentlist_(String order_num);
+	// 주문 취소
+	public boolean plusCountInven(Order_Sub_Dto dto);
+	public boolean deleteOrderSub(String order_num);
+	public boolean deleteOrder(String order_num);
+	// 구매 확정
+	public boolean orderFix(String order_num);
+	
 }

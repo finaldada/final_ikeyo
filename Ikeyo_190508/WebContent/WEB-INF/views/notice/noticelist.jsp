@@ -42,6 +42,33 @@ table.noti {
     color: #aaa;
     text-align: center;
 }
+
+.btnsearch{
+	margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70px;
+    height: 30px;
+    font-size: 16px;
+    border: 1px solid #000;
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.btnwrite{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background-color: #0051ba;
+    color: #FFF;
+}
+
 </style>
 
 
@@ -113,15 +140,26 @@ $(document).ready(function(){
 			<div id="slide${vs.index }" class="slide" style="padding: 10% 10% 10% 10%; text-align:left; background-color: #f0f0f0;">
 				<pre><font size="3px">${bbs.content }</font></pre>
 				<c:if test="${login.auth == 1 }">
-					<div>
-						<button id="updateBtn" onclick="location.href='noticeUpdate.do?seq=${bbs.noti_seq }'">수정</button>
-						<button id="deleteBtn" onclick="location.href='noticeDelete.do?seq=${bbs.noti_seq }'">삭제</button>
+					<div align="center">
+						<button id="updateBtn" class="btnsearch" onclick="location.href='noticeUpdate.do?seq=${bbs.noti_seq }'">수정</button>
+						<button id="deleteBtn" class="btnsearch" onclick="location.href='noticeDelete.do?seq=${bbs.noti_seq }'">삭제</button>
 					</div>
 				</c:if>
 			</div>
 		</td>
 	</tr>
 	</c:forEach>
+	<c:if test="${login.auth eq 1 }">
+		<tr>
+			<td colspan="6" style="border: 1px solid #fff">
+				<div align="center">
+					<span>
+						<button type="button" id="_btnAdd" class="btnwrite" style="border-color: #0051ba;">글쓰기</button>
+					</span>
+				</div>
+			</td>
+		</tr>
+	</c:if>
 </tbody>
 </table>
 <br>
@@ -158,7 +196,7 @@ $(document).ready(function(){
 		</td>
 		<td style="padding-left: 5px;">
 			<span class="button blue">
-				<button type="button" id="_btnSearch">검색</button>
+				<button type="button" id="_btnSearch" class="btnsearch">검색</button>
 			</span>
 		</td>
 	</tr>
@@ -172,13 +210,7 @@ $(document).ready(function(){
 </div>
 
 
-<div id="buttons_wrap">
-	<c:if test="${login.auth eq 1 }">
-		<span>
-			<button type="button" id="_btnAdd">글쓰기</button>
-		</span>
-	</c:if>
-</div>
+
 
 
 <br><br><br><br><br><br><br>

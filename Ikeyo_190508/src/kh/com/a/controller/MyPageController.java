@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.a.model.MemberDto;
 import kh.com.a.model.Order_Dto;
@@ -168,6 +169,18 @@ public class MyPageController {
 		return "myReview.tiles";
 	}
 	
+	//pdReview modal
+	@ResponseBody
+	@RequestMapping(value = "modalReview.do", method = {RequestMethod.POST})
+	public ReviewDto modalReview(@RequestParam("rev_seq") int rev_seq) {
+		logger.info("modalReview() RUN! / Run Time: " + new Date());
+		
+		System.out.println("rev_seq=" + rev_seq);
+		ReviewDto review = myPageService.getReviewModal(rev_seq);
+		
+		return review;
+	}
+	
 	@RequestMapping(value = "myQnA.do", method = {RequestMethod.GET})
 	public String myQnA(Model model, HttpSession session, PagingParam param) {
 		logger.info("myQnA() RUN! / Run Time: " + new Date());
@@ -241,7 +254,57 @@ public class MyPageController {
 			return "myorder.tiles";
 			
 		}
+	}
+
+	// 마이페이지에서 결제창가기
+	@RequestMapping(value = "payment_.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String payment_(HttpSession session, String order_num, Model model) throws Exception {
 		
+		logger.info("OrderController payment_ "+ new Date());
 		
+		// id
+		MemberDto mem = (MemberDto)session.getAttribute("login");
+		if(mem==null) {
+			 return "redirect:/login.do";
+		}
+		
+		List<Order_Dto> paymentlist = myPageService.paymentlist_(order_num);
+		
+		model.addAttribute("paymentlist", paymentlist);
+		
+		return "payment.tiles";
+		
+	}
+	
+	
+	// 마이페이지(주문내역) -> 주문취소
+	@RequestMapping(value = "orderCancel.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String orderCancel(String order_num) {
+		
+		logger.info("OrderController orderCancel "+ new Date());
+		
+		// 수량 추가해주기(order_num -> 리스트로 가져오기 -> 모델명, 수량 추가해주기)
+		List<Order_Sub_Dto> sublist = myPageService.getMySubOrder(order_num);
+		
+		for(int i = 0; i < sublist.size(); i++) {
+			Order_Sub_Dto subdto = sublist.get(i);
+			myPageService.plusCountInven(subdto);
+		}
+		
+		// sub테이블 삭제(order_num) // order테이블 삭제(order_num)
+		myPageService.deleteOrder(order_num);
+		
+		return "redirect:/myorder.do";
+	}
+	
+	// 마이페이지(주문내역) -> 구매확정(3)
+	@RequestMapping(value = "orderFix.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String orderFix(String order_num) {
+		
+		logger.info("OrderController orderCancel "+ new Date());
+		
+		myPageService.orderFix(order_num);
+		
+		return "redirect:/myorder.do";
 	}
 }

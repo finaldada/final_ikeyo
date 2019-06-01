@@ -114,5 +114,32 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<Order_Sub_Dto> getMySubOrder(String order_num) {
 		return myPageDao.getMySubOrder(order_num);
 	}
+
+	@Override
+	public ReviewDto getReviewModal(int seq) {
+		
+		return myPageDao.getReviewModal(seq);
+	}
+	
+	@Override
+	public List<Order_Dto> paymentlist_(String order_num) {
+		return myPageDao.paymentlist_(order_num);
+	}
+
+	@Override
+	public boolean plusCountInven(Order_Sub_Dto dto) {
+		return myPageDao.plusCountInven(dto);
+	}
+
+	@Override
+	public boolean deleteOrder(String order_num) {
+		myPageDao.deleteOrderSub(order_num);
+		return myPageDao.deleteOrder(order_num);
+	}
+
+	@Override
+	public boolean orderFix(String order_num) {
+		return myPageDao.orderFix(order_num);
+	}
 	
 }
