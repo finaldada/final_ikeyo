@@ -28,6 +28,8 @@ public interface OrderDao {
 
 	// 카트비우기
 	public void cartdelete(int sseq)throws Exception;
+	// 인벤토리 재고 내려주기
+	public boolean minusCountInven(Order_Sub_Dto sdto);
 	
 	// 결제정보
 	public List<Order_Dto> paymentlist(String id) throws Exception;

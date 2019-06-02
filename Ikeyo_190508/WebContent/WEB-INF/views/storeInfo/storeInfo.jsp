@@ -40,7 +40,7 @@
 
 <div align="center" style="margin-left:20%; margin-top:10%; margin-bottom:10%; border:2px solid deepskyblue; width:750px;height:500px;">
 <pre>
-용산, 중곡 , 논현, 강동 , 송파
+
 </pre>
 <br>
 <pre>

@@ -75,5 +75,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.dellinfo(ord_seq);
 	}
 	
+	@Override
+	public boolean minusCountInven(Order_Sub_Dto sdto) {
+		return orderDao.minusCountInven(sdto);
+	}
+	
 
 }

@@ -20,25 +20,25 @@
 				
 				<li class="footer_inner_item">
 					<ul>
-						<li class="item_title noto">ABOUT</li>
-						<li class="f12"><b><a class="noto" href="/company/brandStory.do" style="color: gray;">회사소개</a></b></li>
-						<li class="f12"><b><a class="noto" href="/store/storeInfo.do" style="color: gray;">매장안내</a></b></li>
-						<li class="f12"><b><a class="noto" href="https://recruit.fursys.com:4431/main.do?command=getMain" style="color: gray;">인재채용</a></b></li>
+						<li class="item_title noto">-ABOUT</li>
+						<li class="f12"><b><a class="noto" href="brandStory.do" onclick="window.open(this.href, '', 'width=1300,height=600'); return false;" style="color: gray;">회사소개</a></b></li>
+						<li class="f12"><b><a class="noto" href="storeInfo.do" style="color: gray;">매장안내</a></b></li>
+						<li class="f12"><b><a class="noto" href="#" style="color: gray;">인재채용</a></b></li>
 					</ul>
 				</li>
 				<li class="footer_inner_item">
 					<ul>
 						<li class="item_title noto">SUPPORT</li>
-						<li class="f12"><b><a class="noto" href="/customer/main.do" style="color: gray;">고객센터</a></b></li>
-						<li class="f12"><b><a class="noto" href="/agency/procedure.do" style="color: gray;">대리점 개설안내</a></b></li>
+						<li class="f12"><b><a class="noto" href="customlist.do" style="color: gray;">고객센터</a></b></li>
+						<li class="f12"><b><a class="noto" href="#"  style="color: gray;">대리점 개설안내</a></b></li>
 					</ul>
 				</li>
 				
 				<li class="footer_inner_item">
-					<ul>
+					<ul>                                                  
 						<li class="item_title noto">INFO</li>
-						<li class="f12"><b><a class="noto" href="/policy/termsOfUse.do" style="color: gray;">이용약관</a></b></li>
-						<li class="f12"><b><a class="noto" href="/policy/privacy.do" style="color: gray;">개인정보 처리방침</a></b></li>
+						<li class="f12"><b><a class="noto" href="privacy1.do"  onclick="window.open(this.href, '', 'width=1300,height=600'); return false;" style="color: gray;">웹 사이트 이용약관</a></b></li>
+						<li class="f12"><b><a class="noto" href="privacy2.do" onclick="window.open(this.href, '', 'width=1300,height=600'); return false;" style="color: gray;">개인정보 처리방침</a></b></li>
 					</ul>
 				</li>
 				

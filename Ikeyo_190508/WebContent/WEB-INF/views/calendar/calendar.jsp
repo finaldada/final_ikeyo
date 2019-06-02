@@ -20,31 +20,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
-<style>
-table {
-  /*  border: 1px solid #999; */
-   border-collapse: collapse;
-   font-family: Georgia, Times, serif;
-}
-th {
-  border: 1px solid #999;
-  font-size: 70%;
-  text-transform: uppercase;
-}
-td {
-  border: 1px solid #999;
-  /* height: 5em; */
-  /* width:5em; */
-  padding: 0;
-  vertical-align: top;
-}
-</style>
-
+<!-- content.css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/content.css">
 
 </head>
 <body>
-
-<img alt="" src="">
 
 <%
 Calendar cal = Calendar.getInstance();
@@ -113,59 +93,49 @@ MemberDto user = (MemberDto)session.getAttribute("login");
 List<CalendarDto> list = (List<CalendarDto>)request.getAttribute("list");
 %>
 
-<div class="f_content">
-<div class="f2_content">
+<div class="f_content" style="margin-bottom: 63%;">
+<div class="f2_content" style="background-color: white;">
 
-<h4>일정관리</h4>
-
-<!-- // 로그아웃 & 로그인  후 정보(이름)-->
+<%-- <!-- // 로그아웃 & 로그인  후 정보(이름)-->
 <c:if test="${login.id ne ''}">
    <a href="logout.do" title="로그아웃">[로그아웃]</a>&nbsp;&nbsp;&nbsp;
 </c:if>
 
 <c:if test="${login.name ne '' }">
    [${login.name }]님 환영합니다
-</c:if>
+</c:if> --%>
 
-<!-- // 접속보상확인 -->
-    <input type="button" id="_btnGetId" onclick="disable(this)" value="접속보상"/>
-    
-    
-<!-- // 한번 실행 후 실행 안되게 막음 -->    
-<script type="text/javascript">
-function disable(ctr) {
-   ctr.disabled = true;
-}
-</script>    
+<div align="center" style="margin-left: 60px; margin-right: 100px;"> 
+ 
+  <img src="image/cal05.jpg" width="100%;" height="40%;">
+  
+<div style="background-color: #FFBF00;">
+<br>
+<table border="2" style="border-collapse: separate; border-spacing: 10 10px; background-color: white;">
+<col width="140"><col width="140"><col width="140"><col width="140">
+<col width="140"><col width="140"><col width="140">
 
-
-<div align="center">
-
-<table border="1" id="calendar">
-<col width="100"><col width="100"><col width="100"><col width="100">
-<col width="100"><col width="100"><col width="100">
-
-<tr height="100">
+<tr height="100" style="border: 2px solid gray;">
    <td colspan="7" align="center">
-      <%=pp %>&nbsp;<%=p %>
-      <font color="black" style="font-size: 50px">
+      <%=pp %>&nbsp;<%=p %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <font color="black" style="font-size: 50px; font-weight: bold;">
          <%=String.format("%d년&nbsp;&nbsp;%2d월", year, month) %>
-      </font>
+      </font>&nbsp;&nbsp;
       <%=n %>&nbsp;<%=nn %>   
    </td>
 </tr>
 
-<tr height="10">
-   <td align="center">일</td>
-   <td align="center">월</td>
-   <td align="center">화</td>
-   <td align="center">수</td>
-   <td align="center">목</td>
-   <td align="center">금</td>
-   <td align="center">토</td>
+<tr align="center" style="font-weight: bold; background-color: #BDBDBD; color: #FAFAFA;" height="30">
+   <td>일</td>
+   <td>월</td>
+   <td>화</td>
+   <td>수</td>
+   <td>목</td>
+   <td>금</td>
+   <td>토</td>
 </tr>
 
-<tr height="100" align="left" valign="top">
+<tr height="120" valign="top">
 <%
 // 윗쪽의 빈칸
 for(int i = 1;i < dayOfWeek; i++){
@@ -179,19 +149,19 @@ for(int i = 1;i < dayOfWeek; i++){
 int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 for(int i = 1;i <= lastDay; i++){
-   String bgcolor = (today.equals(year + "년 "+ month +"월 "+ i + "일"))? "blue" : "#FFFFFF";
+   String bgcolor = (today.equals(year + "년 "+ month +"월 "+ i + "일"))? "white" : "#FFFFFF";
    String color = (count%7 == 0 || count%7 == 6)? "red" : "black";
    count++;
    %>
-   <td bgcolor="<%=bgcolor %>"><font size="2" color=<%=color %>>
-       <%=CalendarUtil.caltoday(year, month, i) %></font>
-      <%=CalendarUtil.makeTable(year, month, i, list) %>
+   <td bgcolor="<%=bgcolor %>"><font size="3" color=<%=color %> style="font-weight: bold;">
+       <%=CalendarUtil.caltoday(year, month, i) %></font><br>&nbsp;&nbsp;
+       <%=CalendarUtil.makeTable(year, month, i, list) %>
    </td>
    <%
    if((i + dayOfWeek - 1) % 7 == 0 && i != lastDay){
       %>   
       </tr>
-      <tr height="100" align="left" valign="top">
+      <tr height="120" align="left" valign="top">
       <%
    }   
 
@@ -206,10 +176,32 @@ for(int i = 0; i < (7 - (dayOfWeek + lastDay - 1) % 7 ) % 7; i++){
 }
 %>   
 </tr>
+
 </table>
+
+<br><br>
 </div>
 
+
+<div style="background-color: #FFBF00;" align="left">
+
+<div style="margin-left: 166px; background-color: #FFBF00;">
+<img alt="" src="image/n01.jpg">
 <br>
+
+<label style="margin-left: 130px;">
+<!-- // 접속보상확인 -->
+<button type="button" class="btn btn-outline-secondary" id="_btnGetId" onclick="disable(this)">접속보상</button>
+</label>
+
+<!-- // 한번 실행 후 실행 안되게 막음 -->    
+<script type="text/javascript">
+function disable(ctr) {
+   ctr.disabled = true;
+}
+</script>
+
+
 <!-- 오늘날짜,시간 & 출석체크 버튼  -->
 <%
 String day = request.getParameter("day");
@@ -218,11 +210,13 @@ int thour = cal.get(Calendar.HOUR_OF_DAY);
 int tmin = cal.get(Calendar.MINUTE);
 %>
 
-<div align="center">
-<form action="calwrite.do" method="post">
-   <h4 style="color: blue">" 현재시간 "</h4>
-   
-   <!-- // db에 넣기 위해  id값을 가져와야 함 -->
+<img alt="" src="image/n02.jpg" style="margin-left: 440px;">
+
+<div style="margin-left: 800px;">
+
+<form id="frm" method="post">
+	<h5>"현재 시간"</h5>
+	<!-- // db에 넣기 위해  id값을 가져와야 함 -->
    <input type="hidden" name="id" id="_id" value="<%=user.getId() %>">
    
    <%=tyear %>년&nbsp;<%=tmonth+1 %>월&nbsp;<%=tday %>일&nbsp;<%=thour %>시&nbsp;<%=tmin %>분
@@ -232,16 +226,42 @@ int tmin = cal.get(Calendar.MINUTE);
    <input type="hidden" name="hour" value="<%=thour %>">
    <input type="hidden" name="min" value="<%=tmin %>">
    <br>
-   <button type="submit" value="출석체크" onclick="btncheck()"><img alt="" src="./image/stamp_check.png"></button>
+   
+  <!-- // 출석체크 -->
+ <!--   <button type="submit" onclick="btncheck()">
+     <img alt="" src="image/stamp_01.png">
+   </button>
+   	 -->
+   <img alt="" src="image/stamp_01.png" onclick="btncheck()">
+   
 </form>
-
-    
 </div>
 
+</div>
+
+<br><br><br>
+</div>
+
+</div>  <!-- // center -->
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+function btncheck() {
+	
+	// alert("테스트");
+	$("#frm").attr("action", "calwrite.do").submit();
+	
+}
+</script>
+
+<!-- // 포인트 지급  -->
 <script type="text/javascript">
 
 $("#_btnGetId").click(function () {   
-   alert("포인트 지급 테스트");
+  // alert("포인트 지급 테스트");
    
    $.ajax({
       type:"post",
@@ -265,12 +285,9 @@ $("#_btnGetId").click(function () {
    });
    
 });
-
 </script>
 
-   
-</div>
-</div>
+
 
 </body>
 </html>

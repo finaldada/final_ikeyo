@@ -94,7 +94,7 @@
     padding: 0px;
     font-family: 'Malgun Gothic', 'Noto Sans KR';
     letter-spacing : -1.5px;
-    color : #333;
+    /* color : #333; */
 }
 
 ul, li, dl, dt, dd {

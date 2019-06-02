@@ -98,10 +98,6 @@
 <!-- 출석체크(calendar) 화면 -->
 <definition name="calendar.tiles" template="/WEB-INF/views/calendar/calendar.jsp"/>
 
-<!-- calwrite로 연결  -->
-<definition name="calwrite.tiles" template="/WEB-INF/views/calendar/calwrite.jsp"/>
-
-
 <!-- admin   -->
 
 <definition name="memberlist.tiles" extends="mypage.tiles">
@@ -210,19 +206,29 @@
 </definition>
 
 <!-- 위시리스트 -->
-<definition name="wishList.tiles" template="/WEB-INF/views/wishlist/wishList.jsp"/>
+<definition name="wishList.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/wishlist/wishList.jsp"/>
+</definition>
 
 <!-- 장바구니 -->
-<definition name="cartlist.tiles" template="/WEB-INF/views/cart/cart.jsp"/>
+<definition name="cartlist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/cart/cart.jsp"/>
+</definition>
 
-<!-- 장바구니 에서 주문서로 이동 -->
-<definition name="orderlist.tiles" template="/WEB-INF/views/order/orderlist.jsp"/>
+<!-- 주문서 -->
+<definition name="orderlist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/order/orderlist.jsp"/>
+</definition>
 
 <!-- 결제페이지 이동 -->
-<definition name="payment.tiles" template="/WEB-INF/views/order/payment.jsp"/>
+<definition name="payment.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/order/payment.jsp"/>
+</definition>
 
 <!-- 결제완료 페이지 -->
-<definition name="success.tiles" template="/WEB-INF/views/order/success.jsp"/>
+<definition name="success.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/order/success.jsp"/>
+</definition>
 
 <!-- 주문  관리  -->
 <definition name="allorderlist.tiles" extends="mypage.tiles">
@@ -231,11 +237,14 @@
 <definition name="allorderdetail.tiles" template="/WEB-INF/views/admin/allorderdetail.jsp"/>
 
 <!-- 마이페이지(주문내역보기) -->
-<definition name="myorder.tiles" extends="main.tiles">
+<definition name="myorder.tiles" extends="mypage.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/mypage/myorder.jsp"/>
-</definition>
+</definition>    
 
-
+<!-- company -->
+<definition name="privacy1.tiles" template="/WEB-INF/views/company/privacy1.jsp"/>
+<definition name="privacy2.tiles" template="/WEB-INF/views/company/privacy2.jsp"/>
+<definition name="brandStory.tiles" template="/WEB-INF/views/company/brandStory.jsp"/>
 
 
 </tiles-definitions>
