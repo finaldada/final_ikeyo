@@ -7,7 +7,6 @@
 <!-- content.css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/content.css">
 
-
 <div class="f_content">
 <div class="f2_content" style="background-color: white;">
   

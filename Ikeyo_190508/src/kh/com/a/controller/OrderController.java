@@ -194,6 +194,12 @@ public class OrderController {
 		
 	}
 	
-	
+	// 결재 진행시 취소
+	@RequestMapping(value = "fail.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String fail() {
+		
+		return "redirect:/payment.do";
+		
+	}
 	
 }

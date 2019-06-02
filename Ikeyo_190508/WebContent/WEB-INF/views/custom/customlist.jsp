@@ -4,15 +4,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
+<!-- content.css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/content.css">
+
+
 <style>
-.headtitle p {
+/* .headtitle p {
     margin-bottom: 70px;
     padding-top: 130px;
     text-align: center;
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 700;
     font-family: 'NanumBarunGothic', 'Nanum Gothic', '돋움', Dotum, sans-serif;
-}
+} */
 
 table.noti {
     width: 80%;
@@ -38,9 +42,8 @@ table.noti {
     letter-spacing: -1px;
     border-top: 1px #aaa solid;
     border-bottom: 1px solid #f0f0f0;
-    height: 25px;
-    font-size: 13px;
-    color: #aaa;
+    height: 45px;
+    font-size: 17px;
     text-align: center;
 }
 
@@ -65,8 +68,9 @@ table.noti {
 	margin: 100px auto 0px; /* 15% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888;
-	width: 500px; /* Could be more or less, depending on screen size */
-}
+	width: 500px;  /* Could be more or less, depending on screen size */
+	position: relative;
+} 
 
 /* The Close Button */
 .close {
@@ -131,9 +135,15 @@ $(document).ready(function(){
 </script>
 
 
-<div class="headtitle">
-	<p>고객의 소리</p>
+<div class="f_content">
+<div class="f2_content" style="background-color: white;">
+
+<div class="headtitle" align="center">
+	<!-- <p style="color: black;">고객의 소리</p> -->
+	<h2>고객의 소리</h2><br>
 </div>
+
+
 
 <!-- arrow생성 -->
 <jsp:useBean id="ubbs" class="kh.com.a.util.BbsArrow"/>
@@ -231,6 +241,7 @@ $(document).ready(function(){
 			<td colspan="6" style="border: 1px solid #fff">
 				<div align="center">
 					<span>
+						<br>
 						<button type="button" class="btnwrite" style="border-color: #0051ba;" id="_btnAdd">글쓰기</button>
 					</span>
 				</div>
@@ -244,6 +255,8 @@ $(document).ready(function(){
 <form id="frmDetail" action="customdetail.do" method="post">
 	<input type="hidden" id="hid" name="seq">
 </form>
+
+<br><br>
 <!-- 페이징 처리 -->
 <div id="paging_wrap">
 	<jsp:include page="/WEB-INF/views/notice/paging.jsp" flush="false">
@@ -263,7 +276,7 @@ $(document).ready(function(){
 		margin-top:	3px; margin-bottom: 3px;">
 
 	<tr>
-	<td>검색:</td>
+	<td>검색:&nbsp;&nbsp;</td>
 	<td style="padding-left:5px;">
 		<select id="_s_category" name="s_category">
 			<option value="" selected="selected">선택</option>
@@ -299,6 +312,14 @@ $(document).ready(function(){
         <jsp:include page="/WEB-INF/views/custom/customwrite.jsp" flush="false"/> 
     </div>
 </div>
+
+
+
+
+</div>
+</div>
+
+
 
 <script>
 //When the user clicks on the button, open the modal 
@@ -345,6 +366,7 @@ $("#_btnSearch").click(function(){
 	$("#_frmFormSearch").attr("action","customlist.do").submit();
 });
 </script>
+
 
 
 

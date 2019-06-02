@@ -156,7 +156,11 @@ public class ProductDaoImpl implements ProductDao {
 		return n>0?true:false;
 	}
 	
-	
+	@Override
+	public boolean productsearch(String model_id) {
+		int n =sqlSession.selectOne(ns + "getProductsearch", model_id);
+		return n>0?true:false;
+	}
 	
 	
 	

@@ -94,9 +94,10 @@
 <!-- 재고  수정-->
 <definition name="inventoryupdate.tiles" template="/WEB-INF/views/inventory/inventoryupdate.jsp"/>
 
-
 <!-- 출석체크(calendar) 화면 -->
-<definition name="calendar.tiles" template="/WEB-INF/views/calendar/calendar.jsp"/>
+<definition name="calendar.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/calendar/calendar.jsp"/>
+</definition>
 
 <!-- admin   -->
 

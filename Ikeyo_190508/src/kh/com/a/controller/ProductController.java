@@ -317,12 +317,16 @@ public class ProductController {
 		Map<String, Object> invenmap = new HashMap<String, Object>();
 
 		InventoryDto inven = inventoryService.getInventory(inven_seq);
+		boolean isS = productService.productsearch(inven.getModel_id());
+		  
+		invenmap.put("isS", isS);   
+		
 		//System.out.println("inven.model_id : " + inven.getModel_id());
 		invenmap.put("model_id", inven.getModel_id()+"");
 		invenmap.put("price", inven.getPrice());
 		invenmap.put("category", inven.getCategory()+"");
 		invenmap.put("count", inven.getCount());
-
+		
 		return invenmap;
 	}
 

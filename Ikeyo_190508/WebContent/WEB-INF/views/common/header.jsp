@@ -22,7 +22,6 @@
 #topyo {
 text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
 }
-
 </style>
 
 <div id="header_div" style="height: 60px; min-width: 890px;">
@@ -44,12 +43,19 @@ text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
         </li>
         <li><b><a href="storeInfo.do" style="color:#535353; text-decoration: none;">&nbsp;매장 안내 ｜</a></b></li>
         <li><b><a href="#" style="color:#535353; text-decoration: none;" onclick="goPoll()">&nbsp;투표 ｜</a></b></li>
-        <li style="margin-left: 50%;"><b><a href="calendar.do" style="color:#535353; text-decoration: none;" title="출석체크" class="test">&nbsp;｜<img src="image/AC_20190530-145249.gif"> ｜</a></b></li>
+        
+        <c:if test="${login.auth eq '1' }">
+			<li><b><a href="pollmake.do" style="color:deepskyblue; text-decoration: none;" >&nbsp;투표 만들기 ｜</a></b></li>
+			<li><b><a href="inventorylist.do" style="color:deepskyblue; text-decoration: none;">&nbsp;재고리스트 </a>｜</b></li>
+		</c:if>
+        
+        <li style="margin-left: 40%;"><b><a href="calendar.do" style="color:#535353; text-decoration: none;" title="출석체크" class="test">&nbsp;｜<img src="image/AC_20190530-145249.gif"> ｜</a></b></li>
         
         <c:if test="${login.id == null}">	
         <li style="padding-left: 0px;"><b><a href="login.do" style="color: #535353; text-decoration: none;">
         &nbsp;로그인 </a>｜</b></li>
-        </c:if>
+        </c:if>      
+        
         
        <%--  <c:if test="${not empty login && login.id ne ''}">	
 			<li><b><a href="logout.do" title="로그아웃" style="text-decoration: none;">&nbsp;<img src="image/ico-login.png"></a>｜</b></li>
@@ -64,10 +70,10 @@ text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
 			<li><b><a href="myInfoGo.do" style="color:#535353; text-decoration: none;">&nbsp;마이페이지 ｜</a></b></li>
 		</c:if>
 		
-     	<c:if test="${login.auth eq '1' }">
+     	<%-- <c:if test="${login.auth eq '1' }">
 			<li><b><a href="pollmake.do" style="color:deepskyblue; text-decoration: none;" >&nbsp;투표 만들기 ｜</a></b></li>
 			<li><b><a href="inventorylist.do" style="color:deepskyblue; text-decoration: none;">&nbsp;재고리스트 </a>｜</b></li>
-		</c:if>
+		</c:if> --%>
 		
      </ul>
 </div>
