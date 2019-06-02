@@ -3,14 +3,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <fmt:requestEncoding value="utf-8"/>
+
 <style type="text/css">
+
 .noto { font-family: 'Noto Sans KR'; letter-spacing: -1px;}
 .f13 {
 	font-size:13px;	/* 10pt */
 	margin-bottom: 5px; 
 }
-</style>
 
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Malgun Gothic', 'Noto Sans KR';
+    letter-spacing: -1.5px;
+    color: #333;
+ 
+ }   
+ 
+.file_{
+	background-color: #A4A4A4;
+	color: white;
+
+} 
+
+</style>
 
 
 <!-- ============================================== -->
@@ -73,35 +90,37 @@
 <!-- ============================================================= -->
 
 
-
 <div id="r_container">
 <div align="center" style="padding: 10px 60px 35px 60px;">
 <h3>고객의 소리</h3>
 <br/>
-<hr/>
+<hr style="color: black;"/>
 
 <div id="frm_container" align="left">
 
 <form id="_frmForm1" method="post" enctype="multipart/form-data">
-<span class="noto f13">제목</span>
+<span class="noto f13" style="color: black; font-size: 15px; font-weight:normal;">제목</span>
 <br/>
-<input type="text" name="title" id="title"/>
+<input type="text" name="title" id="title" style="margin-bottom: 20px; border: 1px solid #aaa; width: 343px; padding: 10px;"/>
 <br/>
-<span class="noto f13">내용을 입력해 주세요</span>
+<span class="noto f13" style="color: black; font-size: 15px; font-weight:normal;">내용을 작성해 주세요</span>
 <br/>
-<textarea rows="10" cols="50" name="content" id="content" style="max-width: 338px;"
->
+<textarea rows="10" cols="50" name="content" id="_content" style="height: 220px; overflow-y: auto; resize: none; max-width: 340px;">
 </textarea>
 <br/>
 <input type="hidden" name="id" value="${login.id }" />
-<span class="noto f13">파일첨부</span>
-<input type="file" name="fileload" id="fileload" />
+<br>
+<span class="noto f13" style="color: black; font-size: 15px; font-weight:normal;">파일첨부 :</span>&nbsp;&nbsp;
+<input type="file" name="fileload" id="fileload" class="file_"/>
 <br/>
-<span class="noto f13"><input type="checkbox" name="lock_" id="lock_" value="1"> 비공개 글쓰기</span>
+<br>
+<span class="noto f13"><input type="checkbox" name="lock_" id="lock_" value="1" style="color: black; font-size: 15px; font-weight:normal;"> 비공개 글쓰기</span>
 <br/>
 <br/>
+
 <div align="center">
-	<input type="button" value="작성 완료" onclick="goWrite()" />
+	<input type="button" value="작성 완료" onclick="goWrite()" style="border: 1px solid #0051ba; 
+	background-color: #0051ba; color: #fff; width: 205px; height: 40px;"/>
 </div>
 
 </form>
@@ -111,6 +130,22 @@
 
 </div>
 <script>
+$(function(){
+	$("#fileload").change(function(){
+		var ext = this.value.match(/\.(.+)$/)[1];
+		switch(ext){
+			case 'jpg':
+	    	case 'jpeg':
+	    	case 'png':
+	    	case 'gif':
+	       		$("#fileload").val($(this).val().slice(12, $(this).val().length));
+	       		break;
+	    	default:
+	       		alert('jpg, jpeg, png, gif 확장자인 이미지를 첨부해주세요.');
+	       		$("#fileload").val("");
+	 	}
+	});
+});
 /*
 $("#_btnPds").click(function () {
 	$("#_frmForm").submit();
@@ -121,7 +156,7 @@ function goWrite() {
 	if($("#title").val().trim() == ""){
 		alert("제목을 입력하세요");
 		$("#title").focus();
-	}else if($("#content").val().trim() == ""){
+	}else if($("#_content").val().trim() == ""){
 		alert("내용을 입력하세요");
 		$("#content").focus();
 	}else if(${login.id eq null}){
@@ -131,7 +166,6 @@ function goWrite() {
 	}
 }
 </script>
-
 
 
 

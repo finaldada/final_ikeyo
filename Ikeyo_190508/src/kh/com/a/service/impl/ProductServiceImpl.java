@@ -121,7 +121,10 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.productupdate(dto);
 	}
 	
-	
+	@Override
+	public boolean productsearch(String model_id) {
+		return productDao.productsearch(model_id);
+	}
 	
 	
 	

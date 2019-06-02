@@ -4,6 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
+<!-- content.css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/content.css">
+
 
 <style>
 .headtitle p {
@@ -37,8 +40,8 @@ table.noti {
     letter-spacing: -1px;
     border-top: 1px #aaa solid;
     border-bottom: 1px solid #f0f0f0;
-    height: 25px;
-    font-size: 13px;
+    height: 55px;
+    font-size: 16px;
     color: #aaa;
     text-align: center;
 }
@@ -69,6 +72,10 @@ table.noti {
     color: #FFF;
 }
 
+
+
+
+
 </style>
 
 
@@ -90,8 +97,13 @@ $(document).ready(function(){
 });
 </script>
 
-<div class="headtitle">
-	<p>공지사항</p>
+<div class="f_content" style="background-color: white; margin-bottom: 20%;">
+<div class="f2_content" style="background-color: white;">
+
+<div class="headtitle" align="center"><br><br>
+	<!-- <p style="color: black;">공지사항</p> -->
+	<h2>공지사항</h2>
+	<br>
 </div>
 
 
@@ -100,7 +112,7 @@ $(document).ready(function(){
 
 <div align="center">
 <table class="noti">
-<thead>
+<thead style="font-size: 16px;">
 	<tr class="noto">
 		<th width="10%">순서</th>
 		<th width="50%">제목</th>
@@ -174,18 +186,20 @@ $(document).ready(function(){
 </div>
 <br>
 
-<div style="margin-top: 20px; margin-bottom: 10px;">
+<div align="center" style="width: 100%;">
+
+<div align="center" style="margin-top: 20px; margin-bottom: 10px;">
 
 <form action="" name="frmForm1" id="_frmFormSearch" method="post">
 
 <table style="margin-left: auto; margin-right: auto;
-		margin-top:	3px; margin-bottom: 3px;">
-
+		margin-top:	3px; margin-bottom: 3px; float: left;">
+	
 	<tr>
-		<td>검색:</td>
+		<td>검색:&nbsp;&nbsp;</td>
 		<td style="padding-left:5px;">
 			<select id="_s_category" name="s_category">
-				<option value="" selected="selected">선택</option>
+				<option value="" selected="selected">선택&nbsp;&nbsp;</option>
 				<option value="title">제목</option>
 				<option value="contents">내용</option>
 				<!-- <option value="writer">작성자</option> -->
@@ -207,6 +221,10 @@ $(document).ready(function(){
 <input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?10:recordCountPerPage }">
 
 </form>
+</div>
+</div>
+
+</div>
 </div>
 
 

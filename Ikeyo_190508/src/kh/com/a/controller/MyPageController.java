@@ -297,7 +297,7 @@ public class MyPageController {
 		return "redirect:/myorder.do";
 	}
 	
-	// 마이페이지(주문내역) -> 구매확정(3)
+/*	// 마이페이지(주문내역) -> 구매확정(3)
 	@RequestMapping(value = "orderFix.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String orderFix(String order_num) {
 		
@@ -306,5 +306,47 @@ public class MyPageController {
 		myPageService.orderFix(order_num);
 		
 		return "redirect:/myorder.do";
-	}
+	}*/
+	
+	
+	   // 마이페이지(주문내역) -> 구매확정(3) + 포인트 plus 까지 같이 
+	   @RequestMapping(value = "orderFix.do", method = {RequestMethod.GET, RequestMethod.POST})
+	   public String orderFix(String order_num, HttpSession session, HttpServletRequest request, int total_price) {
+	      
+	      logger.info("OrderController orderFix "+ new Date());
+	      
+	      System.out.println("order_num:" + order_num);
+	      myPageService.orderFix(order_num);
+	      MemberDto dto = (MemberDto)session.getAttribute("login");
+
+	      int point = dto.getPoint() + (int)(total_price * 0.01);
+	      System.out.println("현재 포인트:" + point);
+	      dto.setPoint(point);
+	      
+	      if(point >= 100000) {  //vvip
+	         
+	         dto.setGrade("vvip");
+	         
+	      }else if( point >= 10000 ) { //vip
+	         
+	         dto.setGrade("vip");
+	         
+	      }else { //일반 
+	         
+	         dto.setGrade("일반");
+	         
+	      }
+	      
+	      System.out.println(dto.toString());
+	      boolean isS = myPageService.pointGradeUp(dto);
+	      MemberDto login = myPageService.newSession(dto);
+	      request.getSession().setAttribute("login", login);
+	      
+
+	      
+	      return "redirect:/myorder.do";
+	   }
+	
+	
+	
 }

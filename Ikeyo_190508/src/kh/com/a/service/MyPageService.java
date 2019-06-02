@@ -42,4 +42,8 @@ public interface MyPageService {
 	public boolean deleteOrder(String order_num);
 	// 구매 확정
 	public boolean orderFix(String order_num);
+	
+    public boolean pointGradeUp(MemberDto dto);
+    public MemberDto newSession(MemberDto dto);
+	
 }

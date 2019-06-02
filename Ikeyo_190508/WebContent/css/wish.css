@@ -14,6 +14,7 @@ th {
 	display: inline-block;
 	width: 730px;
 	margin-top: 45px;
+	float: left;
 }
 
 .select_all_checkBox, .select_checkBox {

@@ -317,7 +317,7 @@ span {
 				<button type="button" class="noto f13 btn orderCancelBtn" onclick="orderCancel(${olist.order_num })">주문취소</button>
 			</c:if>
 			<c:if test="${olist.deli_info eq 2 }">
-				<button type="button" class="noto f13 btn orderCancelBtn" onclick="orderFix(${olist.order_num })">구매확정</button>
+				<button type="button" class="noto f13 btn orderCancelBtn" onclick="orderFix('${olist.order_num }','${olist.total_price }')">구매확정</button>
 			</c:if>
 			
 			<!-- <span class="table_key_lb noto f13">희망 배송일</span><br> -->
@@ -336,11 +336,16 @@ span {
 </div>
 </div>
 <form id="orderfrm1" method="get">
-	<input type="hidden" id="onum" name="order_num" value="">
+   <input type="hidden" id="onum" name="order_num" value="">
 </form>
 
 <form id="orderfrm2" method="get">
 	<input type="hidden" id="mid" name="model_id" value="">
+</form>
+
+<form id="orderfrm3" method="get">
+   <input type="hidden" id="_onum" name="order_num" value="">
+   <input type="hidden" id="_total" name="total_price" value="">
 </form>
 
 <script>
@@ -350,9 +355,11 @@ function orderCancel( order_num ) {
 }
 </script>
 <script>
-function orderFix( order_num ) {
-	$("#onum").val(order_num);
-	$("#orderfrm1").attr("action", "orderFix.do").submit();
+function orderFix( order_num, total_price ) {
+	alert("여기는 orderfix");
+	$("#_onum").val(order_num);
+	$("#_total").val(total_price);
+	$("#orderfrm3").attr("action", "orderFix.do").submit();
 }
 </script>
 <script>

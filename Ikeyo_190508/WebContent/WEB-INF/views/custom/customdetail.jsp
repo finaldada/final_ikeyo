@@ -6,6 +6,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
+<!-- content.css -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/content.css">
+
+
 <style>
 .headtitle p {
     font-size: 35px;
@@ -63,8 +67,8 @@ table.noti {
     letter-spacing: -1px;
     border-top: 1px #aaa solid;
     border-bottom: 1px solid #f0f0f0;
-    height: 25px;
-    font-size: 13px;
+    height: 40px;
+    font-size: 16px;
     color: #aaa;
     text-align: center;
 }
@@ -115,17 +119,58 @@ table.noti {
 button{
 	cursor: pointer;
 }
+/* ===========================모달========================== */
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 9; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 100px auto 0px; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 500px; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+/* =================================================== */
+
 </style>
 
 
-
-<div class="headtitle">
-	<p>고객의 소리</p>
-</div>
-
-
+<div class="f_content" style="margin-bottom: 30%;">
+<div class="f2_content" style="background-color: white;">
 
 <div align="center">
+
+<div class="headtitle" align="center"><br><br>
+	<!-- <p>고객의 소리</p> -->
+	<h2>고객의 소리</h2>
+	<br>
+</div>
+
 <!--
 <div class="intro">
 	<div class="intro_left">
@@ -177,11 +222,11 @@ button{
 	<tr>
 		<td colspan="6" style="padding-top: 25px; border-bottom: 1px solid #fff;">
 			<c:if test="${login.id eq cust.id }">
-				<button type="button" class="btn1" id="_btnAdd">수정하기</button>
-				<button type="button" class="btn2" id="_btnDel">삭제하기</button>
+				<button type="button" class="btn1" id="_btnAdd" style="height: 60px;">수정하기</button>
+				<button type="button" class="btn2" id="_btnDel" style="height: 60px;">삭제하기</button>
 			</c:if>
 			<c:if test="${login.auth eq 1 }">
-				<button type="button" id="_btnAnswer" class="btn3">답변하기</button>
+				<button type="button" id="_btnAnswer" class="btn3" style="height: 60px;">답변하기</button>
 			</c:if>
 		</td>
 	</tr>
@@ -190,7 +235,8 @@ button{
 
 </div>
 
-
+</div>
+</div>
 
 
 <%-- 
@@ -220,6 +266,14 @@ button{
 
 <br><br><br><br>
 
+<div id="myModal" class="modal">
+	<!-- Modal content -->
+    <div class="modal-content">
+    	<span class="close" style="text-align: right;">&times;</span>                                                               
+        <jsp:include page="/WEB-INF/views/custom/customanswer.jsp" flush="false"/> 
+    </div>
+</div>
+
 <script>
 
 $("#_btnAdd").click(function () {
@@ -229,12 +283,28 @@ $("#_btnAdd").click(function () {
 $("#_btnDel").click(function () {
 	$("#_frmForm1").attr("action","customdelete.do").submit();
 });
-
+/* 
 $("#_btnAnswer").click(function () {
 	$("#_frmForm1").attr("action","customAnswer.do").submit();
 });
-
+ */
 </script>
 
+<script>
+//When the user clicks on the button, open the modal 
+$("#_btnAnswer").on("click", function() {
+	$(".modal").css("display", "block");
+});
+
+//When the user clicks on <span> (x), close the modal
+$(".close").click(function() {
+	var im;
+	$(".modal").css("display", "none");
+	$("#title").val("");
+	$("#content").val("");
+	$("#lock_").prop('checked',false);
+	$("#fileload").val("");
+});
+</script>
 
 

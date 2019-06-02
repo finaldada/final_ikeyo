@@ -90,7 +90,7 @@
 		</c:forEach>
 		
 		<!-- // 상품정보	 -->						
-		<td class="productInfo mainProductInfo" style="color: black; font-weight:normal; font-size: 16px;">						
+		<td class="productInfo mainProductInfo" style="color: black; font-weight:normal; font-size: 16px; padding: 50 0 50 40;">						
 		     ${cartlist.model_id }
 		</td>
 		
@@ -125,15 +125,13 @@
 		</c:forEach>
 
 	</tr>
-
 </c:if>
 </c:if>
 </c:forEach>	
-</tbody>
 
-</table>		 			
-		 <br>
-		 <span style="color: red; font-weight: bold; font-size: 20px;">
+<tr>
+	<td colspan="7">
+		<span style="color: red; font-weight: bold; font-size: 20px;">
 	     	총 상품 금액 : <fmt:formatNumber pattern="###,###,###" value="${totalsum}" />&nbsp;원	     	
 	     </span>
 	     <br><br>
@@ -141,7 +139,14 @@
 	           선택상품삭제</button>&nbsp;&nbsp;
 	     <button type="submit" class="btn btn-primary btn-lg" value="btn_order" onclick="javascript:form.action='orderlist.do';">
 		  선택상품구매</button>
+	</td>
+</tr>
+</tbody>
+</table> 			
+		 
 </form>
+				<br>
+			 <br><br><br><br><br><br><br><br>
 
 </div>
 <!--// -->

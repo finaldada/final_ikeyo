@@ -153,4 +153,18 @@ public class MyPageDaoImpl implements MyPageDao {
 		return n>0?true:false;
 	}
 	
+	   @Override
+	   public boolean pointGradeUp(MemberDto dto) {
+	      
+	      int n = sqlSession.update(ns + "pointGradeUp", dto);
+	      
+	      return  n>0?true:false;
+	   }
+
+	   @Override
+	   public MemberDto newSession(MemberDto dto) {
+	      
+	      return sqlSession.selectOne(ns + "newSession", dto);
+	   }
+	
 }

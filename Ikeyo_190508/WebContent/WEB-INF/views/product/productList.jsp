@@ -30,11 +30,11 @@
    margin-inline-end: 0px;
 }
 
-.text span:nth-child(2) {
+/* .text span:nth-child(2) {
    color: #AAAAAA;
-}
+} */
 
-.text span:nth-child(4) {
+.text span:nth-child(3) {
    font-size: 14px;
    color: #c80a1e;
    display: inline-block;
@@ -221,7 +221,7 @@ img {
 <input type="hidden" name="category" value="${category }">
 </form>
 
-<div id="product_list" style="margin-top: 5%;">
+<div id="product_list" style="margin-top: 5%; margin-left: 5%; margin-right: 10%;">
    <div class="container_2">
       <div class="list_all">
          <form action="productAdd.do" method="post">
@@ -245,7 +245,7 @@ img {
                               <a href="productDetail.do?model_id=${i.model_id }"><img src="/img/${i.photo_af1 }"></a> 
                            </p>
                            <p class="text">
-                              <span>${i.p_name }</span>&nbsp;&nbsp;<span>${i.model_id }</span><br>
+                              <span>${i.p_name }</span>&nbsp;&nbsp;<%-- <span>${i.model_id }</span> --%><br>
                               <span><fmt:formatNumber value="${i.price }" pattern="#,###"/>&nbsp;원</span>
                            </p>
                            <c:if test="${empty cartList }">
@@ -289,6 +289,10 @@ img {
          </form>
       </div>
    </div>
+</div>
+
+
+<div style="margin-bottom: 10%;">
    <c:if test="${not empty productList }">
    <jsp:include page="/WEB-INF/views/product/paging.jsp" flush="false">
          <jsp:param value="${pageNumber }" name="pageNumber"/>

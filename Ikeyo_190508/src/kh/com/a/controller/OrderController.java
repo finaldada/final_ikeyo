@@ -146,13 +146,14 @@ public class OrderController {
 			 orderService.minusCountInven(sdto);
 		}
 
-		return "redirect:/payment.do";
+		// return "redirect:/payment.do";
+		return "redirect:/payment.do?order_num="+order_num;
 		
 	}
 	
 	// 이동
 	@RequestMapping(value = "payment.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String payment(HttpSession session, Order_Dto dto, Model model) throws Exception {
+	public String payment(HttpSession session, String order_num, Model model) throws Exception {
 		
 		logger.info("OrderController payment "+ new Date());
 		
@@ -162,16 +163,15 @@ public class OrderController {
 			 return "redirect:/login.do";
 		}
 		
-		String id = mem.getId();
-		dto.setId(id);
-		
+		/*
 		List<Order_Dto> paymentlist = orderService.paymentlist(id);
 		model.addAttribute("paymentlist", paymentlist);
-		
+		*/
 		//String order_num = dto.getOrder_num();
 		//model.addAttribute("order_num" , order_num);
-				
-		System.out.println("ctr?" + dto.toString());
+		
+		List<Order_Dto> paymentlistto = orderService.paymentlistto(order_num);
+		model.addAttribute("paymentlist", paymentlistto);
 		
 		return "payment.tiles";
 	}
@@ -194,6 +194,12 @@ public class OrderController {
 		
 	}
 	
-	
+	// 결재 진행시 취소
+	@RequestMapping(value = "fail.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String fail() {
+		
+		return "redirect:/payment.do";
+		
+	}
 	
 }

@@ -147,5 +147,16 @@
   		UPDATE ORDER_ SET DELI_INFO=3 
   		WHERE ORDER_NUM=#{order_num} 
   	</update>
+  	 <update id="pointGradeUp" parameterType="kh.com.a.model.MemberDto"> 
+        UPDATE MEMBER SET
+        POINT=#{point}, GRADE=#{grade}
+        WHERE ID=#{id}
+     </update>
+     
+     <select id="newSession" parameterType="kh.com.a.model.MemberDto" resultType="kh.com.a.model.MemberDto" >
+        SELECT *
+        FROM MEMBER
+        WHERE ID=#{id}
+     </select>
   	
   </mapper>
