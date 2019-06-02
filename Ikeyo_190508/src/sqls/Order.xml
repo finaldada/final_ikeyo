@@ -57,6 +57,12 @@
 	WHERE ORD_SEQ=#{ord_seq}
 </update>
 
+<!-- // 재고-count -->
+<update id="minusCountInven" parameterType="kh.com.a.model.Order_Sub_Dto">
+	UPDATE INVENTORY SET COUNT=COUNT-#{count}
+	WHERE MODEL_ID=#{model_id}
+</update>
+
 
 </mapper>
 

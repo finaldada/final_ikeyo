@@ -89,6 +89,12 @@ public class OrderDaoImpl implements OrderDao {
 			
 	}
 	
+	@Override
+	public boolean minusCountInven(Order_Sub_Dto sdto) {
+		int n = sqlSession.update(ns + "minusCountInven", sdto);
+		return n>0?true:false;
+	}
+	
 
 
 }

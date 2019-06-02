@@ -101,27 +101,49 @@ public class OrderController {
 		dto.setDeli_info(deli_info);
 
 		// 주소
-		String addr1 = address1 + "/" + address2;
+		String addr1 = "";
+		
+		// 우편번호 있을때
+		if(address1 != null && address1 != "") {
+			addr1 = address1 + "/" + address2;
+			
+		// 우편번호 없을 때
+		}else {
+			addr1 = address2;
+		}
+		
+		// 배송지 주소 세팅
 		dto.setAddress1(addr1);
 		System.out.println("addr1 : " + addr1);
 		
 		String addr2 = address3;
 		dto.setAddress2(addr2);
 		System.out.println("addr2 : " + addr2);
-			
+		
+		// order DB에 넣어주는 쿼리
 		orderService.order(dto);	
 		System.out.println("여기? dto값 : " + dto.toString());
 		
+		// 장바구니에 담긴 모델을 하나씩 -> Order_Sub DB에 담는 for문
+		// seqq[] == CART_SEQ의 배열(선택된 물건)
 		for (int i = 0; i < seqq.length; i++) {
 			 int sseq = seqq[i];
+			 // 카트DTO를 seq를 이용해 불러옴.
 			 CartDto cdto = orderService.getOrder(sseq);
-			 System.out.println("!!cdto sseq" + sseq);
+			 System.out.println("!!cdto sseq: " + sseq);
+			 
+			 // Order_Sub 객체 생성
 			 Order_Sub_Dto sdto = new Order_Sub_Dto();
+			 // setter로 담아줌.
 			 sdto.setModel_id(cdto.getModel_id());
 			 sdto.setCount(cdto.getCount());
 			 sdto.setOrder_num(order_num);
+			 // Order_Sub DB에 기록.
 			 orderService.orderdetail(sdto);
+			 // 장바구니에서 삭제
 			 orderService.cartdelete(sseq);
+			 // 인벤토리의 재고수량에서 삭제.
+			 orderService.minusCountInven(sdto);
 		}
 
 		return "redirect:/payment.do";
