@@ -158,7 +158,7 @@ $(document).ready(function () {
 		<td align="center">${member.phone }</td> 
 		<td align="center">${member.grade }</td> 
 		<td align="center">${member.point }</td> 
-		<td align="center" valign="middle"><a href="#" ><input type="button" onclick="goDelete()" value="삭제" class="joinButton btn_s_gray btn_100" style="width: 100%; height: 25px;"></a></td> 
+		<td align="center" valign="middle"><a href="#" ><input type="button" onclick="goDelete('${member.id }')" value="삭제" class="joinButton btn_s_gray btn_100" style="width: 100%; height: 25px;"></a></td> 
 
 		</c:if>
 	</tr>
@@ -204,21 +204,49 @@ $(document).ready(function () {
 
 <script type="text/javascript">
 
-function goDelete() {
+function goDelete(id) {
 	
-	var result = confirm('정말 삭제 하시겠습니까?'); 
-	
-	if(result) { 
-		
-	$("#mem_frm").attr("action","memberdel.do").submit();	
-		
-	}else{
-		
-		
-		
-		}
-	
-}
+	  var id = id;
+	   //alert(id);
+	   
+	   var result = confirm('정말 삭제 하시겠습니까?'); 
+	   
+	   if(result) { 
+	      
+	      $.ajax({
+	         url:"memberdel.do",
+	         type:"post",
+	         //data:"model_id=" + model_id,
+	         data:{ id:id },
+	         success:function(data){
+	            alert("success");
+	            //alert(data);
+	            if(data.trim() == "\"삭제 성공\""){
+	               
+	               //alert(data);
+	               location.reload();
+	               
+	               
+	            }else{
+	               alert(data);
+
+	            }
+	         },
+	         error:function(r, s, err){
+	            alert("error");
+	         }
+	      });   
+	/*       
+	   $("#mem_frm").attr("action","memberdel.do").submit();    */
+	      
+	   }else{
+	      
+	      
+	      
+	      }
+	   
+	}
+
 
 $(document).ready(function(){ 
 	$("#list_table").tablesorter();

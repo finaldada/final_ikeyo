@@ -82,7 +82,7 @@ public class ProductController {
 
 		model.addAttribute("productList", productList);
 		model.addAttribute("pageNumber", sn);
-		model.addAttribute("pageCountPerScreen", 8);
+		model.addAttribute("pageCountPerScreen", 10);
 		model.addAttribute("recordCountPerPage", param.getRecordCountPerPage());
 		model.addAttribute("totalRecordCount", totalRecordCount);
 		model.addAttribute("category", param.getCategory());

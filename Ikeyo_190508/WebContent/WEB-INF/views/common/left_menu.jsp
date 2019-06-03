@@ -69,7 +69,7 @@
           <a class="nav-link js-scroll-trigger" href="productList.do?category=책상/테이블">책상/테이블</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="productList.do?category=침대/매트릭스">침대/매트릭스</a>
+          <a class="nav-link js-scroll-trigger" href="productList.do?category=침대/매트리스">침대/매트리스</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="productList.do?category=의자/소파">의자/소파</a>

@@ -105,7 +105,7 @@
 <br/>
 <span class="noto f13" style="color: black; font-size: 15px; font-weight:normal;">내용을 작성해 주세요</span>
 <br/>
-<textarea rows="10" cols="50" name="content" id="content" style="height: 220px; overflow-y: auto; resize: none; max-width: 340px;">
+<textarea rows="10" cols="50" name="content" id="_content" style="height: 220px; overflow-y: auto; resize: none; max-width: 340px;">
 </textarea>
 <br/>
 <input type="hidden" name="id" value="${login.id }" />
@@ -130,6 +130,22 @@
 
 </div>
 <script>
+$(function(){
+	$("#fileload").change(function(){
+		var ext = this.value.match(/\.(.+)$/)[1];
+		switch(ext){
+			case 'jpg':
+	    	case 'jpeg':
+	    	case 'png':
+	    	case 'gif':
+	       		$("#fileload").val($(this).val().slice(12, $(this).val().length));
+	       		break;
+	    	default:
+	       		alert('jpg, jpeg, png, gif 확장자인 이미지를 첨부해주세요.');
+	       		$("#fileload").val("");
+	 	}
+	});
+});
 /*
 $("#_btnPds").click(function () {
 	$("#_frmForm").submit();
@@ -140,7 +156,7 @@ function goWrite() {
 	if($("#title").val().trim() == ""){
 		alert("제목을 입력하세요");
 		$("#title").focus();
-	}else if($("#content").val().trim() == ""){
+	}else if($("#_content").val().trim() == ""){
 		alert("내용을 입력하세요");
 		$("#content").focus();
 	}else if(${login.id eq null}){

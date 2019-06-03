@@ -60,7 +60,8 @@ hr {
 
 <div align="center" style="margin-top: 100px; margin-left: 80px; margin-right: 100px;">
 
-<form role="form" method="post" autocomplete="off" action="order.do">
+<form role="form" method="post" autocomplete="off" action="order.do"
+	style="float: left; clear: both; margin-left: 200px; margin-bottom: 30px; width: 800px;">
 
 <%-- <!-- // 로그아웃 & 로그인  후 정보(이름)-->
 <c:if test="${login.id ne ''}">
@@ -172,7 +173,6 @@ hr {
 <br>
 
 <!-- // 배송지 정보  -->
-
 <div class="orderInfo">
   <br>  
   <h3>배송지 정보</h3><br>
@@ -211,7 +211,7 @@ hr {
 	     value="내 배송지 불러오기" id="_btnaddr">  
  
   <div class="inputArea">
-  	<label for="" style="width: 10%;">배송 시 요청사항</label>
+  	<label for="">배송 시 요청사항</label>
   	<!-- // maxlength- 필드의 최대 문자 갯수 -->
   	<input type="text" name="content" placeholder="200자 이내로 작성해 주세요" style="color: gray; width: 20%" maxlength="200"/>
   </div><br>
@@ -242,7 +242,6 @@ hr {
 	</c:forEach>
 
 </div>
-
 <!-- // 끝 -->
 </form>
 </div>

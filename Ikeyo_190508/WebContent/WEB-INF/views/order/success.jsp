@@ -33,7 +33,7 @@
 <h4>이용해 주셔서 감사합니다.</h4><br>
 
 <button type="button" class="btn btn-primary" onclick="location.href='main.do'">메인으로</button>&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" class="btn btn-secondary" onclick="">내 주문내역으로</button>
+<button type="button" class="btn btn-secondary" onclick="location.href='myorder.do'">내 주문내역으로</button>
 
 
 

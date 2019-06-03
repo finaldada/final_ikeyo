@@ -5,40 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
-<style type="text/css">
-.noto { font-family: 'Noto Sans KR'; letter-spacing: -1px;}
-.f13 {
-   font-size:13px;   /* 10pt */
-   margin-bottom: 5px; 
-}
-.f15 { font-size:15px; }
-.lb_side {
-   width: 50px;
-}
-.inputText {
-    width: 171.5px;
-    padding: 5px 10px;
-}
-.searchBtn {
-   display:inline-block;
-   text-align:center;
-   width: 110px;
-   height: 30px;
-   padding: 4px 0px 7px;
-   color : #fff;
-   background-color: #63666a;
-   border: 1px solid #63666a;
-}
-   
-.searchBtn:hover {
-   cursor:pointer;
-   background-color: #4f5256;
-   border: 1px solid #4f5256;
-}
-#sf2 {
-    display: none;
-}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/p_review_up_wr.css">
 
 <div id="r_u_container">
 <div align="center" style="padding: 60px 60px 35px 60px;">
@@ -73,10 +40,10 @@
 <input type="hidden" name="rev_seq" id="rev_seq1" value="">
 <!-- <input type="file" name="fileload" id="fileload1" /> -->
    <span class="lb noto f13 lb_side">파일첨부</span>
-   <input type="text" class="inputText searchFileName" name="fileload" id="fileload1" readonly="readonly">
-   <label for="sf2">
+   <input type="text" class="inputText searchFileName" name="r_fileload" id="fileload1" readonly="readonly">
+   <label for="sf9">
       <span class="searchBtn noto f15">찾아보기</span>
-      <input type="file" class="searchFile" id="sf2" name="fileload">
+      <input type="file" class="searchFile" id="sf9" name="r_fileload">
    </label>
 <br>
 <br>
@@ -121,6 +88,7 @@ $(".searchFile").change(function(){
         default:
             alert('jpg, jpeg, png, gif 확장자인 이미지를 첨부해주세요.');
             $("#fileload1").val("");
+            $("#fileload2").val("");
     }
  });
 
@@ -135,6 +103,5 @@ function goUpdate() {
    }else{
       $("#_frmForm2").attr("action", "reviewUpdate.do").submit();
    }
-   
 }
 </script>

@@ -1,5 +1,7 @@
 package kh.com.a.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -297,7 +300,7 @@ public class MyPageController {
 		return "redirect:/myorder.do";
 	}
 	
-	// 마이페이지(주문내역) -> 구매확정(3)
+/*	// 마이페이지(주문내역) -> 구매확정(3)
 	@RequestMapping(value = "orderFix.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String orderFix(String order_num) {
 		
@@ -306,5 +309,55 @@ public class MyPageController {
 		myPageService.orderFix(order_num);
 		
 		return "redirect:/myorder.do";
-	}
+	}*/
+	
+	
+	   // 마이페이지(주문내역) -> 구매확정(3) + 포인트 plus 까지 같이 
+	   @RequestMapping(value = "orderFix.do", method = {RequestMethod.GET, RequestMethod.POST})
+	   public String orderFix(String order_num, HttpSession session, HttpServletRequest request, int total_price) throws IOException {
+	      
+	      logger.info("OrderController orderFix "+ new Date());
+	      
+	     
+	        
+	      System.out.println("order_num:" + order_num);
+	      myPageService.orderFix(order_num);
+	      MemberDto dto = (MemberDto)session.getAttribute("login");
+
+	      int point = dto.getPoint() + (int)(total_price * 0.01);
+	      System.out.println("현재 포인트:" + point);
+	      dto.setPoint(point);
+	      
+	      if(point >= 100000) {  //vvip
+	         
+	         dto.setGrade("vvip");
+	         
+	      }else if( point >= 10000 ) { //vip
+	         
+	         dto.setGrade("vip");
+	         
+	      }else { //일반 
+	         
+	         dto.setGrade("일반");
+	         
+	      }
+	      
+	      
+	      
+	      System.out.println(dto.toString());
+	      boolean isS = myPageService.pointGradeUp(dto);
+	      MemberDto login = myPageService.newSession(dto);
+	      request.getSession().setAttribute("login", login);
+	      
+	   /*   response.setContentType("text/html; charset=UTF-8");
+	      PrintWriter out = response.getWriter();
+	      out.println("<script>alert("+dto.getGrade() +"); location.href='myorder.do'; </script>;");
+	      out.flush();
+*/
+	      
+	      return "redirect:/myorder.do";
+	   }
+	
+	
+	
 }

@@ -38,6 +38,10 @@
 <definition name="emailConfirm.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/login/emailConfirm.jsp"/>
 </definition>
+<!-- 탈퇴 페이지 -->
+<definition name="leave.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/login/leave.jsp"/>
+</definition>
 
 <!-- 상품리스트 화면 -->
 <definition name="productList.tiles" extends="main.tiles">
@@ -128,9 +132,17 @@
 </definition>
 
 <!-- 공지사항 -->
+ 
 <definition name="noticelist.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/notice/noticelist.jsp"/>
 </definition>
+
+
+<!-- <definition name="noticelist.tiles" template="/WEB-INF/views/layouts-tiles2.jsp">
+   <put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu.jsp"/>
+   <put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+   <put-attribute name="content" value="/WEB-INF/views/notice/noticelist.jsp"/>
+</definition> -->
 
 <definition name="noticeUpdate.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/notice/noticeupdate.jsp"/>
@@ -208,11 +220,13 @@
 
 <!-- 위시리스트 -->
 <definition name="wishList.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
 	<put-attribute name="content" value="/WEB-INF/views/wishlist/wishList.jsp"/>
 </definition>
 
 <!-- 장바구니 -->
 <definition name="cartlist.tiles" extends="main.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/common/left_menu_mypage.jsp"/>
 	<put-attribute name="content" value="/WEB-INF/views/cart/cart.jsp"/>
 </definition>
 

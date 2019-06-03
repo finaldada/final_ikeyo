@@ -165,7 +165,7 @@ button{
 
 <div align="center">
 
-<div class="headtitle" align="center">
+<div class="headtitle" align="center"><br><br>
 	<!-- <p>고객의 소리</p> -->
 	<h2>고객의 소리</h2>
 	<br>

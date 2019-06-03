@@ -60,13 +60,19 @@ public class OrderServiceImpl implements OrderService {
 	public void cartdelete(int sseq) throws Exception {
 		orderDao.cartdelete(sseq);	
 	}
-
+	/*
 	// 결제 정보
 	@Override
 	public List<Order_Dto> paymentlist(String id) throws Exception {
 		
 		return orderDao.paymentlist(id);
-	}
+	}*/
+	
+	@Override
+   public List<Order_Dto> paymentlistto(String order_num) throws Exception {
+      
+      return orderDao.paymentlistto(order_num);
+   }
 
 	// 결제완료 : deli_info -> 1 변경
 	@Override

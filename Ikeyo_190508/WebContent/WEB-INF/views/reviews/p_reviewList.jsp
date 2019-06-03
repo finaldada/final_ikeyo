@@ -199,7 +199,7 @@ $(".close").click(function() {
    var im;
    $(".modal").css("display", "none");
    $("#title").val("");
-   $("#content").val("");
+   $("#review_content").val("");
    for(i = 1; i <=5; i++){
       im = "#star" + i;
       $(im).attr("src", "<%=request.getContextPath()%>/image/star_off.png");
@@ -253,7 +253,7 @@ $(".close1").click(function() {
    var im;
    $(".modal1").css("display", "none");
    $("#title").val("");
-   $("#content").val("");
+   $("#content1").val("");
    for(i = 1; i <=5; i++){
       im = "#st" + i;
       $(im).attr("src", "<%=request.getContextPath()%>/image/star_off.png");

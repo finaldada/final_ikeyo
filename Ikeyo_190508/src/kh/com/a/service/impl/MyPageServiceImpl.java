@@ -142,4 +142,18 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageDao.orderFix(order_num);
 	}
 	
+   @Override
+   public boolean pointGradeUp(MemberDto dto) {
+      
+      return myPageDao.pointGradeUp(dto);
+   }
+
+   @Override
+   public MemberDto newSession(MemberDto dto) {
+      
+      return myPageDao.newSession(dto);
+   }
+	   
+
+	
 }

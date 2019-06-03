@@ -34,7 +34,6 @@ MemberDto user = (MemberDto)session.getAttribute("login");
 
 <div align="center" style="margin-top: 120px; margin-left: 80px; margin-right: 100px;">
 
-<h2>위시리스트</h2>
 <%-- <!-- // 로그아웃 & 로그인  후 정보(이름)-->
 <c:if test="${login.id ne ''}">
 			<a href="logout.do" title="로그아웃">[로그아웃]</a>&nbsp;&nbsp;&nbsp;
@@ -48,7 +47,7 @@ MemberDto user = (MemberDto)session.getAttribute("login");
 <form action="wishdeltt.do" method="post" onSubmit="return CheckForm(this)">		
 <!-- 테이블 시작-->
 <div id="wish_table">
-
+<h2>위시리스트</h2><br><br>
 <table>
 
 <thead>
@@ -56,10 +55,9 @@ MemberDto user = (MemberDto)session.getAttribute("login");
 		<th style="width:50px">
 			<input type="checkbox" class="check-all">
 		</th>
-		<th style="width:150px; font-size: 17px;"></th>
-		<th>상품정보</th>
-		<th style="width:140px; font-size: 17px;">상품금액</th>
-		<th style="width:130px; font-size: 17px;">&nbsp;&nbsp;주문</th>
+		<th style="width:150px; font-size: 17px; text-align: center;" colspan="2">상품정보</th>
+		<th style="width:140px; font-size: 17px; text-align: center;">상품금액</th>
+		<th style="width:130px; font-size: 17px; text-align: center;">&nbsp;&nbsp;주문</th>
 	</tr>
 </thead>
 
@@ -72,12 +70,15 @@ MemberDto user = (MemberDto)session.getAttribute("login");
 	<tr style="height:180px">
 		<td>
 			<input type="checkbox" id="chk_id" class="ab" name="seqq" value="${wishlist.cart_seq}">
+			<input type="hidden" name="model_id" value="${wishlist.model_id }">
 		</td>
 		
 		<c:forEach var="plist" items="${plist }">
 		<c:if test="${plist.model_id == wishlist.model_id }">
 		<td class="wishProductImg"> <!-- // 사진 -->
-			<img alt="" src="/img/${plist.photo_af1}" style="max-width: 120px; height: 110px;">
+			<a href="productDetail.do?model_id=${wishlist.model_id }" style="text-decoration: none;">
+				<img alt="" src="/img/${plist.photo_af1}" style="max-width: 120px; height: 110px;">
+			</a>
 		</td>
 		</c:if>
 		</c:forEach>
@@ -98,20 +99,24 @@ MemberDto user = (MemberDto)session.getAttribute("login");
 		<a href="productDetail.do?model_id=${wishlist.model_id }" style="text-decoration: none;">
 		  <button type="button" class="wish_delete_btn" style="color: gray;">상세보기</button>
 		</a>
+		<br>
 		
-		<input type="button" value="삭제" style="margin-top:5px; color: gray;" class="wish_delete_btn" onclick="location.href='wishdel.do?seq=${wishlist.cart_seq }'">
+		<input type="button" class="wish_delete_btn" value="삭제" onclick="location.href='wishdel.do?seq=${wishlist.cart_seq }&model_id=${wishlist.model_id }'">
 		</td>
 	</tr>
-
+	
 </c:if>	
 </c:if>
 </c:forEach>
-
-</tbody>
-
-</table>
-	<button type="submit" style="margin-top:20px;margin-bottom:50px;" class="wish_delete_btn" >
+	<tr align="center">
+		<td colspan="5">
+		<button type="submit" style="margin-top:20px;margin-bottom:50px;" class="wish_delete_btn" >
 	선택상품삭제</button>
+		<td>
+	</tr>
+</tbody>
+	
+</table>
 </div>
 </form>
 </div>

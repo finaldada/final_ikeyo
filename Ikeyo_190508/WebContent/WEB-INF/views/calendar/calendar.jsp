@@ -93,7 +93,7 @@ MemberDto user = (MemberDto)session.getAttribute("login");
 List<CalendarDto> list = (List<CalendarDto>)request.getAttribute("list");
 %>
 
-<div class="f_content" style="margin-bottom: 63%;">
+<div class="f_content" align="center" style="margin-bottom: 110%; margin-top: 7%; margin-left: 15%; margin-right: 5%;">
 <div class="f2_content" style="background-color: white;">
 
 <%-- <!-- // 로그아웃 & 로그인  후 정보(이름)-->
@@ -105,7 +105,7 @@ List<CalendarDto> list = (List<CalendarDto>)request.getAttribute("list");
    [${login.name }]님 환영합니다
 </c:if> --%>
 
-<div align="center" style="margin-left: 60px; margin-right: 100px;"> 
+<div align="center" style="margin-right: 100px;"> 
  
   <img src="image/cal05.jpg" width="100%;" height="40%;">
   
@@ -185,8 +185,8 @@ for(int i = 0; i < (7 - (dayOfWeek + lastDay - 1) % 7 ) % 7; i++){
 
 <div style="background-color: #FFBF00;" align="left">
 
-<div style="margin-left: 166px; background-color: #FFBF00;">
-<img alt="" src="image/n01.jpg">
+<div style="background-color: #FFBF00;">
+<img alt="" src="image/n01.jpg" style="margin-left: 10%;">
 <br>
 
 <label style="margin-left: 130px;">
@@ -210,12 +210,12 @@ int thour = cal.get(Calendar.HOUR_OF_DAY);
 int tmin = cal.get(Calendar.MINUTE);
 %>
 
-<img alt="" src="image/n02.jpg" style="margin-left: 440px;">
+<img alt="" src="image/n02.jpg" style="margin-left: 32%;">
 
-<div style="margin-left: 800px;">
+<div style="margin-left: 70%;">
 
 <form id="frm" method="post">
-	<h5>"현재 시간"</h5>
+	<h5 style="margin-left: 10%;">"현재 시간"</h5>
 	<!-- // db에 넣기 위해  id값을 가져와야 함 -->
    <input type="hidden" name="id" id="_id" value="<%=user.getId() %>">
    
@@ -225,7 +225,7 @@ int tmin = cal.get(Calendar.MINUTE);
    <input type="hidden" name="day" value="<%=tday %>">   
    <input type="hidden" name="hour" value="<%=thour %>">
    <input type="hidden" name="min" value="<%=tmin %>">
-   <br>
+   <br><br>
    
   <!-- // 출석체크 -->
  <!--   <button type="submit" onclick="btncheck()">

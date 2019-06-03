@@ -261,15 +261,14 @@ function memoWrite() {
 
 function memoDelete(memo_seq) {
 	
-	var result = confirm('정말 삭제 하시겠습니까?'); 
 	
-	if(result) { 
+	if(confirm('정말 삭제 하시겠습니까?')) { 
 	
 	
 	$.ajax({
 		url:"memoDelete.do",
 		type:"post",
-		data:{ memo_seq:memo_seq},
+		data:{ "memo_seq":memo_seq},
 		success:function(data){
 			//alert("success");
 			//alert(data);

@@ -42,7 +42,7 @@
 <tr>
 	<th>사진 업로드</th>
 	<td style="text-align: left;">
-		<input type="file" name="fileload" style="width: 342px; background-color: #D8D8D8;  border: 1px solid #848484;" >
+		<input type="file" name="fileload" id="fileload" style="width: 342px; background-color: #D8D8D8;  border: 1px solid #848484;" >
 	</td>
 </tr>
 
@@ -84,6 +84,23 @@
 </div>
 
 <script>
+$(function(){
+	$("#fileload").change(function(){
+		var ext = this.value.match(/\.(.+)$/)[1];
+		switch(ext){
+			case 'jpg':
+	    	case 'jpeg':
+	    	case 'png':
+	    	case 'gif':
+	       		$("#fileload").val($(this).val().slice(12, $(this).val().length));
+	       		break;
+	    	default:
+	       		alert('jpg, jpeg, png, gif 확장자인 이미지를 첨부해주세요.');
+	       		$("#fileload").val("");
+	 	}
+	});
+});
+
 $("#_btnPds").click(function () {
 	$("#_frmForm").submit();
 });

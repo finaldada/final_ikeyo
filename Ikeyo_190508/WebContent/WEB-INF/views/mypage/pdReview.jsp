@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/_common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/mypage_main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/pdReview.css">
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 <!-- modal ui -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
