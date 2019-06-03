@@ -198,7 +198,7 @@ public class OrderController {
 	@RequestMapping(value = "fail.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String fail() {
 		
-		return "redirect:/payment.do";
+		return "redirect:/myorder.do";
 		
 	}
 	

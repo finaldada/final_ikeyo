@@ -350,8 +350,14 @@ span {
 
 <script>
 function orderCancel( order_num ) {
-	$("#onum").val(order_num);
-	$("#orderfrm1").attr("action", "orderCancel.do").submit();
+	
+	if(confirm("주문을 취소하시겠습니까?")==true){
+		$("#onum").val(order_num);
+		$("#orderfrm1").attr("action", "orderCancel.do").submit();
+	}else{
+		
+	}
+	
 }
 </script>
 <script>
