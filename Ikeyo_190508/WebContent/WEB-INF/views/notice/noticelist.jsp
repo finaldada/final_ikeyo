@@ -188,7 +188,8 @@ $(document).ready(function(){
 
 <div align="center" style="width: 100%;">
 
-<div align="center" style="margin-top: 20px; margin-bottom: 10px;">
+<div align="center" style="margin-top: 20px; margin-bottom: 10px;
+	margin-left: 400px;">
 
 <form action="" name="frmForm1" id="_frmFormSearch" method="post">
 

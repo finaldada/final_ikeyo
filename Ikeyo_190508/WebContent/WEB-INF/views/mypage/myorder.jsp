@@ -362,7 +362,7 @@ function orderCancel( order_num ) {
 </script>
 <script>
 function orderFix( order_num, total_price ) {
-	alert("여기는 orderfix");
+	/* alert("여기는 orderfix"); */
 	$("#_onum").val(order_num);
 	$("#_total").val(total_price);
 	$("#orderfrm3").attr("action", "orderFix.do").submit();
